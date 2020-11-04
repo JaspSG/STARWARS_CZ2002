@@ -5,9 +5,11 @@ import java.time.LocalDateTime;
 public class Index {
 	private int vacancies;
 	private String getName;
-	private LocalDateTime tutorialSlot;
-	private LocalDateTime labSlot;
-	private LocalDateTime lectureSlot;
+	private LocalDateTime tutorialSlot_start;
+	private LocalDateTime tutorialSlot_end;
+	private LocalDateTime labSlot_start;
+	private LocalDateTime labSlot_end;
+	private LocalDateTime lectureSlot_end;
 
 	public int getVacancies() {
 		return vacancies;
@@ -25,28 +27,44 @@ public class Index {
 		this.getName = getName;
 	}
 
-	public LocalDateTime getTutorialSlot() {
-		return tutorialSlot;
+	public LocalDateTime getTutorialSlot_start() {
+		return tutorialSlot_start;
 	}
 
-	public void setTutorialSlot(LocalDateTime tutorialSlot) {
-		this.tutorialSlot = tutorialSlot;
+	public void setTutorialSlot_start(LocalDateTime tutorialSlot_start) {
+		this.tutorialSlot_start = tutorialSlot_start;
 	}
 
-	public LocalDateTime getLabSlot() {
-		return labSlot;
+	public LocalDateTime getTutorialSlot_end() {
+		return tutorialSlot_end;
 	}
 
-	public void setLabSlot(LocalDateTime labSlot) {
-		this.labSlot = labSlot;
+	public void setTutorialSlot_end(LocalDateTime tutorialSlot_end) {
+		this.tutorialSlot_end = tutorialSlot_end;
 	}
 
-	public LocalDateTime getLectureSlot() {
-		return lectureSlot;
+	public LocalDateTime getLabSlot_start() {
+		return labSlot_start;
 	}
 
-	public void setLectureSlot(LocalDateTime lectureSlot) {
-		this.lectureSlot = lectureSlot;
+	public void setLabSlot_start(LocalDateTime labSlot_start) {
+		this.labSlot_start = labSlot_start;
+	}
+
+	public LocalDateTime getLabSlot_end() {
+		return labSlot_end;
+	}
+
+	public void setLabSlot_end(LocalDateTime labSlot_end) {
+		this.labSlot_end = labSlot_end;
+	}
+
+	public LocalDateTime getLectureSlot_end() {
+		return lectureSlot_end;
+	}
+
+	public void setLectureSlot_end(LocalDateTime lectureSlot_end) {
+		this.lectureSlot_end = lectureSlot_end;
 	}
 
 	public boolean checkVacancy() {
