@@ -12,11 +12,11 @@ public class Course {
 
     private int au;
 
-    private ArrayList<Object> index;
+    private ArrayList<Index> index;
 
-    private ArrayList<Object> studentsEnrolled;
+    private ArrayList<Student> studentsEnrolled;
 
-    public Course(String courseName, String courseID, int au, ArrayList<Object> index, ArrayList<Object> studentsEnrolled){
+    public Course(String courseName, String courseID, int au, ArrayList<Index> index, ArrayList<Student> studentsEnrolled){
 
         this.courseName = courseName;
 
@@ -53,19 +53,19 @@ public class Course {
         this.au = au;
     }
 
-    public ArrayList<Object> getIndex(){
+    public ArrayList<Index> getIndex(){
         return this.index;
     }
 
-    public void setIndex(ArrayList<Object> index){
+    public void setIndex(ArrayList<Index> index){
         this.index = index;
     }
 
-    public ArrayList<Object> getStudentsEnrolled(){
+    public ArrayList<Student> getStudentsEnrolled(){
         return this.studentsEnrolled;
     }
 
-    public void setStudentsEnrolled(ArrayList<Object> studentsEnrolled){
+    public void setStudentsEnrolled(ArrayList<Student> studentsEnrolled){
         this.studentsEnrolled = studentsEnrolled;
     }
 
