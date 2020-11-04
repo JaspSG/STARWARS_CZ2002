@@ -13,14 +13,14 @@ public class fileManager {
 	
 	//STUDENT OBJECTS READER
 	
-	public void saveFile(String filename, ArrayList<Student> listOfObjects) throws Exception {
+	public void saveFile(String filename, ArrayList<Student> listOfStudent) throws Exception {
 		
 		String outputfilepath = String.format("src\\\\%s.ser", filename);
 		
 	    FileOutputStream fileOut =
 	    new FileOutputStream("outputfilepath");
 	    ObjectOutputStream out = new ObjectOutputStream(fileOut);
-	    out.writeObject(listOfObjects);
+	    out.writeObject(listOfStudent);
 	    out.close();
 	    fileOut.close();
 	}
