@@ -1,9 +1,10 @@
 package entity;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Calendar;
 
-public class Student {
+public class Student implements Serializable {
 	
 	String name;
 	String matricNumber;
@@ -37,6 +38,7 @@ public class Student {
 	}
 	
 	
+
 	public String getName() {
 		return name;
 	}
