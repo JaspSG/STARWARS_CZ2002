@@ -29,6 +29,6 @@ public class StudentManager {
     }
 
     public void addToWaitlist(){
-        
+
     }
 }
