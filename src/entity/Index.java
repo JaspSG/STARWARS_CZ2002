@@ -1,13 +1,55 @@
 package entity;
 
+import java.time.LocalDateTime;
+
 public class Index {
 	private int vacancies;
 	private String getName;
-	private Tutorial tutorialSlot;
-	private Lab labSlot;
-	private Lecture lectureSlot;
-	
+	private LocalDateTime tutorialSlot;
+	private LocalDateTime labSlot;
+	private LocalDateTime lectureSlot;
+
+	public int getVacancies() {
+		return vacancies;
+	}
+
+	public void setVacancies(int vacancies) {
+		this.vacancies = vacancies;
+	}
+
+	public String getGetName() {
+		return getName;
+	}
+
+	public void setGetName(String getName) {
+		this.getName = getName;
+	}
+
+	public LocalDateTime getTutorialSlot() {
+		return tutorialSlot;
+	}
+
+	public void setTutorialSlot(LocalDateTime tutorialSlot) {
+		this.tutorialSlot = tutorialSlot;
+	}
+
+	public LocalDateTime getLabSlot() {
+		return labSlot;
+	}
+
+	public void setLabSlot(LocalDateTime labSlot) {
+		this.labSlot = labSlot;
+	}
+
+	public LocalDateTime getLectureSlot() {
+		return lectureSlot;
+	}
+
+	public void setLectureSlot(LocalDateTime lectureSlot) {
+		this.lectureSlot = lectureSlot;
+	}
+
 	public boolean checkVacancy() {
-		//return
+		return false; // temporary return value atm
 	}
 }
