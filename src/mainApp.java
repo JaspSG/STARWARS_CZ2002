@@ -4,6 +4,7 @@ import java.util.Scanner;
 public class mainApp {
 
 	public static void main(String[] args) {
+
 		int choice = 0;
 
 		Scanner sc = new Scanner(System.in);
@@ -141,5 +142,11 @@ public class mainApp {
 				break;
 			}
 		} while (choice > 0 && choice < 7);
+
+		
+		Student student = new Student();
+		
+		System.out.println("test");
+
 	}
 }
