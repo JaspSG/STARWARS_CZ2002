@@ -14,9 +14,9 @@ public class Course {
 
     private ArrayList<Index> index;
 
-    private ArrayList<Object> studentsEnrolled;
+    private ArrayList<Student> studentsEnrolled;
 
-    public Course(String courseName, String courseID, int au, ArrayList<Index> index, ArrayList<Object> studentsEnrolled){
+    public Course(String courseName, String courseID, int au, ArrayList<Index> index, ArrayList<Student> studentsEnrolled){
 
         this.courseName = courseName;
 
@@ -61,11 +61,11 @@ public class Course {
         this.index = index;
     }
 
-    public ArrayList<Object> getStudentsEnrolled(){
+    public ArrayList<Student> getStudentsEnrolled(){
         return this.studentsEnrolled;
     }
 
-    public void setStudentsEnrolled(ArrayList<Object> studentsEnrolled){
+    public void setStudentsEnrolled(ArrayList<Student> studentsEnrolled){
         this.studentsEnrolled = studentsEnrolled;
     }
 
