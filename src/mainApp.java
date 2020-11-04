@@ -144,8 +144,6 @@ public class mainApp {
 		} while (choice > 0 && choice < 7);
 
 		
-		Student student = new Student();
-		
 		System.out.println("test");
 
 	}
