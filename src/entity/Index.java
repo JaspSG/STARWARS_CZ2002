@@ -1,8 +1,9 @@
 package entity;
 
+import java.io.Serializable;
 import java.time.LocalDateTime;
 
-public class Index {
+public class Index implements Serializable {
 	private int vacancies;
 	private String getName;
 	private String tutorialSlot;

@@ -1,10 +1,12 @@
 package entity;
 
 import javax.management.ObjectName;
+
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Course {
+public class Course implements Serializable {
 
     private String courseName;
 
