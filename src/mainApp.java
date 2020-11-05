@@ -1,15 +1,19 @@
+import java.security.NoSuchAlgorithmException;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
+import control.loginManager;
+
+
 public class mainApp {
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws NoSuchAlgorithmException {
 
 		int choice = 0;
 
 		Scanner sc = new Scanner(System.in);
 		do {
-		System.out.println("Enter 1 for Admin, 2 for Student");
+		System.out.println("Enter 1 for Admin, 2 for Student, 3 to test password");
 		choice = sc.nextInt();
 		if (choice == 1)
 		
@@ -20,8 +24,16 @@ public class mainApp {
 		{
 			studentMenu(sc);
 		}
+		else if (choice == 3)
+		{
+			loginManager lm = new loginManager();
+			System.out.println("Enter password");
+			String password = sc.next();
+			lm.validateLogin(password);
+			
+		}
 		
-	} while (choice >= 1  && choice <= 2);
+	} while (choice >= 1  && choice <= 3);
 	}
 	
 	public static void adminMenu(Scanner sc) {
