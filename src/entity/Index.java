@@ -6,9 +6,9 @@ import java.time.LocalDateTime;
 public class Index implements Serializable {
 	private int vacancies;
 	private String getName;
-	private LocalDateTime tutorialSlot;
-	private LocalDateTime labSlot;
-	private LocalDateTime lectureSlot;
+	private String tutorialSlot;
+	private String labSlot;
+	private String lectureSlot;
 
 	public int getVacancies() {
 		return vacancies;
@@ -26,27 +26,27 @@ public class Index implements Serializable {
 		this.getName = getName;
 	}
 
-	public LocalDateTime getTutorialSlot() {
+	public String getTutorialSlot() {
 		return tutorialSlot;
 	}
 
-	public void setTutorialSlot(LocalDateTime tutorialSlot) {
+	public void setTutorialSlot(String tutorialSlot) {
 		this.tutorialSlot = tutorialSlot;
 	}
 
-	public LocalDateTime getLabSlot() {
+	public String getLabSlot() {
 		return labSlot;
 	}
 
-	public void setLabSlot(LocalDateTime labSlot) {
+	public void setLabSlot(String labSlot) {
 		this.labSlot = labSlot;
 	}
 
-	public LocalDateTime getLectureSlot() {
+	public String getLectureSlot() {
 		return lectureSlot;
 	}
 
-	public void setLectureSlot(LocalDateTime lectureSlot) {
+	public void setLectureSlot(String lectureSlot) {
 		this.lectureSlot = lectureSlot;
 	}
 
