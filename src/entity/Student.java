@@ -4,14 +4,12 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Calendar;
 
-public class Student implements Serializable {
+public class Student extends User implements Serializable{
 	
 	String name;
 	String matricNumber;
 	String nationality;
 	String major;
-	String loginID;
-	String loginPW;
 	
 	char gender;
 	int yearOfStudy;
@@ -66,18 +64,6 @@ public class Student implements Serializable {
 	}
 	public void setMajor(String major) {
 		this.major = major;
-	}
-	public String getLoginID() {
-		return loginID;
-	}
-	public void setLoginID(String loginID) {
-		this.loginID = loginID;
-	}
-	public String getLoginPW() {
-		return loginPW;
-	}
-	public void setLoginPW(String loginPW) {
-		this.loginPW = loginPW;
 	}
 	public char getGender() {
 		return gender;
