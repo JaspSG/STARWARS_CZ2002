@@ -2,7 +2,7 @@ package entity;
 
 import java.util.ArrayList;
 
-public class Admin {
+public class Admin extends User{
 	public boolean addStudent() {
         return true; // temp value
     }
