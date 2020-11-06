@@ -7,9 +7,10 @@ import entity.Student;
 
 
 
+
 public class mainApp extends Student {
 
-	public static void main(String[] args) throws NoSuchAlgorithmException  {
+	public static void main(String[] args) throws Exception  {
 
 		int choice = 0;
 		boolean validInput = false;
@@ -43,6 +44,8 @@ public class mainApp extends Student {
 			validateLogin(password);
 			break;
 		case 4:
+			testingfile.main(args);
+			
 			break;
 		default:
 			System.out.println("");
