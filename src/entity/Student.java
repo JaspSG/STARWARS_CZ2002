@@ -22,20 +22,24 @@ public class Student implements Serializable {
 	ArrayList<Integer> courseTaken;
 	ArrayList<Course> courseEnrolled;
 	ArrayList<Course> waitList;
-
-	public Student(String name, String matricNumber, String nationality, String major, String loginID, String loginPW, char gender, int yearOfStudy) {
-		
-		this.name=name;
-		this.matricNumber=matricNumber;
-		this.nationality=nationality;
-		this.major=major;
-		this.loginID=loginID;
-		this.loginPW=loginPW;
-		this.gender=gender;
-		this.yearOfStudy=yearOfStudy;
-		
+	
+	public Student() {
 		
 	}
+
+//	public Student(String name, String matricNumber, String nationality, String major, String loginID, String loginPW, char gender, int yearOfStudy) {
+//		
+//		this.name=name;
+//		this.matricNumber=matricNumber;
+//		this.nationality=nationality;
+//		this.major=major;
+//		this.loginID=loginID;
+//		this.loginPW=loginPW;
+//		this.gender=gender;
+//		this.yearOfStudy=yearOfStudy;
+//		
+//		
+//	}
 	
 	
 
