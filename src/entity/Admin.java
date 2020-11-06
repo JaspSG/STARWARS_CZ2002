@@ -1,8 +1,25 @@
 package entity;
 
-import java.io.Serializable;
+import java.util.ArrayList;
 
-public class Admin implements Serializable {
-	private String loginID;
-	private String loginPW;
+public class Admin {
+	public boolean addStudent() {
+        return true; // temp value
+    }
+
+    public boolean addCourse() {
+        return true; // temp value
+    }
+
+    public boolean updateCourse() {
+        return true; // temp value
+    }
+
+    public ArrayList<Student> printStudentList() {
+        return null;
+    }
+
+    public ArrayList<Student> printStudentEnrolled(Course course) {
+        return null;
+    }
 }
