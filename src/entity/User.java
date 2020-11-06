@@ -26,7 +26,7 @@ abstract class User {
 	String loginID;
 	String loginPW;
 	
-	public void validateLogin(String password) throws NoSuchAlgorithmException
+	public static void validateLogin(String password) throws NoSuchAlgorithmException
 	{
 		//Boolean isValid = false;
 		

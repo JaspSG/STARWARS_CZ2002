@@ -2,12 +2,14 @@ import java.security.NoSuchAlgorithmException;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
-import control.loginManager;
+import entity.Student;
 
 
-public class mainApp {
 
-	public static void main(String[] args) throws NoSuchAlgorithmException {
+
+public class mainApp extends Student {
+
+	public static void main(String[] args) throws NoSuchAlgorithmException  {
 
 		int choice = 0;
 		boolean validInput = false;
@@ -36,9 +38,9 @@ public class mainApp {
 			break;
 		case 3:
 			String username ="";
+			System.out.println("Enter password");
 			String password = sc.next();
-			loginManager lm = new loginManager();
-			lm.validateLogin(password);
+			validateLogin(password);
 			break;
 		case 4:
 			break;
