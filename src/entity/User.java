@@ -1,11 +1,30 @@
-package control;
+package entity;
 
 import java.math.BigInteger;
 import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
-public class loginManager {
+abstract class User {
+	
+	public String getLoginID() {
+		return loginID;
+	}
+
+	public void setLoginID(String loginID) {
+		this.loginID = loginID;
+	}
+
+	public String getLoginPW() {
+		return loginPW;
+	}
+
+	public void setLoginPW(String loginPW) {
+		this.loginPW = loginPW;
+	}
+
+	String loginID;
+	String loginPW;
 	
 	public void validateLogin(String password) throws NoSuchAlgorithmException
 	{
@@ -24,5 +43,5 @@ public class loginManager {
 		//return isValid;
 	
 	}
-
+	
 }
