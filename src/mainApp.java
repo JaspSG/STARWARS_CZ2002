@@ -9,6 +9,7 @@ import entity.Student;
 
 
 public class mainApp extends Student {
+	static int currentStudentIndex;
 
 	public static void main(String[] args) throws Exception  {
 
@@ -41,11 +42,16 @@ public class mainApp extends Student {
 			String username ="";
 			System.out.println("Enter password");
 			String password = sc.next();
-			validateLogin(password);
+			currentStudentIndex = validateLogin(password);
+			if(currentStudentIndex == -1)
+			{
+				System.out.println("Wrong password!");
+				break;
+			}
 			break;
 		case 4:
 			testingfile.main(args);
-			
+
 			break;
 		default:
 			System.out.println("");
