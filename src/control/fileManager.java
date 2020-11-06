@@ -14,14 +14,14 @@ public class fileManager {
 	
 
 	
-	String outStudentFileName = "StudentFile";
-	String outCoursesFileName = "CoursesFile";
+	final static String outStudentFileName = "StudentFile";
+	final static String outCoursesFileName = "CoursesFile";
 	
 	//STUDENT OBJECTS READER
 	
-	public void saveStudentFile(ArrayList<Student> listOfStudent) throws Exception {
+	public static void saveStudentFile(ArrayList<Student> listOfStudent) throws Exception {
 		
-		String outputfilepath = String.format("src\\\\%s.ser", this.outStudentFileName);
+		String outputfilepath = String.format("src\\\\%s.ser", outStudentFileName);
 		
 	    FileOutputStream fileOut =
 	    new FileOutputStream(outputfilepath);
@@ -32,9 +32,9 @@ public class fileManager {
 	}
 	
 	@SuppressWarnings("unchecked")
-	public ArrayList<Student> loadStudentFile() {
+	public static ArrayList<Student> loadStudentFile() {
 		
-		String filepath = String.format("src\\\\%s.ser", this.outStudentFileName);
+		String filepath = String.format("src\\\\%s.ser", outStudentFileName);
 		ArrayList<Student> value = new ArrayList<Student>();
 		
 	      try {
@@ -57,9 +57,9 @@ public class fileManager {
 	
 	// COURSE OBJECT READER
 	
-	public void saveCoursesFile(ArrayList<Course> listOfCourses) throws Exception {
+	public static void saveCoursesFile(ArrayList<Course> listOfCourses) throws Exception {
 		
-		String outputfilepath = String.format("src\\\\%s.ser", this.outCoursesFileName);
+		String outputfilepath = String.format("src\\\\%s.ser", outCoursesFileName);
 		
 	    FileOutputStream fileOut =
 	    new FileOutputStream(outputfilepath);
@@ -70,9 +70,9 @@ public class fileManager {
 	}
 	
 	@SuppressWarnings("unchecked")
-	public ArrayList<Course> loadCoursesFile() {
+	public static ArrayList<Course> loadCoursesFile() {
 		
-		String filepath = String.format("src\\\\%s.ser", this.outCoursesFileName);
+		String filepath = String.format("src\\\\%s.ser", outCoursesFileName);
 		ArrayList<Course> value = new ArrayList<Course>();
 		
 	      try {
