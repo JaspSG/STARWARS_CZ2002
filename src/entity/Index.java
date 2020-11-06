@@ -5,11 +5,15 @@ import java.time.LocalDateTime;
 
 public class Index implements Serializable {
 	private int vacancies;
-	private String getName;
+	private String indexID;
 	private String tutorialSlot;
 	private String labSlot;
 	private String lectureSlot;
 
+	public Index(String indexID) {
+		this.indexID=indexID;
+	}
+	
 	public int getVacancies() {
 		return vacancies;
 	}
@@ -18,12 +22,13 @@ public class Index implements Serializable {
 		this.vacancies = vacancies;
 	}
 
-	public String getGetName() {
-		return getName;
+
+	public String getIndexID() {
+		return indexID;
 	}
 
-	public void setGetName(String getName) {
-		this.getName = getName;
+	public void setIndexID(String indexID) {
+		this.indexID = indexID;
 	}
 
 	public String getTutorialSlot() {

@@ -4,7 +4,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Calendar;
 
-public class Student extends User implements Serializable{
+public class Student extends User implements Serializable {
 	
 	String name;
 	String matricNumber;
@@ -17,27 +17,26 @@ public class Student extends User implements Serializable{
 	Calendar startTime;
 	Calendar endTime;
 	
-	ArrayList<Integer> courseTaken;
-	ArrayList<Course> courseEnrolled;
-	ArrayList<Course> waitList;
+	ArrayList<String> courseTaken;
+	ArrayList<String> courseEnrolled;
+	ArrayList<String> waitList;
 	
 	public Student() {
 		
 	}
 
-//	public Student(String name, String matricNumber, String nationality, String major, String loginID, String loginPW, char gender, int yearOfStudy) {
-//		
-//		this.name=name;
-//		this.matricNumber=matricNumber;
-//		this.nationality=nationality;
-//		this.major=major;
-//		this.loginID=loginID;
-//		this.loginPW=loginPW;
-//		this.gender=gender;
-//		this.yearOfStudy=yearOfStudy;
-//		
-//		
-//	}
+	public Student(String name, String matricNumber, String nationality, String major , char gender, int yearOfStudy, String loginID, String loginPW) {
+		
+		this.name=name;
+		this.matricNumber=matricNumber;
+		this.nationality=nationality;
+		this.major=major;
+		this.gender=gender;
+		this.yearOfStudy=yearOfStudy;
+		this.loginID = loginID;
+		this.loginPW = loginPW;
+		
+	}
 	
 	
 
@@ -89,22 +88,22 @@ public class Student extends User implements Serializable{
 	public void setEndTime(Calendar endTime) {
 		this.endTime = endTime;
 	}
-	public ArrayList<Integer> getCourseTaken() {
+	public ArrayList<String> getCourseTaken() {
 		return courseTaken;
 	}
-	public void setCourseTaken(ArrayList<Integer> courseTaken) {
+	public void setCourseTaken(ArrayList<String> courseTaken) {
 		this.courseTaken = courseTaken;
 	}
-	public ArrayList<Course> getCourseEnrolled() {
+	public ArrayList<String> getCourseEnrolled() {
 		return courseEnrolled;
 	}
-	public void setCourseEnrolled(ArrayList<Course> courseEnrolled) {
+	public void setCourseEnrolled(ArrayList<String> courseEnrolled) {
 		this.courseEnrolled = courseEnrolled;
 	}
-	public ArrayList<Course> getWaitList() {
+	public ArrayList<String> getWaitList() {
 		return waitList;
 	}
-	public void setWaitList(ArrayList<Course> waitList) {
+	public void setWaitList(ArrayList<String> waitList) {
 		this.waitList = waitList;
 	}
 		

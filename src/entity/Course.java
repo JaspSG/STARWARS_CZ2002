@@ -17,18 +17,18 @@ public class Course implements Serializable {
     private ArrayList<Index> index;
 
     private ArrayList<Student> studentsEnrolled;
+    
+    public Course() {
+    	
+    }
 
-    public Course(String courseName, String courseID, int au, ArrayList<Index> index, ArrayList<Student> studentsEnrolled){
+    public Course(String courseName, String courseID, int au){
 
         this.courseName = courseName;
 
         this.courseID = courseID;
 
         this.au = au;
-
-        this.index = index;
-
-        this.studentsEnrolled = studentsEnrolled;
     }
 
     public String getCourseName(){
