@@ -15,29 +15,29 @@ public class Admin extends User{
         boolean result = false;
 
         // initialise scanner object
-        Scanner scan = new Scanner(System.in);
+        Scanner sc = new Scanner(System.in);
 
         // initialise variable and scanner object
         System.out.print("Enter the new student's name: ");
-        String studentName = scan.nextLine();
+        String studentName = sc.nextLine();
 
         System.out.print("Enter the new student's matriculation number: ");
-        String matriculationNumber = scan.nextLine();
+        String matriculationNumber = sc.nextLine();
 
         System.out.print("Enter the new student's nationality: ");
-        String nationality = scan.nextLine();
+        String nationality = sc.nextLine();
 
         System.out.print("Enter the new student's loginID: ");
-        String loginId = scan.nextLine();
+        String loginId = sc.nextLine();
 
         System.out.print("Enter the new student's loginPW: ");
-        String loginPW = scan.nextLine();
+        String loginPW = sc.nextLine();
 
         System.out.print("Enter the new student's gender(M/F): ");
-        char gender = scan.next().charAt(0);
+        char gender = sc.next().charAt(0);
 
         System.out.print("Enter the new student's year of study: ");
-        int yearOfStudy = scan.nextInt();
+        int yearOfStudy = sc.nextInt();
 
         SimpleDateFormat format = new SimpleDateFormat("dd/MM/yy HH:mm:ss", Locale.ENGLISH);
 
