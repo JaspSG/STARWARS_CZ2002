@@ -2,39 +2,54 @@ import java.security.NoSuchAlgorithmException;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
-import control.loginManager;
+import entity.Student;
 
 
-public class mainApp {
 
-	public static void main(String[] args) throws NoSuchAlgorithmException {
+
+public class mainApp extends Student {
+
+	public static void main(String[] args) throws NoSuchAlgorithmException  {
 
 		int choice = 0;
-
+		boolean validInput = false;
 		Scanner sc = new Scanner(System.in);
 		do {
-		System.out.println("Enter 1 for Admin, 2 for Student, 3 to test password");
-		choice = sc.nextInt();
-		if (choice == 1)
-		
-		{
+		System.out.println("Enter 1 for Admin, 2 for Student, 3 to test password, 4 to create dat. file for testing");
+		do {
+			try {
+				choice = sc.nextInt();
+				sc.nextLine();
+			if (choice >= 1) {
+				validInput = true;
+				}
+			} catch (InputMismatchException e) {
+				System.out.println("Enter a valid integer!");
+				sc.nextLine();
+			}
+		} while (!validInput); 
+
+		switch (choice) {
+		case 1:
 			adminMenu(sc);
-		}
-		else if (choice == 2)
-		{
+			break;
+		case 2:
 			studentMenu(sc);
-		}
-		else if (choice == 3)
-		{
-			loginManager lm = new loginManager();
+			break;
+		case 3:
+			String username ="";
 			System.out.println("Enter password");
 			String password = sc.next();
-			lm.validateLogin(password);
-			
+			validateLogin(password);
+			break;
+		case 4:
+			break;
+		default:
+			System.out.println("");
+			break;
 		}
-		
-	} while (choice >= 1  && choice <= 3);
-	}
+	} while (choice > 0 && choice < 4);
+}
 	
 	public static void adminMenu(Scanner sc) {
 		int choice = 0;
