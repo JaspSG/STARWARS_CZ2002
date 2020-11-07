@@ -14,10 +14,10 @@ import static control.fileManager.*;
 public class Admin extends User{
 
     /**
-     * Adds a new student to the existing list of students
+     * Adds a new student to the current list of students
      * @return boolean result indicating if the operation is a success or failure;
      */
-    public boolean addStudent() {
+    public static boolean addStudent() {
         // initialise result = false
         boolean result = false;
 
@@ -77,10 +77,10 @@ public class Admin extends User{
     }
 
     /**
-     * Adds a new course to the existing list of courses
+     * Adds a new course to the current list of courses
      * @return boolean result indicating if the operation is a success or failure;
      */
-    public boolean addCourse() {
+    public static boolean addCourse() {
         boolean result = false; // initialise variable
 
         // initialise scanner object
@@ -100,6 +100,7 @@ public class Admin extends User{
         Course newCourse = new Course(courseName, courseID, au);
 
         ArrayList<Course> courseList = (ArrayList) loadCoursesFile(); // load course object to variable
+        // ArrayList<Course> courseList = loadCoursesFile();
 
         courseList.add(newCourse);
 
@@ -114,15 +115,48 @@ public class Admin extends User{
         return result; // temp value
     }
 
-    public boolean updateCourse() {
+    /**
+     * Updates an existing course from the current list of courses
+     * @return boolean result indicating if the operation is a success or failure;
+     */
+    public static boolean updateCourse() {
+        // initialise boolean result
+        boolean result = false;
+
+        // GET primary key from the user
+
+        // Retrieve results based on primary key
+
+        // Get updates from the user
+
+        // Update File
+
         return true; // temp value
     }
 
+    /**
+     * Allow admin to display all the students that are enrolled in a specific index number of a course
+     * @return
+     */
     public ArrayList<Student> printStudentList() {
+
+        // get Student
+
+        // print Student
         return null;
     }
 
+    /**
+     * Allow admin to display all the students that are enrolled in a specific course
+     * @param course Input from the main UI which is input by the admin
+     * @return
+     */
     public ArrayList<Student> printStudentEnrolled(Course course) {
+
+        ArrayList<Student> studentList = (ArrayList) loadStudentFile(); // load student object to variable
+
+
+
         return null;
     }
 }
