@@ -1,15 +1,19 @@
-import java.security.NoSuchAlgorithmException;
+
+import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
+import control.fileManager;
 import entity.Student;
+import entity.User;
 
 
 
 
 
-public class mainApp extends Student {
+public class mainApp extends User{
 	static int currentStudentIndex;
+	static ArrayList<Student> studentList;
 
 	public static void main(String[] args) throws Exception  {
 
@@ -17,7 +21,7 @@ public class mainApp extends Student {
 		boolean validInput = false;
 		Scanner sc = new Scanner(System.in);
 		do {
-		System.out.println("Enter 1 for Admin, 2 for Student, 3 to test password, 4 to create dat. file for testing");
+		System.out.println("Enter 1 for Admin, 2 for Student, 3 to test password, 4 to read from dat. file for testing");
 		do {
 			try {
 				choice = sc.nextInt();
@@ -39,25 +43,40 @@ public class mainApp extends Student {
 			studentMenu(sc);
 			break;
 		case 3:
-			String username ="";
-			System.out.println("Enter password");
-			String password = sc.next();
-			currentStudentIndex = validateLogin(password);
+			System.out.println("Enter name");
+			String username =sc.nextLine();
+			System.out.println("Enter Password");
+			String password = sc.nextLine();
+			currentStudentIndex = validateLogin(username,password);
+			
 			if(currentStudentIndex == -1)
 			{
 				System.out.println("Wrong password!");
 				break;
 			}
+			System.out.println("Current Student Index is now " + currentStudentIndex);
 			break;
 		case 4:
-			testingfile.main(args);
+			 fileManager fm = new fileManager();
+			 studentList = fileManager.loadStudentFile();
+			 System.out.println("File Loaded!");
+			 
+			 for(int i =0; i < studentList.size();i++)
+			 {
+				 
+				 System.out.println(studentList.get(i).getLoginID()); 
+				 System.out.println("");
+				 System.out.println(studentList.get(i).getLoginPW()); 
+				 System.out.println("");
+				 
+			 }
 
 			break;
 		default:
 			System.out.println("");
 			break;
 		}
-	} while (choice > 0 && choice < 4);
+	} while (choice > 0 && choice < 5);
 }
 	
 	public static void adminMenu(Scanner sc) {

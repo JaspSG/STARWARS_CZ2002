@@ -27,14 +27,14 @@ public class Student extends User implements Serializable {
 
 	public Student(String name, String matricNumber, String nationality, String major , char gender, int yearOfStudy, String loginID, String loginPW) {
 		
+		
+		super(loginID, loginPW);
 		this.name=name;
 		this.matricNumber=matricNumber;
 		this.nationality=nationality;
 		this.major=major;
 		this.gender=gender;
 		this.yearOfStudy=yearOfStudy;
-		this.loginID = loginID;
-		this.loginPW = loginPW;
 		
 	}
 	
