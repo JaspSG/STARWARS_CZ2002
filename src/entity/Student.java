@@ -38,7 +38,6 @@ public class Student extends User implements Serializable {
 		
 	}
 	
-	
 
 	public String getName() {
 		return name;
