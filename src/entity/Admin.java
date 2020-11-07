@@ -25,6 +25,7 @@ public class Admin extends User{
         Scanner sc = new Scanner(System.in);
 
         // get input from the user
+        // Input could be a method from main UI?
         System.out.print("Enter the new student's name: ");
         String studentName = sc.nextLine();
 
@@ -50,18 +51,18 @@ public class Admin extends User{
         int yearOfStudy = sc.nextInt();
 
         // To be added into the student constructor
-        SimpleDateFormat format = new SimpleDateFormat("dd/MM/yy HH:mm:ss", Locale.ENGLISH);
-
-        System.out.print(" Enter the new student's access start time in the following format (dd/MM/yy HH:mm:ss): ");
-
-        System.out.print(" Enter the new student's access end time in the following format (dd/MM/yy HH:mm:ss): ");
+//        SimpleDateFormat format = new SimpleDateFormat("dd/MM/yy HH:mm:ss", Locale.ENGLISH);
+//
+//        System.out.print(" Enter the new student's access start time in the following format (dd/MM/yy HH:mm:ss): ");
+//
+//        System.out.print(" Enter the new student's access end time in the following format (dd/MM/yy HH:mm:ss): ");
 
         // https://stackoverflow.com/questions/5301226/convert-string-to-calendar-object-in-java
 
         // insert object into the file - readserialisedobject
         Student newStudent = new Student(studentName, matriculationNumber, nationality, major, gender, yearOfStudy, loginId, loginPW);
 
-        ArrayList<Student> studentList = (ArrayList) loadStudentFile(); // load student object to variable
+        ArrayList<Student> studentList = loadStudentFile(); // load student object to variable
 
         studentList.add(newStudent);
 
@@ -87,6 +88,7 @@ public class Admin extends User{
         Scanner sc = new Scanner(System.in);
 
         // get input from the user
+        // Input could be a method from main UI?
         System.out.print("Enter the new course's name: ");
         String courseName = sc.nextLine();
 
@@ -99,8 +101,8 @@ public class Admin extends User{
         // insert object into the file - readserialisedobject
         Course newCourse = new Course(courseName, courseID, au);
 
-        ArrayList<Course> courseList = (ArrayList) loadCoursesFile(); // load course object to variable
-        // ArrayList<Course> courseList = loadCoursesFile();
+        ArrayList<Course> courseList = loadCoursesFile(); // load course object to variable
+        // ArrayList<Course> courseList = (ArrayList)loadCoursesFile();
 
         courseList.add(newCourse);
 
@@ -122,8 +124,10 @@ public class Admin extends User{
     public static boolean updateCourse() {
         // initialise boolean result
         boolean result = false;
+        Scanner sc = new Scanner(System.in);
 
-        // GET primary key from the user
+        // GET primary key from the user (what they want to update)
+        System.out.println("Enter the course ID that you wish to update: ");
 
         // Retrieve results based on primary key
 
@@ -136,7 +140,7 @@ public class Admin extends User{
 
     /**
      * Allow admin to display all the students that are enrolled in a specific index number of a course
-     * @return
+     * @return the list of student with that specific index number of the course
      */
     public ArrayList<Student> printStudentList() {
 
@@ -149,13 +153,11 @@ public class Admin extends User{
     /**
      * Allow admin to display all the students that are enrolled in a specific course
      * @param course Input from the main UI which is input by the admin
-     * @return
+     * @return the list of student enrolled in a specific course
      */
     public ArrayList<Student> printStudentEnrolled(Course course) {
 
-        ArrayList<Student> studentList = (ArrayList) loadStudentFile(); // load student object to variable
-
-
+        ArrayList<Student> studentList = loadStudentFile(); // load student object to variable
 
         return null;
     }
