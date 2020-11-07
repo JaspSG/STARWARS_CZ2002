@@ -4,7 +4,8 @@ import java.io.Serializable;
 import java.time.LocalDateTime;
 
 public class Index implements Serializable {
-	private int vacancies;
+	private int totalSize;
+	private int currentSize;
 	private String indexID;
 	private String tutorialSlot;
 	private String labSlot;
@@ -14,14 +15,21 @@ public class Index implements Serializable {
 		this.indexID=indexID;
 	}
 	
-	public int getVacancies() {
-		return vacancies;
+	public int getTotalSize() {
+		return totalSize;
 	}
 
-	public void setVacancies(int vacancies) {
-		this.vacancies = vacancies;
+	public void setTotalSize(int totalsize) {
+		this.totalSize = totalsize;
+	}
+	
+	public int getCurrentSize() {
+		return this.currentSize;
 	}
 
+	public void setCurrentSize(int currentsize) {
+		this.currentSize = currentsize;
+	}
 
 	public String getIndexID() {
 		return indexID;
@@ -55,7 +63,9 @@ public class Index implements Serializable {
 		this.lectureSlot = lectureSlot;
 	}
 
-	public boolean checkVacancy() {
-		return false; // temporary return value atm
+	public boolean checkVacancy() {		
+		if (totalSize - currentSize > 0)
+			return true; 
+		else return false;
 	}
 }
