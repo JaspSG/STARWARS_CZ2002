@@ -1,11 +1,27 @@
 package entity;
 
+import java.io.Serializable;
 import java.math.BigInteger;
 import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.util.ArrayList;
 
-abstract class User {
+import control.fileManager;
+
+public class User implements Serializable{
+	
+	String loginID;
+	String loginPW;
+	
+	public User() {
+		
+	}
+	
+	public User(String loginID, String loginPW) {
+		this.loginID = loginID;
+		this.loginPW = loginPW;
+	}
 	
 	public String getLoginID() {
 		return loginID;
@@ -23,8 +39,7 @@ abstract class User {
 		this.loginPW = loginPW;
 	}
 
-	String loginID;
-	String loginPW;
+
 	
 	public static  int validateLogin(String password) throws NoSuchAlgorithmException
 	{
@@ -42,9 +57,9 @@ abstract class User {
 		    String hex = String.format("%064x", new BigInteger(1, digest));
 		    System.out.println(hex);
 		     
-		    for(int i =0; i < studentList.size;i++)
+		    for(int i =0; i < studentList.size();i++)
 		    {
-		    	String currentPassword = studentList.get(i).getPassword();
+		    	String currentPassword = studentList.get(i).getLoginPW();
 		    	 md.update(currentPassword.getBytes(StandardCharsets.UTF_8));
 				 byte[] currentDigest = md.digest();
 
