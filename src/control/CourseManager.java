@@ -1,6 +1,13 @@
 package control;
 
+import java.util.ArrayList;
+
+import entity.Course;
+import entity.Student;
+
 public class CourseManager {
+	
+	ArrayList<Course> listofstudents = new ArrayList<Course>();
 	
 	public boolean checkVacancy(String index_id) {
 		return;
