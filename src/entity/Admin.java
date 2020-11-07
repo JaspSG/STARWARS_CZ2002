@@ -8,12 +8,15 @@ import java.util.Calendar;
 import java.util.Locale;
 import java.util.Scanner;
 
-import static control.fileManager.loadStudentFile;
-import static control.fileManager.saveStudentFile;
+import static control.fileManager.*;
 
 
 public class Admin extends User{
 
+    /**
+     * Adds a new student to the existing list of students
+     * @return boolean result indicating if the operation is a success or failure;
+     */
     public boolean addStudent() {
         // initialise result = false
         boolean result = false;
@@ -21,7 +24,7 @@ public class Admin extends User{
         // initialise scanner object
         Scanner sc = new Scanner(System.in);
 
-        // initialise variable and scanner object
+        // get input from the user
         System.out.print("Enter the new student's name: ");
         String studentName = sc.nextLine();
 
@@ -56,7 +59,7 @@ public class Admin extends User{
         // https://stackoverflow.com/questions/5301226/convert-string-to-calendar-object-in-java
 
         // insert object into the file - readserialisedobject
-        Student newStudent = new Student(studentName, matriculationNumber, nationality, major, loginId, loginPW, gender, yearOfStudy);
+        Student newStudent = new Student(studentName, matriculationNumber, nationality, major, gender, yearOfStudy, loginId, loginPW);
 
         ArrayList<Student> studentList = (ArrayList) loadStudentFile(); // load student object to variable
 
@@ -73,8 +76,42 @@ public class Admin extends User{
 	    return result;
     }
 
+    /**
+     * Adds a new course to the existing list of courses
+     * @return boolean result indicating if the operation is a success or failure;
+     */
     public boolean addCourse() {
-        return true; // temp value
+        boolean result = false; // initialise variable
+
+        // initialise scanner object
+        Scanner sc = new Scanner(System.in);
+
+        // get input from the user
+        System.out.print("Enter the new course's name: ");
+        String courseName = sc.nextLine();
+
+        System.out.print("Enter the new course's code: ");
+        String courseID = sc.nextLine();
+
+        System.out.print("Enter the new course's AU: ");
+        int au = sc.nextInt();
+
+        // insert object into the file - readserialisedobject
+        Course newCourse = new Course(courseName, courseID, au);
+
+        ArrayList<Course> courseList = (ArrayList) loadCoursesFile(); // load course object to variable
+
+        courseList.add(newCourse);
+
+        try {
+            saveCoursesFile(courseList);
+            result = true;
+        }
+        catch (Exception exception) {
+            exception.printStackTrace();
+        }
+
+        return result; // temp value
     }
 
     public boolean updateCourse() {
