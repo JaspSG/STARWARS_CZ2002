@@ -8,6 +8,10 @@ import java.util.Calendar;
 import java.util.Locale;
 import java.util.Scanner;
 
+import static control.fileManager.loadStudentFile;
+import static control.fileManager.saveStudentFile;
+
+
 public class Admin extends User{
 
     public boolean addStudent() {
@@ -27,6 +31,9 @@ public class Admin extends User{
         System.out.print("Enter the new student's nationality: ");
         String nationality = sc.nextLine();
 
+        System.out.print("Enter the new student's major: ");
+        String major = sc.nextLine();
+
         System.out.print("Enter the new student's loginID: ");
         String loginId = sc.nextLine();
 
@@ -39,6 +46,7 @@ public class Admin extends User{
         System.out.print("Enter the new student's year of study: ");
         int yearOfStudy = sc.nextInt();
 
+        // To be added into the student constructor
         SimpleDateFormat format = new SimpleDateFormat("dd/MM/yy HH:mm:ss", Locale.ENGLISH);
 
         System.out.print(" Enter the new student's access start time in the following format (dd/MM/yy HH:mm:ss): ");
@@ -47,8 +55,22 @@ public class Admin extends User{
 
         // https://stackoverflow.com/questions/5301226/convert-string-to-calendar-object-in-java
 
-	    return result; // temp value
+        // insert object into the file - readserialisedobject
+        Student newStudent = new Student(studentName, matriculationNumber, nationality, major, loginId, loginPW, gender, yearOfStudy);
 
+        ArrayList<Student> studentList = (ArrayList) loadStudentFile(); // load student object to variable
+
+        studentList.add(newStudent);
+
+        try {
+            saveStudentFile(studentList);
+            result = true;
+        }
+        catch (Exception exception) {
+            exception.printStackTrace();
+        }
+
+	    return result;
     }
 
     public boolean addCourse() {
