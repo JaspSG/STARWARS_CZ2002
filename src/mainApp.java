@@ -4,6 +4,7 @@ import java.util.InputMismatchException;
 import java.util.Scanner;
 
 import control.fileManager;
+import entity.Admin;
 import entity.Student;
 import entity.User;
 
@@ -113,6 +114,23 @@ public class mainApp extends User{
 			switch (choice) {
 			case 1:
 				System.out.println("1. Add a new course");
+
+				boolean addCourseResult = false;
+
+				try {
+					Admin.addCourse();
+					addCourseResult = true;
+				}
+				catch(Exception exception){
+					exception.printStackTrace();
+				}
+				if(addCourseResult == true){
+					System.out.println("Add Course Successful");
+				}
+				else{
+					System.out.println("Add Course Failed");
+				}
+
 				break;
 			case 2:
 				System.out.println("2. Add a new index group");
@@ -125,6 +143,22 @@ public class mainApp extends User{
 				break;
 			case 5:
 				System.out.println("5. Add a new student");
+
+				boolean addStudentResult = false;
+
+				try {
+					Admin.addStudent();
+					addStudentResult = true;
+				}
+				catch(Exception exception){
+					exception.printStackTrace();
+				}
+				if(addStudentResult == true){
+					System.out.println("Add Student Successful");
+				}
+				else{
+					System.out.println("Add Student Failed");
+				}
 				break;
 			case 6:
 				System.out.println("6. Edit student access periods");
