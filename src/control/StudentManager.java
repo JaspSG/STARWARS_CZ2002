@@ -17,25 +17,31 @@ public class StudentManager {
 		this.currentIndexofStudent = global_i;
 		this.listofstudents = fileManager.loadStudentFile();	
 	}
-	
-    public boolean addCourse(Course course, int tutGroup){
-    	//make code to add course to current student 
-    	
-    	//load file function
-	    		//ArrayList<String> listofstudentcurrentcourses = new ArrayList<String>();	
-	    		//listofstudentcurrentcourses = listofstudents.get(this.currentIndexofStudent).getCourseEnrolled();
-    		
-    	//do your add course function
-    			//listofstudentcurrentcourses.add();
-    
-    	
-    	//end of add course function    	
-		    	//listofstudents.get(this.currentIndexofStudent).setCourseEnrolled(listofstudentcurrentcourses);
-		    	//fileManager.saveStudentFile(listofstudents);
-		    	
-    	
-    	
-    	return true; // temporary value
+
+    public boolean addCourse(Course course, int tutGroup) throws Exception {
+        //load file
+        ArrayList<String> tempListOfCurrentCourse = new ArrayList<String>();
+        tempListOfCurrentCourse = listofstudents.get(this.currentIndexOfStudent).getCourseEnrolled();
+
+        //Check if course is already registered
+        if(tempListOfCurrentCourse.contains(course.getCourseName())){
+            System.out.println("Already enrolled in course!");
+            return false;
+        }
+        //Check Schedule Clash
+        //dosomething.something();
+        //Check if there is slot,if no slots, add to waitlist instead, else:
+
+        //do Add course name to Student Object
+        tempListOfCurrentCourse.add(course.getCourseName());
+        //Add student to Course Files
+        Student tempStudent = listofstudents.get(this.currentIndexOfStudent);
+        cmgr.addStudent(tempStudent,course,tutGroup);
+
+        listofstudents.get(this.currentIndexOfStudent).setCourseEnrolled(tempListOfCurrentCourse);
+        fileManager.saveStudentFile(listofstudents);
+
+        return true; // temporary value
     }
 
     public boolean dropCourse(Course course, int tutGroup, int global_i){
