@@ -2,6 +2,7 @@ package entity;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 
 public class Index implements Serializable {
 	private int totalSize;
@@ -10,11 +11,22 @@ public class Index implements Serializable {
 	private String tutorialSlot;
 	private String labSlot;
 	private String lectureSlot;
+	private ArrayList<Student> studentsEnrolled;
 
 	public Index(String indexID) {
 		this.indexID=indexID;
 	}
-	
+
+	public Index() {}
+
+	public ArrayList<Student> getStudentsEnrolled() {
+		return studentsEnrolled;
+	}
+
+	public void setStudentsEnrolled(ArrayList<Student> studentsEnrolled) {
+		this.studentsEnrolled = studentsEnrolled;
+	}
+
 	public int getTotalSize() {
 		return totalSize;
 	}

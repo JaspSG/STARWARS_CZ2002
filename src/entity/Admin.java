@@ -1,5 +1,6 @@
 package entity;
 
+import java.lang.reflect.Array;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.*;
@@ -213,11 +214,25 @@ public class Admin extends User{
      * @return the list of student with that specific index number of the course
      */
     public ArrayList<Student> printStudentList() {
+        // initialise variable
+        Scanner scanner = new Scanner(System.in);
+        String indexNumber = null;
 
-        // get Student
+        // get input from the user
+        System.out.println("Enter the index number that you want to print: ");
+        indexNumber = scanner.nextLine();
+
+        // retrieve index object
+        ArrayList<Index> indexList = loadIndexesFile();
 
         // print Student
-        return null;
+        for(int i = 0; i < indexList.size(); i++) {
+            Index index1 = indexList.get(i);
+            if(index1.getIndexID().contains(indexNumber)){
+                return index1.getStudentsEnrolled();
+            }
+        }
+        return null; // if none return
     }
 
     /**
@@ -227,8 +242,24 @@ public class Admin extends User{
      */
     public ArrayList<Student> printStudentEnrolled(Course course) {
 
-        ArrayList<Student> studentList = loadStudentFile(); // load student object to variable
+        // initialise variable
+        Scanner scanner = new Scanner(System.in);
+        String courseCode = null;
 
-        return null;
+        // get input from the user
+        System.out.println("Enter the Course Code that you want to print: ");
+        courseCode = scanner.nextLine();
+
+        // retrieve Course object
+        ArrayList<Course> courseList = loadCoursesFile();
+
+        // print Student
+        for(int i = 0; i < courseList.size(); i++) {
+            Course course1 = courseList.get(i);
+            if(course1.getCourseID().contains(courseCode)){
+                return course1.getStudentsEnrolled();
+            }
+        }
+        return null; // if none return
     }
 }

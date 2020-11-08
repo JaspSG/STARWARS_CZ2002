@@ -8,6 +8,7 @@ import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 
 import entity.Course;
+import entity.Index;
 import entity.Student;
 
 public class fileManager {
@@ -16,6 +17,7 @@ public class fileManager {
 	
 	final static String outStudentFileName = "StudentFile";
 	final static String outCoursesFileName = "CoursesFile";
+	final static String outIndexesFileName = "IndexesFile";
 	
 	//STUDENT OBJECTS READER
 	
@@ -93,7 +95,42 @@ public class fileManager {
 	
 	// END OF COURSE OBJECT READER
 	
-	
+	// START OF INDEX OBJECT READER
+
+	public static void saveIndexFile(ArrayList<Index> listOfIndexes) throws Exception {
+
+		String outputfilepath = String.format("src\\\\%s.ser", outIndexesFileName);
+
+		FileOutputStream fileOut =
+				new FileOutputStream(outputfilepath);
+		ObjectOutputStream out = new ObjectOutputStream(fileOut);
+		out.writeObject(listOfIndexes);
+		out.close();
+		fileOut.close();
+	}
+
+	@SuppressWarnings("unchecked")
+	public static ArrayList<Index> loadIndexesFile() {
+
+		String filepath = String.format("src\\\\%s.ser", outIndexesFileName);
+		ArrayList<Index> value = new ArrayList<Index>();
+
+		try {
+			FileInputStream fileIn = new FileInputStream(filepath);
+			ObjectInputStream in = new ObjectInputStream(fileIn);
+			value = (ArrayList<Index>) in.readObject();
+			in.close();
+			fileIn.close();
+		} catch (IOException i) {
+			i.printStackTrace();
+		} catch (ClassNotFoundException c) {
+			System.out.println("Course class not found");
+			c.printStackTrace();
+		}
+
+		return value;
+	}
+	// END OF INDEX OBJECT READER
 
 
 	
