@@ -2,13 +2,11 @@ package entity;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
+import java.util.*;
 // scanner object
-import java.util.Calendar;
-import java.util.Locale;
-import java.util.Scanner;
-
 import static control.fileManager.*;
+
+
 
 
 public class Admin extends User{
@@ -122,20 +120,92 @@ public class Admin extends User{
      * @return boolean result indicating if the operation is a success or failure;
      */
     public static boolean updateCourse() {
-        // initialise boolean result
-        boolean result = false;
+        // initialise
         Scanner sc = new Scanner(System.in);
+        Course updateCourse = new Course(); // empty course
 
         // GET primary key from the user (what they want to update)
         System.out.println("Enter the course ID that you wish to update: ");
+        String givenCourseID = sc.nextLine();
 
-        // Retrieve results based on primary key
+        // retrieve course object
+        ArrayList<Course> courseList = loadCoursesFile();
 
-        // Get updates from the user
+        // find course object based on courseID
+        for(int i = 0; i < courseList.size(); i++){
+            if(courseList.get(i).getCourseID().equals(givenCourseID))
+            {
+                updateCourse = courseList.get(i);
+                break;
+            }
+        }
+        int choice = 0;
+        boolean validChoice = false;
+        if(updateCourse != null) {
+            // do stuff here
+            System.out.println("Valid Course ID. Enter the options that you wish to update?: ");
+            System.out.println("1. Name of the Course");
+            System.out.println("2. AU of the course");
 
-        // Update File
+            do{
+                try{
+                    choice = sc.nextInt();
+                    if(choice > 0) {
+                        validChoice = true;
+                        sc.nextLine();
+                    }
+                } catch (InputMismatchException exception){
+                    System.out.println("Enter within valid range!");
+                    sc.nextLine();
+                }
+            } while(validChoice != false);
 
-        return true; // temp value
+            validChoice = false;
+
+            switch (choice) {
+                case 1:
+                    System.out.println("Current Course's name: " + updateCourse.getCourseName());
+                    System.out.println("Enter the updated Course's name: ");
+                    String updateCourseName = sc.nextLine();
+                    updateCourse.setCourseName(updateCourseName);
+
+                case 2:
+                    System.out.println("Current Course's AU: " + updateCourse.getCourseName());
+                    System.out.println("Enter the updated Course's AU: ");
+                    int updateCourseAU = sc.nextInt();
+                    updateCourse.setAu(updateCourseAU);
+
+                default:
+                    break;
+            }
+
+            // retrieve course object
+            ArrayList<Course> courseListUpdate = loadCoursesFile();
+
+            // find course object based on courseID
+            for(int i = 0; i < courseList.size(); i++){
+                if(courseListUpdate.get(i).getCourseID().equals(givenCourseID))
+                {
+                    courseListUpdate.set(i, updateCourse);
+                    break;
+                }
+            }
+            // save course file
+            try {
+                saveCoursesFile(courseListUpdate);
+            }
+            catch (Exception exception) {
+                exception.printStackTrace();
+            }
+
+            return true; // temp value
+
+        }
+        else{
+            System.out.println("Invalid courseID!");
+            return false;
+        }
+
     }
 
     /**
