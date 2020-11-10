@@ -15,61 +15,27 @@ public class Index implements Serializable {
 	private ArrayList<Student> studentsEnrolled;
 	private ArrayList<Lesson> lessons;
 	private Queue<Student> waitlist;
-	
-	public void addwaitlist(Student student) {
-		this.waitlist.add(student);
-	}
-	
-	public void removewaitlist() {
-		this.waitlist.remove();
-	}
-	
-	public Queue<Student> getWaitlist() {
-		return waitlist;
-	}
-
-	public void setWaitlist(Queue<Student> waitlist) {
-		this.waitlist = waitlist;
-	}
-
-
-
-	public ArrayList<Lesson> getLessons() {
-		return lessons;
-	}
-
-	public void setLessons(ArrayList<Lesson> lessons) {
-		this.lessons = lessons;
-	}
-
-	public Index(String indexID) {
-		this.indexID=indexID;
-	}
 
 	public Index() {}
 
-	public ArrayList<Student> getStudentsEnrolled() {
-		return studentsEnrolled;
-	}
-
-	public void setStudentsEnrolled(ArrayList<Student> studentsEnrolled) {
-		this.studentsEnrolled = studentsEnrolled;
+	public Index(String indexID) {
+		this.indexID=indexID;
 	}
 
 	public int getTotalSize() {
 		return totalSize;
 	}
 
-	public void setTotalSize(int totalsize) {
-		this.totalSize = totalsize;
-	}
-	
-	public int getCurrentSize() {
-		return this.currentSize;
+	public void setTotalSize(int totalSize) {
+		this.totalSize = totalSize;
 	}
 
-	public void setCurrentSize(int currentsize) {
-		this.currentSize = currentsize;
+	public int getCurrentSize() {
+		return currentSize;
+	}
+
+	public void setCurrentSize(int currentSize) {
+		this.currentSize = currentSize;
 	}
 
 	public String getIndexID() {
@@ -102,6 +68,38 @@ public class Index implements Serializable {
 
 	public void setLectureSlot(String lectureSlot) {
 		this.lectureSlot = lectureSlot;
+	}
+
+	public ArrayList<Student> getStudentsEnrolled() {
+		return studentsEnrolled;
+	}
+
+	public void setStudentsEnrolled(ArrayList<Student> studentsEnrolled) {
+		this.studentsEnrolled = studentsEnrolled;
+	}
+
+	public ArrayList<Lesson> getLessons() {
+		return lessons;
+	}
+
+	public void setLessons(ArrayList<Lesson> lessons) {
+		this.lessons = lessons;
+	}
+
+	public Queue<Student> getWaitlist() {
+		return waitlist;
+	}
+
+	public void setWaitlist(Queue<Student> waitlist) {
+		this.waitlist = waitlist;
+	}
+
+	public void addwaitlist(Student student) {
+		this.waitlist.add(student);
+	}
+	
+	public void removewaitlist() {
+		this.waitlist.remove();
 	}
 
 	public boolean checkVacancy() {		
