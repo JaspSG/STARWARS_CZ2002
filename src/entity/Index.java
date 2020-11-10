@@ -107,7 +107,7 @@ public class Index implements Serializable {
 		this.waitlist.add(student);
 	}
 	
-	public Student removewaitlist() {
+	public Student removeStudentFromWaitlist() {
 		
 		Student tempstudent = this.waitlist.remove();
 		return tempstudent;

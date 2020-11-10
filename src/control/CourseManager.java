@@ -66,7 +66,7 @@ public class CourseManager {
 				templistindex = course.getIndex();
 				for(Index index: templistindex) {
 					if (index.getIndexID().equals(indexID)){
-						Student tempstudent = index.removewaitlist();
+						Student tempstudent = index.removeStudentFromWaitlist();
 						course.setIndex(templistindex);
 						try {
 							fileManager.saveCoursesFile(listOfCourses);
@@ -97,7 +97,4 @@ public class CourseManager {
 		}
 	}
 	
-	public void printStudents() {
-		
-	}
 }
