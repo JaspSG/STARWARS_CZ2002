@@ -3,6 +3,7 @@ package entity;
 import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.Queue;
 
 public class Index implements Serializable {
 	private int totalSize;
@@ -13,6 +14,15 @@ public class Index implements Serializable {
 	private String lectureSlot;
 	private ArrayList<Student> studentsEnrolled;
 	private ArrayList<Lesson> lessons;
+	public Queue<Course> getQueue() {
+		return queue;
+	}
+
+	public void setQueue(Queue<Course> queue) {
+		this.queue = queue;
+	}
+
+	private Queue<Course> queue;
 
 	public ArrayList<Lesson> getLessons() {
 		return lessons;
