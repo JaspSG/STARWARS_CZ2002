@@ -16,38 +16,7 @@ public class Admin extends User{
      * Adds a new student to the current list of students
      * @return boolean result indicating if the operation is a success or failure;
      */
-    public static boolean addStudent() {
-        // initialise result = false
-        boolean result = false;
-
-        // initialise scanner object
-        Scanner sc = new Scanner(System.in);
-
-        // get input from the user
-        // Input could be a method from main UI?
-        System.out.print("Enter the new student's name: ");
-        String studentName = sc.nextLine();
-
-        System.out.print("Enter the new student's matriculation number: ");
-        String matriculationNumber = sc.nextLine();
-
-        System.out.print("Enter the new student's nationality: ");
-        String nationality = sc.nextLine();
-
-        System.out.print("Enter the new student's major: ");
-        String major = sc.nextLine();
-
-        System.out.print("Enter the new student's loginID: ");
-        String loginId = sc.nextLine();
-
-        System.out.print("Enter the new student's loginPW: ");
-        String loginPW = sc.nextLine();
-
-        System.out.print("Enter the new student's gender(M/F): ");
-        char gender = sc.next().charAt(0);
-
-        System.out.print("Enter the new student's year of study: ");
-        int yearOfStudy = sc.nextInt();
+    public static boolean addStudent(Student student) {
 
         // To be added into the student constructor
 //        SimpleDateFormat format = new SimpleDateFormat("dd/MM/yy HH:mm:ss", Locale.ENGLISH);
@@ -58,22 +27,18 @@ public class Admin extends User{
 
         // https://stackoverflow.com/questions/5301226/convert-string-to-calendar-object-in-java
 
-        // insert object into the file - readserialisedobject
-        Student newStudent = new Student(studentName, matriculationNumber, nationality, major, gender, yearOfStudy, loginId, loginPW);
-
         ArrayList<Student> studentList = loadStudentFile(); // load student object to variable
 
-        studentList.add(newStudent);
+        studentList.add(student);
 
         try {
             saveStudentFile(studentList);
-            result = true;
+            return true;
         }
         catch (Exception exception) {
             exception.printStackTrace();
+            return false;
         }
-
-	    return result;
     }
 
     /**
@@ -244,7 +209,7 @@ public class Admin extends User{
 
         // initialise variable
         Scanner scanner = new Scanner(System.in);
-        String courseCode = null;
+        String courseCode;
 
         // get input from the user
         System.out.println("Enter the Course Code that you want to print: ");
@@ -254,10 +219,19 @@ public class Admin extends User{
         ArrayList<Course> courseList = loadCoursesFile();
 
         // print Student
+        ArrayList<Student> testlist;
         for(int i = 0; i < courseList.size(); i++) {
             Course course1 = courseList.get(i);
             if(course1.getCourseID().contains(courseCode)){
-                return course1.getStudentsEnrolled();
+                testlist =  course1.getStudentsEnrolled();
+
+                for(int j =0; j < testlist.size();j++)
+                {
+                    System.out.println(testlist.get(i).getName() + "\n");
+
+
+                }
+                break;
             }
         }
         return null; // if none return

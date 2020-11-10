@@ -144,10 +144,38 @@ public class mainApp extends User{
 			case 5:
 				System.out.println("5. Add a new student");
 
+				// get input from the user
+				System.out.print("Enter the new student's name: ");
+				String studentName = sc.nextLine();
+
+				System.out.print("Enter the new student's matriculation number: ");
+				String matriculationNumber = sc.nextLine();
+
+				System.out.print("Enter the new student's nationality: ");
+				String nationality = sc.nextLine();
+
+				System.out.print("Enter the new student's major: ");
+				String major = sc.nextLine();
+
+				System.out.print("Enter the new student's loginID: ");
+				String loginId = sc.nextLine();
+
+				System.out.print("Enter the new student's loginPW: ");
+				String loginPW = sc.nextLine();
+
+				System.out.print("Enter the new student's gender(M/F): ");
+				char gender = sc.next().charAt(0);
+
+				System.out.print("Enter the new student's year of study: ");
+				int yearOfStudy = sc.nextInt();
+
+				// insert object into the file - readserialisedobject
+				Student newStudent = new Student(studentName, matriculationNumber, nationality, major, gender, yearOfStudy, loginId, loginPW);
+
 				boolean addStudentResult = false;
 
 				try {
-					Admin.addStudent();
+					Admin.addStudent(newStudent);
 					addStudentResult = true;
 				}
 				catch(Exception exception){
