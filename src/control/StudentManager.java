@@ -9,8 +9,7 @@ import java.util.ArrayList;
 public class StudentManager {
 	
 	CourseManager cmngr = new CourseManager();
-	
-	int currentIndexofStudent;
+	int currentIndexOfStudent;
 	ArrayList<Student> listofstudents = new ArrayList<Student>();
 	
 	public StudentManager(int global_i) {

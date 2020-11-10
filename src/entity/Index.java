@@ -12,6 +12,15 @@ public class Index implements Serializable {
 	private String labSlot;
 	private String lectureSlot;
 	private ArrayList<Student> studentsEnrolled;
+	private ArrayList<Lesson> lessons;
+
+	public ArrayList<Lesson> getLessons() {
+		return lessons;
+	}
+
+	public void setLessons(ArrayList<Lesson> lessons) {
+		this.lessons = lessons;
+	}
 
 	public Index(String indexID) {
 		this.indexID=indexID;

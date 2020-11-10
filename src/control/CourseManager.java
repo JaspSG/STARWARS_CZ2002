@@ -13,7 +13,7 @@ public class CourseManager {
 		return;
 	}
 	
-	public boolean addStudent(Student student) {
+	public boolean addStudent(Student tempStudent,Course course, String tutGroup) {
 		return;
 	}
 	

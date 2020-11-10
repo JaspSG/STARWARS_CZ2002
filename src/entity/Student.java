@@ -17,8 +17,8 @@ public class Student extends User implements Serializable {
 	Calendar startTime;
 	Calendar endTime;
 	
-	ArrayList<String> courseTaken;
-	ArrayList<String> courseEnrolled;
+	ArrayList<Course> courseTaken;
+	ArrayList<Course> courseEnrolled;
 	ArrayList<String> waitList;
 	
 	public Student() {
