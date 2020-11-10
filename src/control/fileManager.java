@@ -1,10 +1,6 @@
 package control;
 
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
+import java.io.*;
 import java.util.ArrayList;
 
 import entity.Course;
@@ -94,44 +90,4 @@ public class fileManager {
 	}
 	
 	// END OF COURSE OBJECT READER
-	
-	// START OF INDEX OBJECT READER
-
-	public static void saveIndexFile(ArrayList<Index> listOfIndexes) throws Exception {
-
-		String outputfilepath = String.format("src\\\\%s.ser", outIndexesFileName);
-
-		FileOutputStream fileOut =
-				new FileOutputStream(outputfilepath);
-		ObjectOutputStream out = new ObjectOutputStream(fileOut);
-		out.writeObject(listOfIndexes);
-		out.close();
-		fileOut.close();
-	}
-
-	@SuppressWarnings("unchecked")
-	public static ArrayList<Index> loadIndexesFile() {
-
-		String filepath = String.format("src\\\\%s.ser", outIndexesFileName);
-		ArrayList<Index> value = new ArrayList<Index>();
-
-		try {
-			FileInputStream fileIn = new FileInputStream(filepath);
-			ObjectInputStream in = new ObjectInputStream(fileIn);
-			value = (ArrayList<Index>) in.readObject();
-			in.close();
-			fileIn.close();
-		} catch (IOException i) {
-			i.printStackTrace();
-		} catch (ClassNotFoundException c) {
-			System.out.println("Index class not found");
-			c.printStackTrace();
-		}
-
-		return value;
-	}
-	// END OF INDEX OBJECT READER
-
-
-	
 }
