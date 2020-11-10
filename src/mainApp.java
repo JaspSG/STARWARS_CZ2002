@@ -3,20 +3,25 @@ import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
+import control.CourseManager;
 import control.fileManager;
 import entity.Admin;
 import entity.Student;
 import entity.User;
 
 
-
-
-
 public class mainApp extends User{
 	static int currentStudentIndex;
 	static ArrayList<Student> studentList;
+	
+
 
 	public static void main(String[] args) throws Exception  {
+		
+		CourseManager cmngr = new CourseManager();
+		studentList = fileManager.loadStudentFile();
+		
+
 
 		int choice = 0;
 		boolean validInput = false;

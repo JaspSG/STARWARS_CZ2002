@@ -98,10 +98,12 @@ public class testingfile {
 		//loaded_listofcourses = fileManager.loadCoursesFile(); //save courses file
 		
 		CourseManager cmngr = new CourseManager();
+		
+		cmngr.printIndexList("CZ1011");
 
 		//waitlist testing
-		cmngr.addWaitlist(_student2, "CZ1011", "SP4");
-		cmngr.addWaitlist(_student1, "CZ1011", "SP4");
+		cmngr.addStudentToWaitlist(_student2, "CZ1011", "SP4");
+		cmngr.addStudentToWaitlist(_student1, "CZ1011", "SP4");
 		Student studentremoved = cmngr.removeStudentFromWaitlist("CZ1011", "SP4");
 		System.out.println(studentremoved.getName());
 		
@@ -109,6 +111,8 @@ public class testingfile {
 		Course retrivedcourse = cmngr.findcourse("CZ1011");
 		Index testindex = retrivedcourse.findIndex("SP4");
 		testindex.printQueue();
+		
+		
 //		
 //		cmngr.printIndexList("CZ1011");
 //		
