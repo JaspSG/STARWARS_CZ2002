@@ -7,7 +7,11 @@ import entity.Student;
 
 public class CourseManager {
 	
-	ArrayList<Course> listofstudents = new ArrayList<Course>();
+	ArrayList<Course> listOfCourses = new ArrayList<Course>();
+	
+	public CourseManager() {
+		this.listOfCourses = fileManager.loadCoursesFile();
+	}
 	
 	public boolean checkVacancy(String index_id) {
 		return;
@@ -21,7 +25,11 @@ public class CourseManager {
 		return;
 	}
 	
-	public boolean addWWaitlist() {
+	public boolean addWaitlist(Student student, String CourseID) {
+		
+		
+		
+		
 		return;
 	}
 	
