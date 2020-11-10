@@ -15,7 +15,7 @@ public class CourseManager {
 	}
 	
 	public boolean checkVacancy(String index_id) {
-		return mainApp.currentStudentIndex;
+		return true;
 	}
 	
 	public boolean addStudent(Student tempStudent,Course course, String tutGroup) {

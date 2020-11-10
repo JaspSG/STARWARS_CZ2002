@@ -97,14 +97,25 @@ public class testingfile {
 		//Use corresponding set methods to set the variables you want to test
 		
 		ArrayList<Student> reloaded_listofstudents = fmngr.loadStudentFile(); // load student file
+		ArrayList<Course> reloaded_listofcourse = fmngr.loadCoursesFile(); // load student file
 		
 		//reloaded_listofstudents.get(0).setName("john");
 
 		//System.out.println(reloaded_listofstudents.get(0).getCourseEnrolled());
 		System.out.println(reloaded_listofstudents.get(0).getCourseEnrolled());
-		ArrayList<Course> test = new ArrayList<Course>();
-		test = reloaded_listofstudents.get(0).getCourseEnrolled();
-		System.out.println(test.get(0).getIndex());
+		System.out.println(reloaded_listofcourse.get(0).getIndex());
+//		ArrayList<Course> test = new ArrayList<Course>();
+//		test = reloaded_listofstudents.get(0).getCourseEnrolled();
+//		for (Course course: test) {
+//			ArrayList<Index> tempindex = new ArrayList<Index>();
+//			tempindex = course.getIndex();
+//			for(Index index: tempindex) {
+//					index.add(student);
+//					break;
+//			}
+//			System.out.println(tempindex.size());
+//		}
+		
 		
 		
 		
