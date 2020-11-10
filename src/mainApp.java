@@ -7,7 +7,7 @@ import control.fileManager;
 import entity.Admin;
 import entity.Student;
 import entity.User;
-
+import entity.Course;
 
 
 
@@ -240,7 +240,12 @@ public class mainApp extends User{
 				System.out.println("1. Register a course");
 				break;
 			case 2:
-				System.out.println("2. Drop course");
+				System.out.println("Select the Course ID:");
+				System.out.println(studentList.get(currentStudentIndex).getCourseEnrolled());
+				ArrayList<Course> test = new ArrayList<Course>();
+				test = studentList.get(currentStudentIndex).getCourseEnrolled();
+				System.out.println(test);
+				
 				break;
 			case 3:
 				System.out.println("3. Print courses registered");

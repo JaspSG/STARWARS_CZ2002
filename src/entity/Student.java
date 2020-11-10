@@ -93,10 +93,10 @@ public class Student extends User implements Serializable {
 	public void setCourseTaken(ArrayList<String> courseTaken) {
 		this.courseTaken = courseTaken;
 	}
-	public ArrayList<String> getCourseEnrolled() {
-		return courseEnrolled;
+	public ArrayList<Course> getCourseEnrolled() {
+		return this.courseEnrolled;
 	}
-	public void setCourseEnrolled(ArrayList<String> courseEnrolled) {
+	public void setCourseEnrolled(ArrayList<Course> courseEnrolled) {
 		this.courseEnrolled = courseEnrolled;
 	}
 	public ArrayList<String> getWaitList() {

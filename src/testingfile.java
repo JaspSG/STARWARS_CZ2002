@@ -87,6 +87,8 @@ public class testingfile {
 		_course2.setIndex(listofindex);
 		_course1.setIndex(listofindex);
 		
+		_student1.setCourseEnrolled(listofcourses);
+		
 		
 		fileManager.saveStudentFile(listofstudents); //save student file
 		
@@ -94,11 +96,15 @@ public class testingfile {
 		
 		//Use corresponding set methods to set the variables you want to test
 		
-		//ArrayList<Student> reloaded_listofstudents = fmngr.loadStudentFile(); // load student file
+		ArrayList<Student> reloaded_listofstudents = fmngr.loadStudentFile(); // load student file
 		
 		//reloaded_listofstudents.get(0).setName("john");
 
-		//System.out.println(_secondlistofstudents.get(0).getName());
+		//System.out.println(reloaded_listofstudents.get(0).getCourseEnrolled());
+		System.out.println(reloaded_listofstudents.get(0).getCourseEnrolled());
+		ArrayList<Course> test = new ArrayList<Course>();
+		test = reloaded_listofstudents.get(0).getCourseEnrolled();
+		System.out.println(test.get(0).getIndex());
 		
 		
 		

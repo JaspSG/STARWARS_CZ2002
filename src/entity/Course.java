@@ -56,7 +56,7 @@ public class Course implements Serializable {
     }
 
     public ArrayList<Index> getIndex(){
-        return this.index;
+        return index;
     }
 
     public void setIndex(ArrayList<Index> index){
