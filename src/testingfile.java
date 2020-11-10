@@ -49,9 +49,14 @@ public class testingfile {
 		ArrayList<Index> listofindex = new ArrayList<Index>();
 		
 		Index _index1 = new Index("SSP2");
+		_index1.setTotalSize(20);
+		
 		Index _index2 = new Index("SP4");
+		
 		Index _index3 = new Index("FS8");
+		
 		Index _index4 = new Index("FS3");
+		
 		Index _index5 = new Index("FP5");
 		
 		ArrayList<Course> listofcourses = new ArrayList<Course>();
@@ -83,9 +88,9 @@ public class testingfile {
 		_course1.setIndex(listofindex);
 		
 		
-		fmngr.saveStudentFile(listofstudents); //save student file
+		fileManager.saveStudentFile(listofstudents); //save student file
 		
-		fmngr.saveCoursesFile(listofcourses); //save courses file
+		fileManager.saveCoursesFile(listofcourses); //save courses file
 		
 		//Use corresponding set methods to set the variables you want to test
 		
