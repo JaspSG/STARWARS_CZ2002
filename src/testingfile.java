@@ -21,21 +21,21 @@ public class testingfile {
 		
 		Student _student2 = new Student("TRUMPET", "C1283713D", "Singaporean", "SCSE", 'M', 3, "loginID_2", "loginPW_2");
 		
-		Student _student3 = new Student("BIDEN", "E2938173F", "Malaysian", "EEE", 'F', 2, "loginID_3", "loginPW_3");
+		Student _student3 = new Student("BIDEN", "E2938173F", "Malaysian", "SEEE", 'F', 2, "loginID_3", "loginPW_3");
 		
-		Student _student4 = new Student("BEIBER", "G2938717H", "Myanmar", "BASE", 'F', 5, "loginID_4", "loginPW_4");
+		Student _student4 = new Student("BEIBER", "G2938717H", "Myanmar", "SCEE", 'F', 5, "loginID_4", "loginPW_4");
 		
-		Student _student5 = new Student("MICHELLE", "I29836721J", "Chinese", "SESE", 'M', 2, "loginID_5", "loginPW_5");
+		Student _student5 = new Student("MICHELLE", "I29836721J", "Chinese", "SEEE", 'M', 2, "loginID_5", "loginPW_5");
 		
 		Student _student6 = new Student("RONALD", "K1928363L", "Chinese", "SEEE", 'F', 2, "loginID_6", "loginPW_6");
 		
-		Student _student7 = new Student("Ya Fei", "M12345678N", "Malaysian", "SHEH", 'M', 2, "loginID_7", "loginPW_7");
+		Student _student7 = new Student("Ya Fei", "M12345678N", "Malaysian", "SMSE", 'M', 2, "loginID_7", "loginPW_7");
 		
-		Student _student8 = new Student("Wei Run", "O98765432P", "Chinese", "CEES", 'M', 2, "loginID_8", "loginPW_8");
+		Student _student8 = new Student("Wei Run", "O98765432P", "Chinese", "SCSE", 'M', 2, "loginID_8", "loginPW_8");
 		
-		Student _student9 = new Student("Alex Tan", "Q34123214R", "American", "SQES", 'M', 2, "loginID_9", "loginPW_9");
+		Student _student9 = new Student("Alex Tan", "Q34123214R", "American", "SMSE", 'M', 2, "loginID_9", "loginPW_9");
 		
-		Student _student10 = new Student("Wonder Fei", "S29836721T", "British", "SXGE", 'M', 2, "loginID_10", "loginPW_10");
+		Student _student10 = new Student("Wonder Fei", "S29836721T", "British", "SMSE", 'M', 2, "loginID_10", "loginPW_10");
 		
 		
 		listofstudents.add(_student1);
@@ -51,16 +51,26 @@ public class testingfile {
 		
 		ArrayList<Index> listofindex = new ArrayList<Index>();
 		
-		Index _index1 = new Index("SSP2");
+		Index _index1 = new Index("SS2");
 		_index1.setTotalSize(20);
 		
 		Index _index2 = new Index("SP4");
 		
-		Index _index3 = new Index("FS8");
+		Index _index3 = new Index("SP5");
 		
-		Index _index4 = new Index("FS3");
+		Index _index4 = new Index("SS6");
 		
-		Index _index5 = new Index("FP5");
+		Index _index5 = new Index("SS7");
+		
+		Index _index6 = new Index("SS8");
+		
+		Index _index7 = new Index("FP5");
+		
+		Index _index8 = new Index("FP6");
+		
+		Index _index9 = new Index("FP7");
+		
+		Index _index10 = new Index("SS3");
 		
 		listofindex.add(_index1);
 		listofindex.add(_index2);
@@ -83,6 +93,18 @@ public class testingfile {
 //		
 		Course _course6 = new Course("Introduction to Databases", "CZ2007", 3, listofindex);
 		
+		Course _course7 = new Course("PHYSICS FOUNDATION FOR ELECTRICAL & ELECTRONIC ENGINEERING", "EE1002", 4, listofindex);
+		
+		Course _course8 = new Course("INTRODUCTION TO BIOMOLECULAR ENGINEERING", "CB1131", 3, listofindex);
+		
+		Course _course9 = new Course("SUSTAINABILITY: SEEING THROUGH THE HAZE", "GC0001", 1, listofindex);
+		
+		Course _course10 = new Course("LATIN LANGUAGE LEVEL 2", "LX9002", 3, listofindex);
+		
+		listofcourses.add(_course10);
+		listofcourses.add(_course9);
+		listofcourses.add(_course8);
+		listofcourses.add(_course7);
 		listofcourses.add(_course6);
 		listofcourses.add(_course5);
 		listofcourses.add(_course4);
