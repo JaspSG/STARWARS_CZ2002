@@ -14,15 +14,17 @@ public class Index implements Serializable {
 	private String lectureSlot;
 	private ArrayList<Student> studentsEnrolled;
 	private ArrayList<Lesson> lessons;
-	public Queue<Course> getQueue() {
-		return queue;
+	private Queue<Student> waitlist;
+	
+	public Queue<Student> getWaitlist() {
+		return waitlist;
 	}
 
-	public void setQueue(Queue<Course> queue) {
-		this.queue = queue;
+	public void setWaitlist(Queue<Student> waitlist) {
+		this.waitlist = waitlist;
 	}
 
-	private Queue<Course> queue;
+
 
 	public ArrayList<Lesson> getLessons() {
 		return lessons;
