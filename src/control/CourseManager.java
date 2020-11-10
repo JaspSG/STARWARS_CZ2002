@@ -14,6 +14,18 @@ public class CourseManager {
 		this.listOfCourses = fileManager.loadCoursesFile();
 	}
 	
+	public Course findcourse(String courseID) {
+		
+		for(Course course: this.listOfCourses) {
+			if(course.getCourseID().equals(courseID)) {
+				return course;
+			}
+		}
+		System.out.println("Course not found");
+		Course emptycourse = new Course();
+		return emptycourse;
+	}
+	
 	public boolean checkVacancy(String index_id) {
 		return;
 	}
@@ -26,53 +38,63 @@ public class CourseManager {
 		return;
 	}
 	
-	public boolean addWaitlist(Student student, String CourseID, String indexID) throws Exception {
+	public boolean addStudentToWaitlist(Student student, String CourseID, String indexID) throws Exception {
 		
 		for (Course course: this.listOfCourses) {
-			if(course.getCourseID() == CourseID) {
-				ArrayList<Index> tempindex = new ArrayList<Index>();
-				tempindex = course.getIndex();
-				for(Index index: tempindex) {
-					if (index.getIndexID() == indexID) {
+
+			if(course.getCourseID().equals(CourseID)) {
+				ArrayList<Index> templistindex = new ArrayList<Index>();
+				templistindex = course.getIndex();
+				for(Index index: templistindex) {
+					if (index.getIndexID().equals(indexID)){
 						index.addwaitlist(student);
-						break;
+						course.setIndex(templistindex);
+						fileManager.saveCoursesFile(listOfCourses);
+						return true;}
 					}
 				}
-				course.setIndex(tempindex);
-				fileManager.saveCoursesFile(listOfCourses);
-				return true;
 			}
-		}
 		return false;
+		}
+	
+	public Student removeStudentFromWaitlist(String CourseID, String indexID) {
+		
+		for (Course course: this.listOfCourses) {
+
+			if(course.getCourseID().equals(CourseID)) {
+				ArrayList<Index> templistindex = new ArrayList<Index>();
+				templistindex = course.getIndex();
+				for(Index index: templistindex) {
+					if (index.getIndexID().equals(indexID)){
+						Student tempstudent = index.removewaitlist();
+						course.setIndex(templistindex);
+						try {
+							fileManager.saveCoursesFile(listOfCourses);
+						} catch (Exception e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
+						return tempstudent;}
+					}
+				}
+			}
+		Student emptystudent = new Student();
+		return emptystudent;
+
 	}
 	
-	public boolean removeWaitlist(String CourseID, String indexID) {
+	public void printIndexList(String CourseID) {
 		
 		for(Course course: this.listOfCourses) {
-			if(course.getCourseID() == CourseID) {
-				ArrayList<Index> tempindex = new ArrayList<Index>();
-				tempindex = course.getIndex();
-				for(Index index: tempindex) {
-					if(index.getIndexID() == indexID) {
-						index.removewaitlist();
-					}
-					break;
+			
+			if(course.getCourseID().equals(CourseID)) {
+				ArrayList<Index> templist = course.getIndex();
+				for(Index index: templist) {
+					
+					System.out.println(index.getIndexID());
 				}
-				course.setIndex(tempindex);
-				try {
-					fileManager.saveCoursesFile(listOfCourses);
-				} catch (Exception e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-				return true;
 			}
 		}
-		return false;
-	}
-	
-	public void printIndexList() {
-		
 	}
 	
 	public void printStudents() {

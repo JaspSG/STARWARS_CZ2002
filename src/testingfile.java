@@ -1,5 +1,8 @@
 import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.Queue;
 
+import control.CourseManager;
 import control.fileManager;
 import entity.Course;
 import entity.Index;
@@ -59,19 +62,26 @@ public class testingfile {
 		
 		Index _index5 = new Index("FP5");
 		
+		listofindex.add(_index1);
+		listofindex.add(_index2);
+		listofindex.add(_index3);
+		listofindex.add(_index4);
+		listofindex.add(_index5);
+		
+		
 		ArrayList<Course> listofcourses = new ArrayList<Course>();
 		
-		Course _course1 = new Course("DATA STRUCTURES", "CZ1007", 3);
-
-		Course _course2 = new Course("ENGINEERING MATHEMATICS 1", "CZ1011", 3);
-		
-		Course _course3 = new Course("ENGINEERING MATHEMATICS 2", "CZ1012", 3);
-		
-		Course _course4 = new Course("Digital Logic", "CZ1105", 3);
-		
-		Course _course5 = new Course("Computer Organisation & Architechture", "CZ1106", 3);
-		
-		Course _course6 = new Course("Introduction to Databases", "CZ2007", 3);
+		Course _course1 = new Course("DATA STRUCTURES", "CZ1007", 3, listofindex);
+	
+		Course _course2 = new Course("ENGINEERING MATHEMATICS 1", "CZ1011",3, listofindex);
+//		
+		Course _course3 = new Course("ENGINEERING MATHEMATICS 2", "CZ1012", 3, listofindex);
+//		
+		Course _course4 = new Course("Digital Logic", "CZ1105", 3, listofindex);
+//		
+		Course _course5 = new Course("Computer Organisation & Architechture", "CZ1106", 3, listofindex);
+//		
+		Course _course6 = new Course("Introduction to Databases", "CZ2007", 3, listofindex);
 		
 		listofcourses.add(_course6);
 		listofcourses.add(_course5);
@@ -80,26 +90,28 @@ public class testingfile {
 		listofcourses.add(_course2);
 		listofcourses.add(_course1);
 		
-		_course6.setIndex(listofindex);
-		_course5.setIndex(listofindex);
-		_course4.setIndex(listofindex);
-		_course3.setIndex(listofindex);
-		_course2.setIndex(listofindex);
-		_course1.setIndex(listofindex);
-		
 		
 		fileManager.saveStudentFile(listofstudents); //save student file
+		fileManager.saveCoursesFile(listofcourses); //save student file
 		
-		fileManager.saveCoursesFile(listofcourses); //save courses file
+		//ArrayList<Course> loaded_listofcourses = new ArrayList<Course>();
+		//loaded_listofcourses = fileManager.loadCoursesFile(); //save courses file
 		
-		//Use corresponding set methods to set the variables you want to test
-		
-		//ArrayList<Student> reloaded_listofstudents = fmngr.loadStudentFile(); // load student file
-		
-		//reloaded_listofstudents.get(0).setName("john");
+		CourseManager cmngr = new CourseManager();
 
-		//System.out.println(_secondlistofstudents.get(0).getName());
+		//waitlist testing
+		cmngr.addWaitlist(_student2, "CZ1011", "SP4");
+		cmngr.addWaitlist(_student1, "CZ1011", "SP4");
+		Student studentremoved = cmngr.removeStudentFromWaitlist("CZ1011", "SP4");
+		System.out.println(studentremoved.getName());
 		
+		
+		Course retrivedcourse = cmngr.findcourse("CZ1011");
+		Index testindex = retrivedcourse.findIndex("SP4");
+		testindex.printQueue();
+//		
+//		cmngr.printIndexList("CZ1011");
+//		
 		
 		
 		

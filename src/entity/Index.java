@@ -3,6 +3,7 @@ package entity;
 import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.Queue;
 
 public class Index implements Serializable {
@@ -14,12 +15,20 @@ public class Index implements Serializable {
 	private String lectureSlot;
 	private ArrayList<Student> studentsEnrolled;
 	private ArrayList<Lesson> lessons;
-	private Queue<Student> waitlist;
+	private Queue<Student> waitlist = new LinkedList<Student>();
 
 	public Index() {}
 
 	public Index(String indexID) {
 		this.indexID=indexID;
+	}
+	
+	public void printQueue() {
+		
+		for(Student student: this.waitlist) {
+			System.out.println(student.getName());
+		}
+		
 	}
 
 	public int getTotalSize() {
@@ -98,8 +107,10 @@ public class Index implements Serializable {
 		this.waitlist.add(student);
 	}
 	
-	public void removewaitlist() {
-		this.waitlist.remove();
+	public Student removewaitlist() {
+		
+		Student tempstudent = this.waitlist.remove();
+		return tempstudent;
 	}
 
 	public boolean checkVacancy() {		

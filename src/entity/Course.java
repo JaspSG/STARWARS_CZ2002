@@ -22,13 +22,29 @@ public class Course implements Serializable {
     	
     }
 
-    public Course(String courseName, String courseID, int au){
+    public Course(String courseName, String courseID, int au, ArrayList<Index> indexes){
 
         this.courseName = courseName;
 
         this.courseID = courseID;
 
         this.au = au;
+        
+        this.index = indexes;
+    }
+    
+    public Index findIndex(String indexID) {
+    	
+
+		for(Index index: this.index) {
+			if(index.getIndexID().equals(indexID)) {
+				return index;
+			}
+		}
+		System.out.println("Index not found");
+		Index emptyindex = new Index();
+		return emptyindex;
+    	
     }
 
     public String getCourseName(){
