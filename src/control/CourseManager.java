@@ -14,7 +14,7 @@ public class CourseManager {
 		this.listOfCourses = fileManager.loadCoursesFile();
 	}
 	
-	public boolean checkVacancy(String index_id) {
+	public boolean checkVacancy(String index_id) {//
 		return;
 	}
 	
