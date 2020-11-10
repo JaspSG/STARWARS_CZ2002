@@ -16,6 +16,14 @@ public class Index implements Serializable {
 	private ArrayList<Lesson> lessons;
 	private Queue<Student> waitlist;
 	
+	public void addwaitlist(Student student) {
+		this.waitlist.add(student);
+	}
+	
+	public void removewaitlist() {
+		this.waitlist.remove();
+	}
+	
 	public Queue<Student> getWaitlist() {
 		return waitlist;
 	}

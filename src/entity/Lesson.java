@@ -1,6 +1,8 @@
 package entity;
 
-public class Lesson {
+import java.io.Serializable;
+
+public class Lesson implements Serializable{
 
 	String type;
 	String starttime;
