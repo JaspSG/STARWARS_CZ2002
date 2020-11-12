@@ -116,30 +116,57 @@ public class testingfile {
 		fileManager.saveStudentFile(listofstudents); //save student file
 		fileManager.saveCoursesFile(listofcourses); //save student file
 		
-		//ArrayList<Course> loaded_listofcourses = new ArrayList<Course>();
-		//loaded_listofcourses = fileManager.loadCoursesFile(); //save courses file
+
 		
+// ----------------------------------------- TEST FUNCTIONS BELOW THIS LINE WITH cmngr OBJECT ----------------------------------------//
 		CourseManager cmngr = new CourseManager();
 		
-		cmngr.printIndexList("CZ1011");
+		Student _dummystudent = new Student("Dummy", "Dummy", "Dummy", "Dummy", 'D', 0, "Dummy", "Dummy"); //Dummy student for testing
 
-		//waitlist testing
-		cmngr.addStudentToWaitlist(_student2, "CZ1011", "SP4");
-		cmngr.addStudentToWaitlist(_student1, "CZ1011", "SP4");
-		Student studentremoved = cmngr.removeStudentFromWaitlist("CZ1011", "SP4");
-		System.out.println(studentremoved.getName());
+		//PRINT TESTING
+		//cmngr.printIndexList("CZ1011"); 		
+
+		//WAITLIST TESTING
 		
-		
-		Course retrivedcourse = cmngr.findcourse("CZ1011");
-		Index testindex = retrivedcourse.findIndex("SP4");
-		testindex.printQueue();
-		
+//		cmngr.addStudentToWaitlist(_student2, "CZ1011", "SP4"); //ADDING
+//		cmngr.addStudentToWaitlist(_student1, "CZ1011", "SP4");
+//		
+//		Course retrivedcourse = cmngr.findCourseObject("CZ1011");
+//		Index testindex = retrivedcourse.findIndexObject("SP4");
+//		
+//		System.out.println("Students Currently in queue:");
+//		testindex.printQueue();
+//		
+//		
+//		Student studentremoved = cmngr.removeStudentFromWaitlist("CZ1011", "SP4"); //REMOVING
+//		System.out.println("STUDENT REMOVED FROM COURSE/INDEX QUEUE: " + studentremoved.getName());
+//		System.out.println("Students left in queue:");
+//		testindex.printQueue();
+//		
+//		//Testing how to check if the course object is an empty object with null
+//		Course newcourse = new Course(); 
+//		if (newcourse.getCourseID() == null) {
+//			System.out.println("Course is empty!");
+//		};
+
+		//END OF WAITLIST TESTING
 		
 //		
-//		cmngr.printIndexList("CZ1011");
-//		
+
+//		ADD_STUDENTS TESTING
+		cmngr.addStudent(_dummystudent, "CZ1011", "SP4");		
+		Course tempcourse = CourseManager.findCourseObject("CZ1011");
+		System.out.println(tempcourse.getCourseID());
+		Index tempindex = tempcourse.findIndexObject("SP4");
+		tempindex.printStudentsEnrolled();
+
+//		tempindex.printStudentsEnrolled();
 		
+		tempindex.removeStudentFromEnrolled(_dummystudent);
+		tempindex.printStudentsEnrolled();
 		
+//		END OF ADDING STUDENTS TESTING
+
 		
 	}
 	
