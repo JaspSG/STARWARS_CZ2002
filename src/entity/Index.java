@@ -12,9 +12,6 @@ public class Index implements Serializable {
 	private int totalSize;
 	private int currentSize;
 	private String indexID;
-	private String tutorialSlot;
-	private String labSlot;
-	private String lectureSlot;
 	private ArrayList<Student> studentsEnrolled = new ArrayList<Student>();
 	private ArrayList<Lesson> lessons = new ArrayList<Lesson>();
 	private Queue<Student> waitlist = new LinkedList<Student>();
@@ -89,30 +86,6 @@ public class Index implements Serializable {
 
 	public void setIndexID(String indexID) {
 		this.indexID = indexID;
-	}
-
-	public String getTutorialSlot() {
-		return tutorialSlot;
-	}
-
-	public void setTutorialSlot(String tutorialSlot) {
-		this.tutorialSlot = tutorialSlot;
-	}
-
-	public String getLabSlot() {
-		return labSlot;
-	}
-
-	public void setLabSlot(String labSlot) {
-		this.labSlot = labSlot;
-	}
-
-	public String getLectureSlot() {
-		return lectureSlot;
-	}
-
-	public void setLectureSlot(String lectureSlot) {
-		this.lectureSlot = lectureSlot;
 	}
 
 	public ArrayList<Student> getStudentsEnrolled() {
