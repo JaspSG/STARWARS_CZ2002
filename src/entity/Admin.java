@@ -1,14 +1,13 @@
 package entity;
 
+import control.CourseManager;
+
 import java.lang.reflect.Array;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.*;
 // scanner object
 import static control.fileManager.*;
-
-
-
 
 public class Admin extends User{
     /**
@@ -30,7 +29,6 @@ public class Admin extends User{
             return false;
         }
     }
-
     /**
      * To add an index object to the course object based on course ID
      * @param courseID The course's courseID that the index to be added
@@ -112,47 +110,66 @@ public class Admin extends User{
     }
     /**
      * Allow admin to display all the students that are enrolled in a specific index number of a course
-     * @return the list of student with that specific index number of the course
+     * @param courseID courseID of the index's parent course
+     * @param indexID indexID of the index to be printed
+     * @return boolean result indicating if the operation is a success or failure;
      */
-    public boolean printIndexStudentList(String courseID, String indexID ) {
+    public static boolean printIndexStudentList(String courseID, String indexID ) {
+        ArrayList<Course> courseArrayList = loadCoursesFile(); // load student object to variable
 
+        ArrayList<Student> studentArrayList = new ArrayList<Student>();
+
+        for(int i = 0; i < courseArrayList.size(); i++){
+            if(courseArrayList.get(i).getCourseID().equals(courseID)){
+                ArrayList<Index> indexArrayList = courseArrayList.get(i).getIndex();
+                for(int j = 0; j < indexArrayList.size(); j++){
+                    if(indexArrayList.get(j).getIndexID().equals(indexID)){
+                        studentArrayList = indexArrayList.get(j).getStudentsEnrolled();
+                    }
+                }
+            }
+        }
+
+        System.out.println("List of students in the Course " + courseID + " of Index Group " + indexID + ":");
+        System.out.println("--------------------------------------------------------");
+        System.out.println("|         Name         |  Gender  |     Nationality    |");
+        System.out.println("--------------------------------------------------------");
+
+        for(int i = 0; i < studentArrayList.size(); i++){
+            System.out.format("| %-21s| %-9s| %-19s|\n",studentArrayList.get(i).getName(),
+                    studentArrayList.get(i).getGender(),studentArrayList.get(i).getNationality());
+        }
         return true;
     }
-
     /**
      * Allow admin to display all the students that are enrolled in a specific course
-     * @param course Input from the main UI which is input by the admin
-     * @return the list of student enrolled in a specific course
+     * @param courseID courseID of the course to be printed
+     * @return boolean result indicating if the operation is a success or failure;
      */
-    public ArrayList<Student> printStudentEnrolled(Course course) {
+    public static boolean printCourseStudentList(String courseID) {
+        ArrayList<Course> courseArrayList = loadCoursesFile();
 
-//        // initialise variable
-//        Scanner scanner = new Scanner(System.in);
-//        String courseCode;
-//
-//        // get input from the user
-//        System.out.println("Enter the Course Code that you want to print: ");
-//        courseCode = scanner.nextLine();
-//
-//        // retrieve Course object
-//        ArrayList<Course> courseList = loadCoursesFile();
-//
-//        // print Student
-//        ArrayList<Student> testlist;
-//        for(int i = 0; i < courseList.size(); i++) {
-//            Course course1 = courseList.get(i);
-//            if(course1.getCourseID().contains(courseCode)){
-//                //testlist =  course1.getStudentsEnrolled();
-//
-//                for(int j =0; j < testlist.size();j++)
-//                {
-//                    System.out.println(testlist.get(i).getName() + "\n");
-//
-//
-//                }
-//                break;
-//            }
-//        }
-        return null; // if none return
+        ArrayList<Student> studentArrayList = new ArrayList<Student>();
+
+        for(int i = 0; i < courseArrayList.size(); i++) {
+            if (courseArrayList.get(i).getCourseID().equals(courseID)) {
+                ArrayList<Index> indexArrayList = courseArrayList.get(i).getIndex();
+                for (int j = 0; j < indexArrayList.size(); j++) {
+                    ArrayList<Student> tempStudentArrayList = indexArrayList.get(j).getStudentsEnrolled();
+                    studentArrayList.addAll(tempStudentArrayList);
+                }
+            }
+        }
+
+        System.out.println("List of students in the Course " + courseID +  ":");
+        System.out.println("--------------------------------------------------------");
+        System.out.println("|         Name         |  Gender  |     Nationality    |");
+        System.out.println("--------------------------------------------------------");
+
+        for(int i = 0; i < studentArrayList.size(); i++){
+            System.out.format("| %-21s| %-9s| %-19s|\n",studentArrayList.get(i).getName(),
+                    studentArrayList.get(i).getGender(),studentArrayList.get(i).getNationality());
+        }
+        return true;
     }
 }

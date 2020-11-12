@@ -360,6 +360,13 @@ public class mainApp extends User{
 			System.out.println("CourseID do not exists. Returning to main UI....\n");
 		}
 	}
+
+	/**
+	 * To create a form for user to add an student
+	 * @param sc Scanner to read the user (admin) input
+	 * @throws NoSuchAlgorithmException This exception is thrown when a particular cryptographic algorithm is
+	 * requested but is not available in the environment.
+	 */
 	public static void addStudentUI(Scanner sc) throws NoSuchAlgorithmException {
 
 		// get input from the user
@@ -417,10 +424,39 @@ public class mainApp extends User{
 		{
 			System.out.println("Operation is cancelled. Returning to main UI....\n");
 		}
+	}
 
+	/**
+	 * To create a form to get what index ID (and courseID) that the user(admin) want to print
+	 * @param sc Scanner to read the user (admin) input
+	 */
+	public static void printIndexStudentListUI(Scanner sc){
+		System.out.print("Enter the index's Course ID: ");
+		String courseID = sc.nextLine();
+
+		System.out.print("Enter the index ID: ");
+		String indexID = sc.nextLine();
+
+		if(Course.findCourse(courseID).getCourseID() != null && Index.findIndex(courseID, indexID).getIndexID() != null){
+			Admin.printIndexStudentList(courseID, indexID);
+		}
+		System.out.println("Returning to main UI....\n");
+	}
+	/**
+	 * To create a form to get what course ID that the user(admin) want to print
+	 * @param sc Scanner to read the user (admin) input
+	 */
+	public static void printCourseStudentListUI(Scanner sc){
+		System.out.print("Enter the index's Course ID: ");
+		String courseID = sc.nextLine();
+
+		if(Course.findCourse(courseID).getCourseID() != null){
+			Admin.printCourseStudentList(courseID);
+		}
+		System.out.println("Returning to main UI....\n");
 	}
 	/*    Admin UI Case Statement   */
-	public static void adminMenu(Scanner sc) {
+	public static void adminMenu(Scanner sc) throws NoSuchAlgorithmException {
 		int choice = 0;
 		boolean validInput = false;
 
@@ -476,9 +512,11 @@ public class mainApp extends User{
 				break;
 			case 7:
 				System.out.println("7. Print list of students by index group number");
+				printIndexStudentListUI(sc);
 				break;
 			case 8:
 				System.out.println("8. Print list of students by course");
+				printCourseStudentListUI(sc);
 				break;
 			default:
 				System.out.println("");
