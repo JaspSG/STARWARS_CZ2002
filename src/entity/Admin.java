@@ -11,6 +11,55 @@ import static control.fileManager.*;
 
 
 public class Admin extends User{
+    /**
+     * Adds a new course to the current list of courses
+     * @return boolean result indicating if the operation is a success or failure;
+     */
+    public static boolean addCourse(Course newCourse) {
+        // Load the course object
+        ArrayList<Course> courseList = loadCoursesFile();
+
+        // attempt to add the new course
+        try {
+            courseList.add(newCourse);
+            saveCoursesFile(courseList);
+            return true;
+        }
+        catch (Exception exception) {
+            exception.printStackTrace();
+            return false;
+        }
+    }
+
+    public static boolean addIndex(String courseID, Index index)
+    {
+        // initialise
+        ArrayList<Index> indexArrayList = new ArrayList<Index>();
+
+        // load course file
+        ArrayList<Course> courseArrayList = loadCoursesFile(); // load student object to variable
+        for(int i = 0; i < courseArrayList.size(); i++)
+        {
+            if(courseArrayList.get(i).getCourseID().equals(courseID))
+            {
+                courseArrayList.get(i).getIndex().add(index);
+                /* Solution 2 */
+                //indexArrayList = courseArrayList.get(i).getIndex();
+                //indexArrayList.add(index);
+                //courseArrayList.get(i).setIndex(indexArrayList);
+            }
+        }
+
+        // save the index
+        try {
+            saveCoursesFile(courseArrayList);
+            return true;
+        }
+        catch (Exception exception) {
+            exception.printStackTrace();
+            return false;
+        }
+    }
 
     /**
      * Adds a new student to the current list of students
@@ -40,47 +89,6 @@ public class Admin extends User{
             return false;
         }
     }
-
-    /**
-     * Adds a new course to the current list of courses
-     * @return boolean result indicating if the operation is a success or failure;
-     */
-    public static boolean addCourse() {
-        boolean result = false; // initialise variable
-
-        // initialise scanner object
-        Scanner sc = new Scanner(System.in);
-
-        // get input from the user
-        // Input could be a method from main UI?
-        System.out.print("Enter the new course's name: ");
-        String courseName = sc.nextLine();
-
-        System.out.print("Enter the new course's code: ");
-        String courseID = sc.nextLine();
-
-        System.out.print("Enter the new course's AU: ");
-        int au = sc.nextInt();
-
-        // insert object into the file - readserialisedobject
-        Course newCourse = new Course(courseName, courseID, au);
-
-        ArrayList<Course> courseList = loadCoursesFile(); // load course object to variable
-        // ArrayList<Course> courseList = (ArrayList)loadCoursesFile();
-
-        courseList.add(newCourse);
-
-        try {
-            saveCoursesFile(courseList);
-            result = true;
-        }
-        catch (Exception exception) {
-            exception.printStackTrace();
-        }
-
-        return result; // temp value
-    }
-
     /**
      * Updates an existing course from the current list of courses
      * @return boolean result indicating if the operation is a success or failure;
@@ -188,15 +196,15 @@ public class Admin extends User{
         indexNumber = scanner.nextLine();
 
         // retrieve index object
-        ArrayList<Index> indexList = loadIndexesFile();
+        //ArrayList<Index> indexList = loadIndexesFile();
 
         // print Student
-        for(int i = 0; i < indexList.size(); i++) {
-            Index index1 = indexList.get(i);
-            if(index1.getIndexID().contains(indexNumber)){
-                return index1.getStudentsEnrolled();
-            }
-        }
+        //for(int i = 0; i < indexList.size(); i++) {
+//            Index index1 = indexList.get(i);
+//            if(index1.getIndexID().contains(indexNumber)){
+//                return index1.getStudentsEnrolled();
+//            }
+//        }
         return null; // if none return
     }
 

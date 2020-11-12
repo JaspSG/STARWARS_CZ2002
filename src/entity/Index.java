@@ -6,6 +6,8 @@ import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.Queue;
 
+import static control.fileManager.loadCoursesFile;
+
 public class Index implements Serializable {
 	private int totalSize;
 	private int currentSize;
@@ -21,6 +23,15 @@ public class Index implements Serializable {
 
 	public Index(String indexID) {
 		this.indexID=indexID;
+	}
+
+	public Index(String indexID, int totalSize, ArrayList<Lesson> lessons) {
+
+		this.indexID=indexID;
+
+		this.totalSize=totalSize;
+
+		this.lessons = lessons;
 	}
 	
 	public void printQueue() {
@@ -117,5 +128,34 @@ public class Index implements Serializable {
 		if (totalSize - currentSize > 0)
 			return true; 
 		else return false;
+	}
+
+	/**
+	 * To find an index object based on indexID
+	 * @param courseID The courseID of the index object
+	 * @param indexID The indexID of the index object
+	 * @return the index object if found, else return null index object 
+	 */
+	public static Index findIndex(String courseID, String indexID) {
+
+		ArrayList<Course> courseList = loadCoursesFile();
+
+		ArrayList<Course> courseArrayList = loadCoursesFile(); // load student object to variable
+		for(int i = 0; i < courseArrayList.size(); i++)
+		{
+			if(courseArrayList.get(i).getCourseID().equals(courseID))
+			{
+				ArrayList<Index> indexArrayList = courseArrayList.get(i).getIndex();
+				for(int j = 0; j < indexArrayList.size(); j++){
+					if(indexArrayList.get(i).getIndexID().equals(indexID)){
+						Index index = indexArrayList.get(i);
+						return index;
+					}
+				}
+			}
+		}
+		System.out.println("Index not found");
+		Index emptyIndex = new Index();
+		return emptyIndex;
 	}
 }

@@ -6,6 +6,8 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
+import static control.fileManager.loadCoursesFile;
+
 public class Course implements Serializable {
 
     private String courseName;
@@ -85,6 +87,20 @@ public class Course implements Serializable {
 
     public void setStudentsEnrolled(ArrayList<Student> studentsEnrolled){
         this.studentsEnrolled = studentsEnrolled;
+    }
+
+    public static Course findCourse(String courseID) {
+
+        ArrayList<Course> courseList = loadCoursesFile();
+
+        for(Course course: courseList) {
+            if(course.getCourseID().equals(courseID)) {
+                return course;
+            }
+        }
+        System.out.println("Course not found");
+        Course emptycourse = new Course();
+        return emptycourse;
     }
 
 }

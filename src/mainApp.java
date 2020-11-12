@@ -5,9 +5,7 @@ import java.util.Scanner;
 
 import control.CourseManager;
 import control.fileManager;
-import entity.Admin;
-import entity.Student;
-import entity.User;
+import entity.*;
 
 
 public class mainApp extends User{
@@ -20,8 +18,6 @@ public class mainApp extends User{
 		
 		CourseManager cmngr = new CourseManager();
 		studentList = fileManager.loadStudentFile();
-		
-
 
 		int choice = 0;
 		boolean validInput = false;
@@ -84,7 +80,100 @@ public class mainApp extends User{
 		}
 	} while (choice > 0 && choice < 5);
 }
-	
+	/*    Admin Course Methods      */
+	/**
+	 * UI to handles the adding of course operation done by admin, adding of index to course will be handled
+	 * by addIndexUI. IndexList will be null atm
+	 * @param sc Scanner to read the user (admin) input
+	 */
+	public static void addCourseUI(Scanner sc)
+	{
+		// Get necessary input from the users: name, id, au and index
+		System.out.println("Enter the new course's ID: ");
+		String courseID = sc.nextLine();
+
+		System.out.println("Enter the new course's name: ");
+		String courseName = sc.nextLine();
+
+		System.out.println("Enter the new course's AU: ");
+		int au = sc.nextInt();
+
+		// load variable to course object >>> set index to null for now >>> call add index later
+		Course newCourse = new Course(courseName, courseID, au, new ArrayList<Index>());
+
+		// confirmation
+		System.out.println("Press Y to Confirm, Press N to Cancel: ");
+		char choice = Character.toUpperCase(sc.next().charAt(0));
+
+		if(choice == 'Y')
+		{
+			// validation to check if course exists
+			if(Course.findCourse(courseID) != null)
+			{
+				// add course
+				Admin.addCourse(newCourse);
+			}
+			else
+			{
+				System.out.println("Course exists. Returning to main UI....\n");
+			}
+		}
+		else
+		{
+			System.out.println("Operation is cancelled. Returning to main UI....\n");
+		}
+	}
+	public static void addIndexUI(Scanner sc){
+		// Get necessary input from the users: name, id, au and index
+		// if courseID is null or else use the pass in value
+		System.out.println("Enter the course's ID for the Index Group: ");
+		String courseID = sc.nextLine();
+
+		System.out.println("Enter the new Index ID: ");
+		String indexID = sc.nextLine();
+
+		System.out.println("Enter the total size of the Index Group: ");
+		int totalSize = sc.nextInt();
+
+		// load variable to index object
+		Index newIndex = new Index(indexID, totalSize, null);
+
+		// confirmation
+		System.out.println("Press Y to Confirm, Press N to Cancel: ");
+		char choice = Character.toUpperCase(sc.next().charAt(0));
+
+		if(choice == 'Y')
+		{
+			// validation to check if course exists
+			if(Course.findCourse(courseID) != null)
+			{
+				// add course
+				Admin.addIndex(courseID, newIndex);
+			}
+			else
+			{
+				System.out.println("Index exists. Returning to main UI....\n");
+			}
+		}
+		else
+		{
+			System.out.println("Operation is cancelled. Returning to main UI....\n");
+		}
+
+		// call add lesson UI
+	}
+	public static ArrayList<Lesson> createLessonUI(Scanner sc)
+	{
+		// create empty array
+		ArrayList<Lesson> lessonArrayList = new ArrayList<Lesson>();
+
+
+
+
+
+		return lessonArrayList;
+	}
+	/*    Admin UI Case Statement   */
 	public static void adminMenu(Scanner sc) {
 		int choice = 0;
 		boolean validInput = false;
@@ -119,23 +208,7 @@ public class mainApp extends User{
 			switch (choice) {
 			case 1:
 				System.out.println("1. Add a new course");
-
-				boolean addCourseResult = false;
-
-				try {
-					Admin.addCourse();
-					addCourseResult = true;
-				}
-				catch(Exception exception){
-					exception.printStackTrace();
-				}
-				if(addCourseResult == true){
-					System.out.println("Add Course Successful");
-				}
-				else{
-					System.out.println("Add Course Failed");
-				}
-
+				addCourseUI(sc);
 				break;
 			case 2:
 				System.out.println("2. Add a new index group");
