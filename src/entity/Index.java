@@ -15,8 +15,8 @@ public class Index implements Serializable {
 	private String tutorialSlot;
 	private String labSlot;
 	private String lectureSlot;
-	private ArrayList<Student> studentsEnrolled;
-	private ArrayList<Lesson> lessons;
+	private ArrayList<Student> studentsEnrolled = new ArrayList<Student>();
+	private ArrayList<Lesson> lessons = new ArrayList<Lesson>();
 	private Queue<Student> waitlist = new LinkedList<Student>();
 
 	public Index() {}
@@ -40,6 +40,31 @@ public class Index implements Serializable {
 			System.out.println(student.getName());
 		}
 		
+	}
+	
+	public void printStudentsEnrolled() {
+		
+		if(studentsEnrolled.isEmpty()) {
+			System.out.println("No students enrolled in this Index");
+		}
+		
+		for(Student student: this.studentsEnrolled) {
+			System.out.println("Student Name: " + student.getName() +"\nStudent Matric Number: " + student.getMatricNumber());
+		}
+	}
+	
+	public void addStudentToEnrolled(Student student) {
+		this.studentsEnrolled.add(student);
+		this.currentSize++;
+	}
+	
+	public void removeStudentFromEnrolled(Student student) {
+		for(int i=0; i<this.studentsEnrolled.size(); i++) {
+			if(studentsEnrolled.get(i).getMatricNumber().equals(student.getMatricNumber())){
+				studentsEnrolled.remove(i);
+			}
+		}
+		this.currentSize--;
 	}
 
 	public int getTotalSize() {

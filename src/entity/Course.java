@@ -11,15 +11,10 @@ import static control.fileManager.loadCoursesFile;
 public class Course implements Serializable {
 
     private String courseName;
-
     private String courseID;
-
     private int au;
-
-    private ArrayList<Index> index;
-
-    private ArrayList<Student> studentsEnrolled;
-    
+    private ArrayList<Index> index = new ArrayList<Index>();
+   
     public Course() {
     	
     }
@@ -35,9 +30,7 @@ public class Course implements Serializable {
         this.index = indexes;
     }
     
-    public Index findIndex(String indexID) {
-    	
-
+    public Index findIndexObject(String indexID) {
 		for(Index index: this.index) {
 			if(index.getIndexID().equals(indexID)) {
 				return index;
@@ -46,7 +39,6 @@ public class Course implements Serializable {
 		System.out.println("Index not found");
 		Index emptyindex = new Index();
 		return emptyindex;
-    	
     }
 
     public String getCourseName(){
@@ -79,14 +71,6 @@ public class Course implements Serializable {
 
     public void setIndex(ArrayList<Index> index){
         this.index = index;
-    }
-
-    public ArrayList<Student> getStudentsEnrolled(){
-        return this.studentsEnrolled;
-    }
-
-    public void setStudentsEnrolled(ArrayList<Student> studentsEnrolled){
-        this.studentsEnrolled = studentsEnrolled;
     }
 
     public static Course findCourse(String courseID) {

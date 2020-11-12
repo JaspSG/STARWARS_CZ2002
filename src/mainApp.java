@@ -315,7 +315,7 @@ public class mainApp extends User{
 
 			switch (choice) {
 			case 1:
-				System.out.println("1. Register a course");
+				System.out.println("1. Add a course");
 				break;
 			case 2:
 				System.out.println("2. Drop course");
