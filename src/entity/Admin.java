@@ -31,6 +31,12 @@ public class Admin extends User{
         }
     }
 
+    /**
+     * To add an index object to the course object based on course ID
+     * @param courseID The course's courseID that the index to be added
+     * @param index The index object to be added
+     * @return boolean result indicating if the operation is a success or failure
+     */
     public static boolean addIndex(String courseID, Index index)
     {
         // initialise
@@ -49,7 +55,6 @@ public class Admin extends User{
                 //courseArrayList.get(i).setIndex(indexArrayList);
             }
         }
-
         // save the index
         try {
             saveCoursesFile(courseArrayList);
@@ -60,22 +65,38 @@ public class Admin extends User{
             return false;
         }
     }
+    /**
+     * Updates an existing course from the current list of courses
+     * @return boolean result indicating if the operation is a success or failure;
+     */
+    public static boolean updateCourse(Course updateCourse) {
+            // retrieve course object
+            ArrayList<Course> courseListUpdate = loadCoursesFile();
+
+            // find course object based on courseID
+            for(int i = 0; i < courseListUpdate.size(); i++){
+                if(courseListUpdate.get(i).getCourseID().equals(updateCourse.getCourseID()))
+                {
+                    courseListUpdate.set(i, updateCourse);
+                    break;
+                }
+            }
+            // save course file
+            try {
+                saveCoursesFile(courseListUpdate);
+                return true;
+            }
+            catch (Exception exception) {
+                exception.printStackTrace();
+            }
+            return false;
+    }
 
     /**
      * Adds a new student to the current list of students
      * @return boolean result indicating if the operation is a success or failure;
      */
     public static boolean addStudent(Student student) {
-
-        // To be added into the student constructor
-//        SimpleDateFormat format = new SimpleDateFormat("dd/MM/yy HH:mm:ss", Locale.ENGLISH);
-//
-//        System.out.print(" Enter the new student's access start time in the following format (dd/MM/yy HH:mm:ss): ");
-//
-//        System.out.print(" Enter the new student's access end time in the following format (dd/MM/yy HH:mm:ss): ");
-
-        // https://stackoverflow.com/questions/5301226/convert-string-to-calendar-object-in-java
-
         ArrayList<Student> studentList = loadStudentFile(); // load student object to variable
 
         studentList.add(student);
@@ -90,122 +111,12 @@ public class Admin extends User{
         }
     }
     /**
-     * Updates an existing course from the current list of courses
-     * @return boolean result indicating if the operation is a success or failure;
-     */
-    public static boolean updateCourse() {
-        // initialise
-        Scanner sc = new Scanner(System.in);
-        Course updateCourse = new Course(); // empty course
-
-        // GET primary key from the user (what they want to update)
-        System.out.println("Enter the course ID that you wish to update: ");
-        String givenCourseID = sc.nextLine();
-
-        // retrieve course object
-        ArrayList<Course> courseList = loadCoursesFile();
-
-        // find course object based on courseID
-        for(int i = 0; i < courseList.size(); i++){
-            if(courseList.get(i).getCourseID().equals(givenCourseID))
-            {
-                updateCourse = courseList.get(i);
-                break;
-            }
-        }
-        int choice = 0;
-        boolean validChoice = false;
-        if(updateCourse != null) {
-            // do stuff here
-            System.out.println("Valid Course ID. Enter the options that you wish to update?: ");
-            System.out.println("1. Name of the Course");
-            System.out.println("2. AU of the course");
-
-            do{
-                try{
-                    choice = sc.nextInt();
-                    if(choice > 0) {
-                        validChoice = true;
-                        sc.nextLine();
-                    }
-                } catch (InputMismatchException exception){
-                    System.out.println("Enter within valid range!");
-                    sc.nextLine();
-                }
-            } while(validChoice != false);
-
-            validChoice = false;
-
-            switch (choice) {
-                case 1:
-                    System.out.println("Current Course's name: " + updateCourse.getCourseName());
-                    System.out.println("Enter the updated Course's name: ");
-                    String updateCourseName = sc.nextLine();
-                    updateCourse.setCourseName(updateCourseName);
-
-                case 2:
-                    System.out.println("Current Course's AU: " + updateCourse.getCourseName());
-                    System.out.println("Enter the updated Course's AU: ");
-                    int updateCourseAU = sc.nextInt();
-                    updateCourse.setAu(updateCourseAU);
-
-                default:
-                    break;
-            }
-
-            // retrieve course object
-            ArrayList<Course> courseListUpdate = loadCoursesFile();
-
-            // find course object based on courseID
-            for(int i = 0; i < courseList.size(); i++){
-                if(courseListUpdate.get(i).getCourseID().equals(givenCourseID))
-                {
-                    courseListUpdate.set(i, updateCourse);
-                    break;
-                }
-            }
-            // save course file
-            try {
-                saveCoursesFile(courseListUpdate);
-            }
-            catch (Exception exception) {
-                exception.printStackTrace();
-            }
-
-            return true; // temp value
-
-        }
-        else{
-            System.out.println("Invalid courseID!");
-            return false;
-        }
-
-    }
-
-    /**
      * Allow admin to display all the students that are enrolled in a specific index number of a course
      * @return the list of student with that specific index number of the course
      */
-    public ArrayList<Student> printStudentList() {
-        // initialise variable
-        Scanner scanner = new Scanner(System.in);
-        String indexNumber = null;
+    public boolean printCourseStudentList(String courseID, String indexID ) {
 
-        // get input from the user
-        System.out.println("Enter the index number that you want to print: ");
-        indexNumber = scanner.nextLine();
-
-        // retrieve index object
-        //ArrayList<Index> indexList = loadIndexesFile();
-
-        // print Student
-        //for(int i = 0; i < indexList.size(); i++) {
-//            Index index1 = indexList.get(i);
-//            if(index1.getIndexID().contains(indexNumber)){
-//                return index1.getStudentsEnrolled();
-//            }
-//        }
-        return null; // if none return
+        return true;
     }
 
     /**

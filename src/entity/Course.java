@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static control.fileManager.loadCoursesFile;
+import static control.fileManager.saveCoursesFile;
 
 public class Course implements Serializable {
 
@@ -99,8 +100,26 @@ public class Course implements Serializable {
             }
         }
         System.out.println("Course not found");
-        Course emptycourse = new Course();
-        return emptycourse;
+        Course emptyCourse = new Course();
+        return emptyCourse;
+    }
+    public static boolean removeCourse(String courseID){
+        ArrayList<Course> courseArrayList = loadCoursesFile();
+
+        for(int i = 0; i < courseArrayList.size(); i++){
+            if(courseArrayList.get(i).getCourseID().equals(courseID))
+            {
+                courseArrayList.remove(i);
+            }
+        }
+        try {
+            saveCoursesFile(courseArrayList);
+            return true;
+        }
+        catch (Exception exception) {
+            exception.printStackTrace();
+        }
+        return false;
     }
 
 }

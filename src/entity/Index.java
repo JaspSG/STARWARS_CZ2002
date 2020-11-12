@@ -7,6 +7,7 @@ import java.util.LinkedList;
 import java.util.Queue;
 
 import static control.fileManager.loadCoursesFile;
+import static control.fileManager.saveCoursesFile;
 
 public class Index implements Serializable {
 	private int totalSize;
@@ -134,13 +135,10 @@ public class Index implements Serializable {
 	 * To find an index object based on indexID
 	 * @param courseID The courseID of the index object
 	 * @param indexID The indexID of the index object
-	 * @return the index object if found, else return null index object 
+	 * @return the index object if found, else return null index object
 	 */
 	public static Index findIndex(String courseID, String indexID) {
-
-		ArrayList<Course> courseList = loadCoursesFile();
-
-		ArrayList<Course> courseArrayList = loadCoursesFile(); // load student object to variable
+		ArrayList<Course> courseArrayList = loadCoursesFile(); // load course object to variable
 		for(int i = 0; i < courseArrayList.size(); i++)
 		{
 			if(courseArrayList.get(i).getCourseID().equals(courseID))
@@ -157,5 +155,35 @@ public class Index implements Serializable {
 		System.out.println("Index not found");
 		Index emptyIndex = new Index();
 		return emptyIndex;
+	}
+
+	/**
+	 * To remove an index object based on indexID
+	 * @param courseID The courseID of the index object
+	 * @param indexID The indexID of the index object
+	 * @return true or false depending if is success
+	 */
+	public static boolean removeIndex(String courseID, String indexID){
+		ArrayList<Course> courseArrayList = loadCoursesFile();
+
+		for(int i = 0; i < courseArrayList.size(); i++){
+			if(courseArrayList.get(i).getCourseID().equals(courseID))
+			{
+				ArrayList<Index> indexArrayList = courseArrayList.get(i).getIndex();
+				for(int j = 0; j < indexArrayList.size(); j++){
+					if(indexArrayList.get(i).getIndexID().equals(indexID)){
+						indexArrayList.remove(i);
+					}
+				}
+			}
+		}
+		try {
+			saveCoursesFile(courseArrayList);
+			return true;
+		}
+		catch (Exception exception) {
+			exception.printStackTrace();
+		}
+		return false;
 	}
 }

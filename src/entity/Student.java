@@ -4,6 +4,9 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Calendar;
 
+import static control.fileManager.loadCoursesFile;
+import static control.fileManager.loadStudentFile;
+
 public class Student extends User implements Serializable {
 	
 	String name;
@@ -26,8 +29,7 @@ public class Student extends User implements Serializable {
 	}
 
 	public Student(String name, String matricNumber, String nationality, String major , char gender, int yearOfStudy, String loginID, String loginPW) {
-		
-		
+
 		super(loginID, loginPW);
 		this.name=name;
 		this.matricNumber=matricNumber;
@@ -124,5 +126,23 @@ public class Student extends User implements Serializable {
 
 	public void setWaitList(ArrayList<String> waitList) {
 		this.waitList = waitList;
+	}
+
+	/**
+	 * to find a student object based on matriculation number
+	 * @param matricNumber unique key of student object
+	 * @return the student object if found, else return null student object
+	 */
+	public static Student findStudent(String matricNumber){
+		ArrayList<Student> studentArrayList = loadStudentFile(); // load student object to variable
+		for(int i = 0; i < studentArrayList.size(); i++){
+			if(studentArrayList.get(i).getMatricNumber().equals(matricNumber)){
+				Student student = studentArrayList.get(i);
+				return student;
+			}
+		}
+		System.out.println("Student not found");
+		Student emptyStudent = new Student();
+		return emptyStudent;
 	}
 }
