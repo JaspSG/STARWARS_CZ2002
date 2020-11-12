@@ -9,7 +9,7 @@ import entity.Student;
 public class CourseManager {
 	
 	static ArrayList<Course> listOfCourses = new ArrayList<Course>();
-	
+
 	public CourseManager() {
 		listOfCourses = fileManager.loadCoursesFile();
 	}
@@ -115,6 +115,14 @@ public class CourseManager {
 				}
 			}
 		}
+	}
+	
+	public static ArrayList<Course> getListOfCourses() {
+		return listOfCourses;
+	}
+
+	public static void setListOfCourses(ArrayList<Course> listOfCourses) {
+		CourseManager.listOfCourses = listOfCourses;
 	}
 	
 }

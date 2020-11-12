@@ -119,10 +119,28 @@ public class testingfile {
 
 		
 // ----------------------------------------- TEST FUNCTIONS BELOW THIS LINE WITH cmngr OBJECT ----------------------------------------//
+		
 		CourseManager cmngr = new CourseManager();
 		
+		CourseManager cmngr_admin = new CourseManager();
+		
+		CourseManager cmngr_studentmanager = new CourseManager();
+		
 		Student _dummystudent = new Student("Dummy", "Dummy", "Dummy", "Dummy", 'D', 0, "Dummy", "Dummy"); //Dummy student for testing
+		Student _dummystudent2 = new Student("Dummy2", "Dummy", "Dummy", "Dummy", 'D', 0, "Dummy", "Dummy");
+		
+		
+		cmngr.addStudent(_dummystudent, "CZ1011", "SP4");
+		cmngr.addStudent(_dummystudent2, "CZ1011", "SP4");
+		
+		Course retrivedcourse = cmngr_admin.findCourseObject("CZ1011");
+		Index testindex = retrivedcourse.findIndexObject("SP4");
+		testindex.printStudentsEnrolled();
+		
+		
+//		
 
+		
 		//PRINT TESTING
 		//cmngr.printIndexList("CZ1011"); 		
 
@@ -154,16 +172,16 @@ public class testingfile {
 //		
 
 //		ADD_STUDENTS TESTING
-		cmngr.addStudent(_dummystudent, "CZ1011", "SP4");		
-		Course tempcourse = CourseManager.findCourseObject("CZ1011");
-		System.out.println(tempcourse.getCourseID());
-		Index tempindex = tempcourse.findIndexObject("SP4");
-		tempindex.printStudentsEnrolled();
-
+//		cmngr.addStudent(_dummystudent, "CZ1011", "SP4");		
+//		Course tempcourse = CourseManager.findCourseObject("CZ1011");
+//		System.out.println(tempcourse.getCourseID());
+//		Index tempindex = tempcourse.findIndexObject("SP4");
 //		tempindex.printStudentsEnrolled();
-		
-		tempindex.removeStudentFromEnrolled(_dummystudent);
-		tempindex.printStudentsEnrolled();
+//
+////		tempindex.printStudentsEnrolled();
+//		
+//		tempindex.removeStudentFromEnrolled(_dummystudent);
+//		tempindex.printStudentsEnrolled();
 		
 //		END OF ADDING STUDENTS TESTING
 
