@@ -1,4 +1,5 @@
 
+import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.Scanner;
@@ -163,10 +164,10 @@ public class mainApp extends User{
 
 			if (choice == 'Y') {
 				// validation to check if index exists
-				if (Index.findIndex(courseID, indexID).getIndexID() == null) {
+				if (/*Course.findIndexObject(indexID).getIndexID() == null*/Index.findIndex(courseID, indexID).getIndexID() == null) {
 					// add course
 					boolean result = Admin.addIndex(courseID, newIndex);
-					if (result == true) {
+					if (result) {
 						System.out.println("Index record created. Returning to main UI....\n");
 					} else {
 						System.out.println("Error creating Index, Please contact IT administrator. Returning to main UI....\n");
@@ -359,7 +360,7 @@ public class mainApp extends User{
 			System.out.println("CourseID do not exists. Returning to main UI....\n");
 		}
 	}
-	public static void addStudentUI(Scanner sc){
+	public static void addStudentUI(Scanner sc) throws NoSuchAlgorithmException {
 
 		// get input from the user
 		System.out.print("Enter the new student's name: ");
@@ -385,6 +386,7 @@ public class mainApp extends User{
 
 		System.out.print("Enter the new student's loginPW: ");
 		String loginPW = sc.nextLine();
+		loginPW = User.hashString(loginPW);
 
 		// insert object into the file
 		Student newStudent = new Student(studentName, matriculationNumber, nationality, major, gender, yearOfStudy, loginId, loginPW);

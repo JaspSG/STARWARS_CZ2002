@@ -114,7 +114,7 @@ public class Admin extends User{
      * Allow admin to display all the students that are enrolled in a specific index number of a course
      * @return the list of student with that specific index number of the course
      */
-    public boolean printCourseStudentList(String courseID, String indexID ) {
+    public boolean printIndexStudentList(String courseID, String indexID ) {
 
         return true;
     }
@@ -126,33 +126,33 @@ public class Admin extends User{
      */
     public ArrayList<Student> printStudentEnrolled(Course course) {
 
-        // initialise variable
-        Scanner scanner = new Scanner(System.in);
-        String courseCode;
-
-        // get input from the user
-        System.out.println("Enter the Course Code that you want to print: ");
-        courseCode = scanner.nextLine();
-
-        // retrieve Course object
-        ArrayList<Course> courseList = loadCoursesFile();
-
-        // print Student
-        ArrayList<Student> testlist;
-        for(int i = 0; i < courseList.size(); i++) {
-            Course course1 = courseList.get(i);
-            if(course1.getCourseID().contains(courseCode)){
-                testlist =  course1.getStudentsEnrolled();
-
-                for(int j =0; j < testlist.size();j++)
-                {
-                    System.out.println(testlist.get(i).getName() + "\n");
-
-
-                }
-                break;
-            }
-        }
+//        // initialise variable
+//        Scanner scanner = new Scanner(System.in);
+//        String courseCode;
+//
+//        // get input from the user
+//        System.out.println("Enter the Course Code that you want to print: ");
+//        courseCode = scanner.nextLine();
+//
+//        // retrieve Course object
+//        ArrayList<Course> courseList = loadCoursesFile();
+//
+//        // print Student
+//        ArrayList<Student> testlist;
+//        for(int i = 0; i < courseList.size(); i++) {
+//            Course course1 = courseList.get(i);
+//            if(course1.getCourseID().contains(courseCode)){
+//                //testlist =  course1.getStudentsEnrolled();
+//
+//                for(int j =0; j < testlist.size();j++)
+//                {
+//                    System.out.println(testlist.get(i).getName() + "\n");
+//
+//
+//                }
+//                break;
+//            }
+//        }
         return null; // if none return
     }
 }
