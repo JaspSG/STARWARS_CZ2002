@@ -3,7 +3,7 @@ import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.Scanner;
-
+import control.StudentManager;
 import control.CourseManager;
 import control.fileManager;
 import entity.*;
@@ -529,6 +529,8 @@ public class mainApp extends User{
 	public static void studentMenu(Scanner sc) {
 		int choice = 0;
 		boolean validInput = false;
+		String courseID,tutGroup;
+		StudentManager StuManager = new StudentManager(currentStudentIndex);
 
 		do {
 			System.out.println("");
@@ -559,12 +561,18 @@ public class mainApp extends User{
 			switch (choice) {
 			case 1:
 				System.out.println("1. Add a course");
+				System.out.println("Enter Course ID: ");
+				courseID = sc.nextLine();
+				System.out.println("Enter Tut Group: ");
+				tutGroup = sc.nextLine();
+				StuManager.addCourse(courseID,tutGroup);
 				break;
 			case 2:
 				System.out.println("2. Drop course");
 				break;
 			case 3:
-				System.out.println("3. Print courses registered");
+				System.out.println("Printing courses registered");
+				StuManager.printCourseRegistered();
 				break;
 			case 4:
 				System.out.println("4. Check vacancies for an index group number");

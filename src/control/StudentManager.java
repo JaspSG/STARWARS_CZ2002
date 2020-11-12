@@ -9,36 +9,59 @@ import java.util.ArrayList;
 public class StudentManager {
 	
 	CourseManager cmngr = new CourseManager();
-	ArrayList<Student> listofstudents = new ArrayList<Student>();
-	Student student = new Student();
-	
-	int currentIndexOfStudent;
-	
-//	public StudentManager(String loginID ) {
-//		
-//		//validate here or before passing passing it into manager
-//		
-//		//find student from list
-//		for (Student student: listofstudents) {
-//			if (student.getLoginID().equals(loginID)) {
-//				this.student = student;
-//			}
-//		}
-//	}
-	
-	
-	
-	public StudentManager(int global_i) {
-		//this.currentIndexofStudent = global_i;
-		this.listofstudents = fileManager.loadStudentFile();	
-	}
-	
-//	public Student findStudent(String username) {
-//		
-//	}
-//	
+    int currentStudentIndex;
+    ArrayList<Student> listOfStudents = new ArrayList<Student>();
 
-    public boolean addCourse(Course course, int tutGroup) throws Exception {
+    public StudentManager(int global_i) {
+        currentStudentIndex = global_i;
+        listOfStudents = fileManager.loadStudentFile();
+    }
+
+    public boolean addCourse(String course, String tutGroup) {
+
+        ArrayList<Course> listOfCourses = new ArrayList<Course>();
+        listOfCourses = fileManager.loadCoursesFile();
+        System.out.println("AddingCourse : " + course + "Group: " + tutGroup);
+        ArrayList<Course> tempCurrentCourses = new ArrayList<Course>();
+        tempCurrentCourses = listOfStudents.get(currentStudentIndex).getCourseEnrolled();
+        for (Course Courses : listOfCourses) {
+            //System.out.println(Courses.getCourseID());
+            if (Courses.getCourseID().equals(course)) {
+                //System.out.println("Course exists!");
+                if (tempCurrentCourses != null) {
+                    for (Course CheckCurrentCourse : tempCurrentCourses) {
+                        if (CheckCurrentCourse.getCourseID().equals(course)) {
+                            System.out.println("Already enrolled in course!");
+                            return false;
+                        } else {
+                            cmngr.addStudent(listOfStudents.get(currentStudentIndex), course, tutGroup);
+                            tempCurrentCourses.add(Courses);
+                            listOfStudents.get(currentStudentIndex).setCourseEnrolled(tempCurrentCourses);
+                            System.out.println("Adding Student to Course!");
+                            try {
+                                fileManager.saveStudentFile(listOfStudents);
+                            } catch (Exception e) {
+                                e.printStackTrace();
+                            }
+                            return true;
+                        }
+                    }
+                } else {
+                    cmngr.addStudent(listOfStudents.get(currentStudentIndex), course, tutGroup);
+                    tempCurrentCourses = new ArrayList<Course>();
+                    tempCurrentCourses.add(Courses);
+                    listOfStudents.get(currentStudentIndex).setCourseEnrolled(tempCurrentCourses);
+                    System.out.println("Added!");
+                    try {
+                        fileManager.saveStudentFile(listOfStudents);
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                    return true;
+                }
+            }
+        }
+        System.out.println("Course does not exist!");
         //load file
 //        ArrayList<String> tempListOfCurrentCourse = new ArrayList<String>();
 //        tempListOfCurrentCourse = listofstudents.get(this.currentIndexOfStudent).getCourseEnrolled();
@@ -69,6 +92,18 @@ public class StudentManager {
     }
 
     public void printCourseRegistered(){
+        int i = 1;
+        ArrayList<Course> tempCurrentCourses = new ArrayList<Course>();
+        tempCurrentCourses = listOfStudents.get(currentStudentIndex).getCourseEnrolled();
+        if(tempCurrentCourses!=null){
+            for(Course Course:tempCurrentCourses){
+                System.out.println("Course "+i+ " : "+Course.getCourseName());
+                i++;
+            }
+        }
+        else{
+            System.out.println("No Courses registered!");
+        }
     }
 
     public boolean changeIndex(Course course, String index_id, int global_i){
