@@ -65,6 +65,12 @@ public class CourseManager {
 						if (targetstudent.getMatricNumber().equals(student.getMatricNumber())) {
 							index.removeStudentFromEnrolled(student);
 							System.out.println("Student: " + student.getName() + "removed from course " + courseID);
+							try {
+								fileManager.saveCoursesFile(listOfCourses);
+							} catch (Exception e) {
+								// TODO Auto-generated catch block
+								e.printStackTrace();
+							}
 							return true;
 						}
 					}
@@ -139,6 +145,26 @@ public class CourseManager {
 	}
 
 	public boolean checkVacancy(String courseID, String indexID) {
+
+		for (Course course : listOfCourses) {
+			if (course.getCourseID().equals(courseID)) {
+
+				ArrayList<Index> templist = course.getIndex();
+				for (Index index : templist) {
+					if (index.getIndexID().equals(indexID)) {
+
+						if (index.checkVacancy() == true) {
+							return true;
+						} else {
+							System.out.println("Course " + courseID + " ,INDEX: " + indexID + " is full!");
+							return false;
+						}
+					}
+				}
+
+			}
+		}
+		System.out.println("Course not found");
 		return false;
 	}
 
