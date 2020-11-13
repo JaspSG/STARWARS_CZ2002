@@ -113,7 +113,7 @@ public class Index implements Serializable {
 		this.waitlist = waitlist;
 	}
 
-	public void addwaitlist(Student student) {
+	public void addStudentToWaitlist(Student student) {
 		this.waitlist.add(student);
 	}
 	

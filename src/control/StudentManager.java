@@ -9,13 +9,34 @@ import java.util.ArrayList;
 public class StudentManager {
 	
 	CourseManager cmngr = new CourseManager();
-	int currentIndexOfStudent;
 	ArrayList<Student> listofstudents = new ArrayList<Student>();
+	Student student = new Student();
+	
+	int currentIndexOfStudent;
+	
+//	public StudentManager(String loginID ) {
+//		
+//		//validate here or before passing passing it into manager
+//		
+//		//find student from list
+//		for (Student student: listofstudents) {
+//			if (student.getLoginID().equals(loginID)) {
+//				this.student = student;
+//			}
+//		}
+//	}
+	
+	
 	
 	public StudentManager(int global_i) {
 		//this.currentIndexofStudent = global_i;
 		this.listofstudents = fileManager.loadStudentFile();	
 	}
+	
+//	public Student findStudent(String username) {
+//		
+//	}
+//	
 
     public boolean addCourse(Course course, int tutGroup) throws Exception {
         //load file

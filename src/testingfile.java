@@ -130,8 +130,8 @@ public class testingfile {
 		Student _dummystudent2 = new Student("Dummy2", "Dummy", "Dummy", "Dummy", 'D', 0, "Dummy", "Dummy");
 		
 		
-		cmngr.addStudent(_dummystudent, "CZ1011", "SP4");
-		cmngr.addStudent(_dummystudent2, "CZ1011", "SP4");
+		cmngr.addStudentToCourse(_dummystudent, "CZ1011", "SP4");
+		cmngr.addStudentToCourse(_dummystudent2, "CZ1011", "SP4");
 		
 		Course retrivedcourse = cmngr_admin.findCourseObject("CZ1011");
 		Index testindex = retrivedcourse.findIndexObject("SP4");
