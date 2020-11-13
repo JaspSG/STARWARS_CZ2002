@@ -36,12 +36,7 @@ public class CourseManager {
 					if (index.getIndexID().equals(indexID)) {
 						index.addStudentToEnrolled(Student);
 						System.out.println("Student Added");
-						try {
-							fileManager.saveCoursesFile(listOfCourses);
-						} catch (Exception e) {
-							// TODO Auto-generated catch block
-							e.printStackTrace();
-						}
+						saveCoursesFile();
 						return true;
 					}
 				}
@@ -65,12 +60,7 @@ public class CourseManager {
 						if (targetstudent.getMatricNumber().equals(student.getMatricNumber())) {
 							index.removeStudentFromEnrolled(student);
 							System.out.println("Student: " + student.getName() + "removed from course " + courseID);
-							try {
-								fileManager.saveCoursesFile(listOfCourses);
-							} catch (Exception e) {
-								// TODO Auto-generated catch block
-								e.printStackTrace();
-							}
+							saveCoursesFile();
 							return true;
 						}
 					}
@@ -83,6 +73,7 @@ public class CourseManager {
 		return false;
 	}
 
+
 	public boolean addStudentToWaitlist(Student student, String CourseID, String indexID) throws Exception {
 
 		for (Course course : listOfCourses) {
@@ -94,7 +85,7 @@ public class CourseManager {
 					if (index.getIndexID().equals(indexID)) {
 						index.addStudentToWaitlist(student);
 						course.setIndex(templistindex);
-						fileManager.saveCoursesFile(listOfCourses);
+						saveCoursesFile();
 						return true;
 					}
 				}
@@ -114,12 +105,7 @@ public class CourseManager {
 					if (index.getIndexID().equals(indexID)) {
 						Student tempstudent = index.removeStudentFromWaitlist();
 						course.setIndex(templistindex);
-						try {
-							fileManager.saveCoursesFile(listOfCourses);
-						} catch (Exception e) {
-							// TODO Auto-generated catch block
-							e.printStackTrace();
-						}
+						saveCoursesFile();
 						return tempstudent;
 					}
 				}
@@ -166,6 +152,15 @@ public class CourseManager {
 		}
 		System.out.println("Course not found");
 		return false;
+	}
+	
+	public void saveCoursesFile() {
+		try {
+			fileManager.saveCoursesFile(listOfCourses);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 	public static ArrayList<Course> getListOfCourses() {
