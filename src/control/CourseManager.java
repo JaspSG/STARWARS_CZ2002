@@ -13,6 +13,10 @@ public class CourseManager {
 	public CourseManager() {
 		listOfCourses = fileManager.loadCoursesFile();
 	}
+	
+	
+	
+
 
 	public static Course findCourseObject(String courseID) {
 
@@ -46,6 +50,23 @@ public class CourseManager {
 		return false;
 	}
 
+	public boolean addNewCourseToList(Course course) {
+		
+		listOfCourses.add(course);
+		saveCoursesFile();
+		return true;
+		
+	}
+	
+//	public boolean removeCourseToList(Course course) {
+//		
+//		listOfCourses.remove(course);
+//		saveCoursesFile();
+//		return true;
+//		
+//	}
+	
+	
 	public boolean removeStudentFromCourse(Student student, String courseID) {
 
 		for (Course course : listOfCourses) {
