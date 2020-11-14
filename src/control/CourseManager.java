@@ -30,7 +30,7 @@ public class CourseManager {
 	public boolean addStudentToCourse(Student Student, String courseID, String indexID) {
 
 		for (Course course : listOfCourses) {
-			if (course.getCourseID().equals(courseID)) {
+			if (course.getCourseID().equals(courseID)) { //remove this check if index is unique
 				ArrayList<Index> templist = course.getIndex();
 				for (Index index : templist) {
 					if (index.getIndexID().equals(indexID)) {

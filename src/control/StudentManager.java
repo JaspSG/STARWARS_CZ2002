@@ -120,6 +120,10 @@ public class StudentManager {
 		}
 	}
 
+	public void printVacanciesAvaliable(String index) {
+		
+	}
+	
 	public boolean changeIndex(Course course, String index_id) {
 		return true; // temporary value
 	}
