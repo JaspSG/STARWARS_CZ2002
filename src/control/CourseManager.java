@@ -14,10 +14,6 @@ public class CourseManager {
 		listOfCourses = fileManager.loadCoursesFile();
 	}
 	
-	
-	
-
-
 	public static Course findCourseObject(String courseID) {
 
 		for (Course course : listOfCourses) {
@@ -57,15 +53,6 @@ public class CourseManager {
 		return true;
 		
 	}
-	
-//	public boolean removeCourseToList(Course course) {
-//		
-//		listOfCourses.remove(course);
-//		saveCoursesFile();
-//		return true;
-//		
-//	}
-	
 	
 	public boolean removeStudentFromCourse(Student student, String courseID) {
 
@@ -190,6 +177,12 @@ public class CourseManager {
 
 	public static void setListOfCourses(ArrayList<Course> listOfCourses) {
 		CourseManager.listOfCourses = listOfCourses;
+	}
+	
+	public static void printCourseList() {
+		for (Course course: listOfCourses) {
+			System.out.println("Course Name: " + course.getCourseName() + " Course ID: " + course.getCourseID() + " Course AU: " + course.getAu());
+		}
 	}
 
 }
