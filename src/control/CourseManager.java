@@ -27,9 +27,10 @@ public class CourseManager {
 							// STRING ATTRIBUTE IS NULL
 	}
 
-	public boolean addStudentToCourse(Student Student, String indexID) {
+	public boolean addStudentToCourse(Student Student, String courseID, String indexID) {
 
 		for (Course course : listOfCourses) {
+			if (course.getCourseID().equals(courseID)) { //remove this check if index is unique
 				ArrayList<Index> templist = course.getIndex();
 				for (Index index : templist) {
 					if (index.getIndexID().equals(indexID)) {
@@ -39,6 +40,7 @@ public class CourseManager {
 						return true;
 					}
 				}
+			}
 		}
 		System.out.println("Course not found");
 		return false;
@@ -52,9 +54,10 @@ public class CourseManager {
 		
 	}
 	
-	public boolean removeStudentFromCourse(Student student, String indexID) {
+	public boolean removeStudentFromCourse(Student student, String courseID) {
 
 		for (Course course : listOfCourses) {
+			if (course.getCourseID().equals(courseID)) {
 				ArrayList<Index> tempindexlist = course.getIndex();
 
 				for (Index index : tempindexlist) {
@@ -64,13 +67,14 @@ public class CourseManager {
 					for (Student targetstudent : tempstudentlist) {
 						if (targetstudent.getMatricNumber().equals(student.getMatricNumber())) {
 							index.removeStudentFromEnrolled(student);
-							System.out.println("Student: " + student.getName() + "removed from Index " + indexID);
+							System.out.println("Student: " + student.getName() + "removed from course " + courseID);
 							saveCoursesFile();
 							return true;
 						}
 					}
 
 				}
+			}
 
 		}
 		System.out.println("Something went wrong - removeStudent function");
@@ -78,9 +82,11 @@ public class CourseManager {
 	}
 
 
-	public boolean addStudentToWaitlist(Student student, String indexID) {
+	public boolean addStudentToWaitlist(Student student, String CourseID, String indexID) throws Exception {
 
 		for (Course course : listOfCourses) {
+
+			if (course.getCourseID().equals(CourseID)) {
 				ArrayList<Index> templistindex = new ArrayList<Index>();
 				templistindex = course.getIndex();
 				for (Index index : templistindex) {
@@ -91,15 +97,16 @@ public class CourseManager {
 						return true;
 					}
 				}
-
+			}
 		}
 		return false;
 	}
 
-	public Student removeStudentFromWaitlist(String indexID) {
+	public Student removeStudentFromWaitlist(String CourseID, String indexID) {
 
 		for (Course course : listOfCourses) {
 
+			if (course.getCourseID().equals(CourseID)) {
 				ArrayList<Index> templistindex = new ArrayList<Index>();
 				templistindex = course.getIndex();
 				for (Index index : templistindex) {
@@ -110,6 +117,7 @@ public class CourseManager {
 						return tempstudent;
 					}
 				}
+			}
 		}
 		Student emptystudent = new Student();
 		return emptystudent;
@@ -130,9 +138,10 @@ public class CourseManager {
 		}
 	}
 
-	public boolean checkVacancy(String indexID) {
+	public boolean checkVacancy(String courseID, String indexID) {
 
 		for (Course course : listOfCourses) {
+			if (course.getCourseID().equals(courseID)) {
 
 				ArrayList<Index> templist = course.getIndex();
 				for (Index index : templist) {
@@ -141,12 +150,13 @@ public class CourseManager {
 						if (index.checkVacancy() == true) {
 							return true;
 						} else {
-							System.out.println("Course " + course.getCourseID() + " ,INDEX: " + indexID + " is full!");
+							System.out.println("Course " + courseID + " ,INDEX: " + indexID + " is full!");
 							return false;
 						}
 					}
 				}
 
+			}
 		}
 		System.out.println("Course not found");
 		return false;
