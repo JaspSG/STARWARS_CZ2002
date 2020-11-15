@@ -10,8 +10,8 @@ import static control.fileManager.loadCoursesFile;
 import static control.fileManager.saveCoursesFile;
 
 public class Index implements Serializable {
-	private int totalSize;
-	private int currentSize;
+	private int totalSize=30;
+	private int currentSize=0;
 	private String indexID;
 	private ArrayList<Student> studentsEnrolled = new ArrayList<Student>();
 	private ArrayList<Lesson> lessons = new ArrayList<Lesson>();
@@ -123,10 +123,9 @@ public class Index implements Serializable {
 		return tempstudent;
 	}
 
-	public boolean checkVacancy() {		
-		if (totalSize - currentSize > 0)
-			return true; 
-		else return false;
+	public int checkVacancy() {		
+		int vacancy = this.totalSize - this.currentSize;
+			return vacancy;
 	}
 
 	/**

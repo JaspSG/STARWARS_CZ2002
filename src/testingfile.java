@@ -3,6 +3,7 @@ import java.util.LinkedList;
 import java.util.Queue;
 
 import control.CourseManager;
+import control.StudentManager;
 import control.fileManager;
 import entity.Course;
 import entity.Index;
@@ -133,9 +134,15 @@ public class testingfile {
 		cmngr.addStudentToCourse(_dummystudent, "CZ1011", "SP4");
 		cmngr.addStudentToCourse(_dummystudent2, "CZ1011", "SP4");
 		
-		Course retrivedcourse = cmngr_admin.findCourseObject("CZ1011");
+		Course retrivedcourse = CourseManager.findCourseObject("CZ1011");
 		Index testindex = retrivedcourse.findIndexObject("SP4");
 		testindex.printStudentsEnrolled();
+		
+		StudentManager x = new StudentManager();
+		
+		x.printVacanciesAvaliable("CZ1011", "SP4");
+		
+		System.out.println(retrivedcourse.getCourseID());
 		
 		
 //		

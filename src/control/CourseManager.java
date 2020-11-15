@@ -13,7 +13,7 @@ public class CourseManager {
 	public CourseManager() {
 		listOfCourses = fileManager.loadCoursesFile();
 	}
-	
+
 	public static Course findCourseObject(String courseID) {
 
 		for (Course course : listOfCourses) {
@@ -30,7 +30,7 @@ public class CourseManager {
 	public boolean addStudentToCourse(Student Student, String courseID, String indexID) {
 
 		for (Course course : listOfCourses) {
-			if (course.getCourseID().equals(courseID)) { //remove this check if index is unique
+			if (course.getCourseID().equals(courseID)) { // remove this check if index is unique
 				ArrayList<Index> templist = course.getIndex();
 				for (Index index : templist) {
 					if (index.getIndexID().equals(indexID)) {
@@ -47,13 +47,13 @@ public class CourseManager {
 	}
 
 	public boolean addNewCourseToList(Course course) {
-		
+
 		listOfCourses.add(course);
 		saveCoursesFile();
 		return true;
-		
+
 	}
-	
+
 	public boolean removeStudentFromCourse(Student student, String courseID) {
 
 		for (Course course : listOfCourses) {
@@ -80,7 +80,6 @@ public class CourseManager {
 		System.out.println("Something went wrong - removeStudent function");
 		return false;
 	}
-
 
 	public boolean addStudentToWaitlist(Student student, String CourseID, String indexID) throws Exception {
 
@@ -138,7 +137,7 @@ public class CourseManager {
 		}
 	}
 
-	public boolean checkVacancy(String courseID, String indexID) {
+	public int checkVacancy(String courseID, String indexID) {
 
 		for (Course course : listOfCourses) {
 			if (course.getCourseID().equals(courseID)) {
@@ -146,22 +145,15 @@ public class CourseManager {
 				ArrayList<Index> templist = course.getIndex();
 				for (Index index : templist) {
 					if (index.getIndexID().equals(indexID)) {
-
-						if (index.checkVacancy() == true) {
-							return true;
-						} else {
-							System.out.println("Course " + courseID + " ,INDEX: " + indexID + " is full!");
-							return false;
-						}
+						return index.checkVacancy();
 					}
 				}
-
 			}
 		}
 		System.out.println("Course not found");
-		return false;
+		return -1;
 	}
-	
+
 	public void saveCoursesFile() {
 		try {
 			fileManager.saveCoursesFile(listOfCourses);
@@ -178,10 +170,11 @@ public class CourseManager {
 	public static void setListOfCourses(ArrayList<Course> listOfCourses) {
 		CourseManager.listOfCourses = listOfCourses;
 	}
-	
+
 	public static void printCourseList() {
-		for (Course course: listOfCourses) {
-			System.out.println("Course Name: " + course.getCourseName() + " Course ID: " + course.getCourseID() + " Course AU: " + course.getAu());
+		for (Course course : listOfCourses) {
+			System.out.println("Course Name: " + course.getCourseName() + " Course ID: " + course.getCourseID()
+					+ " Course AU: " + course.getAu());
 		}
 	}
 

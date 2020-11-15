@@ -1,17 +1,19 @@
 package boundary;
 
 import java.util.InputMismatchException;
+
 import java.util.Scanner;
 
 import control.StudentManager;
 
 public class StudentUI {
 
-	// StudentManager stmngr = new StudentManager();
-	static Scanner sc = new Scanner(System.in);
+	static StudentManager stmngr = new StudentManager();
 	static int choice;
 
 	public static void main(String[] args) {
+		
+		Scanner sc = new Scanner(System.in);
 
 		do {
 
@@ -30,6 +32,7 @@ public class StudentUI {
 				System.out.println("Please only enter the choices shown");
 				choice = sc.nextInt();
 			}
+			sc.nextLine();
 
 			switch (choice) {
 
@@ -43,6 +46,12 @@ public class StudentUI {
 				break;
 
 			case 4:
+				System.out.println("Enter Course ID to check: ");
+				String courseID = sc.nextLine().toUpperCase();
+				System.out.println("Enter Index ID to check: ");
+				String indexID = sc.nextLine();
+				stmngr.printVacanciesAvaliable(courseID, indexID);
+				System.out.println();
 				break;
 
 			case 5:
@@ -54,59 +63,13 @@ public class StudentUI {
 			case 7:
 				break;
 				
-			case 8:
-				break;
-
 			default:
 				System.out.println("Please only enter the choices shown\n");
 
 			}
-		} while (choice != 8);
+		} while (choice != 7);
 
 		System.out.println("STARS Exiting..");
-
-//		
-//		switch (choice) {
-//		case 1:
-//			adminMenu(sc);
-//			break;
-//		case 2:
-//			studentMenu(sc);
-//			break;
-//		case 3:
-//			System.out.println("Enter name");
-//			String username =sc.nextLine();
-//			System.out.println("Enter Password");
-//			String password = sc.nextLine();
-//			currentStudentIndex = validateLogin(username,password);
-//			
-//			if(currentStudentIndex == -1)
-//			{
-//				System.out.println("Wrong password!");
-//				break;
-//			}
-//			System.out.println("Current Student Index is now " + currentStudentIndex);
-//			break;
-//		case 4:
-//			 fileManager fm = new fileManager();
-//			 studentList = fileManager.loadStudentFile();
-//			 System.out.println("File Loaded!");
-//			 
-//			 for(int i =0; i < studentList.size();i++)
-//			 {
-//				 
-//				 System.out.println(studentList.get(i).getLoginID()); 
-//				 System.out.println("");
-//				 System.out.println(studentList.get(i).getLoginPW()); 
-//				 System.out.println("");
-//				 
-//			 }
-//
-//			break;
-//		default:
-//			System.out.println("");
-//			break;
-//		}
 
 	}
 
