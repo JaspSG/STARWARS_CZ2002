@@ -1,10 +1,7 @@
 package entity;
 
-import javax.management.ObjectName;
-
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.List;
 
 import static control.fileManager.loadCoursesFile;
 import static control.fileManager.saveCoursesFile;
@@ -74,19 +71,19 @@ public class Course implements Serializable {
         this.index = index;
     }
 
-    public static Course findCourse(String courseID) {
-
-        ArrayList<Course> courseList = loadCoursesFile();
-
-        for(Course course: courseList) {
-            if(course.getCourseID().equals(courseID)) {
-                return course;
-            }
-        }
-        System.out.println("Course not found");
-        Course emptyCourse = new Course();
-        return emptyCourse;
-    }
+//    public static Course findCourse(String courseID) {
+//
+//        ArrayList<Course> courseList = loadCoursesFile();
+//
+//        for(Course course: courseList) {
+//            if(course.getCourseID().equals(courseID)) {
+//                return course;
+//            }
+//        }
+//        System.out.println("Course not found");
+//        Course emptyCourse = new Course();
+//        return emptyCourse;
+//    }
     public static boolean removeCourse(String courseID){
         ArrayList<Course> courseArrayList = loadCoursesFile();
 

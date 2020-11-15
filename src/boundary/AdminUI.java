@@ -121,7 +121,7 @@ public class AdminUI {
         if(choice == 'Y')
         {
             // validation to check if course exists
-            if(Course.findCourse(courseID).getCourseID() == null)
+            if(CourseManager.findCourseObject(courseID).getCourseID() == null)
             {
                 // add course
                 boolean result = CourseManager.addNewCourse(newCourse);
@@ -154,7 +154,7 @@ public class AdminUI {
             courseID = sc.nextLine();
         }
 
-        if(Course.findCourse(courseID).getCourseID() != null) {
+        if(CourseManager.findCourseObject(courseID).getCourseID() != null) {
 
             System.out.println("Enter the new Index ID: ");
             String indexID = sc.nextLine();
@@ -261,8 +261,8 @@ public class AdminUI {
         System.out.println("Enter the Course ID that you wish to update: ");
         String courseID = sc.nextLine();
 
-        if(Course.findCourse(courseID).getCourseID() != null) {
-            updateCourse = Course.findCourse(courseID);
+        if(CourseManager.findCourseObject(courseID).getCourseID()!= null) {
+            updateCourse = CourseManager.findCourseObject(courseID);
             System.out.println("Course record found! Which of the following do you wish to update?: ");
             System.out.println("1. Course's Name");
             System.out.println("2. Course's AU Credits");
@@ -447,7 +447,7 @@ public class AdminUI {
         System.out.print("Enter the index ID: ");
         String indexID = sc.nextLine();
 
-        if(Course.findCourse(courseID).getCourseID() != null && Index.findIndex(courseID, indexID).getIndexID() != null){
+        if(CourseManager.findCourseObject(courseID).getCourseID() != null && Index.findIndex(courseID, indexID).getIndexID() != null){
             CourseManager.printIndexStudentList(courseID, indexID);
         }
         System.out.println("Returning to main UI....\n");
@@ -460,7 +460,7 @@ public class AdminUI {
         System.out.print("Enter the index's Course ID: ");
         String courseID = sc.nextLine();
 
-        if(Course.findCourse(courseID).getCourseID() != null){
+        if(CourseManager.findCourseObject(courseID).getCourseID() != null){
             CourseManager.printCourseStudentList(courseID);
         }
         System.out.println("Returning to main UI....\n");
