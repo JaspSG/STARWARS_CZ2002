@@ -137,7 +137,7 @@ public class CourseManager {
 		}
 	}
 
-	public int checkVacancy(String courseID, String indexID) {
+	public static int checkVacancy(String courseID, String indexID) {
 
 		for (Course course : listOfCourses) {
 			if (course.getCourseID().equals(courseID)) {

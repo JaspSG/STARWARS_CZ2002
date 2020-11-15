@@ -5,16 +5,15 @@ import entity.Student;
 
 import java.util.ArrayList;
 
-import static control.fileManager.loadStudentFile;
-import static control.fileManager.saveStudentFile;
-
 public class StudentManager {
 
 	Student currentStudent = new Student();
 	CourseManager cmngr = new CourseManager();
+
 	static ArrayList<Student> listOfStudents = new ArrayList<Student>();
 
 	public StudentManager() {
+		listOfStudents = fileManager.loadStudentFile();
 	}
 
 	public StudentManager(String loginID) {
@@ -26,6 +25,22 @@ public class StudentManager {
 			}
 		}
 
+	}
+	public static void saveStudentsFile() {
+		try {
+			fileManager.saveStudentFile(listOfStudents);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+
+	public static ArrayList<Student> getListOfStudents() {
+		return listOfStudents;
+	}
+
+	public static void setListOfStudents(ArrayList<Student> listOfStudents) {
+		StudentManager.listOfStudents = listOfStudents;
 	}
 
 //	int currentStudentIndex;
@@ -148,21 +163,10 @@ public class StudentManager {
 	 * Adds a new student to the current list of students
 	 * @return boolean result indicating if the operation is a success or failure;
 	 */
-	public static boolean addStudent(Student student) {
-		//ToDo: to change to similar methods as CourseManager in term of saving and loading
-
-		ArrayList<Student> studentList = loadStudentFile(); // load student object to variable
-
-		studentList.add(student);
-
-		try {
-			saveStudentFile(studentList);
-			return true;
-		}
-		catch (Exception exception) {
-			exception.printStackTrace();
-			return false;
-		}
+	public static boolean addNewStudent(Student student) {
+		listOfStudents.add(student);
+		saveStudentsFile();
+		return true;
 	}
 	/* ------ Admin Related Methods: End ------ */
 }

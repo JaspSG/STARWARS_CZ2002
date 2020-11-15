@@ -9,8 +9,6 @@ import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
-import static control.fileManager.*;
-
 public class AdminUI {
 
     static Scanner sc = new Scanner(System.in);
@@ -67,6 +65,7 @@ public class AdminUI {
                     break;
                 case 4:
                     System.out.println("4. Check vacancy for an existing index group");
+                    checkVacancyUI(sc);
                     break;
                 case 5:
                     System.out.println("5. Add a new student");
@@ -418,7 +417,7 @@ public class AdminUI {
             if(Student.findStudent(matriculationNumber).getMatricNumber() == null)
             {
                 // add student
-                boolean result = addStudent(newStudent);
+                boolean result = StudentManager.addNewStudent(newStudent);
                 if(result == true) {
                     System.out.println("Student record created. Returning to main UI....\n");
                 } else {
@@ -464,6 +463,42 @@ public class AdminUI {
             CourseManager.printCourseStudentList(courseID);
         }
         System.out.println("Returning to main UI....\n");
+    }
+    public static void updateAccessPeriod(Scanner sc){
+        System.out.print("Enter the Student's Matriculation Number: ");
+        String matriculationNumber = sc.nextLine();
+
+        // find student object and retrieve
+
+        // set access period
+
+        // update course
+    }
+    public static void checkVacancyUI(Scanner sc){
+        System.out.println("Enter the course Code for the index that you want to check vacancy: ");
+        String courseID = sc.nextLine();
+
+        System.out.println("Enter the index Code that you want to check vacancy: ");
+        String indexID = sc.nextLine();
+
+        if(Index.findIndex(courseID, indexID).getIndexID() != null)
+        {
+            int result = CourseManager.checkVacancy(courseID, indexID);
+
+            if(result!= -1)
+            {
+                System.out.println("The number of available slot for " + indexID + " is " + result);
+            }
+            else
+            {
+                System.out.println("There is no vacancy for " + indexID + " .");
+            }
+        }
+        else{
+            System.out.println("Invalid index ID or Course ID. Returning to main menu ...")
+        }
+
+
     }
     /*   End of Admin UI Course Methods      */
 

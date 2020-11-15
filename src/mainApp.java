@@ -519,7 +519,7 @@ public class mainApp extends User{
 				break;
 			case 8:
 				System.out.println("8. Print list of students by course");
-				printCourseStudentListUI(sc);
+				//printCourseStudentListUI(sc);
 				break;
 			default:
 				System.out.println("");
