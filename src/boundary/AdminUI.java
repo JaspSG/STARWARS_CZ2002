@@ -558,24 +558,24 @@ public class AdminUI {
 //        return false;
 //    }
 
-    /**
-     * Adds a new student to the current list of students
-     * @return boolean result indicating if the operation is a success or failure;
-     */
-    public static boolean addStudent(Student student) {
-        ArrayList<Student> studentList = loadStudentFile(); // load student object to variable
-
-        studentList.add(student);
-
-        try {
-            saveStudentFile(studentList);
-            return true;
-        }
-        catch (Exception exception) {
-            exception.printStackTrace();
-            return false;
-        }
-    }
+//    /**
+//     * Adds a new student to the current list of students
+//     * @return boolean result indicating if the operation is a success or failure;
+//     */
+//    public static boolean addStudent(Student student) {
+//        ArrayList<Student> studentList = loadStudentFile(); // load student object to variable
+//
+//        studentList.add(student);
+//
+//        try {
+//            saveStudentFile(studentList);
+//            return true;
+//        }
+//        catch (Exception exception) {
+//            exception.printStackTrace();
+//            return false;
+//        }
+//    }
 //    /**
 //     * Allow admin to display all the students that are enrolled in a specific index number of a course
 //     * @param courseID courseID of the index's parent course

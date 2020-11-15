@@ -5,6 +5,9 @@ import entity.Student;
 
 import java.util.ArrayList;
 
+import static control.fileManager.loadStudentFile;
+import static control.fileManager.saveStudentFile;
+
 public class StudentManager {
 
 	Student currentStudent = new Student();
@@ -139,4 +142,27 @@ public class StudentManager {
 //	public void addToWaitlist() {
 //
 //	}
+
+	/* ------ Admin Related Methods: Start ------ */
+	/**
+	 * Adds a new student to the current list of students
+	 * @return boolean result indicating if the operation is a success or failure;
+	 */
+	public static boolean addStudent(Student student) {
+		//ToDo: to change to similar methods as CourseManager in term of saving and loading
+
+		ArrayList<Student> studentList = loadStudentFile(); // load student object to variable
+
+		studentList.add(student);
+
+		try {
+			saveStudentFile(studentList);
+			return true;
+		}
+		catch (Exception exception) {
+			exception.printStackTrace();
+			return false;
+		}
+	}
+	/* ------ Admin Related Methods: End ------ */
 }

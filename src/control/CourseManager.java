@@ -288,4 +288,5 @@ public class CourseManager {
 		}
 		return true;
 	}
+	/* ------ Admin Related Methods: End ------ */
 }
