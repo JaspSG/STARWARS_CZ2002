@@ -17,7 +17,6 @@ public class StudentManager {
 	}
 
 	public StudentManager(String loginID) {
-
 		listOfStudents = fileManager.loadStudentFile();
 		for (Student student : listOfStudents) {
 			if (student.getLoginID().equals(loginID)) {
@@ -26,6 +25,18 @@ public class StudentManager {
 		}
 
 	}
+	public static Student findStudentObject(String matriculationNumber) {
+		for (Student student : listOfStudents) {
+			if (student.getMatricNumber().equals(matriculationNumber)) {
+				return student;
+			}
+		}
+		System.out.println("Student not found");
+		Student emptyStudent = new Student();
+		return emptyStudent; // NOTE: STRING DEFAULTS ARE NULL, HENCE TO CHECK IF OBJECT IS EMPTY, CHECK IF A
+		// STRING ATTRIBUTE IS NULL
+	}
+
 	public static void saveStudentsFile() {
 		try {
 			fileManager.saveStudentFile(listOfStudents);
@@ -165,6 +176,21 @@ public class StudentManager {
 	 */
 	public static boolean addNewStudent(Student student) {
 		listOfStudents.add(student);
+		saveStudentsFile();
+		return true;
+	}
+	/**
+	 * Updates an existing student from the current list of student
+	 * @return boolean result indicating if the operation is a success or failure;
+	 */
+	public static boolean updateStudent(Student updateStudent) {
+		for(int i = 0; i < listOfStudents.size(); i++){
+			if(listOfStudents.get(i).getMatricNumber().equals(updateStudent.getMatricNumber()))
+			{
+				listOfStudents.set(i, updateStudent);
+				break;
+			}
+		}
 		saveStudentsFile();
 		return true;
 	}

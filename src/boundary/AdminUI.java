@@ -5,9 +5,9 @@ import control.StudentManager;
 import entity.*;
 
 import java.security.NoSuchAlgorithmException;
-import java.util.ArrayList;
-import java.util.InputMismatchException;
-import java.util.Scanner;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.*;
 
 public class AdminUI {
 
@@ -464,15 +464,43 @@ public class AdminUI {
         }
         System.out.println("Returning to main UI....\n");
     }
-    public static void updateAccessPeriod(Scanner sc){
+    public static void updateAccessPeriod(Scanner sc) throws ParseException {
+        // initialisation
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM/yy HH:mm:ss", Locale.ENGLISH);
+        Calendar startCalendar = Calendar.getInstance(Locale.ENGLISH);
+        Calendar endCalendar = Calendar.getInstance(Locale.ENGLISH);
+
         System.out.print("Enter the Student's Matriculation Number: ");
         String matriculationNumber = sc.nextLine();
 
         // find student object and retrieve
+        if(StudentManager.findStudentObject(matriculationNumber).getMatricNumber() != null){
+            // get user input
+            Student updateStudent = StudentManager.findStudentObject(matriculationNumber);
 
-        // set access period
+            System.out.println("Enter the start of the access period (dd/MM/yy HH:mm:ss): ");
+            String startTime = sc.nextLine();
 
-        // update course
+            System.out.println("Enter the end of the access period ((dd/MM/yy HH:mm:ss): ");
+            String endTime = sc.nextLine();
+
+            startCalendar.setTime(simpleDateFormat.parse(startTime));
+            endCalendar.setTime(simpleDateFormat.parse(endTime));
+
+            // set access period
+            updateStudent.setStartTime(startCalendar);
+            updateStudent.setEndTime(endCalendar);
+
+            // seek user confirmation
+
+            // update course
+            StudentManager.updateStudent(updateStudent);
+            System.out.println("Student Access Period Updated. Returning to main menu ...");
+
+        }
+        else{
+            System.out.println("Invalid matriculation number. Returning to main menu ...");
+        }
     }
     public static void checkVacancyUI(Scanner sc){
         System.out.println("Enter the course Code for the index that you want to check vacancy: ");
@@ -485,7 +513,7 @@ public class AdminUI {
         {
             int result = CourseManager.checkVacancy(courseID, indexID);
 
-            if(result!= -1)
+            if(result != -1)
             {
                 System.out.println("The number of available slot for " + indexID + " is " + result);
             }
@@ -495,7 +523,7 @@ public class AdminUI {
             }
         }
         else{
-            System.out.println("Invalid index ID or Course ID. Returning to main menu ...")
+            System.out.println("Invalid index ID or Course ID. Returning to main menu ...");
         }
 
 
