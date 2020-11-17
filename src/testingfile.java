@@ -109,7 +109,7 @@ public class testingfile {
 		listofcourses.add(_course2);
 		listofcourses.add(_course1);
 
-		/* ------------------------- Start ofAdmin ------------------------- */
+		/* ------------------------- Start of Admin ------------------------- */
 		ArrayList<Admin> listofAdmin = new ArrayList<Admin>();
 
 		String password = "password";
@@ -124,6 +124,11 @@ public class testingfile {
 		listofAdmin.add(_admin2);
 
 		/* ------------------------- End of Admin ------------------------- */
+
+		/* ------------------------- Start of School  ------------------------- */
+		// Create School ser file for validation
+
+		/* ------------------------- End of School  ------------------------- */
 
 		fileManager.saveStudentFile(listofstudents); //save student file
 		fileManager.saveCoursesFile(listofcourses); //save student file

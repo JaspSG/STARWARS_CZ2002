@@ -9,13 +9,12 @@ public class StudentManager {
 
 	Student currentStudent = new Student();
 	CourseManager cmngr = new CourseManager();
+
 	int studentIndex;
 	static ArrayList<Student> listOfStudents = new ArrayList<Student>();
 	
 	public StudentManager() {
 		listOfStudents = fileManager.loadStudentFile();
-		
-		
 	}
 
 	public StudentManager(String loginID, String password) {

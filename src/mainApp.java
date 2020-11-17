@@ -4,6 +4,7 @@ import boundary.StudentUI;
 import control.CourseManager;
 import control.StudentManager;
 import control.fileManager;
+import entity.Admin;
 import entity.Student;
 import entity.User;
 
@@ -50,7 +51,9 @@ public class mainApp extends User{
 		loginPW = sc.nextLine();
 
 		switch (choice) {
-		case 1:			
+		case 1:
+			ArrayList<Admin> adminList = fileManager.loadAdminFile();
+			for(Admin admin: adminList)
 			AdminUI.mainAdminUI();
 			break;
 		case 2:
@@ -74,7 +77,7 @@ public class mainApp extends User{
 			String username = sc.nextLine();
 			System.out.println("Enter Password");
 			String password = sc.nextLine();
-		//	currentStudentIndex = validateLogin(username,password);
+		    //currentStudentIndex = validateLogin(username,password);
 			
 			if(currentStudentIndex == -1)
 			{
