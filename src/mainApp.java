@@ -1,9 +1,9 @@
-
 import boundary.AdminUI;
 import boundary.StudentUI;
 import control.CourseManager;
 import control.StudentManager;
 import control.fileManager;
+import entity.Admin;
 import entity.Student;
 import entity.User;
 
@@ -51,7 +51,18 @@ public class mainApp extends User {
 
 			switch (choice) {
 			case 1:
-				AdminUI.mainAdminUI();
+				ArrayList<Admin> adminList = fileManager.loadAdminFile();
+				for(Admin admin : adminList){
+					if(admin.getLoginID().equals(loginID)){
+						if(admin.validateLogin(loginID, loginPW)){
+							AdminUI.mainAdminUI();
+						} else {
+							System.out.println("Wrong Login Information");
+							break;
+						}
+					}
+				}
+				System.out.println("Admin Not Found");
 				break;
 			case 2:
 				StudentManager smngr = new StudentManager();
