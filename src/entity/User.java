@@ -123,6 +123,19 @@ public class User implements Serializable {
 
 		//return isValid;
 	}
+	public static boolean accessPeriodValidity(Student student){
+		Calendar now = Calendar.getInstance();
+
+		Calendar startTime = student.getStartTime();
+		Calendar endTime = student.getEndTime();
+
+		if(now.before(endTime) && now.after(startTime)){
+			return true;
+		}
+		else{
+			return false;
+		}
+	}
 	
 	public static String hashString(String password) throws NoSuchAlgorithmException
 	{
