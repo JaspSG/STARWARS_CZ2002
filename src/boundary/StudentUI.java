@@ -7,11 +7,11 @@ import java.util.Scanner;
 
 public class StudentUI {
 
-	public static void mainStudentUI() {
+	public static void mainStudentUI(String username) {
 
-		StudentManager stmngr = new StudentManager();
+		StudentManager stmngr = new StudentManager(username);
 		int choice;
-
+		String courseID,indexID;
 		Scanner sc = new Scanner(System.in);
 
 		do {
@@ -36,19 +36,29 @@ public class StudentUI {
 			switch (choice) {
 
 			case 1:
+				System.out.println("Enter Course ID to add: ");
+				courseID = sc.nextLine().toUpperCase();
+				System.out.println("Enter Index ID to add: ");
+				indexID = sc.nextLine();
+				stmngr.addCourse(courseID, indexID);
 				break;
 
 			case 2:
+				System.out.println("Enter Course ID to drop: ");
+				courseID = sc.nextLine().toUpperCase();
+				stmngr.dropCourse(courseID);
 				break;
 
 			case 3:
+				System.out.println("Printing Registered Courses!");
+				stmngr.printCourseRegistered();
 				break;
 
 			case 4:
 				System.out.println("Enter Course ID to check: ");
-				String courseID = sc.nextLine().toUpperCase();
+				courseID = sc.nextLine().toUpperCase();
 				System.out.println("Enter Index ID to check: ");
-				String indexID = sc.nextLine();
+				indexID = sc.nextLine();
 				stmngr.printVacanciesAvaliable(courseID, indexID);
 				System.out.println();
 				break;

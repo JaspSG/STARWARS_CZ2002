@@ -59,7 +59,7 @@ public class mainApp extends User {
 				for (Student student : studentList) {
 					if (student.getLoginID().equals(loginID)) {
 						if (student.validateLogin(loginID, loginPW) == true) {
-							StudentUI.mainStudentUI();
+							StudentUI.mainStudentUI(loginID);
 						} else {
 							System.out.println("Wrong Login Information");
 							break;
