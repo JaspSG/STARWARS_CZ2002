@@ -399,6 +399,7 @@ public class AdminUI {
 
         System.out.print("Enter the new student's loginID: ");
         String loginId = sc.nextLine();
+        sc.nextLine();
 
         System.out.print("Enter the new student's loginPW: ");
         String loginPW = sc.nextLine();

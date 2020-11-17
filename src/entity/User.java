@@ -41,48 +41,15 @@ public class User implements Serializable {
 		this.loginPW = loginPW;
 	}
 
-	public static int validateLogin(String username,String password) throws NoSuchAlgorithmException
-	{
-		//load file
-		fileManager fm = new fileManager();
-		ArrayList<Student> studentList = fileManager.loadStudentFile();
-
-		//Boolean isValid = false;
-			int studentIndex = -1;
-			System.out.println("User input: " + username +" " +password);
-		  
+	public boolean validateLogin(String username,String password) throws NoSuchAlgorithmException
+	{		  
 			String userPW = hashString(password);
-		    
-		    for(int i =0; i < studentList.size();i++)
-		    {
-		    	//check for username 
-		    	if(Objects.equals(username, studentList.get(i).getLoginID()))
-		    	{
-		    		//get password of that account
-		    		String currentPassword = studentList.get(i).getLoginPW();
-			    	//System.out.println("Data: " + currentPassword);
-			    	
-					 String dataPW = hashString(currentPassword);
-					 
-					 //compare the hashed user pw with pw in file
-		    		if(Objects.equals(userPW, dataPW))// --> true
-					 {
-					 	 // CHECK ACCESS PERIOD
-						 Calendar startTime = studentList.get(i).getStartTime();
-						 Calendar endTime = studentList.get(i).getEndTime();
-
-						 Calendar now = Calendar.getInstance(); // get today date
-
-		    			 System.out.println("Login Successful!");
-						 return i;
-					 }
-		    	}
-		    	
-		    }
-		    
-		    return studentIndex;
-		
-		//return isValid;
+			if(userPW.equals(this.loginPW)) {
+				return true;
+			}
+			else {
+				return false;
+			}
 	
 	}
 

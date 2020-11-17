@@ -7,10 +7,10 @@ import java.util.Scanner;
 
 public class StudentUI {
 
-	static StudentManager stmngr = new StudentManager();
-	static int choice;
-
 	public static void mainStudentUI() {
+		
+		StudentManager stmngr = new StudentManager();
+		int choice;
 		
 		Scanner sc = new Scanner(System.in);
 
