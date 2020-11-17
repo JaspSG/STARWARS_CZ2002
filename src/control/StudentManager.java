@@ -9,32 +9,21 @@ public class StudentManager {
 
 	Student currentStudent = new Student();
 	CourseManager cmngr = new CourseManager();
-	int studentIndex;
+
 	static ArrayList<Student> listOfStudents = new ArrayList<Student>();
-	
+
 	public StudentManager() {
 		listOfStudents = fileManager.loadStudentFile();
-		
-		
 	}
 
 	public StudentManager(String loginID, String password) {
 		listOfStudents = fileManager.loadStudentFile();
-		studentIndex = 0;
 		for (Student student : listOfStudents) {
 			if (student.getLoginID().equals(loginID)) {
 				this.currentStudent = student;
 			}
-			studentIndex++;
 		}
 
-	}
-	
-	public StudentManager(int index) {
-		listOfStudents = fileManager.loadStudentFile();
-		studentIndex = index;
-		currentStudent = listOfStudents.get(studentIndex);
-		
 	}
 	public static Student findStudentObject(String matriculationNumber) {
 		for (Student student : listOfStudents) {
@@ -72,51 +61,8 @@ public class StudentManager {
 //		listOfStudents = fileManager.loadStudentFile();
 //	} // to remove
 
-	public boolean addCourse(String course, String indexID) {
-		
-		System.out.println("Adding Course ID : "+course+" and Index ID : "+indexID);
-		//Searching if course exists
-		
-		if (CourseManager.findCourseObject(course).getCourseID()!=null) {
-			System.out.println("Course Exists");
-			//Add in a check for wait list
-			ArrayList<Course> enrolledCourses = currentStudent.getCourseEnrolled();
-			if (enrolledCourses!=null) {
-				for(Course enrolledCourse : enrolledCourses) {
-					if(enrolledCourse.getCourseID().equals(course)) {
-						System.out.println("Already enrolled in this course!");
-						return false;
-					}
-					
-				}
-				System.out.println("Adding student to course!");
-				cmngr.addStudentToCourse(currentStudent, course, indexID);
-				enrolledCourses.add(CourseManager.findCourseObject(course));
-				listOfStudents.get(studentIndex).setCourseEnrolled(enrolledCourses);
-				saveStudentsFile();
-				System.out.println("Successful!");
-				return true;
-			}
-			//If no enrolled courses : 
-			else {
-				//Add student to Course Object
-				System.out.println("Adding student to course!");
-				cmngr.addStudentToCourse(currentStudent, course, indexID);
-				//Add Course to Student Object
-				enrolledCourses = new ArrayList<Course>();
-				enrolledCourses.add(CourseManager.findCourseObject(course));
-				listOfStudents.get(studentIndex).setCourseEnrolled(enrolledCourses);
-				//Save students
-				saveStudentsFile();
-				System.out.println("Successful!");
-				return true;
-				
-			}
-		
-		}
-		System.out.println("Course does not exist!");
-		return false; // temporary value
-	}
+//	public boolean addCourse(String course, String tutGroup) {
+//
 //		ArrayList<Course> listOfCourses = new ArrayList<Course>();
 //		listOfCourses = fileManager.loadCoursesFile();
 //		System.out.println("AddingCourse : " + course + "Group: " + tutGroup);
@@ -160,52 +106,47 @@ public class StudentManager {
 //			}
 //		}
 //		System.out.println("Course does not exist!");
+//		// load file
+////        ArrayList<String> tempListOfCurrentCourse = new ArrayList<String>();
+////        tempListOfCurrentCourse = listofstudents.get(this.currentIndexOfStudent).getCourseEnrolled();
+////
+////        //Check if course is already registered
+////        if(tempListOfCurrentCourse.contains(course.getCourseName())){
+////            System.out.println("Already enrolled in course!");
+////            return false;
+////        }
+////        //Check Schedule Clash
+////        //dosomething.something();
+////        //Check if there is slot,if no slots, add to waitlist instead, else:
+////
+////        //do Add course name to Student Object
+////        tempListOfCurrentCourse.add(course.getCourseName());
+////        //Add student to Course Files
+////        Student tempStudent = listofstudents.get(this.currentIndexOfStudent);
+////        cmgr.addStudent(tempStudent,course,tutGroup);
+////
+////        listofstudents.get(this.currentIndexOfStudent).setCourseEnrolled(tempListOfCurrentCourse);
+////        fileManager.saveStudentFile(listofstudents);
+//
+//		return true; // temporary value
+//	}
 
-
-
-	public boolean dropCourse(String course) {
-		
-		ArrayList<Course>coursesEnrolled = currentStudent.getCourseEnrolled();
-		if (coursesEnrolled!=null) {
-			Course courseobject = CourseManager.findCourseObject(course);
-			if(courseobject!=null) {
-				System.out.println("Course ID of dropped course is : "+courseobject.getCourseID());
-				for(Course courses : coursesEnrolled) {
-					if (courses.getCourseID() == courseobject.getCourseID()){
-						//Drop the class and remove student
-						System.out.println("Dropping Course!");
-						cmngr.removeStudentFromCourse(currentStudent, course);
-						coursesEnrolled.remove(courseobject);
-						listOfStudents.get(studentIndex).setCourseEnrolled(coursesEnrolled);
-						saveStudentsFile();
-						return true;
-					}
-				}
-				System.out.println("You do not have this course!");
-				return false;
-				
-			}
-			else {
-				System.out.println("Invalid course!");
-				return false;
-			}
-		}
-		System.out.println("No courses available to drop!");
+	public boolean dropCourse(Course course, int tutGroup) {
 		return false; // temporary value
 	}
 
 	public void printCourseRegistered() {
-		System.out.println("----------------------------------------------------");
-		System.out.println("|  Course ID |  Course Name                        |");
-		System.out.println("----------------------------------------------------");
-		if (currentStudent.getCourseEnrolled() != null) {
-			for (Course Course : currentStudent.getCourseEnrolled()) {
-				System.out.format("| %-11s| %-36s|\n",Course.getCourseID(),
-					Course.getCourseName());
-			}
-		} else {
-			System.out.println("No Courses registered!");
-		}
+//		int i = 1;
+//		ArrayList<Course> tempCurrentCourses = new ArrayList<Course>();
+//		tempCurrentCourses = listOfStudents.get(currentStudentIndex).getCourseEnrolled();
+//		if (tempCurrentCourses != null) {
+//			for (Course Course : tempCurrentCourses) {
+//				System.out.println("Course " + i + " : " + Course.getCourseName());
+//				i++;
+//			}
+//		} else {
+//			System.out.println("No Courses registered!");
+//		}
 	}
 
 	public void printVacanciesAvaliable(String courseID, String indexID) {	
