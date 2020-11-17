@@ -17,15 +17,16 @@ public class StudentManager {
 
 	}
 
-	public StudentManager(String loginID, String password) {
+	public StudentManager(String loginID) {
 		listOfStudents = fileManager.loadStudentFile();
 		studentIndex = 0;
 		for (Student student : listOfStudents) {
 			if (student.getLoginID().equals(loginID)) {
 				this.currentStudent = student;
+				studentIndex = listOfStudents.indexOf(currentStudent);
 			}
-			studentIndex++;
 		}
+		System.out.println("The index is : "+studentIndex);
 
 	}
 
@@ -192,10 +193,11 @@ public class StudentManager {
 	}
 
 	public void printCourseRegistered() {
-		System.out.println("----------------------------------------------------");
-		System.out.println("|  Course ID |  Course Name                        |");
-		System.out.println("----------------------------------------------------");
+		
 		if (currentStudent.getCourseEnrolled() != null) {
+			System.out.println("----------------------------------------------------");
+			System.out.println("|  Course ID |  Course Name                        |");
+			System.out.println("----------------------------------------------------");
 			for (Course Course : currentStudent.getCourseEnrolled()) {
 				System.out.format("| %-11s| %-36s|\n", Course.getCourseID(), Course.getCourseName());
 			}
