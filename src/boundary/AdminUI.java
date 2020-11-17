@@ -236,10 +236,12 @@ public class AdminUI {
 			}
 
 			System.out.println("Enter the lesson's start time in term of HH:MM: ");
-			String startTime = sc.nextLine();
+			int startTime = sc.nextInt();
+			sc.nextLine();
 
 			System.out.println("Enter the lesson's end time in term of HH:MM: ");
-			String endTime = sc.nextLine();
+			int duration = sc.nextInt();
+			sc.nextLine();
 
 			// get lesson day
 			System.out.println("\nEnter the lesson's day in term of: \n1. Monday \n2. Tuesday \n3. Wednesday:"
@@ -247,7 +249,7 @@ public class AdminUI {
 			int lessonDay = sc.nextInt();
 			sc.nextLine();
 
-			Lesson lesson = new Lesson(strLessonType, startTime, endTime, lessonDay);
+			Lesson lesson = new Lesson(strLessonType, startTime, duration, lessonDay);
 			lessonArrayList.add(lesson);
 		}
 		return lessonArrayList;
