@@ -14,25 +14,25 @@ public class testingfile {
 		
 		ArrayList<Student> listofstudents = new ArrayList<Student>();
 		
-		Student _student1 = new Student("John Cena", "A1800123B", "Singaporean", "SCSE", 'M', 1, "loginID_1", "loginPW_1");
+		Student _student1 = new Student("John Cena", "A1800123B", "Singaporean", "SCSE", 'M', 1, "loginID_1", "loginPW_1", "raymond_flame@hotmail.com");
 		
-		Student _student2 = new Student("TRUMPET", "C1283713D", "Singaporean", "SCSE", 'M', 3, "loginID_2", "loginPW_2");
+		Student _student2 = new Student("TRUMPET", "C1283713D", "Singaporean", "SCSE", 'M', 3, "loginID_2", "loginPW_2", "raymond_flame@hotmail.com");
 		
-		Student _student3 = new Student("BIDEN", "E2938173F", "Malaysian", "SEEE", 'F', 2, "loginID_3", "loginPW_3");
+		Student _student3 = new Student("BIDEN", "E2938173F", "Malaysian", "SEEE", 'F', 2, "loginID_3", "loginPW_3", "raymond_flame@hotmail.com");
 		
-		Student _student4 = new Student("BEIBER", "G2938717H", "Myanmar", "SCEE", 'F', 5, "loginID_4", "loginPW_4");
+		Student _student4 = new Student("BEIBER", "G2938717H", "Myanmar", "SCEE", 'F', 5, "loginID_4", "loginPW_4", "raymond_flame@hotmail.com");
 		
-		Student _student5 = new Student("MICHELLE", "I29836721J", "Chinese", "SEEE", 'M', 2, "loginID_5", "loginPW_5");
+		Student _student5 = new Student("MICHELLE", "I29836721J", "Chinese", "SEEE", 'M', 2, "loginID_5", "loginPW_5", "raymond_flame@hotmail.com");
 		
-		Student _student6 = new Student("RONALD", "K1928363L", "Chinese", "SEEE", 'F', 2, "loginID_6", "loginPW_6");
+		Student _student6 = new Student("RONALD", "K1928363L", "Chinese", "SEEE", 'F', 2, "loginID_6", "loginPW_6", "raymond_flame@hotmail.com");
 		
-		Student _student7 = new Student("Ya Fei", "M12345678N", "Malaysian", "SMSE", 'M', 2, "loginID_7", "loginPW_7");
+		Student _student7 = new Student("Ya Fei", "M12345678N", "Malaysian", "SMSE", 'M', 2, "loginID_7", "loginPW_7", "raymond_flame@hotmail.com");
 		
-		Student _student8 = new Student("Wei Run", "O98765432P", "Chinese", "SCSE", 'M', 2, "loginID_8", "loginPW_8");
+		Student _student8 = new Student("Wei Run", "O98765432P", "Chinese", "SCSE", 'M', 2, "loginID_8", "loginPW_8", "raymond_flame@hotmail.com");
 		
-		Student _student9 = new Student("Alex Tan", "Q34123214R", "American", "SMSE", 'M', 2, "loginID_9", "loginPW_9");
+		Student _student9 = new Student("Alex Tan", "Q34123214R", "American", "SMSE", 'M', 2, "loginID_9", "loginPW_9", "raymond_flame@hotmail.com");
 		
-		Student _student10 = new Student("Wonder Fei", "S29836721T", "British", "SMSE", 'M', 2, "loginID_10", "loginPW_10");
+		Student _student10 = new Student("Wonder Fei", "S29836721T", "British", "SMSE", 'M', 2, "loginID_10", "loginPW_10", "raymond_flame@hotmail.com");
 		
 		
 		listofstudents.add(_student1);

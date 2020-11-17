@@ -13,6 +13,7 @@ public class Student extends User implements Serializable {
 	String matricNumber;
 	String nationality;
 	String major;
+	String email;
 	
 	char gender;
 	int yearOfStudy;
@@ -28,7 +29,7 @@ public class Student extends User implements Serializable {
 		
 	}
 
-	public Student(String name, String matricNumber, String nationality, String major , char gender, int yearOfStudy, String loginID, String loginPW) {
+	public Student(String name, String matricNumber, String nationality, String major , char gender, int yearOfStudy, String loginID, String loginPW, String email) {
 
 		super(loginID, loginPW);
 		this.name=name;
@@ -37,6 +38,7 @@ public class Student extends User implements Serializable {
 		this.major=major;
 		this.gender=gender;
 		this.yearOfStudy=yearOfStudy;
+		this.email=email;
 		
 	}
 
@@ -126,6 +128,14 @@ public class Student extends User implements Serializable {
 
 	public void setWaitList(ArrayList<String> waitList) {
 		this.waitList = waitList;
+	}
+	
+	public String email() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
 	}
 
 	/**

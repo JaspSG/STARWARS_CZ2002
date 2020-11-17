@@ -403,9 +403,12 @@ public class AdminUI {
         System.out.print("Enter the new student's loginPW: ");
         String loginPW = sc.nextLine();
         loginPW = User.hashString(loginPW);
+        
+        System.out.print("Enter the new student's email: ");
+        String email = sc.nextLine();
 
         // insert object into the file
-        Student newStudent = new Student(studentName, matriculationNumber, nationality, major, gender, yearOfStudy, loginId, loginPW);
+        Student newStudent = new Student(studentName, matriculationNumber, nationality, major, gender, yearOfStudy, loginId, loginPW, email);
 
         // confirmation
         System.out.println("Press Y to Confirm, Press N to Cancel: ");
