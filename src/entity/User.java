@@ -1,13 +1,10 @@
 package entity;
 
-import control.fileManager;
-
 import java.io.Serializable;
 import java.math.BigInteger;
 import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
-import java.util.*;
 
 public class User implements Serializable {
 
@@ -42,19 +39,6 @@ public class User implements Serializable {
 	public boolean validateLogin(String username, String password) throws NoSuchAlgorithmException {
 		String userPW = hashString(password);
 		if (userPW.equals(this.loginPW)) {
-			return true;
-		} else {
-			return false;
-		}
-	}
-
-	public static boolean accessPeriodValidity(Student student) {
-		Calendar now = Calendar.getInstance();
-
-		Calendar startTime = student.getStartTime();
-		Calendar endTime = student.getEndTime();
-
-		if (now.before(endTime) && now.after(startTime)) {
 			return true;
 		} else {
 			return false;

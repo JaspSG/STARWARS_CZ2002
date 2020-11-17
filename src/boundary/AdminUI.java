@@ -17,7 +17,7 @@ public class AdminUI {
 	static CourseManager cmngr = new CourseManager();
 	static StudentManager stmngr = new StudentManager();
 
-	public static void mainAdminUI() throws NoSuchAlgorithmException {
+	public static void mainAdminUI() throws NoSuchAlgorithmException, ParseException {
 
 		int choice = 0;
 		boolean validInput = false;
@@ -72,6 +72,7 @@ public class AdminUI {
 				break;
 			case 6:
 				System.out.println("6. Edit student access periods");
+				updateAccessPeriod(sc);
 				break;
 			case 7:
 				System.out.println("7. Print list of students by index group number");
@@ -109,6 +110,7 @@ public class AdminUI {
 
 		System.out.println("Enter the new course's AU: ");
 		int courseAu = sc.nextInt();
+		sc.nextLine();
 
 		ArrayList<Index> indexArrayList = new ArrayList<Index>();
 
@@ -125,7 +127,7 @@ public class AdminUI {
 			if (CourseManager.findCourseObject(courseID).getCourseID() == null) {
 				// add course
 				boolean result = CourseManager.addNewCourse(newCourse);
-				if (result == true) {
+				if (result) {
 					System.out.println("Course record created. Returning to main UI....\n");
 				} else {
 					System.out.println(
@@ -159,6 +161,7 @@ public class AdminUI {
 
 			System.out.println("Enter the total size of the Index Group: ");
 			int totalSize = sc.nextInt();
+			sc.nextLine();
 
 			// call add lesson UI
 			ArrayList<Lesson> lessonArrayList = createLessonUI(sc);
@@ -204,6 +207,7 @@ public class AdminUI {
 
 		System.out.println("Enter the number of lessons (Lecture+Tutorial+Lab) for the Index Group: ");
 		int numberOfLessons = sc.nextInt();
+		sc.nextLine();
 
 		for (int i = 0; i < numberOfLessons; i++) {
 			// get lesson type
@@ -241,6 +245,7 @@ public class AdminUI {
 			System.out.println("\nEnter the lesson's day in term of: \n1. Monday \n2. Tuesday \n3. Wednesday:"
 					+ "\n4. Thursday \n5. Friday \n6. Saturday ");
 			int lessonDay = sc.nextInt();
+			sc.nextLine();
 
 			Lesson lesson = new Lesson(strLessonType, startTime, endTime, lessonDay);
 			lessonArrayList.add(lesson);
@@ -250,7 +255,6 @@ public class AdminUI {
 
 	/**
 	 * To update an existing course
-	 * 
 	 * @param sc Scanner to read the user (admin) input
 	 */
 	public static void updateCourseUI(Scanner sc) {
@@ -456,7 +460,7 @@ public class AdminUI {
 			if (Student.findStudent(matriculationNumber).getMatricNumber() == null) {
 				// add student
 				boolean result = StudentManager.addNewStudent(newStudent);
-				if (result == true) {
+				if (result) {
 					System.out.println("Student record created. Returning to main UI....\n");
 				} else {
 					System.out.println(
@@ -507,9 +511,9 @@ public class AdminUI {
 
 	public static void updateAccessPeriod(Scanner sc) throws ParseException {
 		// initialisation
-		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM/yy HH:mm:ss", Locale.ENGLISH);
-		Calendar startCalendar = Calendar.getInstance(Locale.ENGLISH);
-		Calendar endCalendar = Calendar.getInstance(Locale.ENGLISH);
+		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy/MM/dd");
+		Calendar startCalendar = Calendar.getInstance();
+		Calendar endCalendar = Calendar.getInstance();
 
 		System.out.print("Enter the Student's Matriculation Number: ");
 		String matriculationNumber = sc.nextLine();
@@ -566,11 +570,11 @@ public class AdminUI {
 	/* End of Admin UI Course Methods */
 
 	/* Start of Admin Logic Course Methods */
-	/**
-	 * Adds a new course to the current list of courses
-	 * 
-	 * @return boolean result indicating if the operation is a success or failure;
-	 */
+//	/**
+//	 * Adds a new course to the current list of courses
+//	 *
+//	 * @return boolean result indicating if the operation is a success or failure;
+//	 */
 //    public static boolean addCourse(Course newCourse) {
 //        // Load the course object
 //        //ArrayList<Course> courseList = loadCoursesFile();

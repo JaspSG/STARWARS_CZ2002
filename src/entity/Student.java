@@ -155,4 +155,16 @@ public class Student extends User implements Serializable {
 		Student emptyStudent = new Student();
 		return emptyStudent;
 	}
+	public boolean accessPeriodValidity() {
+		Calendar now = Calendar.getInstance();
+
+		Calendar startTime = this.startTime;
+		Calendar endTime = this.endTime;
+
+		if (now.before(endTime) && now.after(startTime)) {
+			return true;
+		} else {
+			return false;
+		}
+	}
 }
