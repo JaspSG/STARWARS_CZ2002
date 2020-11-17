@@ -17,7 +17,7 @@ public class AdminUI {
 	static CourseManager cmngr = new CourseManager();
 	static StudentManager stmngr = new StudentManager();
 
-	public static void mainAdminUI() throws NoSuchAlgorithmException {
+	public static void mainAdminUI() throws NoSuchAlgorithmException, ParseException {
 
 		int choice = 0;
 		boolean validInput = false;
@@ -72,6 +72,7 @@ public class AdminUI {
 				break;
 			case 6:
 				System.out.println("6. Edit student access periods");
+				updateAccessPeriod(sc);
 				break;
 			case 7:
 				System.out.println("7. Print list of students by index group number");
@@ -507,9 +508,9 @@ public class AdminUI {
 
 	public static void updateAccessPeriod(Scanner sc) throws ParseException {
 		// initialisation
-		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM/yy HH:mm:ss", Locale.ENGLISH);
-		Calendar startCalendar = Calendar.getInstance(Locale.ENGLISH);
-		Calendar endCalendar = Calendar.getInstance(Locale.ENGLISH);
+		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy/MM/dd");
+		Calendar startCalendar = Calendar.getInstance();
+		Calendar endCalendar = Calendar.getInstance();
 
 		System.out.print("Enter the Student's Matriculation Number: ");
 		String matriculationNumber = sc.nextLine();
