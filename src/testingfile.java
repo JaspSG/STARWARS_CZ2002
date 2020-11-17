@@ -16,7 +16,7 @@ public class testingfile {
 		
 		ArrayList<Student> listofstudents = new ArrayList<Student>();
 
-		Student _student1 = new Student("John Cena", "A1800123B", "Singaporean", "SCSE", 'M', 1, "loginID_1",
+		Student _student1 = new Student("John Cena", "A1800123B", "Singaporean", "SCSE", 'M', 1, "student",
 				password, "wong1173@e.ntu.edu.sg");
 		
 		System.out.println(_student1.getLoginPW());
