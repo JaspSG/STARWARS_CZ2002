@@ -130,7 +130,7 @@ public class Student extends User implements Serializable {
 		this.waitList = waitList;
 	}
 	
-	public String email() {
+	public String getEmail() {
 		return email;
 	}
 

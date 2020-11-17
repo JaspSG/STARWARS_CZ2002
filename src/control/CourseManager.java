@@ -37,7 +37,7 @@ public class CourseManager {
 						index.addStudentToEnrolled(Student);
 						System.out.println("Student Added");
 						saveCoursesFile();
-						MailManager.sendMail("raymond_flame@hotmail.com");
+						MailManager.sendMail(Student.getEmail());
 						return true;
 					}
 				}
