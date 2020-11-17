@@ -4,6 +4,7 @@ import control.fileManager;
 import entity.*;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class testingfile {
 
@@ -19,7 +20,7 @@ public class testingfile {
 		Student _student1 = new Student("John Cena", "A1800123B", "Singaporean", "SCSE", 'M', 1, "student",
 				password, "wong1173@e.ntu.edu.sg");
 		
-		System.out.println(_student1.getLoginPW());
+//		System.out.println(_student1.getLoginPW());
 
 		Student _student2 = new Student("TRUMPET", "C1283713D", "Singaporean", "SCSE", 'M', 3, "loginID_2", password,
 				"wong1173@e.ntu.edu.sg");
@@ -159,13 +160,37 @@ public class testingfile {
 
 		Course retrivedcourse = CourseManager.findCourseObject("CZ1011");
 		Index testindex = retrivedcourse.findIndexObject("SP4");
-		testindex.printStudentsEnrolled();
+//		testindex.printStudentsEnrolled();
 
 		StudentManager x = new StudentManager();
 
-		x.printVacanciesAvaliable("CZ1011", "SP4");
+		
+		
+		
+		Lesson templesson = new Lesson("LAB", 3, 2, 1); //start / end / day
+		
+		String[][] array = new String[10][7];
+		
+		for(int i=0; i<10; i++) {
+			
+			for(int j=0; j<7; j++) {
+				array[i][j] = " ";
+				//System.out.println(array[i][j]);
+			}
+		}
+		
+		
+		for(int j=templesson.getStartTime(); j<(templesson.getStartTime()+templesson.getDuration());j++ ) {
+			array[j][0] = "lesson";
+		}
+		
+		print2D(array);
+		
+ 
+		
+//		x.printVacanciesAvaliable("CZ1011", "SP4");
 
-		System.out.println(retrivedcourse.getCourseID());
+//		System.out.println(retrivedcourse.getCourseID());
 
 //
 
@@ -214,5 +239,14 @@ public class testingfile {
 //		END OF ADDING STUDENTS TESTING
 
 	}
+	public static void print2D(String[][] array) 
+	{ 
+	    // Loop through all rows 
+	    for (String[] row : array) 
 
+	        // converting each row as string 
+	        // and then printing in a separate line 
+	        System.out.println(Arrays.toString(row)); 
+	}
 }
+

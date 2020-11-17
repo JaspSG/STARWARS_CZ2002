@@ -38,7 +38,6 @@ public class User implements Serializable {
 
 	public boolean validateLogin(String username, String password) throws NoSuchAlgorithmException {
 		String userPW = hashString(password);
-		System.out.println(userPW);
 		if (userPW.equals(this.loginPW)) {
 			return true;
 		} else {
