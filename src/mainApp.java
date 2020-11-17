@@ -1,15 +1,14 @@
 
-import java.security.NoSuchAlgorithmException;
+import boundary.AdminUI;
+import boundary.StudentUI;
+import control.CourseManager;
+import control.fileManager;
+import entity.Student;
+import entity.User;
+
 import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.Scanner;
-
-import boundary.AdminUI;
-import control.StudentManager;
-import control.CourseManager;
-import control.fileManager;
-import entity.*;
-
 
 public class mainApp extends User{
 	static int currentStudentIndex;
@@ -42,14 +41,16 @@ public class mainApp extends User{
 
 		switch (choice) {
 		case 1:
-			adminMenu(sc);
+			//adminMenu(sc);
+			AdminUI.mainAdminUI();
 			break;
 		case 2:
-			studentMenu(sc);
+			//studentMenu(sc);
+			StudentUI.mainStudentUI();
 			break;
 		case 3:
 			System.out.println("Enter name");
-			String username =sc.nextLine();
+			String username = sc.nextLine();
 			System.out.println("Enter Password");
 			String password = sc.nextLine();
 			currentStudentIndex = validateLogin(username,password);
@@ -459,141 +460,141 @@ public class mainApp extends User{
 //		System.out.println("Returning to main UI....\n");
 //	}
 	/*    Admin UI Case Statement   */
-	public static void adminMenu(Scanner sc) throws NoSuchAlgorithmException {
-		int choice = 0;
-		boolean validInput = false;
-
-		do {
-			System.out.println("");
-			System.out.println("Welcome, Admin");
-			System.out.println("What do you want to do? ");
-			System.out.println("1. Add a new course");
-			System.out.println("2. Add a new index group");
-			System.out.println("3. Update existing course");
-			System.out.println("4. Check vacancy for an existing index group");
-			System.out.println("5. Add a new student");
-			System.out.println("6. Edit student access periods");
-			System.out.println("7. Print list of students by index group number");
-			System.out.println("8. Print list of students by course");
-			System.out.println("9. Logout");
-
-			do {
-				try {
-					choice = sc.nextInt();
-					sc.nextLine();
-				if (choice >= 1) {
-					validInput = true;
-					}
-				} catch (InputMismatchException e) {
-					System.out.println("Enter a valid integer!");
-					sc.nextLine();
-				}
-			} while (!validInput);
-
-			switch (choice) {
-			case 1:
-				System.out.println("1. Add a new course");
-				//addCourseUI(sc);
-				break;
-			case 2:
-				System.out.println("2. Add a new index group");
-				//addIndexUI(sc, null);
-				break;
-			case 3:
-				System.out.println("3. Update existing course");
-				//updateCourseUI(sc);
-				break;
-			case 4:
-				System.out.println("4. Check vacancy for an existing index group");
-				break;
-			case 5:
-				System.out.println("5. Add a new student");
-				//addStudentUI(sc);
-				break;
-			case 6:
-				System.out.println("6. Edit student access periods");
-				break;
-			case 7:
-				System.out.println("7. Print list of students by index group number");
-				//printIndexStudentListUI(sc);
-				break;
-			case 8:
-				System.out.println("8. Print list of students by course");
-				//printCourseStudentListUI(sc);
-				break;
-			default:
-				System.out.println("");
-				break;
-			}
-		} while (choice > 0 && choice < 9);
-	}
-	
-	
-	public static void studentMenu(Scanner sc) {
-		int choice = 0;
-		boolean validInput = false;
-		String courseID,tutGroup;
-		StudentManager StuManager = new StudentManager(currentStudentIndex);
-
-		do {
-			System.out.println("");
-			System.out.println("Welcome, Student") ;
-			System.out.println("What do you want to do? ");
-			System.out.println("1. Add a course");
-			System.out.println("2. Drop course");
-			System.out.println("3. Print courses registered");
-			System.out.println("4. Check vacancies for an index group number");
-			System.out.println("5. Change index group number of course");
-			System.out.println("6. Swap index group number with another student");
-			System.out.println("7. Logout");
-			
-			do {
-				try {
-					choice = sc.nextInt();
-				if (choice >= 1) {
-					validInput = true;
-					sc.nextLine();
-					}
-				} catch (InputMismatchException e) {
-					System.out.println("Enter a valid integer!");
-					sc.nextLine();
-				}
-			} while (!validInput);
-			validInput = false;
-
-			switch (choice) {
-			case 1:
-				System.out.println("1. Add a course");
-				System.out.println("Enter Course ID: ");
-				courseID = sc.nextLine();
-				System.out.println("Enter Tut Group: ");
-				tutGroup = sc.nextLine();
-				StuManager.addCourse(courseID,tutGroup);
-				break;
-			case 2:
-				System.out.println("2. Drop course");
-				break;
-			case 3:
-				System.out.println("Printing courses registered");
-				StuManager.printCourseRegistered();
-				break;
-			case 4:
-				System.out.println("4. Check vacancies for an index group number");
-				break;
-			case 5:
-				System.out.println("5. Change index group number of course");
-				break;
-			case 6:
-				System.out.println("6. Swap index group number with another student");
-				break;
-			default:
-				System.out.println("");
-				break;
-			}
-		} while (choice > 0 && choice < 7);
-
-		
-		System.out.println("test");
-
-	}
+//	public static void adminMenu(Scanner sc) throws NoSuchAlgorithmException {
+//		int choice = 0;
+//		boolean validInput = false;
+//
+//		do {
+//			System.out.println("");
+//			System.out.println("Welcome, Admin");
+//			System.out.println("What do you want to do? ");
+//			System.out.println("1. Add a new course");
+//			System.out.println("2. Add a new index group");
+//			System.out.println("3. Update existing course");
+//			System.out.println("4. Check vacancy for an existing index group");
+//			System.out.println("5. Add a new student");
+//			System.out.println("6. Edit student access periods");
+//			System.out.println("7. Print list of students by index group number");
+//			System.out.println("8. Print list of students by course");
+//			System.out.println("9. Logout");
+//
+//			do {
+//				try {
+//					choice = sc.nextInt();
+//					sc.nextLine();
+//				if (choice >= 1) {
+//					validInput = true;
+//					}
+//				} catch (InputMismatchException e) {
+//					System.out.println("Enter a valid integer!");
+//					sc.nextLine();
+//				}
+//			} while (!validInput);
+//
+//			switch (choice) {
+//			case 1:
+//				System.out.println("1. Add a new course");
+//				//addCourseUI(sc);
+//				break;
+//			case 2:
+//				System.out.println("2. Add a new index group");
+//				//addIndexUI(sc, null);
+//				break;
+//			case 3:
+//				System.out.println("3. Update existing course");
+//				//updateCourseUI(sc);
+//				break;
+//			case 4:
+//				System.out.println("4. Check vacancy for an existing index group");
+//				break;
+//			case 5:
+//				System.out.println("5. Add a new student");
+//				//addStudentUI(sc);
+//				break;
+//			case 6:
+//				System.out.println("6. Edit student access periods");
+//				break;
+//			case 7:
+//				System.out.println("7. Print list of students by index group number");
+//				//printIndexStudentListUI(sc);
+//				break;
+//			case 8:
+//				System.out.println("8. Print list of students by course");
+//				//printCourseStudentListUI(sc);
+//				break;
+//			default:
+//				System.out.println("");
+//				break;
+//			}
+//		} while (choice > 0 && choice < 9);
+//	}
+//
+//
+//	public static void studentMenu(Scanner sc) {
+//		int choice = 0;
+//		boolean validInput = false;
+//		String courseID,tutGroup;
+//		StudentManager StuManager = new StudentManager(currentStudentIndex);
+//
+//		do {
+//			System.out.println("");
+//			System.out.println("Welcome, Student") ;
+//			System.out.println("What do you want to do? ");
+//			System.out.println("1. Add a course");
+//			System.out.println("2. Drop course");
+//			System.out.println("3. Print courses registered");
+//			System.out.println("4. Check vacancies for an index group number");
+//			System.out.println("5. Change index group number of course");
+//			System.out.println("6. Swap index group number with another student");
+//			System.out.println("7. Logout");
+//
+//			do {
+//				try {
+//					choice = sc.nextInt();
+//				if (choice >= 1) {
+//					validInput = true;
+//					sc.nextLine();
+//					}
+//				} catch (InputMismatchException e) {
+//					System.out.println("Enter a valid integer!");
+//					sc.nextLine();
+//				}
+//			} while (!validInput);
+//			validInput = false;
+//
+//			switch (choice) {
+//			case 1:
+//				System.out.println("1. Add a course");
+//				System.out.println("Enter Course ID: ");
+//				courseID = sc.nextLine();
+//				System.out.println("Enter Tut Group: ");
+//				tutGroup = sc.nextLine();
+//				StuManager.addCourse(courseID,tutGroup);
+//				break;
+//			case 2:
+//				System.out.println("2. Drop course");
+//				break;
+//			case 3:
+//				System.out.println("Printing courses registered");
+//				StuManager.printCourseRegistered();
+//				break;
+//			case 4:
+//				System.out.println("4. Check vacancies for an index group number");
+//				break;
+//			case 5:
+//				System.out.println("5. Change index group number of course");
+//				break;
+//			case 6:
+//				System.out.println("6. Swap index group number with another student");
+//				break;
+//			default:
+//				System.out.println("");
+//				break;
+//			}
+//		} while (choice > 0 && choice < 7);
+//
+//
+//		System.out.println("test");
+//
+//	}
 }

@@ -18,7 +18,7 @@ public class AdminUI {
     static StudentManager stmngr = new StudentManager();
 
 
-    public static void main(String[] args) throws NoSuchAlgorithmException {
+    public static void mainAdminUI() throws NoSuchAlgorithmException {
 
         int choice = 0;
         boolean validInput = false;
@@ -478,10 +478,10 @@ public class AdminUI {
             // get user input
             Student updateStudent = StudentManager.findStudentObject(matriculationNumber);
 
-            System.out.println("Enter the start of the access period (dd/MM/yy HH:mm:ss): ");
+            System.out.println("Enter the start of the access period (yyyy/MM/dd): ");
             String startTime = sc.nextLine();
 
-            System.out.println("Enter the end of the access period ((dd/MM/yy HH:mm:ss): ");
+            System.out.println("Enter the end of the access period (yyyy/MM/dd): ");
             String endTime = sc.nextLine();
 
             startCalendar.setTime(simpleDateFormat.parse(startTime));

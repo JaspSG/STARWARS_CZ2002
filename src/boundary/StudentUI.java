@@ -1,17 +1,16 @@
 package boundary;
 
-import java.util.InputMismatchException;
-
-import java.util.Scanner;
-
 import control.StudentManager;
+
+import java.util.InputMismatchException;
+import java.util.Scanner;
 
 public class StudentUI {
 
 	static StudentManager stmngr = new StudentManager();
 	static int choice;
 
-	public static void main(String[] args) {
+	public static void mainStudentUI() {
 		
 		Scanner sc = new Scanner(System.in);
 

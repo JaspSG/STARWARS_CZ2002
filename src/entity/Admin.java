@@ -6,6 +6,18 @@ public class Admin extends User{
 
     private String staffID;
 
+    public Admin(String loginID, String loginPW) {
+        super(loginID, loginPW);
+    }
+
+    public String getStaffID() {
+        return staffID;
+    }
+
+    public void setStaffID(String staffID) {
+        this.staffID = staffID;
+    }
+
     /* ----------------------  Old Code Start ----------------------------------------- */
 
 //    /**

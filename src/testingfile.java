@@ -1,13 +1,9 @@
-import java.util.ArrayList;
-import java.util.LinkedList;
-import java.util.Queue;
-
 import control.CourseManager;
 import control.StudentManager;
 import control.fileManager;
-import entity.Course;
-import entity.Index;
-import entity.Student;
+import entity.*;
+
+import java.util.ArrayList;
 
 public class testingfile {
 
@@ -113,9 +109,25 @@ public class testingfile {
 		listofcourses.add(_course2);
 		listofcourses.add(_course1);
 		
-		
+		/* ------------------------- Start ofAdmin ------------------------- */
+		ArrayList<Admin> listofAdmin = new ArrayList<Admin>();
+
+		String password = "password";
+		password = User.hashString(password);
+
+		Admin _admin1 = new Admin("admin1", password);
+
+		Admin _admin2 = new Admin("admin2", password);
+
+		listofAdmin.add(_admin1);
+
+		listofAdmin.add(_admin2);
+
+		/* ------------------------- End of Admin ------------------------- */
+
 		fileManager.saveStudentFile(listofstudents); //save student file
 		fileManager.saveCoursesFile(listofcourses); //save student file
+		fileManager.saveAdminFile(listofAdmin); // save admin file
 		
 
 		
