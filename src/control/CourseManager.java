@@ -27,7 +27,7 @@ public class CourseManager {
 							// STRING ATTRIBUTE IS NULL
 	}
 
-	public boolean addStudentToCourse(Student Student, String courseID, String indexID) throws Exception {
+	public boolean addStudentToCourse(Student Student, String courseID, String indexID) {
 
 		for (Course course : listOfCourses) {
 			if (course.getCourseID().equals(courseID)) { // remove this check if index is unique
@@ -37,7 +37,7 @@ public class CourseManager {
 						index.addStudentToEnrolled(Student);
 						System.out.println("Student Added");
 						saveCoursesFile();
-						MailManager.sendMail(Student.getEmail());
+						//MailManager.sendMail(Student.getEmail());
 						return true;
 					}
 				}
