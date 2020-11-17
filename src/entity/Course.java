@@ -8,8 +8,9 @@ import static control.fileManager.saveCoursesFile;
 
 public class Course implements Serializable {
 
-    private String courseName;
     private String courseID;
+    private String courseName;
+    private String courseSchool; // to create a school dat file (enum)
     private int au;
     private ArrayList<Index> index = new ArrayList<Index>();
    
@@ -17,17 +18,14 @@ public class Course implements Serializable {
     	
     }
 
-    public Course(String courseName, String courseID, int au, ArrayList<Index> indexes){
-
-        this.courseName = courseName;
-
+    public Course(String courseID, String courseName, String courseSchool, int au, ArrayList<Index> index) {
         this.courseID = courseID;
-
+        this.courseName = courseName;
+        this.courseSchool = courseSchool;
         this.au = au;
-        
-        this.index = indexes;
+        this.index = index;
     }
-    
+
     public Index findIndexObject(String indexID) {
 		for(Index index: this.index) {
 			if(index.getIndexID().equals(indexID)) {
@@ -61,6 +59,14 @@ public class Course implements Serializable {
 
     public void setAu(int au){
         this.au = au;
+    }
+
+    public String getCourseSchool() {
+        return courseSchool;
+    }
+
+    public void setCourseSchool(String courseSchool) {
+        this.courseSchool = courseSchool;
     }
 
     public ArrayList<Index> getIndex(){

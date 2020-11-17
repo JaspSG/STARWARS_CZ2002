@@ -105,13 +105,16 @@ public class AdminUI {
         System.out.println("Enter the new course's name: ");
         String courseName = sc.nextLine();
 
+        System.out.println("Enter the new course's school: ");
+        String courseSchool = sc.nextLine();
+
         System.out.println("Enter the new course's AU: ");
-        int au = sc.nextInt();
+        int courseAu = sc.nextInt();
 
         ArrayList<Index> indexArrayList = new ArrayList<Index>();
 
         // load variable to course object >>> set index to null for now >>> call add index later
-        Course newCourse = new Course(courseName, courseID, au, indexArrayList);
+        Course newCourse = new Course(courseID, courseName, courseSchool, courseAu, indexArrayList);
 
         // confirmation
         System.out.println("Press Y to Confirm, Press N to Cancel: ");
@@ -173,7 +176,7 @@ public class AdminUI {
 
             if (choice == 'Y') {
                 // validation to check if index exists
-                if (/*Course.findIndexObject(indexID).getIndexID() == null*/Index.findIndex(courseID, indexID).getIndexID() == null) {
+                if (CourseManager.findIndex(courseID, indexID).getIndexID() == null) {
                     // add course
                     boolean result = CourseManager.addNewIndex(courseID, newIndex);
                     if (result) {
@@ -262,12 +265,13 @@ public class AdminUI {
 
         if(CourseManager.findCourseObject(courseID).getCourseID()!= null) {
             updateCourse = CourseManager.findCourseObject(courseID);
+            ArrayList<Index> updateCourseIndex = updateCourse.getIndex();
             System.out.println("Course record found! Which of the following do you wish to update?: ");
-            System.out.println("1. Course's Name");
-            System.out.println("2. Course's AU Credits");
-            System.out.println("3. Add new index group");
-            System.out.println("4. Remove existing index group");
-            System.out.println("5. Remove course");
+            System.out.println("1. Update Course's Code");
+            System.out.println("2. Update Course's Name");
+            System.out.println("3. Update Course's School");
+            System.out.println("4. Update Index's Number");
+            System.out.println("5. Update Index's Vacancy");
             System.out.println("6. Go back to main menu");
 
             int choice = 0;
@@ -283,21 +287,30 @@ public class AdminUI {
                     sc.nextLine();
                 }
             } while (true);
-
             switch (choice){
                 case 1:
+                    System.out.println("Current Course's ID: " + updateCourse.getCourseID());
+                    System.out.println("Enter the new Course's ID: ");
+                    String updateCourseID = sc.nextLine();
+                    updateCourse.setCourseID(updateCourseID);
+                    if(CourseManager.updateCourse(updateCourse)) {
+                        System.out.println("Course's ID updated. Returning to main UI....\n");
+                    } else {
+                        System.out.println("Error updating Course's ID, Please contact IT administrator. Returning to main UI....\n");
+                    }
+                    break;
+                case 2:
                     System.out.println("Current Course's name: " + updateCourse.getCourseName());
                     System.out.println("Enter the new Course's name: ");
                     String updateCourseName = sc.nextLine();
                     updateCourse.setCourseName(updateCourseName);
-                    boolean result = CourseManager.updateCourse(updateCourse);
-                    if(result == true) {
+                    if(CourseManager.updateCourse(updateCourse)) {
                         System.out.println("Course's name updated. Returning to main UI....\n");
                     } else {
                         System.out.println("Error updating Course's name, Please contact IT administrator. Returning to main UI....\n");
                     }
                     break;
-                case 2:
+                case 3:
                     System.out.println("Current Course's AU Credits");
                     System.out.println("Enter the new Course's AU Credits");
                     int updateAUCredits = 0;
@@ -314,51 +327,67 @@ public class AdminUI {
                         }
                     } while (true);
                     updateCourse.setAu(updateAUCredits);
-                    boolean result1 = CourseManager.updateCourse(updateCourse);
-                    if(result1 == true) {
+                    if(CourseManager.updateCourse(updateCourse)) {
                         System.out.println("Course's AU updated. Returning to main UI....\n");
                     } else {
                         System.out.println("Error updating Course's AU, Please contact IT administrator. Returning to main UI....\n");
                     }
-                case 3:
-                    addIndexUI(sc, courseID);
                 case 4:
-                    ArrayList<Index> updateCourseIndex = updateCourse.getIndex();
-                    for(int i = 0; i < updateCourseIndex.size(); i++){
-                        System.out.println(updateCourseIndex.get(i).getIndexID());
-                    }
-                    System.out.println("Enter the index group to remove from course: ");
-                    String removeIndexID = sc.nextLine();
-                    if(Index.findIndex(courseID, removeIndexID).getIndexID() != null){
-                        boolean result3 = Index.removeIndex(courseID, removeIndexID);
-                        if(result3 == true) {
-                            System.out.println("Remove index successfully. Returning to main UI....\n");
-                        } else {
-                            System.out.println("Error removing index, Please contact IT administrator. Returning to main UI....\n");
-                        }
-                    }
-                    else{
-                        System.out.println("Invalid index ID, Returning to main menu");
+                    System.out.println("Current Course's School: " + updateCourse.getCourseSchool());
+                    System.out.println("Enter the new Course's School: ");
+                    String updateCourseSchool = sc.nextLine();
+                    updateCourse.setCourseSchool(updateCourseSchool);
+                    if(CourseManager.updateCourse(updateCourse)) {
+                        System.out.println("Course's School updated. Returning to main UI....\n");
+                    } else {
+                        System.out.println("Error updating Course's School, Please contact IT administrator. Returning to main UI....\n");
                     }
                     break;
                 case 5:
-                    System.out.println("Press Y to Confirm delete, Press N to Cancel: ");
-                    char confirm = Character.toUpperCase(sc.next().charAt(0));
-
-                    if(confirm == 'Y')
-                    {
-                        boolean result4 = Course.removeCourse(updateCourse.getCourseID());
-                        if(result4 == true) {
-                            System.out.println("Remove Course Successfully.  Returning to main UI....\n");
-                        } else {
-                            System.out.println("Error removing Course, Please contact IT administrator. Returning to main UI....\n");
-                        }
-
+                    addIndexUI(sc, courseID);
+                case 6:
+                    // update index number
+                    for(int i = 0; i < updateCourseIndex.size(); i++){
+                        System.out.println(updateCourseIndex.get(i).getIndexID());
                     }
-                    else
-                    {
-                        System.out.println("Operation is cancelled. Returning to main UI....\n");
+                    System.out.println("Enter the index's ID to update the name: ");
+                    String indexID = sc.nextLine();
+
+                    System.out.println("Enter the new index's ID: ");
+                    String updateIndexID = sc.nextLine();
+
+                    Index updateIndex = CourseManager.findIndex(courseID, indexID);
+
+                    updateIndex.setIndexID(updateIndexID);
+
+                    if(CourseManager.updateIndex(updateIndex, courseID, indexID)) {
+                        System.out.println("Index's ID updated. Returning to main UI....\n");
+                    } else {
+                        System.out.println("Error updating Index's ID, Please contact IT administrator. Returning to main UI....\n");
                     }
+                    break;
+                case 7:
+                    // update index number vacancy
+                    for(int i = 0; i < updateCourseIndex.size(); i++){
+                        System.out.println(updateCourseIndex.get(i).getIndexID());
+                    }
+                    System.out.println("Enter the index's ID to update the vacancy: ");
+                    String indexID2 = sc.nextLine();
+
+                    System.out.println("Existing total vacancy " + CourseManager.findIndex(courseID , indexID2).getTotalSize());
+                    System.out.println("Enter the new vacancy for " + indexID2 + " : ");
+                    int updateIndexTotalSize = sc.nextInt();
+                    sc.nextLine();
+
+                    Index updateIndex2 = CourseManager.findIndex(courseID, indexID2);
+                    updateIndex2.setTotalSize(updateIndexTotalSize);
+
+                    if(CourseManager.updateIndex(updateIndex2, courseID, indexID2)) {
+                        System.out.println("Index's vacancy updated. Returning to main UI....\n");
+                    } else {
+                        System.out.println("Error updating Index's vacancy, Please contact IT administrator. Returning to main UI....\n");
+                    }
+
                     break;
                 default:
                     System.out.println("Returning to main UI....\n");
@@ -396,6 +425,7 @@ public class AdminUI {
 
         System.out.print("Enter the new student's year of study: ");
         int yearOfStudy = sc.nextInt();
+        sc.nextLine();
 
         System.out.print("Enter the new student's loginID: ");
         String loginId = sc.nextLine();
@@ -404,9 +434,12 @@ public class AdminUI {
         System.out.print("Enter the new student's loginPW: ");
         String loginPW = sc.nextLine();
         loginPW = User.hashString(loginPW);
+        
+        System.out.print("Enter the new student's email: ");
+        String email = sc.nextLine();
 
         // insert object into the file
-        Student newStudent = new Student(studentName, matriculationNumber, nationality, major, gender, yearOfStudy, loginId, loginPW);
+        Student newStudent = new Student(studentName, matriculationNumber, nationality, major, gender, yearOfStudy, loginId, loginPW, email);
 
         // confirmation
         System.out.println("Press Y to Confirm, Press N to Cancel: ");
@@ -447,7 +480,7 @@ public class AdminUI {
         System.out.print("Enter the index ID: ");
         String indexID = sc.nextLine();
 
-        if(CourseManager.findCourseObject(courseID).getCourseID() != null && Index.findIndex(courseID, indexID).getIndexID() != null){
+        if(CourseManager.findCourseObject(courseID).getCourseID() != null && CourseManager.findIndex(courseID, indexID).getIndexID() != null){
             CourseManager.printIndexStudentList(courseID, indexID);
         }
         System.out.println("Returning to main UI....\n");
@@ -510,7 +543,7 @@ public class AdminUI {
         System.out.println("Enter the index Code that you want to check vacancy: ");
         String indexID = sc.nextLine();
 
-        if(Index.findIndex(courseID, indexID).getIndexID() != null)
+        if(CourseManager.findIndex(courseID, indexID).getIndexID() != null)
         {
             int result = CourseManager.checkVacancy(courseID, indexID);
 

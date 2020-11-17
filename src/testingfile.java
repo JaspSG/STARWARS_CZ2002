@@ -14,25 +14,25 @@ public class testingfile {
 		
 		ArrayList<Student> listofstudents = new ArrayList<Student>();
 		
-		Student _student1 = new Student("John Cena", "A1800123B", "Singaporean", "SCSE", 'M', 1, "loginID_1", "loginPW_1");
+		Student _student1 = new Student("John Cena", "A1800123B", "Singaporean", "SCSE", 'M', 1, "loginID_1", "loginPW_1", "raymond_flame@hotmail.com");
 		
-		Student _student2 = new Student("TRUMPET", "C1283713D", "Singaporean", "SCSE", 'M', 3, "loginID_2", "loginPW_2");
+		Student _student2 = new Student("TRUMPET", "C1283713D", "Singaporean", "SCSE", 'M', 3, "loginID_2", "loginPW_2", "raymond_flame@hotmail.com");
 		
-		Student _student3 = new Student("BIDEN", "E2938173F", "Malaysian", "SEEE", 'F', 2, "loginID_3", "loginPW_3");
+		Student _student3 = new Student("BIDEN", "E2938173F", "Malaysian", "SEEE", 'F', 2, "loginID_3", "loginPW_3", "raymond_flame@hotmail.com");
 		
-		Student _student4 = new Student("BEIBER", "G2938717H", "Myanmar", "SCEE", 'F', 5, "loginID_4", "loginPW_4");
+		Student _student4 = new Student("BEIBER", "G2938717H", "Myanmar", "SCEE", 'F', 5, "loginID_4", "loginPW_4", "raymond_flame@hotmail.com");
 		
-		Student _student5 = new Student("MICHELLE", "I29836721J", "Chinese", "SEEE", 'M', 2, "loginID_5", "loginPW_5");
+		Student _student5 = new Student("MICHELLE", "I29836721J", "Chinese", "SEEE", 'M', 2, "loginID_5", "loginPW_5", "raymond_flame@hotmail.com");
 		
-		Student _student6 = new Student("RONALD", "K1928363L", "Chinese", "SEEE", 'F', 2, "loginID_6", "loginPW_6");
+		Student _student6 = new Student("RONALD", "K1928363L", "Chinese", "SEEE", 'F', 2, "loginID_6", "loginPW_6", "raymond_flame@hotmail.com");
 		
-		Student _student7 = new Student("Ya Fei", "M12345678N", "Malaysian", "SMSE", 'M', 2, "loginID_7", "loginPW_7");
+		Student _student7 = new Student("Ya Fei", "M12345678N", "Malaysian", "SMSE", 'M', 2, "loginID_7", "loginPW_7", "raymond_flame@hotmail.com");
 		
-		Student _student8 = new Student("Wei Run", "O98765432P", "Chinese", "SCSE", 'M', 2, "loginID_8", "loginPW_8");
+		Student _student8 = new Student("Wei Run", "O98765432P", "Chinese", "SCSE", 'M', 2, "loginID_8", "loginPW_8", "raymond_flame@hotmail.com");
 		
-		Student _student9 = new Student("Alex Tan", "Q34123214R", "American", "SMSE", 'M', 2, "loginID_9", "loginPW_9");
+		Student _student9 = new Student("Alex Tan", "Q34123214R", "American", "SMSE", 'M', 2, "loginID_9", "loginPW_9", "raymond_flame@hotmail.com");
 		
-		Student _student10 = new Student("Wonder Fei", "S29836721T", "British", "SMSE", 'M', 2, "loginID_10", "loginPW_10");
+		Student _student10 = new Student("Wonder Fei", "S29836721T", "British", "SMSE", 'M', 2, "loginID_10", "loginPW_10", "raymond_flame@hotmail.com");
 		
 		
 		listofstudents.add(_student1);
@@ -78,25 +78,25 @@ public class testingfile {
 		
 		ArrayList<Course> listofcourses = new ArrayList<Course>();
 		
-		Course _course1 = new Course("DATA STRUCTURES", "CZ1007", 3, listofindex);
+		Course _course1 = new Course("CZ1007", "DATA STRUCTURES", "SCSE", 3, listofindex);
 	
-		Course _course2 = new Course("ENGINEERING MATHEMATICS 1", "CZ1011",3, listofindex);
+		Course _course2 = new Course("CZ1011","ENGINEERING MATHEMATICS 1",  "SCSE",3, listofindex);
 //		
-		Course _course3 = new Course("ENGINEERING MATHEMATICS 2", "CZ1012", 3, listofindex);
+		Course _course3 = new Course("CZ1012","ENGINEERING MATHEMATICS 2",  "SCSE",3, listofindex);
 //		
-		Course _course4 = new Course("Digital Logic", "CZ1105", 3, listofindex);
+		Course _course4 = new Course("CZ1105","Digital Logic", "SCSE", 3, listofindex);
 //		
-		Course _course5 = new Course("Computer Organisation & Architechture", "CZ1106", 3, listofindex);
+		Course _course5 = new Course("CZ1106", "Computer Organisation & Architechture", "SCSE", 3, listofindex);
 //		
-		Course _course6 = new Course("Introduction to Databases", "CZ2007", 3, listofindex);
+		Course _course6 = new Course("CZ2007","Introduction to Databases", "SCSE",3, listofindex);
 		
-		Course _course7 = new Course("PHYSICS FOUNDATION FOR ELECTRICAL & ELECTRONIC ENGINEERING", "EE1002", 4, listofindex);
+		Course _course7 = new Course("EE1002","PHYSICS FOUNDATION FOR ELECTRICAL & ELECTRONIC ENGINEERING",  "EEE",4, listofindex);
 		
-		Course _course8 = new Course("INTRODUCTION TO BIOMOLECULAR ENGINEERING", "CB1131", 3, listofindex);
+		Course _course8 = new Course("CB1131","INTRODUCTION TO BIOMOLECULAR ENGINEERING",  "SCBE",3, listofindex);
 		
-		Course _course9 = new Course("SUSTAINABILITY: SEEING THROUGH THE HAZE", "GC0001", 1, listofindex);
+		Course _course9 = new Course("GC0001","SUSTAINABILITY: SEEING THROUGH THE HAZE",  "HASS",1, listofindex);
 		
-		Course _course10 = new Course("LATIN LANGUAGE LEVEL 2", "LX9002", 3, listofindex);
+		Course _course10 = new Course("LX9002","LATIN LANGUAGE LEVEL 2",  "HASS",3, listofindex);
 		
 		listofcourses.add(_course10);
 		listofcourses.add(_course9);

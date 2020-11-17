@@ -4,7 +4,6 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Calendar;
 
-import static control.fileManager.loadCoursesFile;
 import static control.fileManager.loadStudentFile;
 
 public class Student extends User implements Serializable {
@@ -13,6 +12,7 @@ public class Student extends User implements Serializable {
 	String matricNumber;
 	String nationality;
 	String major;
+	String email;
 	
 	char gender;
 	int yearOfStudy;
@@ -25,10 +25,20 @@ public class Student extends User implements Serializable {
 	ArrayList<String> waitList = new ArrayList<String>();
 	
 	public Student() {
-		
+		super();
 	}
 
 	public Student(String name, String matricNumber, String nationality, String major , char gender, int yearOfStudy, String loginID, String loginPW) {
+		super(loginID, loginPW);
+		this.name=name;
+		this.matricNumber=matricNumber;
+		this.nationality=nationality;
+		this.major=major;
+		this.gender=gender;
+		this.yearOfStudy=yearOfStudy;
+	}
+
+	public Student(String name, String matricNumber, String nationality, String major , char gender, int yearOfStudy, String loginID, String loginPW, String email) {
 
 		super(loginID, loginPW);
 		this.name=name;
@@ -37,7 +47,7 @@ public class Student extends User implements Serializable {
 		this.major=major;
 		this.gender=gender;
 		this.yearOfStudy=yearOfStudy;
-		
+		this.email=email;
 	}
 
 	public String getName() {
@@ -126,6 +136,14 @@ public class Student extends User implements Serializable {
 
 	public void setWaitList(ArrayList<String> waitList) {
 		this.waitList = waitList;
+	}
+	
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
 	}
 
 	/**

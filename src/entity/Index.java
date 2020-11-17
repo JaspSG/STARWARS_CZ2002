@@ -1,7 +1,6 @@
 package entity;
 
 import java.io.Serializable;
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.Queue;
@@ -128,31 +127,7 @@ public class Index implements Serializable {
 			return vacancy;
 	}
 
-	/**
-	 * To find an index object based on indexID
-	 * @param courseID The courseID of the index object
-	 * @param indexID The indexID of the index object
-	 * @return the index object if found, else return null index object
-	 */
-	public static Index findIndex(String courseID, String indexID) {
-		ArrayList<Course> courseArrayList = loadCoursesFile(); // load course object to variable
-		for(int i = 0; i < courseArrayList.size(); i++)
-		{
-			if(courseArrayList.get(i).getCourseID().equals(courseID))
-			{
-				ArrayList<Index> indexArrayList = courseArrayList.get(i).getIndex();
-				for(int j = 0; j < indexArrayList.size(); j++){
-					if(indexArrayList.get(i).getIndexID().equals(indexID)){
-						Index index = indexArrayList.get(i);
-						return index;
-					}
-				}
-			}
-		}
-		System.out.println("Index not found");
-		Index emptyIndex = new Index();
-		return emptyIndex;
-	}
+
 
 	/**
 	 * To remove an index object based on indexID

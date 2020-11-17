@@ -27,7 +27,7 @@ public class CourseManager {
 							// STRING ATTRIBUTE IS NULL
 	}
 
-	public boolean addStudentToCourse(Student Student, String courseID, String indexID) {
+	public boolean addStudentToCourse(Student Student, String courseID, String indexID) throws Exception {
 
 		for (Course course : listOfCourses) {
 			if (course.getCourseID().equals(courseID)) { // remove this check if index is unique
@@ -37,6 +37,7 @@ public class CourseManager {
 						index.addStudentToEnrolled(Student);
 						System.out.println("Student Added");
 						saveCoursesFile();
+						MailManager.sendMail(Student.getEmail());
 						return true;
 					}
 				}
@@ -137,7 +138,7 @@ public class CourseManager {
 		}
 	}
 
-	public int checkVacancy(String courseID, String indexID) {
+	public static int checkVacancy(String courseID, String indexID) {
 
 		for (Course course : listOfCourses) {
 			if (course.getCourseID().equals(courseID)) {
@@ -177,7 +178,30 @@ public class CourseManager {
 					+ " Course AU: " + course.getAu());
 		}
 	}
-
+	/**
+	 * To find an index object based on indexID
+	 * @param courseID The courseID of the index object
+	 * @param indexID The indexID of the index object
+	 * @return the index object if found, else return null index object
+	 */
+	public static Index findIndex(String courseID, String indexID) {
+		for(int i = 0; i < listOfCourses.size(); i++)
+		{
+			if(listOfCourses.get(i).getCourseID().equals(courseID))
+			{
+				ArrayList<Index> indexArrayList = listOfCourses.get(i).getIndex();
+				for(int j = 0; j < indexArrayList.size(); j++){
+					if(indexArrayList.get(i).getIndexID().equals(indexID)){
+						Index index = indexArrayList.get(i);
+						return index;
+					}
+				}
+			}
+		}
+		System.out.println("Index not found");
+		Index emptyIndex = new Index();
+		return emptyIndex;
+	}
 	/* ------ Admin Related Methods: Start ------ */
 	/**
 	 * Adds a new course to the current list of courses
@@ -219,6 +243,28 @@ public class CourseManager {
 			{
 				listOfCourses.set(i, updateCourse);
 				break;
+			}
+		}
+		saveCoursesFile();
+		return true;
+	}
+
+	/**
+	 * Updates an existing index information from the current list of courses
+	 * @param index The updated index object
+	 * @param indexID The original indexID
+	 * @param courseID The original course ID
+	 * @return boolean result indicating if the operation is a success or failure;
+	 */
+	public static boolean updateIndex(Index index, String indexID, String courseID){
+		for(int i = 0; i < listOfCourses.size(); i++){
+			if(listOfCourses.get(i).getCourseID().equals(courseID)){
+				ArrayList<Index> indexArrayList = listOfCourses.get(i).getIndex();
+				for(int j = 0; j < indexArrayList.size(); j++){
+					if(indexArrayList.get(j).getIndexID().equals(indexID)){
+						listOfCourses.get(i).getIndex().set(j, index);
+					}
+				}
 			}
 		}
 		saveCoursesFile();

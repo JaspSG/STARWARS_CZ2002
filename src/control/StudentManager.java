@@ -18,7 +18,7 @@ public class StudentManager {
 		
 	}
 
-	public StudentManager(String loginID) {
+	public StudentManager(String loginID, String password) {
 		listOfStudents = fileManager.loadStudentFile();
 		studentIndex = 0;
 		for (Student student : listOfStudents) {
