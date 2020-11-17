@@ -2,6 +2,7 @@
 import boundary.AdminUI;
 import boundary.StudentUI;
 import control.CourseManager;
+import control.StudentManager;
 import control.fileManager;
 import entity.Student;
 import entity.User;
@@ -12,13 +13,17 @@ import java.util.Scanner;
 
 public class mainApp extends User{
 	static int currentStudentIndex;
-	static ArrayList<Student> studentList;
 	
+	static String loginID;
+	static String loginPW;
+	
+	private static ArrayList<Student> studentList = new ArrayList<Student>();
 
 
 	public static void main(String[] args) throws Exception  {
 		
 		CourseManager cmngr = new CourseManager();
+		
 		studentList = fileManager.loadStudentFile();
 
 		int choice = 0;
@@ -37,23 +42,39 @@ public class mainApp extends User{
 				System.out.println("Enter a valid integer!");
 				sc.nextLine();
 			}
-		} while (!validInput); 
+		} while (!validInput);
+		
+		System.out.println("Enter login ID");
+		loginID = sc.nextLine();
+		System.out.println("Enter login PW");
+		loginPW = sc.nextLine();
 
 		switch (choice) {
-		case 1:
-			//adminMenu(sc);
+		case 1:			
 			AdminUI.mainAdminUI();
 			break;
 		case 2:
-			//studentMenu(sc);
-			StudentUI.mainStudentUI();
+			StudentManager smngr = new StudentManager();
+			
+			for(Student student: studentList) {
+				if(student.getLoginID().equals(loginID)) {
+					if(student.validateLogin(loginID, loginPW) == true) {
+						StudentUI.mainStudentUI();
+					}
+					else {
+						System.out.println("Wrong Login Information");
+						break;
+					}
+					
+				}
+			}
 			break;
 		case 3:
 			System.out.println("Enter name");
 			String username = sc.nextLine();
 			System.out.println("Enter Password");
 			String password = sc.nextLine();
-			currentStudentIndex = validateLogin(username,password);
+		//	currentStudentIndex = validateLogin(username,password);
 			
 			if(currentStudentIndex == -1)
 			{
