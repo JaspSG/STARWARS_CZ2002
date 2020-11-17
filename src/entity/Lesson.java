@@ -2,7 +2,7 @@ package entity;
 
 import java.io.Serializable;
 
-public class Lesson implements Serializable{
+public class Lesson implements Serializable {
 
 	String type;
 	String startTime;

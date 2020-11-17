@@ -6,8 +6,5 @@
 			<attribute name="module" value="true"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="C:/Users/Raymo/Desktop/email/activation.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Raymo/Desktop/email/additionnal.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Raymo/Desktop/email/javax.mail.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

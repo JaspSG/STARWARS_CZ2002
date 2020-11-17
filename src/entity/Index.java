@@ -9,55 +9,57 @@ import static control.fileManager.loadCoursesFile;
 import static control.fileManager.saveCoursesFile;
 
 public class Index implements Serializable {
-	private int totalSize=30;
-	private int currentSize=0;
+	private int totalSize = 30;
+	private int currentSize = 0;
 	private String indexID;
 	private ArrayList<Student> studentsEnrolled = new ArrayList<Student>();
 	private ArrayList<Lesson> lessons = new ArrayList<Lesson>();
 	private Queue<Student> waitlist = new LinkedList<Student>();
 
-	public Index() {}
+	public Index() {
+	}
 
 	public Index(String indexID) {
-		this.indexID=indexID;
+		this.indexID = indexID;
 	}
 
 	public Index(String indexID, int totalSize, ArrayList<Lesson> lessons) {
 
-		this.indexID=indexID;
+		this.indexID = indexID;
 
-		this.totalSize=totalSize;
+		this.totalSize = totalSize;
 
 		this.lessons = lessons;
 	}
-	
+
 	public void printQueue() {
-		
-		for(Student student: this.waitlist) {
+
+		for (Student student : this.waitlist) {
 			System.out.println(student.getName());
 		}
-		
+
 	}
-	
+
 	public void printStudentsEnrolled() {
-		
-		if(studentsEnrolled.isEmpty()) {
+
+		if (studentsEnrolled.isEmpty()) {
 			System.out.println("No students enrolled in this Index");
 		}
-		
-		for(Student student: this.studentsEnrolled) {
-			System.out.println("Student Name: " + student.getName() +"\nStudent Matric Number: " + student.getMatricNumber());
+
+		for (Student student : this.studentsEnrolled) {
+			System.out.println(
+					"Student Name: " + student.getName() + "\nStudent Matric Number: " + student.getMatricNumber());
 		}
 	}
-	
+
 	public void addStudentToEnrolled(Student student) {
 		this.studentsEnrolled.add(student);
 		this.currentSize++;
 	}
-	
+
 	public void removeStudentFromEnrolled(Student student) {
-		for(int i=0; i<this.studentsEnrolled.size(); i++) {
-			if(studentsEnrolled.get(i).getMatricNumber().equals(student.getMatricNumber())){
+		for (int i = 0; i < this.studentsEnrolled.size(); i++) {
+			if (studentsEnrolled.get(i).getMatricNumber().equals(student.getMatricNumber())) {
 				studentsEnrolled.remove(i);
 			}
 		}
@@ -115,35 +117,33 @@ public class Index implements Serializable {
 	public void addStudentToWaitlist(Student student) {
 		this.waitlist.add(student);
 	}
-	
+
 	public Student removeStudentFromWaitlist() {
-		
+
 		Student tempstudent = this.waitlist.remove();
 		return tempstudent;
 	}
 
-	public int checkVacancy() {		
+	public int checkVacancy() {
 		int vacancy = this.totalSize - this.currentSize;
-			return vacancy;
+		return vacancy;
 	}
-
-
 
 	/**
 	 * To remove an index object based on indexID
+	 * 
 	 * @param courseID The courseID of the index object
-	 * @param indexID The indexID of the index object
+	 * @param indexID  The indexID of the index object
 	 * @return true or false depending if is success
 	 */
-	public static boolean removeIndex(String courseID, String indexID){
+	public static boolean removeIndex(String courseID, String indexID) {
 		ArrayList<Course> courseArrayList = loadCoursesFile();
 
-		for(int i = 0; i < courseArrayList.size(); i++){
-			if(courseArrayList.get(i).getCourseID().equals(courseID))
-			{
+		for (int i = 0; i < courseArrayList.size(); i++) {
+			if (courseArrayList.get(i).getCourseID().equals(courseID)) {
 				ArrayList<Index> indexArrayList = courseArrayList.get(i).getIndex();
-				for(int j = 0; j < indexArrayList.size(); j++){
-					if(indexArrayList.get(i).getIndexID().equals(indexID)){
+				for (int j = 0; j < indexArrayList.size(); j++) {
+					if (indexArrayList.get(i).getIndexID().equals(indexID)) {
 						indexArrayList.remove(i);
 					}
 				}
@@ -152,8 +152,7 @@ public class Index implements Serializable {
 		try {
 			saveCoursesFile(courseArrayList);
 			return true;
-		}
-		catch (Exception exception) {
+		} catch (Exception exception) {
 			exception.printStackTrace();
 		}
 		return false;

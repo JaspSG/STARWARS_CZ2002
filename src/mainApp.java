@@ -11,101 +11,99 @@ import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
-public class mainApp extends User{
+public class mainApp extends User {
 	static int currentStudentIndex;
-	
+
 	static String loginID;
 	static String loginPW;
-	
+
 	private static ArrayList<Student> studentList = new ArrayList<Student>();
 
+	public static void main(String[] args) throws Exception {
 
-	public static void main(String[] args) throws Exception  {
-		
 		CourseManager cmngr = new CourseManager();
-		
+
 		studentList = fileManager.loadStudentFile();
 
 		int choice = 0;
 		boolean validInput = false;
 		Scanner sc = new Scanner(System.in);
 		do {
-		System.out.println("Enter 1 for Admin, 2 for Student, 3 to test password, 4 to read from dat. file for testing");
-		do {
-			try {
-				choice = sc.nextInt();
-				sc.nextLine();
-			if (choice >= 1) {
-				validInput = true;
+			System.out.println(
+					"Enter 1 for Admin, 2 for Student, 3 to test password, 4 to read from dat. file for testing");
+			do {
+				try {
+					choice = sc.nextInt();
+					sc.nextLine();
+					if (choice >= 1) {
+						validInput = true;
+					}
+				} catch (InputMismatchException e) {
+					System.out.println("Enter a valid integer!");
+					sc.nextLine();
 				}
-			} catch (InputMismatchException e) {
-				System.out.println("Enter a valid integer!");
-				sc.nextLine();
-			}
-		} while (!validInput);
-		
-		System.out.println("Enter login ID");
-		loginID = sc.nextLine();
-		System.out.println("Enter login PW");
-		loginPW = sc.nextLine();
+			} while (!validInput);
 
-		switch (choice) {
-		case 1:			
-			AdminUI.mainAdminUI();
-			break;
-		case 2:
-			StudentManager smngr = new StudentManager();
-			
-			for(Student student: studentList) {
-				if(student.getLoginID().equals(loginID)) {
-					if(student.validateLogin(loginID, loginPW) == true) {
-						StudentUI.mainStudentUI();
+			System.out.println("Enter login ID");
+			loginID = sc.nextLine();
+			System.out.println("Enter login PW");
+			loginPW = sc.nextLine();
+
+			switch (choice) {
+			case 1:
+				AdminUI.mainAdminUI();
+				break;
+			case 2:
+				StudentManager smngr = new StudentManager();
+
+				for (Student student : studentList) {
+					if (student.getLoginID().equals(loginID)) {
+						if (student.validateLogin(loginID, loginPW) == true) {
+							StudentUI.mainStudentUI();
+						} else {
+							System.out.println("Wrong Login Information");
+							break;
+						}
+
 					}
-					else {
-						System.out.println("Wrong Login Information");
-						break;
-					}
-					
 				}
-			}
-			break;
-		case 3:
-			System.out.println("Enter name");
-			String username = sc.nextLine();
-			System.out.println("Enter Password");
-			String password = sc.nextLine();
-		//	currentStudentIndex = validateLogin(username,password);
-			
-			if(currentStudentIndex == -1)
-			{
-				System.out.println("Wrong password!");
+				System.out.println("Student Not Found");
+				break;
+			case 3:
+				System.out.println("Enter name");
+				String username = sc.nextLine();
+				System.out.println("Enter Password");
+				String password = sc.nextLine();
+				// currentStudentIndex = validateLogin(username,password);
+
+				if (currentStudentIndex == -1) {
+					System.out.println("Wrong password!");
+					break;
+				}
+				System.out.println("Current Student Index is now " + currentStudentIndex);
+				break;
+			case 4:
+				fileManager fm = new fileManager();
+				studentList = fileManager.loadStudentFile();
+				System.out.println("File Loaded!");
+
+				for (int i = 0; i < studentList.size(); i++) {
+
+					System.out.println(studentList.get(i).getLoginID());
+					System.out.println("");
+					System.out.println(studentList.get(i).getLoginPW());
+					System.out.println("");
+
+				}
+
+				break;
+			default:
+				System.out.println("");
 				break;
 			}
-			System.out.println("Current Student Index is now " + currentStudentIndex);
-			break;
-		case 4:
-			 fileManager fm = new fileManager();
-			 studentList = fileManager.loadStudentFile();
-			 System.out.println("File Loaded!");
-			 
-			 for(int i =0; i < studentList.size();i++)
-			 {
-				 
-				 System.out.println(studentList.get(i).getLoginID()); 
-				 System.out.println("");
-				 System.out.println(studentList.get(i).getLoginPW()); 
-				 System.out.println("");
-				 
-			 }
-
-			break;
-		default:
-			System.out.println("");
-			break;
-		}
-	} while (choice > 0 && choice < 5);
-}
-	/*    Admin Course Methods      */
+		} while (choice > 0 && choice < 5);
+	}
+	/* Admin Course Methods */
 //
 //	/**
 //	 * UI to handles the adding of course operation done by admin, adding of index to course will be handled
@@ -480,7 +478,7 @@ public class mainApp extends User{
 //		}
 //		System.out.println("Returning to main UI....\n");
 //	}
-	/*    Admin UI Case Statement   */
+	/* Admin UI Case Statement */
 //	public static void adminMenu(Scanner sc) throws NoSuchAlgorithmException {
 //		int choice = 0;
 //		boolean validInput = false;

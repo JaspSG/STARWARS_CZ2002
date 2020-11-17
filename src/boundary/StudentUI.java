@@ -8,10 +8,10 @@ import java.util.Scanner;
 public class StudentUI {
 
 	public static void mainStudentUI() {
-		
+
 		StudentManager stmngr = new StudentManager();
 		int choice;
-		
+
 		Scanner sc = new Scanner(System.in);
 
 		do {
@@ -61,7 +61,7 @@ public class StudentUI {
 
 			case 7:
 				break;
-				
+
 			default:
 				System.out.println("Please only enter the choices shown\n");
 

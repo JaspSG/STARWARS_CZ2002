@@ -2,23 +2,26 @@ package entity;
 
 // scanner object
 
-public class Admin extends User{
+public class Admin extends User {
 
-    private String staffID;
+	private String staffID;
 
-    public Admin(String loginID, String loginPW) {
-        super(loginID, loginPW);
-    }
+	public Admin(String loginID, String loginPW) {
+		super(loginID, loginPW);
+	}
 
-    public String getStaffID() {
-        return staffID;
-    }
+	public String getStaffID() {
+		return staffID;
+	}
 
-    public void setStaffID(String staffID) {
-        this.staffID = staffID;
-    }
+	public void setStaffID(String staffID) {
+		this.staffID = staffID;
+	}
 
-    /* ----------------------  Old Code Start ----------------------------------------- */
+	/*
+	 * ---------------------- Old Code Start
+	 * -----------------------------------------
+	 */
 
 //    /**
 //     * Adds a new course to the current list of courses
@@ -182,5 +185,7 @@ public class Admin extends User{
 //        }
 //        return true;
 //    }
-    /* ----------------------  Old Code End ----------------------------------------- */
+	/*
+	 * ---------------------- Old Code End -----------------------------------------
+	 */
 }

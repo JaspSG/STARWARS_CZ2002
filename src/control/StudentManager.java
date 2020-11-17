@@ -11,11 +11,10 @@ public class StudentManager {
 	CourseManager cmngr = new CourseManager();
 	int studentIndex;
 	static ArrayList<Student> listOfStudents = new ArrayList<Student>();
-	
+
 	public StudentManager() {
 		listOfStudents = fileManager.loadStudentFile();
-		
-		
+
 	}
 
 	public StudentManager(String loginID, String password) {
@@ -29,13 +28,14 @@ public class StudentManager {
 		}
 
 	}
-	
+
 	public StudentManager(int index) {
 		listOfStudents = fileManager.loadStudentFile();
 		studentIndex = index;
 		currentStudent = listOfStudents.get(studentIndex);
-		
+
 	}
+
 	public static Student findStudentObject(String matriculationNumber) {
 		for (Student student : listOfStudents) {
 			if (student.getMatricNumber().equals(matriculationNumber)) {
@@ -73,21 +73,21 @@ public class StudentManager {
 //	} // to remove
 
 	public boolean addCourse(String course, String indexID) {
-		
-		System.out.println("Adding Course ID : "+course+" and Index ID : "+indexID);
-		//Searching if course exists
-		
-		if (CourseManager.findCourseObject(course).getCourseID()!=null) {
+
+		System.out.println("Adding Course ID : " + course + " and Index ID : " + indexID);
+		// Searching if course exists
+
+		if (CourseManager.findCourseObject(course).getCourseID() != null) {
 			System.out.println("Course Exists");
-			//Add in a check for wait list
+			// Add in a check for wait list
 			ArrayList<Course> enrolledCourses = currentStudent.getCourseEnrolled();
-			if (enrolledCourses!=null) {
-				for(Course enrolledCourse : enrolledCourses) {
-					if(enrolledCourse.getCourseID().equals(course)) {
+			if (enrolledCourses != null) {
+				for (Course enrolledCourse : enrolledCourses) {
+					if (enrolledCourse.getCourseID().equals(course)) {
 						System.out.println("Already enrolled in this course!");
 						return false;
 					}
-					
+
 				}
 				System.out.println("Adding student to course!");
 				cmngr.addStudentToCourse(currentStudent, course, indexID);
@@ -97,22 +97,22 @@ public class StudentManager {
 				System.out.println("Successful!");
 				return true;
 			}
-			//If no enrolled courses : 
+			// If no enrolled courses :
 			else {
-				//Add student to Course Object
+				// Add student to Course Object
 				System.out.println("Adding student to course!");
 				cmngr.addStudentToCourse(currentStudent, course, indexID);
-				//Add Course to Student Object
+				// Add Course to Student Object
 				enrolledCourses = new ArrayList<Course>();
 				enrolledCourses.add(CourseManager.findCourseObject(course));
 				listOfStudents.get(studentIndex).setCourseEnrolled(enrolledCourses);
-				//Save students
+				// Save students
 				saveStudentsFile();
 				System.out.println("Successful!");
 				return true;
-				
+
 			}
-		
+
 		}
 		System.out.println("Course does not exist!");
 		return false; // temporary value
@@ -161,18 +161,16 @@ public class StudentManager {
 //		}
 //		System.out.println("Course does not exist!");
 
-
-
 	public boolean dropCourse(String course) {
-		
-		ArrayList<Course>coursesEnrolled = currentStudent.getCourseEnrolled();
-		if (coursesEnrolled!=null) {
+
+		ArrayList<Course> coursesEnrolled = currentStudent.getCourseEnrolled();
+		if (coursesEnrolled != null) {
 			Course courseobject = CourseManager.findCourseObject(course);
-			if(courseobject!=null) {
-				System.out.println("Course ID of dropped course is : "+courseobject.getCourseID());
-				for(Course courses : coursesEnrolled) {
-					if (courses.getCourseID() == courseobject.getCourseID()){
-						//Drop the class and remove student
+			if (courseobject != null) {
+				System.out.println("Course ID of dropped course is : " + courseobject.getCourseID());
+				for (Course courses : coursesEnrolled) {
+					if (courses.getCourseID() == courseobject.getCourseID()) {
+						// Drop the class and remove student
 						System.out.println("Dropping Course!");
 						cmngr.removeStudentFromCourse(currentStudent, course);
 						coursesEnrolled.remove(courseobject);
@@ -183,9 +181,8 @@ public class StudentManager {
 				}
 				System.out.println("You do not have this course!");
 				return false;
-				
-			}
-			else {
+
+			} else {
 				System.out.println("Invalid course!");
 				return false;
 			}
@@ -200,18 +197,17 @@ public class StudentManager {
 		System.out.println("----------------------------------------------------");
 		if (currentStudent.getCourseEnrolled() != null) {
 			for (Course Course : currentStudent.getCourseEnrolled()) {
-				System.out.format("| %-11s| %-36s|\n",Course.getCourseID(),
-					Course.getCourseName());
+				System.out.format("| %-11s| %-36s|\n", Course.getCourseID(), Course.getCourseName());
 			}
 		} else {
 			System.out.println("No Courses registered!");
 		}
 	}
 
-	public void printVacanciesAvaliable(String courseID, String indexID) {	
-		System.out.println("Vacancies: " + cmngr.checkVacancy(courseID, indexID) + " Slots" );
+	public void printVacanciesAvaliable(String courseID, String indexID) {
+		System.out.println("Vacancies: " + cmngr.checkVacancy(courseID, indexID) + " Slots");
 	}
-	
+
 	public boolean changeIndex(Course course, String indexID) {
 		return true; // temporary value
 	}
@@ -231,6 +227,7 @@ public class StudentManager {
 	/* ------ Admin Related Methods: Start ------ */
 	/**
 	 * Adds a new student to the current list of students
+	 * 
 	 * @return boolean result indicating if the operation is a success or failure;
 	 */
 	public static boolean addNewStudent(Student student) {
@@ -238,14 +235,15 @@ public class StudentManager {
 		saveStudentsFile();
 		return true;
 	}
+
 	/**
 	 * Updates an existing student from the current list of student
+	 * 
 	 * @return boolean result indicating if the operation is a success or failure;
 	 */
 	public static boolean updateStudent(Student updateStudent) {
-		for(int i = 0; i < listOfStudents.size(); i++){
-			if(listOfStudents.get(i).getMatricNumber().equals(updateStudent.getMatricNumber()))
-			{
+		for (int i = 0; i < listOfStudents.size(); i++) {
+			if (listOfStudents.get(i).getMatricNumber().equals(updateStudent.getMatricNumber())) {
 				listOfStudents.set(i, updateStudent);
 				break;
 			}

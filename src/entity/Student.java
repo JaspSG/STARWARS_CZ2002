@@ -7,37 +7,38 @@ import java.util.Calendar;
 import static control.fileManager.loadStudentFile;
 
 public class Student extends User implements Serializable {
-	
+
 	String name;
 	String matricNumber;
 	String nationality;
 	String major;
 	String email;
-	
+
 	char gender;
 	int yearOfStudy;
-	
+
 	Calendar startTime;
 	Calendar endTime;
-	
+
 	ArrayList<Course> courseTaken = new ArrayList<Course>();
 	ArrayList<Course> courseEnrolled = new ArrayList<Course>();
 	ArrayList<String> waitList = new ArrayList<String>();
-	
+
 	public Student() {
 		super();
 	}
 
-	public Student(String name, String matricNumber, String nationality, String major , char gender, int yearOfStudy, String loginID, String loginPW, String email) {
+	public Student(String name, String matricNumber, String nationality, String major, char gender, int yearOfStudy,
+			String loginID, String loginPW, String email) {
 
 		super(loginID, loginPW);
-		this.name=name;
-		this.matricNumber=matricNumber;
-		this.nationality=nationality;
-		this.major=major;
-		this.gender=gender;
-		this.yearOfStudy=yearOfStudy;
-		this.email=email;
+		this.name = name;
+		this.matricNumber = matricNumber;
+		this.nationality = nationality;
+		this.major = major;
+		this.gender = gender;
+		this.yearOfStudy = yearOfStudy;
+		this.email = email;
 	}
 
 	public String getName() {
@@ -127,7 +128,7 @@ public class Student extends User implements Serializable {
 	public void setWaitList(ArrayList<String> waitList) {
 		this.waitList = waitList;
 	}
-	
+
 	public String getEmail() {
 		return email;
 	}
@@ -138,13 +139,14 @@ public class Student extends User implements Serializable {
 
 	/**
 	 * to find a student object based on matriculation number
+	 * 
 	 * @param matricNumber unique key of student object
 	 * @return the student object if found, else return null student object
 	 */
-	public static Student findStudent(String matricNumber){
+	public static Student findStudent(String matricNumber) {
 		ArrayList<Student> studentArrayList = loadStudentFile(); // load student object to variable
-		for(int i = 0; i < studentArrayList.size(); i++){
-			if(studentArrayList.get(i).getMatricNumber().equals(matricNumber)){
+		for (int i = 0; i < studentArrayList.size(); i++) {
+			if (studentArrayList.get(i).getMatricNumber().equals(matricNumber)) {
 				Student student = studentArrayList.get(i);
 				return student;
 			}
