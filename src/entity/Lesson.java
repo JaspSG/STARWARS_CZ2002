@@ -5,14 +5,14 @@ import java.io.Serializable;
 public class Lesson implements Serializable {
 
 	String type;
-	String startTime;
-	String endTime;
+	int startTime;
+	int duration;
 	int day;
 
-	public Lesson(String type, String startTime, String endTime, int day) {
+	public Lesson(String type, int startTime, int duration, int day) {
 		this.type = type;
 		this.startTime = startTime;
-		this.endTime = endTime;
+		this.duration = duration;
 		this.day = day;
 	}
 
@@ -24,20 +24,20 @@ public class Lesson implements Serializable {
 		this.type = type;
 	}
 
-	public String getStartTime() {
+	public int getStartTime() {
 		return startTime;
 	}
 
-	public void setStartTime(String startTime) {
+	public void setStartTime(int startTime) {
 		this.startTime = startTime;
 	}
 
-	public String getEndTime() {
-		return endTime;
+	public int getDuration() {
+		return duration;
 	}
 
-	public void setEndTime(String endTime) {
-		this.endTime = endTime;
+	public void setDuration(int duration) {
+		this.duration = duration;
 	}
 
 	public int getDay() {
