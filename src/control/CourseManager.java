@@ -297,16 +297,21 @@ public class CourseManager {
 				}
 			}
 		}
+		if(studentArrayList.size() > 0){
+			System.out.println("List of students in the Course " + courseID + " of Index Group " + indexID + ":");
+			System.out.println("--------------------------------------------------------");
+			System.out.println("|         Name         |  Gender  |     Nationality    |");
+			System.out.println("--------------------------------------------------------");
 
-		System.out.println("List of students in the Course " + courseID + " of Index Group " + indexID + ":");
-		System.out.println("--------------------------------------------------------");
-		System.out.println("|         Name         |  Gender  |     Nationality    |");
-		System.out.println("--------------------------------------------------------");
-
-		for (int i = 0; i < studentArrayList.size(); i++) {
-			System.out.format("| %-25s| %-11s| %-25s|\n", studentArrayList.get(i).getName(),
-					studentArrayList.get(i).getGender(), studentArrayList.get(i).getNationality());
+			for (int i = 0; i < studentArrayList.size(); i++) {
+				System.out.format("| %-25s| %-11s| %-25s|\n", studentArrayList.get(i).getName(),
+						studentArrayList.get(i).getGender(), studentArrayList.get(i).getNationality());
+			}
 		}
+		else{
+			System.out.println("There is currently 0 number of student enrolled in " courseID + " of Index Group " + indexID + " .");
+		}
+
 
 		return true;
 	}
@@ -331,16 +336,21 @@ public class CourseManager {
 				}
 			}
 		}
+		if(studentArrayList.size() > 0){
+			System.out.println("List of students in the Course " + courseID + ":");
+			System.out.println("--------------------------------------------------------");
+			System.out.println("|         Name         |  Gender  |     Nationality    |");
+			System.out.println("--------------------------------------------------------");
 
-		System.out.println("List of students in the Course " + courseID + ":");
-		System.out.println("--------------------------------------------------------");
-		System.out.println("|         Name         |  Gender  |     Nationality    |");
-		System.out.println("--------------------------------------------------------");
-
-		for (int i = 0; i < studentArrayList.size(); i++) {
-			System.out.format("| %-25s| %-11s| %-25s|\n", studentArrayList.get(i).getName(),
-					studentArrayList.get(i).getGender(), studentArrayList.get(i).getNationality());
+			for (int i = 0; i < studentArrayList.size(); i++) {
+				System.out.format("| %-25s| %-11s| %-25s|\n", studentArrayList.get(i).getName(),
+						studentArrayList.get(i).getGender(), studentArrayList.get(i).getNationality());
+			}
 		}
+		else{
+			System.out.println("There is currently 0 number of student enrolled in " + courseID + " .");
+		}
+
 		return true;
 	}
 	/* ------ Admin Related Methods: End ------ */
