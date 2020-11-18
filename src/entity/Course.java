@@ -18,12 +18,24 @@ public class Course implements Serializable {
 
 	}
 
-	public Course(String courseID, String courseName, String courseSchool, int au, ArrayList<Index> index) {
+	public Course(String courseID, String courseName, String courseSchool, int au, ArrayList index) {
 		this.courseID = courseID;
 		this.courseName = courseName;
 		this.courseSchool = courseSchool;
 		this.au = au;
 		this.index = index;
+	}
+	
+	public Course(String courseID, String courseName, String courseSchool, int au) {
+		this.courseID = courseID;
+		this.courseName = courseName;
+		this.courseSchool = courseSchool;
+		this.au = au;
+		this.index = index;
+	} // to remove this constructor, for data generation
+	
+	public void addToIndex(Index index) {
+		this.index.add(index); //to remove this, for data generation
 	}
 
 	public Index findIndexObject(String indexID) {
@@ -36,6 +48,7 @@ public class Course implements Serializable {
 		Index emptyindex = new Index();
 		return emptyindex;
 	}
+
 
 	public String getCourseName() {
 		return this.courseName;

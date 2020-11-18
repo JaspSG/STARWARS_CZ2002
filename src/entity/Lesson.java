@@ -9,7 +9,7 @@ public class Lesson implements Serializable {
 	int duration;
 	int day;
 
-	public Lesson(String type, int startTime, int duration, int day) {
+	public Lesson(String type, int day, int startTime, int duration) {
 		this.type = type;
 		this.startTime = startTime;
 		this.duration = duration;

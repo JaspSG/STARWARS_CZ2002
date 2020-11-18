@@ -31,6 +31,10 @@ public class Index implements Serializable {
 
 		this.lessons = lessons;
 	}
+	
+	public void addToLessons(Lesson lesson) {
+		this.lessons.add(lesson);
+	}
 
 	public void printQueue() {
 

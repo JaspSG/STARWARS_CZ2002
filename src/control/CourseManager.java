@@ -172,10 +172,10 @@ public class CourseManager {
 		CourseManager.listOfCourses = listOfCourses;
 	}
 
-	public static void printCourseList() {
+	public static void printCourseList() {		
 		for (Course course : listOfCourses) {
-			System.out.println("Course Name: " + course.getCourseName() + " Course ID: " + course.getCourseID()
-					+ " Course AU: " + course.getAu());
+			System.out.println("School: "+ course.getCourseSchool() + "\nCourse Name: " + course.getCourseName() + "\nCourse ID: " + course.getCourseID()
+					+ "\nCourse AU: " + course.getAu() + "\n");
 		}
 	}
 
