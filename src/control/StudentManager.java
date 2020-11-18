@@ -40,8 +40,39 @@ public class StudentManager {
         listofstudents.get(this.currentIndexOfStudent).setCourseEnrolled(tempListOfCurrentCourse);
         fileManager.saveStudentFile(listofstudents);
 
+<<<<<<< Updated upstream
         return true; // temporary value
     }
+=======
+				}
+				System.out.println("Adding student to course!");
+				cmngr.addStudentToCourse(currentStudent, course, indexID);
+				enrolledCourses.add(CourseManager.findCourseObject(course));
+				listOfStudents.get(studentIndex).setCourseEnrolled(enrolledCourses);
+				saveStudentsFile();
+				System.out.println("Successful!");
+				try {
+					MailManager.sendMail(currentStudent.getEmail());
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				return true;
+			}
+			// If no enrolled courses :
+			else {
+				// Add student to Course Object
+				System.out.println("Adding student to course!");
+				cmngr.addStudentToCourse(currentStudent, course, indexID);
+				// Add Course to Student Object
+				enrolledCourses = new ArrayList<Course>();
+				enrolledCourses.add(CourseManager.findCourseObject(course));
+				listOfStudents.get(studentIndex).setCourseEnrolled(enrolledCourses);
+				// Save students
+				saveStudentsFile();
+				System.out.println("Successful!");
+				return true;
+>>>>>>> Stashed changes
 
     public boolean dropCourse(Course course, int tutGroup, int global_i){
         return false; // temporary value
