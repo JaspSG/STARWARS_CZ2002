@@ -9,9 +9,6 @@ import java.util.Arrays;
 public class testingfile {
 
 	public static void main(String[] args) throws Exception {
-
-		fileManager fmngr = new fileManager();
-		CourseManager cmngr = new CourseManager();
 		
 
 		String password = "password";
@@ -183,7 +180,17 @@ public class testingfile {
 		fileManager.saveCoursesFile(listofcourses); // save student file
 		fileManager.saveAdminFile(listofAdmin); // save admin file
 		
-		cmngr.printCourseList();
+		fileManager fmngr = new fileManager();
+		CourseManager cmngr = new CourseManager();
+		StudentManager smngr = new StudentManager();
+		
+//		cmngr.printCourseList();
+		ArrayList<Student> templist = smngr.getListOfStudents();
+		for(Student student: templist) {
+			System.out.println(student.getStartTime().toString());
+		}
+		
+	
 		
 
 // ----------------------------------------- TEST FUNCTIONS BELOW THIS LINE WITH cmngr OBJECT ----------------------------------------//

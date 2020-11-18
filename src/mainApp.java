@@ -21,8 +21,6 @@ public class mainApp extends User {
 
 	public static void main(String[] args) throws Exception {
 
-		CourseManager cmngr = new CourseManager();
-
 		studentList = fileManager.loadStudentFile();
 
 		int choice = 0;
@@ -60,9 +58,11 @@ public class mainApp extends User {
 							System.out.println("Wrong Login Information");
 							break;
 						}
+					} else {
+						System.out.println("Admin Not Found");
 					}
 				}
-				System.out.println("Admin Not Found");
+
 				break;
 			case 2:
 				StudentManager smngr = new StudentManager();
@@ -83,8 +83,8 @@ public class mainApp extends User {
 						}
 
 					}
+					System.out.println("Student Not Found");
 				}
-				System.out.println("Student Not Found");
 				break;
 			case 3:
 				System.out.println("Enter name");

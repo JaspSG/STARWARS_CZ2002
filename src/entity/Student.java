@@ -17,8 +17,8 @@ public class Student extends User implements Serializable {
 	char gender;
 	int yearOfStudy;
 
-	Calendar startTime;
-	Calendar endTime;
+	Calendar startTime = Calendar.getInstance();
+	Calendar endTime = Calendar.getInstance();
 
 	ArrayList<Course> courseTaken = new ArrayList<Course>();
 	ArrayList<Course> courseEnrolled = new ArrayList<Course>();
