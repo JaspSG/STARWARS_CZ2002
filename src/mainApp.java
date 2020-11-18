@@ -7,7 +7,10 @@ import entity.Admin;
 import entity.Student;
 import entity.User;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
@@ -17,11 +20,9 @@ public class mainApp extends User {
 	static String loginID;
 	static String loginPW;
 
-	private static ArrayList<Student> studentList = new ArrayList<Student>();
+//	private static ArrayList<Student> studentList = new ArrayList<Student>();
 
 	public static void main(String[] args) throws Exception {
-
-		studentList = fileManager.loadStudentFile();
 
 		int choice = 0;
 		boolean validInput = false;
@@ -66,10 +67,19 @@ public class mainApp extends User {
 				break;
 			case 2:
 				StudentManager smngr = new StudentManager();
+				ArrayList<Student> studentList = new ArrayList<Student>();
+				studentList = smngr.getListOfStudents();
 
 				for (Student student : studentList) {
 					if (student.getLoginID().equals(loginID)) {
 						if (student.validateLogin(loginID, loginPW) == true) {
+//							SimpleDateFormat format1 = new SimpleDateFormat("yyyy-MM-dd"); 
+//							Calendar cal = student.getEndTime();
+//							Date date = cal.getTime();
+//							String inActiveDate = null;
+//							inActiveDate = format1.format(date);
+//						    System.out.println(inActiveDate );
+							
 							if(student.accessPeriodValidity()) {
 								StudentUI.mainStudentUI(loginID);
 							}
