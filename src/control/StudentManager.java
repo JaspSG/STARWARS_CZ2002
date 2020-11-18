@@ -26,7 +26,7 @@ public class StudentManager {
 				studentIndex = listOfStudents.indexOf(currentStudent);
 			}
 		}
-		System.out.println("The index is : "+studentIndex);
+		//System.out.println("The index is : "+studentIndex);
 
 	}
 
