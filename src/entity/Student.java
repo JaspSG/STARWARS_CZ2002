@@ -17,8 +17,8 @@ public class Student extends User implements Serializable {
 	Calendar startTime;
 	Calendar endTime;
 	
-	ArrayList<String> courseTaken;
-	ArrayList<String> courseEnrolled;
+	ArrayList<Course> courseTaken;
+	ArrayList<Course> courseEnrolled;
 	ArrayList<String> waitList;
 	
 	public Student() {
@@ -87,16 +87,16 @@ public class Student extends User implements Serializable {
 	public void setEndTime(Calendar endTime) {
 		this.endTime = endTime;
 	}
-	public ArrayList<String> getCourseTaken() {
+	public ArrayList<Course> getCourseTaken() {
 		return courseTaken;
 	}
-	public void setCourseTaken(ArrayList<String> courseTaken) {
+	public void setCourseTaken(ArrayList<Course> courseTaken) {
 		this.courseTaken = courseTaken;
 	}
-	public ArrayList<String> getCourseEnrolled() {
+	public ArrayList<Course> getCourseEnrolled() {
 		return courseEnrolled;
 	}
-	public void setCourseEnrolled(ArrayList<String> courseEnrolled) {
+	public void setCourseEnrolled(ArrayList<Course> courseEnrolled) {
 		this.courseEnrolled = courseEnrolled;
 	}
 	public ArrayList<String> getWaitList() {

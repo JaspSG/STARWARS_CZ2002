@@ -3,7 +3,12 @@ import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
+<<<<<<< Updated upstream
 import control.fileManager;
+=======
+import control.CourseManager;
+import control.FileManager;
+>>>>>>> Stashed changes
 import entity.Admin;
 import entity.Student;
 import entity.User;
@@ -17,6 +22,14 @@ public class mainApp extends User{
 	static ArrayList<Student> studentList;
 
 	public static void main(String[] args) throws Exception  {
+<<<<<<< Updated upstream
+=======
+		
+		CourseManager cmngr = new CourseManager();
+		studentList = FileManager.loadStudentFile();
+		
+
+>>>>>>> Stashed changes
 
 		int choice = 0;
 		boolean validInput = false;
@@ -58,8 +71,8 @@ public class mainApp extends User{
 			System.out.println("Current Student Index is now " + currentStudentIndex);
 			break;
 		case 4:
-			 fileManager fm = new fileManager();
-			 studentList = fileManager.loadStudentFile();
+			 FileManager fm = new FileManager();
+			 studentList = FileManager.loadStudentFile();
 			 System.out.println("File Loaded!");
 			 
 			 for(int i =0; i < studentList.size();i++)

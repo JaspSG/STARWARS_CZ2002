@@ -8,7 +8,7 @@ import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
 import java.util.Objects;
 
-import control.fileManager;
+import control.FileManager;
 
 public class User implements Serializable {
 	
@@ -47,8 +47,8 @@ public class User implements Serializable {
 	public static  int validateLogin(String username,String password) throws NoSuchAlgorithmException
 	{
 		//load file
-		fileManager fm = new fileManager();
-		ArrayList<Student> studentList = fileManager.loadStudentFile();
+		FileManager fm = new FileManager();
+		ArrayList<Student> studentList = FileManager.loadStudentFile();
 		
 		
 		

@@ -1,6 +1,11 @@
 import java.util.ArrayList;
 
+<<<<<<< Updated upstream
 import control.fileManager;
+=======
+import control.CourseManager;
+import control.FileManager;
+>>>>>>> Stashed changes
 import entity.Course;
 import entity.Index;
 import entity.Student;
@@ -10,7 +15,7 @@ public class testingfile {
 	public static void main(String[] args) throws Exception {
 		
 		
-		fileManager fmngr = new fileManager();
+		FileManager fmngr = new FileManager();
 		
 		ArrayList<Student> listofstudents = new ArrayList<Student>();
 		
@@ -82,6 +87,14 @@ public class testingfile {
 		_course2.setIndex(listofindex);
 		_course1.setIndex(listofindex);
 		
+<<<<<<< Updated upstream
+=======
+		FileManager.saveStudentFile(listofstudents); //save student file
+		FileManager.saveCoursesFile(listofcourses); //save student file
+		
+		//ArrayList<Course> loaded_listofcourses = new ArrayList<Course>();
+		//loaded_listofcourses = fileManager.loadCoursesFile(); //save courses file
+>>>>>>> Stashed changes
 		
 		fmngr.saveStudentFile(listofstudents); //save student file
 		

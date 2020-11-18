@@ -5,7 +5,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.*;
 // scanner object
-import static control.fileManager.*;
+import static control.FileManager.*;
 
 
 
