@@ -29,7 +29,7 @@ public class mainApp extends User {
 		Scanner sc = new Scanner(System.in);
 		do {
 			System.out.println(
-					"Enter 1 for Admin, 2 for Student, 3 to test password, 4 to read from dat. file for testing");
+					"Enter 1 for Admin, 2 for Student, 3 to exit");
 			do {
 				try {
 					choice = sc.nextInt();
@@ -43,13 +43,13 @@ public class mainApp extends User {
 				}
 			} while (!validInput);
 
-			System.out.println("Enter login ID");
-			loginID = sc.nextLine();
-			System.out.println("Enter login PW");
-			loginPW = sc.nextLine();
 
 			switch (choice) {
 			case 1:
+				System.out.println("Enter login ID");
+				loginID = sc.nextLine();
+				System.out.println("Enter login PW");
+				loginPW = sc.nextLine();
 				ArrayList<Admin> adminList = fileManager.loadAdminFile();
 				for(Admin admin : adminList){
 					if(admin.getLoginID().equals(loginID)){
@@ -66,6 +66,10 @@ public class mainApp extends User {
 
 				break;
 			case 2:
+				System.out.println("Enter login ID");
+				loginID = sc.nextLine();
+				System.out.println("Enter login PW");
+				loginPW = sc.nextLine();
 				StudentManager smngr = new StudentManager();
 				ArrayList<Student> studentList = new ArrayList<Student>();
 				studentList = smngr.getListOfStudents();
@@ -93,42 +97,47 @@ public class mainApp extends User {
 						}
 
 					}
-					System.out.println("Student Not Found");
+					else {
+						System.out.println("Student Not Found");
+					}
 				}
 				break;
 			case 3:
-				System.out.println("Enter name");
-				String username = sc.nextLine();
-				System.out.println("Enter Password");
-				String password = sc.nextLine();
-				// currentStudentIndex = validateLogin(username,password);
-
-				if (currentStudentIndex == -1) {
-					System.out.println("Wrong password!");
-					break;
-				}
-				System.out.println("Current Student Index is now " + currentStudentIndex);
 				break;
-			case 4:
-				fileManager fm = new fileManager();
-				studentList = fileManager.loadStudentFile();
-				System.out.println("File Loaded!");
-
-				for (int i = 0; i < studentList.size(); i++) {
-
-					System.out.println(studentList.get(i).getLoginID());
-					System.out.println("");
-					System.out.println(studentList.get(i).getLoginPW());
-					System.out.println("");
-
-				}
-
-				break;
+//				System.out.println("Enter name");
+//				String username = sc.nextLine();
+//				System.out.println("Enter Password");
+//				String password = sc.nextLine();
+//				// currentStudentIndex = validateLogin(username,password);
+//
+//				if (currentStudentIndex == -1) {
+//					System.out.println("Wrong password!");
+//					break;
+//				}
+//				System.out.println("Current Student Index is now " + currentStudentIndex);
+//				break;
+//			case 4:
+//				fileManager fm = new fileManager();
+//				studentList = fileManager.loadStudentFile();
+//				System.out.println("File Loaded!");
+//
+//				for (int i = 0; i < studentList.size(); i++) {
+//
+//					System.out.println(studentList.get(i).getLoginID());
+//					System.out.println("");
+//					System.out.println(studentList.get(i).getLoginPW());
+//					System.out.println("");
+//
+//				}
+//
+//				break;
 			default:
 				System.out.println("");
 				break;
 			}
-		} while (choice > 0 && choice < 5);
+		} while (choice != 3);
+		
+		System.out.println("System Exiting...");
 	}
 	/* Admin Course Methods */
 //
