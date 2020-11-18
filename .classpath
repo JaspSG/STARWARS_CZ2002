@@ -6,5 +6,8 @@
 			<attribute name="module" value="true"/>
 		</attributes>
 	</classpathentry>
+	<classpathentry kind="lib" path="mail_jar/activation.jar"/>
+	<classpathentry kind="lib" path="mail_jar/additionnal.jar"/>
+	<classpathentry kind="lib" path="mail_jar/javax.mail.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

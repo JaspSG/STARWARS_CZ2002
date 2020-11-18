@@ -7,7 +7,7 @@ import java.util.Properties;
 
 public class MailManager {
 	public static void sendMail(String recepient) throws Exception {
-		System.out.println("Preparing to send email");
+		System.out.println("Send email...");
 		Properties properties = new Properties();
 
 		properties.put("mail.smtp.auth", "true");
@@ -34,8 +34,8 @@ public class MailManager {
 			Message message = new MimeMessage(session);
 			message.setFrom(new InternetAddress(myAccountEmail));
 			message.setRecipient(Message.RecipientType.TO, new InternetAddress(recepient));
-			message.setSubject("Test");
-			message.setText("Hey There!");
+			message.setSubject("You have been enroll into the course.");
+			message.setText("Dear student, you have been added in the course.");
 			return message;
 		} catch(Exception ex) {
 			System.out.println("Failed");
