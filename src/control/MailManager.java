@@ -7,7 +7,7 @@ import java.util.Properties;
 
 public class MailManager {
 	public static void sendMail(String recepient) throws Exception {
-		System.out.println("Send email...");
+		System.out.println("Sending email...");
 		Properties properties = new Properties();
 
 		properties.put("mail.smtp.auth", "true");
