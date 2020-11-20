@@ -94,6 +94,12 @@ public class StudentManager {
 				cmngr.addStudentToCourse(currentStudent, course, indexID);
 				enrolledCourses.add(CourseManager.findCourseObject(course));
 				listOfStudents.get(studentIndex).setCourseEnrolled(enrolledCourses);
+				try {
+					MailManager.sendMail(currentStudent.getEmail());
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 				saveStudentsFile();
 				System.out.println("Successful!");
 				return true;
@@ -107,6 +113,12 @@ public class StudentManager {
 				enrolledCourses = new ArrayList<Course>();
 				enrolledCourses.add(CourseManager.findCourseObject(course));
 				listOfStudents.get(studentIndex).setCourseEnrolled(enrolledCourses);
+				try {
+					MailManager.sendMail(currentStudent.getEmail());
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 				// Save students
 				saveStudentsFile();
 				System.out.println("Successful!");
