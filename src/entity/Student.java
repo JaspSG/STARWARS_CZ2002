@@ -13,6 +13,8 @@ public class Student extends User implements Serializable {
 	String nationality;
 	String major;
 	String email;
+	
+	String[][] schedule = new String[11][7]; 
 
 	char gender;
 	int yearOfStudy;
@@ -26,6 +28,7 @@ public class Student extends User implements Serializable {
 
 	public Student() {
 		super();
+		this.populateSchedule();
 	}
 
 	public Student(String name, String matricNumber, String nationality, String major, char gender, int yearOfStudy,
@@ -39,6 +42,7 @@ public class Student extends User implements Serializable {
 		this.gender = gender;
 		this.yearOfStudy = yearOfStudy;
 		this.email = email;
+		this.populateSchedule();
 	}
 
 	public String getName() {
@@ -167,4 +171,40 @@ public class Student extends User implements Serializable {
 			return false;
 		}
 	}
+	
+	public String[][] getSchedule() {
+		return schedule;
+	}
+
+	public void setSchedule(String[][] schedule) {
+		this.schedule = schedule;
+	}
+	
+	public void populateSchedule() {
+		this.schedule[0][0] = "Mon";
+		this.schedule[0][1] = "Tues";
+		this.schedule[0][2] = "Wed";
+		this.schedule[0][3] = "Thurs";
+		this.schedule[0][4] = "Fri";
+		this.schedule[0][5] = "Sat";
+		this.schedule[0][6] = "Sun";
+		
+		for(Course course: this.courseEnrolled) {
+			ArrayList<Index> _tempindex = course.getIndex();
+			
+			for(Index index :_tempindex) {
+				
+				ArrayList<Lesson>_templesson = index.getLessons();
+				
+				for(Lesson lesson: _templesson) {
+					
+					for(int j=lesson.getStartTime(); j<(lesson.getStartTime()+lesson.getDuration());j++ ) {
+					this.schedule[j][lesson.getDay()] = course.getCourseID();
+					}
+				}
+				
+			}
+		}
+	}
+
 }

@@ -93,10 +93,12 @@ public class testingfile {
 		Index _index4 = new Index("200501");
 		Lesson _lesson13 = new Lesson("Lab", 1, 5,2);
 		Lesson _lesson14 = new Lesson("Lecture", 1, 5,2);
+		Lesson _lesson141 = new Lesson("Lecture", 3, 2,2);
 		Lesson _lesson15 = new Lesson("Tutorial", 4,6,1);
 		
 		_index4.addToLessons(_lesson13);
 		_index4.addToLessons(_lesson14);
+		_index4.addToLessons(_lesson141);
 		_index4.addToLessons(_lesson15);
 		
 		cz2005.addToIndex(_index4);
@@ -133,6 +135,9 @@ public class testingfile {
 		listofcourses.add(cz2005);
 		listofcourses.add(cz2006);
 		listofcourses.add(cz2007);
+		
+
+		
 		
 		/* ------------------------- end of Course creation ------------------------- */
 		
@@ -176,19 +181,82 @@ public class testingfile {
 //		listofstudents.add(_student9);
 //		listofstudents.add(_student10);
 
-		fileManager.saveStudentFile(listofstudents); // save student file
-		fileManager.saveCoursesFile(listofcourses); // save student file
-		fileManager.saveAdminFile(listofAdmin); // save admin file
+
 		
 		fileManager fmngr = new fileManager();
 		CourseManager cmngr = new CourseManager();
 		StudentManager smngr = new StudentManager();
 		
 //		cmngr.printCourseList();
-		ArrayList<Student> templist = smngr.getListOfStudents();
-		for(Student student: templist) {
-			System.out.println(student.getStartTime().toString());
+//		ArrayList<Student> templist = smngr.getListOfStudents();
+//		for(Student student: templist) {
+//			System.out.println(student.getStartTime().toString());
+//		}
+//		
+		
+		Student tempstud = StudentManager.findStudentObject("A0000000B");
+		ArrayList<Course> tempcourse = new ArrayList<Course>();
+		
+		tempcourse.add(cz2001);
+		tempcourse.add(cz2002);
+		tempcourse.add(cz2003);
+
+		tempcourse.add(cz2005);
+		tempcourse.add(cz2006);
+		tempcourse.add(cz2007);
+		
+		
+		tempstud.setCourseEnrolled(tempcourse);
+		
+		String[][] tempschedule = tempstud.getSchedule();
+		
+		
+		tempschedule[0][0] = "Mon";
+		tempschedule[0][1] = "Tues";
+		tempschedule[0][2] = "Wed";
+		tempschedule[0][3] = "Thurs";
+		tempschedule[0][4] = "Fri";
+		tempschedule[0][5] = "Sat";
+		tempschedule[0][6] = "Sun";
+		
+		
+		
+		for(Course course: tempstud.getCourseEnrolled()) {
+			ArrayList<Index> _tempindex = course.getIndex();
+			
+			for(Index index :_tempindex) {
+				
+				ArrayList<Lesson>_templesson = index.getLessons();
+				
+				for(Lesson lesson: _templesson) {
+					
+					for(int j=lesson.getStartTime(); j<(lesson.getStartTime()+lesson.getDuration());j++ ) {
+					tempschedule[j][lesson.getDay()] = course.getCourseID();
+					}
+				}
+				
+			}
 		}
+		
+//		print2D(tempschedule);
+		
+//		
+//		printMatrix(tempschedule);
+		
+		
+		Student test1 = smngr.findStudentObject("A0000000B");
+		
+	
+
+		
+		
+		
+		
+		
+		fileManager.saveStudentFile(listofstudents); // save student file
+		fileManager.saveCoursesFile(listofcourses); // save student file
+		fileManager.saveAdminFile(listofAdmin); // save admin file
+		
 		
 	
 		
@@ -211,11 +279,7 @@ public class testingfile {
 //		}
 //		
 //		
-//		for(int j=templesson.getStartTime(); j<(templesson.getStartTime()+templesson.getDuration());j++ ) {
-//			array[j][0] = "lesson";
-//		}
-//		
-//		print2D(array);
+
 		
 		
 
@@ -298,14 +362,75 @@ public class testingfile {
 //		END OF ADDING STUDENTS TESTING
 
 	}
-	public static void print2D(String[][] array) 
-	{ 
-	    // Loop through all rows 
-	    for (String[] row : array) 
+	public static void printMatrix(String[][] m){
+	    try{
+	        int rows = m.length;
+	        int columns = m[0].length;
+	        String str = "|\t";
 
-	        // converting each row as string 
-	        // and then printing in a separate line 
-	        System.out.println(Arrays.toString(row)); 
+	        for(int i=0;i<rows;i++){
+	        	
+	        	
+	        	switch(i) {
+	        	
+	        	case 0:
+	        		str += "\t";
+	        		break;
+	        	case 1:
+	        		str += "0830\t ";
+	        		break;
+	        	case 2:
+	        		str += "0930\t";
+	        		break;
+	        	case 3:
+	        		str += "1030\t";
+	        		break;
+	        	case 4:
+	        		str += "1130\t";
+	        		break;
+	        	case 5:
+	        		str += "1230\t";
+	        		break;
+	        	case 6:
+	        		str += "1330\t";
+	        		break;
+	        	case 7:
+	        		str += "1430\t";
+	        		break;
+	        	case 8:
+	        		str += "1530\t";
+	        		break;
+	        	case 9:
+	        		str += "1630\t";
+	        		break;
+	        	case 10:
+	        		str += "1730\t";
+	        		break;
+	        	}
+	        	
+	        	for(int j=0;j<columns;j++){
+	            	if(m[i][j] == null) {
+	            		str += "\t";
+	            	}
+	            	else{
+	            		str += m[i][j] + "\t";
+	            	}
+	            }
+
+	            System.out.println(str + "|");
+	            str = "|\t";
+	        }
+
+	    }catch(Exception e){System.out.println("Matrix is empty!!");}
 	}
+//	public static void print2D(String[][] array) 
+//	{ 
+//	    // Loop through all rows 
+//	    for (String[] row : array) 
+//
+//	        // converting each row as string 
+//	        // and then printing in a separate line 
+//	        System.out.println(Arrays.toString(row)); 
+//	}
 }
 

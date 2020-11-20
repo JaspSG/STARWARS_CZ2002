@@ -23,7 +23,8 @@ public class StudentUI {
 			System.out.println("4. Check Vacancies Available");
 			System.out.println("5. Change Index Number of Course");
 			System.out.println("6. Swop Index Number with Another Student");
-			System.out.println("7. Exit");
+			System.out.println("7. Print Timetable");
+			System.out.println("8. Exit");
 
 			try {
 				choice = sc.nextInt();
@@ -70,13 +71,17 @@ public class StudentUI {
 				break;
 
 			case 7:
+				stmngr.printSchedule();
+				break;
+				
+			case 8:
 				break;
 
 			default:
 				System.out.println("Please only enter the choices shown\n");
 
 			}
-		} while (choice != 7);
+		} while (choice != 8);
 
 		System.out.println("STARS Exiting..");
 
