@@ -18,7 +18,7 @@ public class CourseManager {
 
 		for (Course course : listOfCourses) {
 			if (course.getCourseID().equals(courseID)) {
-				return course;
+				return course; 
 			}
 		}
 		System.out.println("Course not found");
