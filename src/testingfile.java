@@ -63,6 +63,30 @@ public class testingfile {
 		cz2001.addToIndex(_index1);
 		
 		
+		/*----------------------------------------------------------------------*/
+		
+		Course cz2001_2 = new Course("CZ2001", "Algorithms", "SCSE", 3);
+		Index _index1_2 = new Index("102");
+		Lesson _lesson1_2 =  new Lesson("Lab", 0, 3 , 2);
+		Lesson _lesson2_2= new Lesson("Lecture", 0, 5, 1);
+		Lesson _lesson3_2 = new Lesson("Tutorial", 2,5,1);
+		Lesson _lesson4_2 = new Lesson("Lecture", 4,3,1);
+		
+		_index1_2.addToLessons(_lesson1_2);
+		_index1_2.addToLessons(_lesson2_2);
+		_index1_2.addToLessons(_lesson3_2);
+		_index1_2.addToLessons(_lesson4_2);
+		
+		cz2001_2.addToIndex(_index1_2);
+		
+		//test
+		
+		cz2001.addToIndex(_index1_2);
+		
+		
+		/*----------------------------------------------------------------------*/
+		
+		
 		Course cz2002 = new Course("CZ2002", "Object-Oriented Design", "SCSE", 3);
 		Index _index2 = new Index("200201");
 		Lesson _lesson5 = new Lesson("Lecture", 1,2,1);
@@ -145,7 +169,16 @@ public class testingfile {
 		listofcourses.add(cz2006);
 		listofcourses.add(cz2007);
 		
+		_student1.setCourseEnrolled(listofcourses);
+		_student1.populateSchedule();
+		System.out.println(_student1.checkClash(_index1_2));
+		
+		ArrayList<Course> listofcourses2 = new ArrayList<Course>();
+		listofcourses2.add(cz2001_2);
 
+		
+		_student2.setCourseEnrolled(listofcourses2);
+		_student2.populateSchedule();
 		
 		
 		/* ------------------------- end of Course creation ------------------------- */

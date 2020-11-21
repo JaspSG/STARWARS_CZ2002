@@ -309,13 +309,24 @@ public class StudentManager {
 	        
 	        //insert check for timeslot here
 	        
-	        ArrayList<Index> newIndex = new ArrayList<Index>();
-	        newIndex.add(changeIndex);
-	        currentStudent.getCourseEnrolled().get(courseToChange).setIndex(newIndex);
-	 
-	        saveStudentsFile();
-	        System.out.println(currentStudent.getCourseEnrolled().get(0).getIndex().get(0).getIndexID());
-	        return true;
+	        if(currentStudent.checkClash(changeIndex) == true)
+	        {
+	        	System.out.println("Clash in timetable, change is not possible");
+	        	return false;
+	        }
+	        
+	        else
+	        {
+	        	ArrayList<Index> newIndex = new ArrayList<Index>();
+	 	        newIndex.add(changeIndex);
+	 	        currentStudent.getCourseEnrolled().get(courseToChange).setIndex(newIndex);
+	 	 
+	 	        saveStudentsFile();
+	 	        System.out.println(currentStudent.getCourseEnrolled().get(0).getIndex().get(0).getIndexID());
+	 	        return true;
+	        }
+	        
+	       
 		
 	}
 
@@ -407,19 +418,32 @@ public class StudentManager {
         }
         //insert check for clash here
         
+       
+        
         ArrayList<Index> newOtherStudentIndex = new ArrayList<Index>();
         newOtherStudentIndex = currentStudent.getCourseEnrolled().get(courseToChangeIndex).getIndex();
         
-        currentStudent.getCourseEnrolled().get(courseToChangeIndex).setIndex(otherStudIndex);
-        listOfStudents.get(otherStudent).getCourseEnrolled().get(otherStudentIndex).setIndex(newOtherStudentIndex);
+        if( currentStudent.checkClash(otherStudIndex.get(0)) == true && listOfStudents.get(otherStudent).checkClash(newOtherStudentIndex.get(0)) == true)
+        {
+        	System.out.println(currentStudent.checkClash(otherStudIndex.get(0)));
+        	System.out.println("Clash in timetable, swap is not possible");
+        	return false;
+        }
         
-        saveStudentsFile();
-        System.out.println("Index swapped!");
-        System.out.println(currentStudent.getName() + " " + currentStudent.getCourseEnrolled().get(0).getCourseName() + " " + currentStudent.getCourseEnrolled().get(0).getIndex().get(0).getIndexID());
-        System.out.println(listOfStudents.get(otherStudent).getName() + " " + listOfStudents.get(otherStudent).getCourseEnrolled().get(0).getCourseName() + " " + listOfStudents.get(otherStudent).getCourseEnrolled().get(0).getIndex().get(0).getIndexID());
-        
-     
-        return true; // temp value
+        else
+        {
+        	System.out.println(currentStudent.checkClash(otherStudIndex.get(0)));
+        	
+        	currentStudent.getCourseEnrolled().get(courseToChangeIndex).setIndex(otherStudIndex);
+            listOfStudents.get(otherStudent).getCourseEnrolled().get(otherStudentIndex).setIndex(newOtherStudentIndex);
+            
+            saveStudentsFile();
+            System.out.println("Index swapped!");
+            System.out.println(currentStudent.getName() + " " + currentStudent.getCourseEnrolled().get(0).getCourseName() + " " + currentStudent.getCourseEnrolled().get(0).getIndex().get(0).getIndexID());
+            System.out.println(listOfStudents.get(otherStudent).getName() + " " + listOfStudents.get(otherStudent).getCourseEnrolled().get(0).getCourseName() + " " + listOfStudents.get(otherStudent).getCourseEnrolled().get(0).getIndex().get(0).getIndexID());
+            return true;
+        }
+       
 	}
 	
 //	public boolean checkClash(String courseID, String indexID) {
@@ -456,7 +480,7 @@ public class StudentManager {
 		System.out.println("TEST");
 		
 	    try{
-	    	String[][] schedule = this.currentStudent.getSchedule();
+	    	Course[][] schedule = this.currentStudent.getSchedule();
 	        int rows = schedule.length;
 	        int columns = schedule[0].length;
 	        String str = "|\tMon\tTues\tWed\tThurs\tFri\tSat\tSun";
