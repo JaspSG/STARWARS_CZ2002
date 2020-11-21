@@ -458,7 +458,7 @@ public class AdminUI {
 
 		if (choice == 'Y') {
 			// validation to check if index exists
-			if (Student.findStudent(matriculationNumber).getMatricNumber() == null) {
+			if (StudentManager.findStudentObject(matriculationNumber).getMatricNumber() == null) {
 				// add student
 				boolean result = StudentManager.addNewStudent(newStudent);
 				if (result) {
