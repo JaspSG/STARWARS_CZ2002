@@ -161,4 +161,14 @@ public class Index implements Serializable {
 		}
 		return false;
 	}
+	
+	 @Override public String toString() {
+		    StringBuilder result = new StringBuilder();
+		    String NL = System.getProperty("line.separator");
+		    
+		    
+		    result.append(this.indexID);
+		    
+		    return result.toString();
+	 }
 }

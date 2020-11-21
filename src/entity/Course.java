@@ -119,5 +119,16 @@ public class Course implements Serializable {
 		}
 		return false;
 	}
+	
+	 @Override public String toString() {
+		    StringBuilder result = new StringBuilder();
+		    String NL = System.getProperty("line.separator");
+		    
+		    
+		    result.append(this.courseID);
+		    
+		    return result.toString();
+	 }
+	
 
 }

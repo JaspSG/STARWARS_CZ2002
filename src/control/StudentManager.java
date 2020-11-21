@@ -448,12 +448,13 @@ public class StudentManager {
 	public void printSchedule() {
 		
 		currentStudent.populateSchedule();
+		System.out.println("TEST");
 		
 	    try{
 	    	String[][] schedule = this.currentStudent.getSchedule();
 	        int rows = schedule.length;
 	        int columns = schedule[0].length;
-	        String str = "|\t";
+	        String str = "|\tMon\tTues\tWed\tThurs\tFri\tSat\tSun";
 
 	        for(int i=0;i<rows;i++){
 	        	

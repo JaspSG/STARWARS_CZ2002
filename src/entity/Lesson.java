@@ -47,4 +47,14 @@ public class Lesson implements Serializable {
 	public void setDay(int day) {
 		this.day = day;
 	}
+	
+	 @Override public String toString() {
+		    StringBuilder result = new StringBuilder();
+		    String NL = System.getProperty("line.separator");
+		    
+		    
+		    result.append(this.type);
+		    
+		    return result.toString();
+	 }
 }
