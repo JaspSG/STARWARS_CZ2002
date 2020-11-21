@@ -504,10 +504,11 @@ public class AdminUI {
 		System.out.print("Enter the index's Course ID: ");
 		String courseID = sc.nextLine();
 
-		if (CourseManager.findCourseObject(courseID).getCourseID() != null) {
-			CourseManager.printCourseStudentList(courseID);
+		if (CourseManager.findCourseObject(courseID).getCourseID() == null) {
+			System.out.println("Returning to main UI....\n");
+			return;
 		}
-		System.out.println("Returning to main UI....\n");
+		CourseManager.printCourseStudentList(courseID);
 	}
 
 	public static void updateAccessPeriod(Scanner sc) throws ParseException {
