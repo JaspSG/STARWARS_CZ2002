@@ -208,7 +208,7 @@ public class StudentManager {
 	}
 
 	public void printCourseRegistered() {
-		
+		// HELLO
 		if (currentStudent.getCourseEnrolled() != null) {
 			System.out.println("----------------------------------------------------");
 			System.out.println("|  Course ID |  Course Name                        |");

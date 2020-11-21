@@ -310,8 +310,8 @@ public class CourseManager {
 		}
 		else{
 			System.out.println("There is currently 0 number of student enrolled in " + courseID + " of Index Group " + indexID + " .");
+			return false;
 		}
-
 
 		return true;
 	}
@@ -349,8 +349,8 @@ public class CourseManager {
 		}
 		else{
 			System.out.println("There is currently 0 number of student enrolled in " + courseID + " .");
+			return false;
 		}
-
 		return true;
 	}
 	/* ------ Admin Related Methods: End ------ */
