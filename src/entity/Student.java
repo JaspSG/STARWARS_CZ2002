@@ -2,6 +2,7 @@ package entity;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Calendar;
 
 import static control.fileManager.loadStudentFile;
@@ -13,8 +14,8 @@ public class Student extends User implements Serializable {
 	String nationality;
 	String major;
 	String email;
-	
-	String[][] schedule = new String[11][7]; 
+
+	Course[][] schedule = new Course[11][7];
 
 	char gender;
 	int yearOfStudy;
@@ -28,7 +29,6 @@ public class Student extends User implements Serializable {
 
 	public Student() {
 		super();
-		this.populateSchedule();
 	}
 
 	public Student(String name, String matricNumber, String nationality, String major, char gender, int yearOfStudy,
@@ -42,7 +42,6 @@ public class Student extends User implements Serializable {
 		this.gender = gender;
 		this.yearOfStudy = yearOfStudy;
 		this.email = email;
-		this.populateSchedule();
 	}
 
 	public String getName() {
@@ -141,6 +140,7 @@ public class Student extends User implements Serializable {
 		this.email = email;
 	}
 
+
 //	/**
 //	 * to find a student object based on matriculation number
 //	 *
@@ -159,6 +159,27 @@ public class Student extends User implements Serializable {
 //		Student emptyStudent = new Student();
 //		return emptyStudent;
 //	}
+
+	/**
+	 * to find a student object based on matriculation number
+	 * 
+	 * @param matricNumber unique key of student object
+	 * @return the student object if found, else return null student object
+	 */
+	public static Student findStudent(String matricNumber) {
+		ArrayList<Student> studentArrayList = loadStudentFile(); // load student object to variable
+		for (int i = 0; i < studentArrayList.size(); i++) {
+			if (studentArrayList.get(i).getMatricNumber().equals(matricNumber)) {
+				Student student = studentArrayList.get(i);
+				return student;
+			}
+		}
+		System.out.println("Student not found");
+		Student emptyStudent = new Student();
+		return emptyStudent;
+	}
+
+
 	public boolean accessPeriodValidity() {
 		Calendar now = Calendar.getInstance();
 
@@ -171,40 +192,118 @@ public class Student extends User implements Serializable {
 			return false;
 		}
 	}
-	
-	public String[][] getSchedule() {
+
+	public Course[][] getSchedule() {
 		return schedule;
 	}
 
-	public void setSchedule(String[][] schedule) {
+	public void setSchedule(Course[][] schedule) {
 		this.schedule = schedule;
 	}
-	
+
 	public void populateSchedule() {
-		this.schedule[0][0] = "Mon";
-		this.schedule[0][1] = "Tues";
-		this.schedule[0][2] = "Wed";
-		this.schedule[0][3] = "Thurs";
-		this.schedule[0][4] = "Fri";
-		this.schedule[0][5] = "Sat";
-		this.schedule[0][6] = "Sun";
-		
-		for(Course course: this.courseEnrolled) {
-			ArrayList<Index> _tempindex = course.getIndex();
+//		
+		this.schedule = new Course[schedule.length][schedule[0].length];
+
+		for (Course course : this.courseEnrolled) {
+			ArrayList<Index> tempindex = course.getIndex();
 			
-			for(Index index :_tempindex) {
-				
-				ArrayList<Lesson>_templesson = index.getLessons();
-				
-				for(Lesson lesson: _templesson) {
-					
-					for(int j=lesson.getStartTime(); j<(lesson.getStartTime()+lesson.getDuration());j++ ) {
-					this.schedule[j][lesson.getDay()] = course.getCourseID();
+			for(Index index: tempindex) {
+				ArrayList<Lesson> listoflessons = index.getLessons();
+				for (Lesson lesson : listoflessons) {
+
+					for (int j = lesson.getStartTime(); j < (lesson.getStartTime() + lesson.getDuration()); j++) {
+						this.schedule[j][lesson.getDay()] = course;
 					}
 				}
-				
 			}
+
 		}
+	}
+
+	public boolean checkClash(Index index) {
+
+		ArrayList<Lesson> listoflesson = index.getLessons();
+
+		for (Lesson lesson : listoflesson) {
+
+			int day = lesson.getDay();
+			int start = lesson.getStartTime();
+			int end = lesson.getStartTime() + lesson.getDuration();
+
+			for (int i = start; i < end; i++) {
+				if (this.schedule[i][day] != null) {
+					return true;
+				}
+			}
+
+		}
+		return false;
+	}
+
+	public void printSchedule() {
+		try {
+			int rows = schedule.length;
+			int columns = schedule[0].length;
+			String str = "\tTime\tMon\tTues\tWed\tThurs\tFri\tSat\n|\t";
+
+			for (int i = 0; i < rows; i++) {
+
+				
+				switch (i) {
+				
+				case 0:
+					str += "0800\t";
+					break;
+				case 1:
+					str += "0830\t ";
+					break;
+				case 2:
+					str += "0930\t";
+					break;
+				case 3:
+					str += "1030\t";
+					break;
+				case 4:
+					str += "1130\t";
+					break;
+				case 5:
+					str += "1230\t";
+					break;
+				case 6:
+					str += "1330\t";
+					break;
+				case 7:
+					str += "1430\t";
+					break;
+				case 8:
+					str += "1530\t";
+					break;
+				case 9:
+					str += "1630\t";
+					break;
+				case 10:
+					str += "1730\t";
+					break;
+				}
+//	        	System.out.print(i);
+
+				for (int j = 0; j < columns; j++) {
+					if (schedule[i][j] == null) {
+						str += "\t";
+					} else {
+						str += schedule[i][j] + "\t";
+					}
+				}
+
+				System.out.println(str + "|");
+				str = "|\t";
+			}
+
+		} catch (Exception e) {
+			System.out.println("Matrix is empty!!");
+		}
+
 	}
 
 }
