@@ -250,7 +250,7 @@ public class StudentManager {
 	        {
 	        	if(courseID.equals(courseList.get(j).getCourseID()))
 	        	{
-	        		System.out.println("course found!");
+	        		System.out.println("Course found!");
 	        		courseToChange = j;
 	        		indexList = courseList.get(j).getIndex();
 	        		break;
@@ -294,8 +294,102 @@ public class StudentManager {
 		
 	}
 
-	public boolean swapIndex(Course course, String indexID, Student student) {
-		return true; // temp value
+	public boolean swapIndex() {
+	   Scanner sc = new Scanner(System.in);
+	   
+	     
+	    System.out.println(currentStudent.getName() + " " + currentStudent.getCourseEnrolled().get(0).getCourseName() + " " + currentStudent.getCourseEnrolled().get(0).getIndex().get(0).getIndexID());
+	    
+        System.out.println("Printing list of course available for index swap");
+        for(int i = 0; i < currentStudent.getCourseEnrolled().size();i++)
+        {
+        	 System.out.println(currentStudent.getCourseEnrolled().get(i).getCourseID()+ "\n");
+        }
+        System.out.println("Enter the course that you want to swap index:");
+        String courseID = sc.nextLine(); 
+        
+        ArrayList<Course> list = currentStudent.getCourseEnrolled(); //student course
+        
+        ArrayList<Course> courseList = CourseManager.getListOfCourses();
+        
+        ArrayList<Index> indexList = new ArrayList<Index>();
+        
+        Course courseToChange = new Course();
+        int courseToChangeIndex = 0;
+        for(int j =0; j < courseList.size();j++)
+        {
+        	if(courseID.equals(courseList.get(j).getCourseID()))
+        	{
+        		courseToChangeIndex = j;
+        		courseToChange = courseList.get(j);
+        		indexList = courseList.get(j).getIndex();
+        		break;
+        	}
+        	else {
+        		System.out.println("Course does not exist!");
+        		return false;
+        	}
+        }
+        
+        System.out.println("Printing list of students for index swap");
+        for(int i = 0; i < listOfStudents.size();i++)
+        {
+        	 System.out.println(listOfStudents.get(i).getName()+ "\n");
+        }
+        
+        System.out.println("Enter name of student that you want to swap with: " + "\n");
+        String studentName = sc.nextLine();
+        
+     
+        
+        ArrayList<Index> otherStudIndex = new ArrayList<Index>();
+        //check if student that he wants swap with has a same course to swap with
+        ArrayList<Course> otherStudCourseList  = new ArrayList<Course>();
+        
+        int otherStudent =0;
+        int otherStudentIndex = 0;
+        for (int k = 0; k < listOfStudents.size(); k++)
+        {
+        	
+        	 if(studentName.equals(listOfStudents.get(k).getName()))
+        	 {
+        		 System.out.println("Student Found!");
+        		 otherStudCourseList = listOfStudents.get(k).getCourseEnrolled();
+        		 
+        		 for(int l = 0; l < otherStudCourseList.size();l++)
+        		 {
+        			 if(courseToChange.getCourseID().equals(otherStudCourseList.get(l).getCourseID()))
+        			 {
+        				 otherStudent = k;
+        				 otherStudentIndex = l;
+        				 otherStudIndex = otherStudCourseList.get(l).getIndex();
+        				 System.out.println(listOfStudents.get(k).getName() + " " + listOfStudents.get(k).getCourseEnrolled().get(0).getCourseName() + " " + listOfStudents.get(k).getCourseEnrolled().get(0).getIndex().get(0).getIndexID());
+        				 break;
+        			 }
+        			
+        			 else
+        			 {
+        				 System.out.println(studentName + " does not have this course! ");
+        				 return false;
+        			 }
+        		 }
+
+        	 } 
+        }
+        //insert check for clash here
+        
+        ArrayList<Index> newOtherStudentIndex = new ArrayList<Index>();
+        newOtherStudentIndex = currentStudent.getCourseEnrolled().get(courseToChangeIndex).getIndex();
+        
+        currentStudent.getCourseEnrolled().get(courseToChangeIndex).setIndex(otherStudIndex);
+        listOfStudents.get(otherStudent).getCourseEnrolled().get(otherStudentIndex).setIndex(newOtherStudentIndex);
+        
+        saveStudentsFile();
+        System.out.println(currentStudent.getName() + " " + currentStudent.getCourseEnrolled().get(0).getCourseName() + " " + currentStudent.getCourseEnrolled().get(0).getIndex().get(0).getIndexID());
+        System.out.println(listOfStudents.get(otherStudent).getName() + " " + listOfStudents.get(otherStudent).getCourseEnrolled().get(0).getCourseName() + " " + listOfStudents.get(otherStudent).getCourseEnrolled().get(0).getIndex().get(0).getIndexID());
+        
+     
+        return true; // temp value
 	}
 	
 //	public boolean checkClash(String courseID, String indexID) {
