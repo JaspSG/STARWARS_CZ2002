@@ -458,7 +458,7 @@ public class AdminUI {
 
 		if (choice == 'Y') {
 			// validation to check if index exists
-			if (Student.findStudent(matriculationNumber).getMatricNumber() == null) {
+			if (StudentManager.findStudentObject(matriculationNumber).getMatricNumber() == null) {
 				// add student
 				boolean result = StudentManager.addNewStudent(newStudent);
 				if (result) {
@@ -508,7 +508,9 @@ public class AdminUI {
 			System.out.println("Returning to main UI....\n");
 			return;
 		}
-		CourseManager.printCourseStudentList(courseID);
+		else {
+			CourseManager.printCourseStudentList(courseID);
+		}
 	}
 
 	public static void updateAccessPeriod(Scanner sc) throws ParseException {
