@@ -20,10 +20,13 @@ public class testingfile {
 
 		/* ------------------------- Start of Student ------------------------- */
 		
-		Student _student1 = new Student("Student", "A0000000B", "Singaporean", "SCSE", 'M', 1, "student",
-				password, "wong1173@e.ntu.edu.sg");
+		Student _student1 = new Student("Student", "001", "Singaporean", "SCSE", 'M', 1, "student",
+				password, "cz2002gatsby@gmail.com");
+		Student _student2 = new Student("Student2", "002", "Singaporean", "SCSE", 'F', 1, "student2",
+				password, "cz2002gatsby@gmail.com");
 		
 		listofstudents.add(_student1);
+		listofstudents.add(_student2);
 		
 		/* ------------------------- End of Student ------------------------- */
 		
@@ -119,15 +122,21 @@ public class testingfile {
 		
 		Course cz2007 = new Course("CZ2007", "Database", "SCSE", 3);
 		Index _index6 = new Index("200701");
+		Index _index7 = new Index("200702");
 		Lesson _lesson20 = new Lesson("Lecture", 0,6,1);
 		Lesson _lesson21 = new Lesson("Tutorial", 1,1,1);
 		Lesson _lesson22 = new Lesson("Lecture", 3,5,1);
-		
+		Lesson _lesson23 = new Lesson("Lecture", 0,6,1);
+		Lesson _lesson24 = new Lesson("Tutorial", 1,1,1);
+		Lesson _lesson25 = new Lesson("Lecture", 3,5,1);
 		_index6.addToLessons(_lesson20);
 		_index6.addToLessons(_lesson21);
 		_index6.addToLessons(_lesson22);
-		
+		_index7.addToLessons(_lesson23);
+		_index7.addToLessons(_lesson24);
+		_index7.addToLessons(_lesson25);
 		cz2007.addToIndex(_index6);
+		cz2007.addToIndex(_index7);
 		
 		listofcourses.add(cz2001);
 		listofcourses.add(cz2002);
@@ -194,57 +203,7 @@ public class testingfile {
 //		}
 //		
 		
-		Student tempstud = StudentManager.findStudentObject("A0000000B");
-		ArrayList<Course> tempcourse = new ArrayList<Course>();
-		
-		tempcourse.add(cz2001);
-		tempcourse.add(cz2002);
-		tempcourse.add(cz2003);
 
-		tempcourse.add(cz2005);
-		tempcourse.add(cz2006);
-		tempcourse.add(cz2007);
-		
-		
-		tempstud.setCourseEnrolled(tempcourse);
-		
-		String[][] tempschedule = tempstud.getSchedule();
-		
-		
-		tempschedule[0][0] = "Mon";
-		tempschedule[0][1] = "Tues";
-		tempschedule[0][2] = "Wed";
-		tempschedule[0][3] = "Thurs";
-		tempschedule[0][4] = "Fri";
-		tempschedule[0][5] = "Sat";
-		tempschedule[0][6] = "Sun";
-		
-		
-		
-		for(Course course: tempstud.getCourseEnrolled()) {
-			ArrayList<Index> _tempindex = course.getIndex();
-			
-			for(Index index :_tempindex) {
-				
-				ArrayList<Lesson>_templesson = index.getLessons();
-				
-				for(Lesson lesson: _templesson) {
-					
-					for(int j=lesson.getStartTime(); j<(lesson.getStartTime()+lesson.getDuration());j++ ) {
-					tempschedule[j][lesson.getDay()] = course.getCourseID();
-					}
-				}
-				
-			}
-		}
-		
-//		print2D(tempschedule);
-		
-//		
-//		printMatrix(tempschedule);
-		
-		
-		Student test1 = smngr.findStudentObject("A0000000B");
 		
 	
 
@@ -256,7 +215,7 @@ public class testingfile {
 		fileManager.saveStudentFile(listofstudents); // save student file
 		fileManager.saveCoursesFile(listofcourses); // save student file
 		fileManager.saveAdminFile(listofAdmin); // save admin file
-		
+		System.out.println("File Generated!");
 		
 	
 		
@@ -359,8 +318,8 @@ public class testingfile {
 //		tempindex.removeStudentFromEnrolled(_dummystudent);
 //		tempindex.printStudentsEnrolled();
 
-//		END OF ADDING STUDENTS TESTING
-
+//		END OF ADDING STUDENTS TESTING		Student tempstud = StudentManager.findStudentObject("A0000000B");
+		
 	}
 	public static void printMatrix(String[][] m){
 	    try{

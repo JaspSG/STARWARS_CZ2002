@@ -80,8 +80,8 @@ public class StudentManager {
 
 		System.out.println("Adding Course ID : " + course + " and Index ID : " + indexID);
 		// Searching if course exists
-
-		if (CourseManager.findCourseObject(course).getCourseID() != null) {
+		Course newcourse = CourseManager.findCourseObject(course);
+		if (newcourse.getCourseID() != null) {
 			System.out.println("Course Exists");
 			// Add in a check for wait list
 			ArrayList<Course> enrolledCourses = currentStudent.getCourseEnrolled();
@@ -94,8 +94,15 @@ public class StudentManager {
 
 				}
 				System.out.println("Adding student to course!");
-				cmngr.addStudentToCourse(currentStudent, course, indexID);
-				enrolledCourses.add(CourseManager.findCourseObject(course));
+				if(!cmngr.addStudentToCourse(currentStudent, course, indexID)) {
+					System.out.println("Failed to add student to course!");
+					return false;
+				}
+				Index newindex = newcourse.findIndexObject(indexID);
+				ArrayList<Index> indexlist = new ArrayList<Index>();
+				indexlist.add(newindex);
+				newcourse.setIndex(indexlist);
+				enrolledCourses.add(newcourse);
 				listOfStudents.get(studentIndex).setCourseEnrolled(enrolledCourses);
 				try {
 					MailManager.sendMail(currentStudent.getEmail());
@@ -104,6 +111,11 @@ public class StudentManager {
 					e.printStackTrace();
 				}
 				saveStudentsFile();
+				for(Course course2 : listOfStudents.get(studentIndex).getCourseEnrolled()) {
+					for (Index index2 : course2.getIndex() ) {
+						System.out.println("Index ID of "+ course2.getCourseID() +  " is " + index2.getIndexID());
+					}
+				}
 				System.out.println("Successful!");
 				return true;
 			}
@@ -111,10 +123,18 @@ public class StudentManager {
 			else {
 				// Add student to Course Object
 				System.out.println("Adding student to course!");
-				cmngr.addStudentToCourse(currentStudent, course, indexID);
+				
+				if(!cmngr.addStudentToCourse(currentStudent, course, indexID)) {
+					System.out.println("Failed to add student to course!");
+					return false;
+				}
 				// Add Course to Student Object
 				enrolledCourses = new ArrayList<Course>();
-				enrolledCourses.add(CourseManager.findCourseObject(course));
+				Index newindex = newcourse.findIndexObject(indexID);
+				ArrayList<Index> indexlist = new ArrayList<Index>();
+				indexlist.add(newindex);
+				newcourse.setIndex(indexlist);
+				enrolledCourses.add(newcourse);
 				listOfStudents.get(studentIndex).setCourseEnrolled(enrolledCourses);
 				try {
 					MailManager.sendMail(currentStudent.getEmail());
@@ -124,6 +144,11 @@ public class StudentManager {
 				}
 				// Save students
 				saveStudentsFile();
+				for(Course course2 : listOfStudents.get(studentIndex).getCourseEnrolled()) {
+					for (Index index2 : course2.getIndex() ) {
+						System.out.println("Index ID of "+ course2.getCourseID() +  " is " + index2.getIndexID());
+					}
+				}
 				System.out.println("Successful!");
 				return true;
 
@@ -211,10 +236,10 @@ public class StudentManager {
 		// HELLO
 		if (currentStudent.getCourseEnrolled() != null) {
 			System.out.println("----------------------------------------------------");
-			System.out.println("|  Course ID |  Course Name                        |");
+			System.out.println("|  Course ID |  Course Name    | Index:             |");
 			System.out.println("----------------------------------------------------");
 			for (Course Course : currentStudent.getCourseEnrolled()) {
-				System.out.format("| %-11s| %-36s|\n", Course.getCourseID(), Course.getCourseName());
+				System.out.format("| %-11s| %-36s| %-11s\n", Course.getCourseID(), Course.getCourseName(),Course.getIndex().get(0).getIndexID());
 			}
 		} else {
 			System.out.println("No Courses registered!");
