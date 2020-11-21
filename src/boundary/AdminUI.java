@@ -235,11 +235,11 @@ public class AdminUI {
 				strLessonType = "Laboratory";
 			}
 
-			System.out.println("Enter the lesson's start time in term of HH:MM: ");
+			System.out.println("Enter the lesson's start time: ");
 			int startTime = sc.nextInt();
 			sc.nextLine();
 
-			System.out.println("Enter the lesson's end time in term of HH:MM: ");
+			System.out.println("Enter the lesson's end time: ");
 			int duration = sc.nextInt();
 			sc.nextLine();
 
