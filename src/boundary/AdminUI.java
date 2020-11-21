@@ -508,7 +508,9 @@ public class AdminUI {
 			System.out.println("Returning to main UI....\n");
 			return;
 		}
-		CourseManager.printCourseStudentList(courseID);
+		else {
+			CourseManager.printCourseStudentList(courseID);
+		}
 	}
 
 	public static void updateAccessPeriod(Scanner sc) throws ParseException {
