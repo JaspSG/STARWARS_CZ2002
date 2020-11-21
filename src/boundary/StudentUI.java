@@ -69,6 +69,7 @@ public class StudentUI {
 				break;
 
 			case 6:
+				stmngr.swapIndex();
 				break;
 
 			case 7:
