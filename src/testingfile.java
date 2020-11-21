@@ -48,126 +48,159 @@ public class testingfile {
 		
 		/* ------------------------- Start of Course creation ------------------------- */
 		
-		Course cz2001 = new Course("CZ2001", "Algorithms", "SCSE", 3);
-		Index _index1 = new Index("200101");
-		Lesson _lesson1 =  new Lesson("Lab", 0, 3 , 2);
-		Lesson _lesson2 = new Lesson("Lecture", 0, 5, 1);
-		Lesson _lesson3 = new Lesson("Tutorial", 2,5,1);
-		Lesson _lesson4 = new Lesson("Lecture", 4,3,1);
+//		Course cz2001 = new Course("CZ2001", "Algorithms", "SCSE", 3);
+//		Index _index1 = new Index("200101");
+//		Lesson _lesson1 =  new Lesson("Lab", 0, 3 , 2);
+//		Lesson _lesson2 = new Lesson("Lecture", 0, 5, 1);
+//		Lesson _lesson3 = new Lesson("Tutorial", 2,5,1);
+//		Lesson _lesson4 = new Lesson("Lecture", 4,3,1);
+//		
+//		_index1.addToLessons(_lesson1);
+//		_index1.addToLessons(_lesson2);
+//		_index1.addToLessons(_lesson3);
+//		_index1.addToLessons(_lesson4);
+//		
+//		cz2001.addToIndex(_index1);
 		
-		_index1.addToLessons(_lesson1);
-		_index1.addToLessons(_lesson2);
-		_index1.addToLessons(_lesson3);
-		_index1.addToLessons(_lesson4);
-		
-		cz2001.addToIndex(_index1);
-		
-		
-		/*----------------------------------------------------------------------*/
-		
-		Course cz2001_2 = new Course("CZ2001", "Algorithms", "SCSE", 3);
-		Index _index1_2 = new Index("102");
-		Lesson _lesson1_2 =  new Lesson("Lab", 0, 3 , 2);
-		Lesson _lesson2_2= new Lesson("Lecture", 0, 5, 1);
-		Lesson _lesson3_2 = new Lesson("Tutorial", 2,5,1);
-		Lesson _lesson4_2 = new Lesson("Lecture", 4,3,1);
-		
-		_index1_2.addToLessons(_lesson1_2);
-		_index1_2.addToLessons(_lesson2_2);
-		_index1_2.addToLessons(_lesson3_2);
-		_index1_2.addToLessons(_lesson4_2);
-		
-		cz2001_2.addToIndex(_index1_2);
-		
-		//test
-		
-		cz2001.addToIndex(_index1_2);
-		
-		
-		/*----------------------------------------------------------------------*/
-		
-		
-		Course cz2002 = new Course("CZ2002", "Object-Oriented Design", "SCSE", 3);
-		Index _index2 = new Index("200201");
-		Lesson _lesson5 = new Lesson("Lecture", 1,2,1);
-		Lesson _lesson6 = new Lesson("Lab", 2,3,2);
-		Lesson _lesson7 = new Lesson("Tutorial", 2,8,1);
-		Lesson _lesson8 = new Lesson("Lecture", 4,4,1);
-		
-		_index2.addToLessons(_lesson5);
-		_index2.addToLessons(_lesson6);
-		_index2.addToLessons(_lesson7);
-		_index2.addToLessons(_lesson8);
-		
-		cz2002.addToIndex(_index2);
-		
+//		
+//		/*----------------------------------------------------------------------*/
+//		
+//		Course cz2001_2 = new Course("CZ2001", "Algorithms", "SCSE", 3);
+//		Index _index1_2 = new Index("102");
+//		Lesson _lesson1_2 =  new Lesson("Lab", 0, 3 , 2);
+//		Lesson _lesson2_2= new Lesson("Lecture", 0, 5, 1);
+//		Lesson _lesson3_2 = new Lesson("Tutorial", 2,5,1);
+//		Lesson _lesson4_2 = new Lesson("Lecture", 4,3,1);
+//		
+//		_index1_2.addToLessons(_lesson1_2);
+//		_index1_2.addToLessons(_lesson2_2);
+//		_index1_2.addToLessons(_lesson3_2);
+//		_index1_2.addToLessons(_lesson4_2);
+//		
+//		cz2001_2.addToIndex(_index1_2);
+//		
+//		//test
+//		
+//		cz2001.addToIndex(_index1_2);
+//		
+//		
+//		/*----------------------------------------------------------------------*/
+//		
+//		
+//		Course cz2002 = new Course("CZ2002", "Object-Oriented Design", "SCSE", 3);
+//		Index _index2 = new Index("200201");
+//		Lesson _lesson5 = new Lesson("Lecture", 1,2,1);
+//		Lesson _lesson6 = new Lesson("Lab", 2,3,2);
+//		Lesson _lesson7 = new Lesson("Tutorial", 2,8,1);
+//		Lesson _lesson8 = new Lesson("Lecture", 4,4,1);
+//		
+//		_index2.addToLessons(_lesson5);
+//		_index2.addToLessons(_lesson6);
+//		_index2.addToLessons(_lesson7);
+//		_index2.addToLessons(_lesson8);
+//		
+//		cz2002.addToIndex(_index2);
+		/*--------------------------------cz2003-----------------------*/
 		Course cz2003 = new Course("CZ2003", "Computer Visualisation", "SCSE", 3);
-		Index _index3 = new Index("200301");
-		Lesson _lesson9 = new Lesson("Lab", 0,7,2);
-		Lesson _lesson10 = new Lesson("Tutorial", 1,4,1);
-		Lesson _lesson11 = new Lesson("Lecture", 1,8,1);
-		Lesson _lesson12 = new Lesson("Lecture", 4,7,1);
+		Index _index3_1 = new Index("10128");
+		Lesson _lesson3_1_1 = new Lesson("Lecture", 3,4,1);
+		Lesson _lesson3_1_2 = new Lesson("Lecture", 0,9,1);
+		Lesson _lesson3_1_3 = new Lesson("Tutorial", 4,8,1);
+		Lesson _lesson3_1_4 = new Lesson("Lab", 2,5,2);
 		
-		_index3.addToLessons(_lesson9);
-		_index3.addToLessons(_lesson10);
-		_index3.addToLessons(_lesson11);
-		_index3.addToLessons(_lesson12);
+		_index3_1.addToLessons(_lesson3_1_1);
+		_index3_1.addToLessons(_lesson3_1_2);
+		_index3_1.addToLessons(_lesson3_1_3);
+		_index3_1.addToLessons(_lesson3_1_4);
 		
-		cz2003.addToIndex(_index3);
+		cz2003.addToIndex(_index3_1);
 		
+		/*--------------------------------cz2003-----------------------*/
 		
-		Course cz2005 = new Course("CZ2005", "Operating Systems", "SCSE", 3);
-		Index _index4 = new Index("200501");
-		Lesson _lesson13 = new Lesson("Lab", 1, 5,2);
-		Lesson _lesson14 = new Lesson("Lecture", 1, 5,2);
-		Lesson _lesson141 = new Lesson("Lecture", 3, 2,2);
-		Lesson _lesson15 = new Lesson("Tutorial", 4,6,1);
+		Index _index3_2 = new Index("10129");
+		Lesson _lesson3_2_1 = new Lesson("Lecture", 3,4,1);
+		Lesson _lesson3_2_2 = new Lesson("Lecture", 0,9,1);
+		Lesson _lesson3_2_3 = new Lesson("Tutorial", 2,6,1);
+		Lesson _lesson3_2_4 = new Lesson("Lab", 4,5,2);
 		
-		_index4.addToLessons(_lesson13);
-		_index4.addToLessons(_lesson14);
-		_index4.addToLessons(_lesson141);
-		_index4.addToLessons(_lesson15);
+		_index3_2.addToLessons(_lesson3_2_1);
+		_index3_2.addToLessons(_lesson3_2_2);
+		_index3_2.addToLessons(_lesson3_2_3);
+		_index3_2.addToLessons(_lesson3_2_4);
 		
-		cz2005.addToIndex(_index4);
+		cz2003.addToIndex(_index3_2);
 		
-		Course cz2006 = new Course("CZ2006", "Software Engineering", "SCSE", 3 );
-		Index _index5 = new Index("200501");
-		Lesson _lesson16 = new Lesson("Lecture", 0,2,1);
-		Lesson _lesson17 = new Lesson("Lab", 2,1,2);
-		Lesson _lesson18 = new Lesson("Tutorial", 3,1,1);
-		Lesson _lesson19 = new Lesson("Lecture", 3,6,1);
+		/*--------------------------------cz2004-----------------------*/
+
+
+		Course cz2004 = new Course("CZ2004", "Human Computer Interaction", "SCSE", 3);
+		Index _index4_1= new Index("10140");
+		Lesson _lesson4_1_1 = new Lesson("Lecture", 4, 2,1);
+		Lesson _lesson4_1_2 = new Lesson("Lecture", 1, 6,1);
+		Lesson _lesson4_1_3 = new Lesson("Tutorial", 3, 7,1);
+		Lesson _lesson4_1_4 = new Lesson("Lab", 3,3,2);
 		
-		_index5.addToLessons(_lesson16);
-		_index5.addToLessons(_lesson17);
-		_index5.addToLessons(_lesson18);
-		_index5.addToLessons(_lesson19);
+		_index4_1.addToLessons(_lesson4_1_1);
+		_index4_1.addToLessons(_lesson4_1_2);
+		_index4_1.addToLessons(_lesson4_1_3);
+		_index4_1.addToLessons(_lesson4_1_4);
 		
-		cz2006.addToIndex(_index5);
+		cz2004.addToIndex(_index4_1);
 		
-		Course cz2007 = new Course("CZ2007", "Database", "SCSE", 3);
-		Index _index6 = new Index("200701");
-		Index _index7 = new Index("200702");
-		Lesson _lesson20 = new Lesson("Lecture", 0,6,1);
-		Lesson _lesson21 = new Lesson("Tutorial", 1,1,1);
-		Lesson _lesson22 = new Lesson("Lecture", 3,5,1);
-		Lesson _lesson23 = new Lesson("Lecture", 0,6,1);
-		Lesson _lesson24 = new Lesson("Tutorial", 1,1,1);
-		Lesson _lesson25 = new Lesson("Lecture", 3,5,1);
-		_index6.addToLessons(_lesson20);
-		_index6.addToLessons(_lesson21);
-		_index6.addToLessons(_lesson22);
-		_index7.addToLessons(_lesson23);
-		_index7.addToLessons(_lesson24);
-		_index7.addToLessons(_lesson25);
-		cz2007.addToIndex(_index6);
-		cz2007.addToIndex(_index7);
+		/*--------------------------------cz2004-----------------------*/
+		
+		Index _index4_2= new Index("10141");
+		Lesson _lesson4_2_1 = new Lesson("Lecture", 4,2,1);
+		Lesson _lesson4_2_2 = new Lesson("Lecture", 1, 6,1);
+		Lesson _lesson4_2_3 = new Lesson("Tutorial", 4, 8,1);
+		Lesson _lesson4_2_4 = new Lesson("Lab", 1,3,2);
+		
+		_index4_2.addToLessons(_lesson4_2_1);
+		_index4_2.addToLessons(_lesson4_2_2);
+		_index4_2.addToLessons(_lesson4_2_3);
+		_index4_2.addToLessons(_lesson4_2_4);
+		
+		cz2004.addToIndex(_index4_2);
+		/*------------------------------------------------------------*/
+		
+//		Course cz2006 = new Course("CZ2006", "Software Engineering", "SCSE", 3 );
+//		Index _index5 = new Index("200501");
+//		Lesson _lesson16 = new Lesson("Lecture", 0,2,1);
+//		Lesson _lesson17 = new Lesson("Lab", 2,1,2);
+//		Lesson _lesson18 = new Lesson("Tutorial", 3,1,1);
+//		Lesson _lesson19 = new Lesson("Lecture", 3,6,1);
+//		
+//		_index5.addToLessons(_lesson16);
+//		_index5.addToLessons(_lesson17);
+//		_index5.addToLessons(_lesson18);
+//		_index5.addToLessons(_lesson19);
+//		
+//		cz2006.addToIndex(_index5);
+//		
+//		Course cz2007 = new Course("CZ2007", "Database", "SCSE", 3);
+//		Index _index6 = new Index("200701");
+//		Index _index7 = new Index("200702");
+//		Lesson _lesson20 = new Lesson("Lecture", 0,6,1);
+//		Lesson _lesson21 = new Lesson("Tutorial", 1,1,1);
+//		Lesson _lesson22 = new Lesson("Lecture", 3,5,1);
+//		Lesson _lesson23 = new Lesson("Lecture", 0,6,1);
+//		Lesson _lesson24 = new Lesson("Tutorial", 1,1,1);
+//		Lesson _lesson25 = new Lesson("Lecture", 3,5,1);
+//		_index6.addToLessons(_lesson20);
+//		_index6.addToLessons(_lesson21);
+//		_index6.addToLessons(_lesson22);
+//		_index7.addToLessons(_lesson23);
+//		_index7.addToLessons(_lesson24);
+//		_index7.addToLessons(_lesson25);
+//		cz2007.addToIndex(_index6);
+//		cz2007.addToIndex(_index7);
 		
 		listofcourses.add(cz2001);
 		listofcourses.add(cz2002);
 		listofcourses.add(cz2003);
-		listofcourses.add(cz2005);
-		listofcourses.add(cz2006);
-		listofcourses.add(cz2007);
+		listofcourses.add(cz2004);
+//		listofcourses.add(cz2006);
+//		listofcourses.add(cz2007);
 		
 		_student1.setCourseEnrolled(listofcourses);
 		_student1.populateSchedule();
