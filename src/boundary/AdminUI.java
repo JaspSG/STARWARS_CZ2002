@@ -513,7 +513,7 @@ public class AdminUI {
 		}
 	}
 
-	public static void updateAccessPeriod(Scanner sc) throws ParseException {
+	public static void updateAccessPeriod(Scanner sc) {
 		// initialisation
 		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy/MM/dd");
 		Calendar startCalendar = Calendar.getInstance();
@@ -532,20 +532,20 @@ public class AdminUI {
 
 			System.out.println("Enter the end of the access period (yyyy/MM/dd): ");
 			String endTime = sc.nextLine();
+			try {
+				startCalendar.setTime(simpleDateFormat.parse(startTime));
+				endCalendar.setTime(simpleDateFormat.parse(endTime));
+				// set access period
+				updateStudent.setStartTime(startCalendar);
+				updateStudent.setEndTime(endCalendar);
+				// seek user confirmation
+				// update course
+				StudentManager.updateStudent(updateStudent);
+				System.out.println("Student Access Period Updated. Returning to main menu ...");
 
-			startCalendar.setTime(simpleDateFormat.parse(startTime));
-			endCalendar.setTime(simpleDateFormat.parse(endTime));
-
-			// set access period
-			updateStudent.setStartTime(startCalendar);
-			updateStudent.setEndTime(endCalendar);
-
-			// seek user confirmation
-
-			// update course
-			StudentManager.updateStudent(updateStudent);
-			System.out.println("Student Access Period Updated. Returning to main menu ...");
-
+			} catch (ParseException parseException) {
+				System.out.println("Invalid date format. Returning to main menu...");
+			}
 		} else {
 			System.out.println("Invalid matriculation number. Returning to main menu ...");
 		}
@@ -572,184 +572,4 @@ public class AdminUI {
 
 	}
 	/* End of Admin UI Course Methods */
-
-	/* Start of Admin Logic Course Methods */
-//	/**
-//	 * Adds a new course to the current list of courses
-//	 *
-//	 * @return boolean result indicating if the operation is a success or failure;
-//	 */
-//    public static boolean addCourse(Course newCourse) {
-//        // Load the course object
-//        //ArrayList<Course> courseList = loadCoursesFile();
-//        ArrayList<Course> courseList = CourseManager.getListOfCourses();
-//
-//        // attempt to add the new course
-//        try {
-//            courseList.add(newCourse);
-//            //saveCoursesFile(courseList);
-//            CourseManager.setListOfCourses(courseList);
-//            cmngr.saveCoursesFile();
-//            return true;
-//        }
-//        catch (Exception exception) {
-//            exception.printStackTrace();
-//            return false;
-//        }
-//    }
-//    /**
-//     * To add an index object to the course object based on course ID
-//     * @param courseID The course's courseID that the index to be added
-//     * @param index The index object to be added
-//     * @return boolean result indicating if the operation is a success or failure
-//     */
-//    public static boolean addIndex(String courseID, Index index)
-//    {
-//        // initialise
-//        ArrayList<Index> indexArrayList = new ArrayList<Index>();
-//
-//        // load course file
-//        //ArrayList<Course> courseArrayList = loadCoursesFile(); // load student object to variable
-//        ArrayList<Course> courseArrayList = CourseManager.getListOfCourses();
-//
-//        for(int i = 0; i < courseArrayList.size(); i++)
-//        {
-//            if(courseArrayList.get(i).getCourseID().equals(courseID))
-//            {
-//                courseArrayList.get(i).getIndex().add(index);
-//                /* Solution 2 */
-//                //indexArrayList = courseArrayList.get(i).getIndex();
-//                //indexArrayList.add(index);
-//                //courseArrayList.get(i).setIndex(indexArrayList);
-//            }
-//        }
-//        // save the index
-//        try {
-//            //saveCoursesFile(courseArrayList);
-//            CourseManager.setListOfCourses(courseArrayList);
-//            cmngr.saveCoursesFile();
-//            return true;
-//        }
-//        catch (Exception exception) {
-//            exception.printStackTrace();
-//            return false;
-//        }
-//    }
-//    /**
-//     * Updates an existing course from the current list of courses
-//     * @return boolean result indicating if the operation is a success or failure;
-//     */
-//    public static boolean updateCourse(Course updateCourse) {
-//        // retrieve course object
-//        //ArrayList<Course> courseListUpdate = loadCoursesFile();
-//        ArrayList<Course> courseListUpdate = CourseManager.getListOfCourses();
-//
-//        // find course object based on courseID
-//        for(int i = 0; i < courseListUpdate.size(); i++){
-//            if(courseListUpdate.get(i).getCourseID().equals(updateCourse.getCourseID()))
-//            {
-//                courseListUpdate.set(i, updateCourse);
-//                break;
-//            }
-//        }
-//        // save course file
-//        try {
-//            //saveCoursesFile(courseListUpdate);
-//            CourseManager.setListOfCourses(courseListUpdate);
-//            cmngr.saveCoursesFile();
-//            return true;
-//        }
-//        catch (Exception exception) {
-//            exception.printStackTrace();
-//        }
-//        return false;
-//    }
-
-//    /**
-//     * Adds a new student to the current list of students
-//     * @return boolean result indicating if the operation is a success or failure;
-//     */
-//    public static boolean addStudent(Student student) {
-//        ArrayList<Student> studentList = loadStudentFile(); // load student object to variable
-//
-//        studentList.add(student);
-//
-//        try {
-//            saveStudentFile(studentList);
-//            return true;
-//        }
-//        catch (Exception exception) {
-//            exception.printStackTrace();
-//            return false;
-//        }
-//    }
-//    /**
-//     * Allow admin to display all the students that are enrolled in a specific index number of a course
-//     * @param courseID courseID of the index's parent course
-//     * @param indexID indexID of the index to be printed
-//     * @return boolean result indicating if the operation is a success or failure;
-//     */
-//    public static boolean printIndexStudentList(String courseID, String indexID ) {
-//        //ArrayList<Course> courseArrayList = loadCoursesFile(); // load student object to variable
-//        ArrayList<Course> courseArrayList = CourseManager.getListOfCourses();
-//
-//        ArrayList<Student> studentArrayList = new ArrayList<Student>();
-//
-//        for(int i = 0; i < courseArrayList.size(); i++){
-//            if(courseArrayList.get(i).getCourseID().equals(courseID)){
-//                ArrayList<Index> indexArrayList = courseArrayList.get(i).getIndex();
-//                for(int j = 0; j < indexArrayList.size(); j++){
-//                    if(indexArrayList.get(j).getIndexID().equals(indexID)){
-//                        studentArrayList = indexArrayList.get(j).getStudentsEnrolled();
-//                    }
-//                }
-//            }
-//        }
-//
-//        System.out.println("List of students in the Course " + courseID + " of Index Group " + indexID + ":");
-//        System.out.println("--------------------------------------------------------");
-//        System.out.println("|         Name         |  Gender  |     Nationality    |");
-//        System.out.println("--------------------------------------------------------");
-//
-//        for(int i = 0; i < studentArrayList.size(); i++){
-//            System.out.format("| %-25s| %-11s| %-25s|\n",studentArrayList.get(i).getName(),
-//                    studentArrayList.get(i).getGender(),studentArrayList.get(i).getNationality());
-//        }
-//        return true;
-//    }
-//    /**
-//     * Allow admin to display all the students that are enrolled in a specific course
-//     * @param courseID courseID of the course to be printed
-//     * @return boolean result indicating if the operation is a success or failure;
-//     */
-//    public static boolean printCourseStudentList(String courseID) {
-//        //ArrayList<Course> courseArrayList = loadCoursesFile();
-//        ArrayList<Course> courseArrayList = CourseManager.getListOfCourses();
-//
-//        ArrayList<Student> studentArrayList = new ArrayList<Student>();
-//
-//        for(int i = 0; i < courseArrayList.size(); i++) {
-//            if (courseArrayList.get(i).getCourseID().equals(courseID)) {
-//                ArrayList<Index> indexArrayList = courseArrayList.get(i).getIndex();
-//                for (int j = 0; j < indexArrayList.size(); j++) {
-//                    ArrayList<Student> tempStudentArrayList = indexArrayList.get(j).getStudentsEnrolled();
-//                    studentArrayList.addAll(tempStudentArrayList);
-//                }
-//            }
-//        }
-//
-//        System.out.println("List of students in the Course " + courseID +  ":");
-//        System.out.println("--------------------------------------------------------");
-//        System.out.println("|         Name         |  Gender  |     Nationality    |");
-//        System.out.println("--------------------------------------------------------");
-//
-//        for(int i = 0; i < studentArrayList.size(); i++){
-//            System.out.format("| %-21s| %-9s| %-19s|\n",studentArrayList.get(i).getName(),
-//                    studentArrayList.get(i).getGender(),studentArrayList.get(i).getNationality());
-//        }
-//        return true;
-//    }
-
-	/* End of Admin Logic Course Methods */
-
 }
