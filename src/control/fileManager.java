@@ -9,15 +9,15 @@ import java.util.ArrayList;
 
 public class fileManager {
 
-	final static String outStudentFileName = "StudentFile";
-	final static String outCoursesFileName = "CoursesFile";
-	final static String outAdminFileName = "AdminFile";
+	final static String OUTSTUDENTFILENAME = "StudentFile";
+	final static String OUTCOURSESFILENAME = "CoursesFile";
+	final static String OUTADMINFILENAME = "AdminFile";
 
 	// STUDENT OBJECTS READER
 
 	public static void saveStudentFile(ArrayList<Student> listOfStudent) throws Exception {
 
-		String outputfilepath = String.format("src\\\\%s.ser", outStudentFileName);
+		String outputfilepath = String.format("src\\\\%s.ser", OUTSTUDENTFILENAME);
 
 		FileOutputStream fileOut = new FileOutputStream(outputfilepath);
 		ObjectOutputStream out = new ObjectOutputStream(fileOut);
@@ -29,7 +29,7 @@ public class fileManager {
 	@SuppressWarnings("unchecked")
 	public static ArrayList<Student> loadStudentFile() {
 
-		String filepath = String.format("src\\\\%s.ser", outStudentFileName);
+		String filepath = String.format("src\\\\%s.ser", OUTSTUDENTFILENAME);
 		ArrayList<Student> value = new ArrayList<Student>();
 
 		try {
@@ -54,7 +54,7 @@ public class fileManager {
 
 	public static void saveCoursesFile(ArrayList<Course> listOfCourses) throws Exception {
 
-		String outputfilepath = String.format("src\\\\%s.ser", outCoursesFileName);
+		String outputfilepath = String.format("src\\\\%s.ser", OUTCOURSESFILENAME);
 
 		FileOutputStream fileOut = new FileOutputStream(outputfilepath);
 		ObjectOutputStream out = new ObjectOutputStream(fileOut);
@@ -66,7 +66,7 @@ public class fileManager {
 	@SuppressWarnings("unchecked")
 	public static ArrayList<Course> loadCoursesFile() {
 
-		String filepath = String.format("src\\\\%s.ser", outCoursesFileName);
+		String filepath = String.format("src\\\\%s.ser", OUTCOURSESFILENAME);
 		ArrayList<Course> value = new ArrayList<Course>();
 
 		try {
@@ -91,7 +91,7 @@ public class fileManager {
 
 	public static void saveAdminFile(ArrayList<Admin> listOfAdmin) throws Exception {
 
-		String outputfilepath = String.format("src\\\\%s.ser", outAdminFileName);
+		String outputfilepath = String.format("src\\\\%s.ser", OUTADMINFILENAME);
 
 		FileOutputStream fileOut = new FileOutputStream(outputfilepath);
 		ObjectOutputStream out = new ObjectOutputStream(fileOut);
@@ -103,7 +103,7 @@ public class fileManager {
 	@SuppressWarnings("unchecked")
 	public static ArrayList<Admin> loadAdminFile() {
 
-		String filepath = String.format("src\\\\%s.ser", outAdminFileName);
+		String filepath = String.format("src\\\\%s.ser", OUTADMINFILENAME);
 		ArrayList<Admin> value = new ArrayList<Admin>();
 
 		try {
