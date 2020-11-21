@@ -7,6 +7,7 @@ import entity.Admin;
 import entity.Student;
 import entity.User;
 
+import java.io.Console;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -23,6 +24,8 @@ public class mainApp extends User {
 //	private static ArrayList<Student> studentList = new ArrayList<Student>();
 
 	public static void main(String[] args) throws Exception {
+
+		Console console = System.console();
 
 		int choice = 0;
 		boolean validInput = false;
@@ -50,6 +53,7 @@ public class mainApp extends User {
 				loginID = sc.nextLine();
 				System.out.println("Enter login PW");
 				loginPW = sc.nextLine();
+				//loginPW = new String(console.readPassword("Please enter login password."));
 				ArrayList<Admin> adminList = fileManager.loadAdminFile();
 				for(Admin admin : adminList){
 					if(admin.getLoginID().equals(loginID)){
@@ -70,6 +74,7 @@ public class mainApp extends User {
 				loginID = sc.nextLine();
 				System.out.println("Enter login PW");
 				loginPW = sc.nextLine();
+				//loginPW = new String(console.readPassword("Please enter login password."));
 				StudentManager smngr = new StudentManager();
 				ArrayList<Student> studentList = new ArrayList<Student>();
 				studentList = smngr.getListOfStudents();
