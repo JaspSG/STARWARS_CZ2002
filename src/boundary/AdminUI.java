@@ -501,7 +501,7 @@ public class AdminUI {
 	 * @param sc Scanner to read the user (admin) input
 	 */
 	public static void printCourseStudentListUI(Scanner sc) {
-		System.out.print("Enter the index's Course ID: ");
+		System.out.print("Enter the Course ID: ");
 		String courseID = sc.nextLine();
 
 		if (CourseManager.findCourseObject(courseID).getCourseID() == null) {
