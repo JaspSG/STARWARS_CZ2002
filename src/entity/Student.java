@@ -141,24 +141,24 @@ public class Student extends User implements Serializable {
 		this.email = email;
 	}
 
-	/**
-	 * to find a student object based on matriculation number
-	 * 
-	 * @param matricNumber unique key of student object
-	 * @return the student object if found, else return null student object
-	 */
-	public static Student findStudent(String matricNumber) {
-		ArrayList<Student> studentArrayList = loadStudentFile(); // load student object to variable
-		for (int i = 0; i < studentArrayList.size(); i++) {
-			if (studentArrayList.get(i).getMatricNumber().equals(matricNumber)) {
-				Student student = studentArrayList.get(i);
-				return student;
-			}
-		}
-		System.out.println("Student not found");
-		Student emptyStudent = new Student();
-		return emptyStudent;
-	}
+//	/**
+//	 * to find a student object based on matriculation number
+//	 *
+//	 * @param matricNumber unique key of student object
+//	 * @return the student object if found, else return null student object
+//	 */
+//	public static Student findStudent(String matricNumber) {
+//		ArrayList<Student> studentArrayList = loadStudentFile(); // load student object to variable
+//		for (int i = 0; i < studentArrayList.size(); i++) {
+//			if (studentArrayList.get(i).getMatricNumber().equals(matricNumber)) {
+//				Student student = studentArrayList.get(i);
+//				return student;
+//			}
+//		}
+//		System.out.println("Student not found");
+//		Student emptyStudent = new Student();
+//		return emptyStudent;
+//	}
 	public boolean accessPeriodValidity() {
 		Calendar now = Calendar.getInstance();
 
