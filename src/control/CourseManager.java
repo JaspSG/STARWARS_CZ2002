@@ -299,12 +299,12 @@ public class CourseManager {
 		}
 		if(studentArrayList.size() > 0){
 			System.out.println("List of students in the Course " + courseID + " of Index Group " + indexID + ":");
-			System.out.println("--------------------------------------------------------");
-			System.out.println("|         Name         |  Gender  |     Nationality    |");
-			System.out.println("--------------------------------------------------------");
+			System.out.println("-----------------------------------------------------------------");
+			System.out.format("| %-25s| %-8s| %-25s|\n","Name", "Gender", "Nationality");
+			System.out.println("-----------------------------------------------------------------");
 
 			for (int i = 0; i < studentArrayList.size(); i++) {
-				System.out.format("| %-25s| %-11s| %-25s|\n", studentArrayList.get(i).getName(),
+				System.out.format("| %-25s| %-8s| %-25s|\n", studentArrayList.get(i).getName(),
 						studentArrayList.get(i).getGender(), studentArrayList.get(i).getNationality());
 			}
 		}
@@ -338,12 +338,12 @@ public class CourseManager {
 		}
 		if(studentArrayList.size() > 0){
 			System.out.println("List of students in the Course " + courseID + ":");
-			System.out.println("--------------------------------------------------------");
-			System.out.println("|         Name         |  Gender  |     Nationality    |");
-			System.out.println("--------------------------------------------------------");
+			System.out.println("-----------------------------------------------------------------");
+			System.out.format("| %-25s| %-8s| %-25s|\n","Name", "Gender", "Nationality");
+			System.out.println("-----------------------------------------------------------------");
 
 			for (int i = 0; i < studentArrayList.size(); i++) {
-				System.out.format("| %-25s| %-11s| %-25s|\n", studentArrayList.get(i).getName(),
+				System.out.format("| %-25s| %-8s| %-25s|\n", studentArrayList.get(i).getName(),
 						studentArrayList.get(i).getGender(), studentArrayList.get(i).getNationality());
 			}
 		}
