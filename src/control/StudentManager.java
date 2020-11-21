@@ -6,6 +6,7 @@ import entity.Lesson;
 import entity.Student;
 
 import java.util.ArrayList;
+import java.util.Scanner;
 
 public class StudentManager {
 
@@ -224,8 +225,73 @@ public class StudentManager {
 		System.out.println("Vacancies: " + cmngr.checkVacancy(courseID, indexID) + " Slots");
 	}
 
-	public boolean changeIndex(Course course, String indexID) {
-		return true; // temporary value
+	@SuppressWarnings({ "null", "unused" })
+	public boolean changeIndex() {
+		    Scanner sc = new Scanner(System.in);
+	        
+	        //Student student = new Student();
+	        System.out.println("Printing list of course available for index change");
+	        for(int i = 0; i < currentStudent.getCourseEnrolled().size();i++)
+	        {
+	        	 System.out.println(currentStudent.getCourseEnrolled().get(i).getCourseID()+ "\n");
+	        }
+	        System.out.println("Enter the course that you want to change index:");
+	        String courseID = sc.nextLine().toUpperCase(); 
+	        
+	        ArrayList<Course> list = currentStudent.getCourseEnrolled(); //student course
+	        
+	        ArrayList<Course> courseList = CourseManager.getListOfCourses();
+	        
+	        
+	        ArrayList<Index> indexList = new ArrayList<Index>();
+	        
+	        int courseToChange = 0;
+	        for(int j = 0; j < courseList.size(); j++)
+	        {
+	        	if(courseID.equals(courseList.get(j).getCourseID()))
+	        	{
+	        		System.out.println("course found!");
+	        		courseToChange = j;
+	        		indexList = courseList.get(j).getIndex();
+	        		break;
+	        	}
+	        	else 
+	        	{
+	        		System.out.println("No index available for change!");
+	        		return false;
+	        	}
+	        }
+	        
+	        System.out.println("Printing list of index available for the course" + "\n");
+	        
+	        for (int k = 0; k < indexList.size(); k++)
+	        {
+	        	 System.out.println(indexList.get(k).getIndexID() + "\n");
+	        }
+	        System.out.println("Enter the index that you want to change to: ");
+	        String indexToChange = sc.nextLine();
+	        
+	        Index changeIndex = new Index();
+	        for(int l = 0; l <indexList.size(); l++)
+	        {
+	        	if(indexToChange.equals(indexList.get(l).getIndexID()))
+	        	{
+	        		System.out.println("Index Found!");
+	        		changeIndex = indexList.get(l);
+	        		break;
+	        	}
+	        }
+	        
+	        //insert check for timeslot here
+	        
+	        ArrayList<Index> newIndex = new ArrayList<Index>();
+	        newIndex.add(changeIndex);
+	        currentStudent.getCourseEnrolled().get(courseToChange).setIndex(newIndex);
+	 
+	        saveStudentsFile();
+	        System.out.println(currentStudent.getCourseEnrolled().get(0).getIndex().get(0).getIndexID());
+	        return true;
+		
 	}
 
 	public boolean swapIndex(Course course, String indexID, Student student) {
