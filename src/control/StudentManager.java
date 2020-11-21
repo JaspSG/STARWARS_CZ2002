@@ -334,7 +334,11 @@ public class StudentManager {
         System.out.println("Printing list of students for index swap");
         for(int i = 0; i < listOfStudents.size();i++)
         {
-        	 System.out.println(listOfStudents.get(i).getName()+ "\n");
+        	if(!currentStudent.getName().equals(listOfStudents.get(i).getName()))
+        	{
+        		 System.out.println(listOfStudents.get(i).getName()+ "\n");
+        	}
+        	
         }
         
         System.out.println("Enter name of student that you want to swap with: " + "\n");
@@ -385,6 +389,7 @@ public class StudentManager {
         listOfStudents.get(otherStudent).getCourseEnrolled().get(otherStudentIndex).setIndex(newOtherStudentIndex);
         
         saveStudentsFile();
+        System.out.println("Index swapped!");
         System.out.println(currentStudent.getName() + " " + currentStudent.getCourseEnrolled().get(0).getCourseName() + " " + currentStudent.getCourseEnrolled().get(0).getIndex().get(0).getIndexID());
         System.out.println(listOfStudents.get(otherStudent).getName() + " " + listOfStudents.get(otherStudent).getCourseEnrolled().get(0).getCourseName() + " " + listOfStudents.get(otherStudent).getCourseEnrolled().get(0).getIndex().get(0).getIndexID());
         
