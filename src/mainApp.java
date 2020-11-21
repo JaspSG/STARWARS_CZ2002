@@ -59,15 +59,17 @@ public class mainApp extends User {
 					if(admin.getLoginID().equals(loginID)){
 						if(admin.validateLogin(loginID, loginPW)){
 							AdminUI.mainAdminUI();
+							break;
 						} else {
 							System.out.println("Wrong Login Information");
 							break;
 						}
 					} else {
-						System.out.println("Admin Not Found");
+						System.out.println("Admin not found");
+						break;
 					}
 				}
-
+				//System.out.println("Admin Not Found");
 				break;
 			case 2:
 				System.out.println("Enter login ID");
