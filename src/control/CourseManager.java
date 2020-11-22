@@ -44,7 +44,7 @@ public class CourseManager {
 				for (Index index : templist) {
 					if (index.getIndexID().equals(indexID)) {
 						index.addStudentToEnrolled(Student);
-						System.out.println("Student Added");
+						//System.out.println("Student Added");
 						saveCoursesFile();
 						// MailManager.sendMail(Student.getEmail());
 						return true;
@@ -160,7 +160,6 @@ public class CourseManager {
 				}
 			}
 		}
-		System.out.println("Course not found");
 		return -1;
 	}
 
@@ -207,7 +206,6 @@ public class CourseManager {
 				}
 			}
 		}
-		System.out.println("Index not found");
 		Index emptyIndex = new Index();
 		return emptyIndex;
 	}

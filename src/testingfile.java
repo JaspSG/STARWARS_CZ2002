@@ -36,16 +36,27 @@ public class testingfile {
 				password, "cz2002gatsby@gmail.com");
 
 		//Permanent access time for _student1
-//		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy/MM/dd");
-//		Calendar startCalendar = Calendar.getInstance();
-//		Calendar endCalendar = Calendar.getInstance();
-//		String startTime = "2020/11/20";
-//		String endTime = "2021/11/20";
-//		startCalendar.setTime(simpleDateFormat.parse(startTime));
-//		endCalendar.setTime(simpleDateFormat.parse(endTime));
+		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy/MM/dd");
+		Calendar startCalendar = Calendar.getInstance();
+		Calendar endCalendar = Calendar.getInstance();
+		String startTime = "2020/11/20";
+		String endTime = "2021/11/20";
+		startCalendar.setTime(simpleDateFormat.parse(startTime));
+		endCalendar.setTime(simpleDateFormat.parse(endTime));
 //		
-//		_student1.setStartTime(startCalendar);
-//		_student1.setEndTime(endCalendar);
+		_student1.setStartTime(startCalendar);
+		_student1.setEndTime(endCalendar);
+		
+		SimpleDateFormat simpleDateFormat2 = new SimpleDateFormat("yyyy/MM/dd");
+		Calendar startCalendar2 = Calendar.getInstance();
+		Calendar endCalendar2 = Calendar.getInstance();
+		String startTime2 = "2020/11/20";
+		String endTime2 = "2021/11/20";
+		startCalendar2.setTime(simpleDateFormat2.parse(startTime2));
+		endCalendar2.setTime(simpleDateFormat2.parse(endTime2));
+//		
+		_student2.setStartTime(startCalendar2);
+		_student2.setEndTime(endCalendar2);
 //		
 //		
 //		System.out.println(_student1.getEndTime().toString());
@@ -205,7 +216,7 @@ public class testingfile {
 		_index4_3.addToLessons(_lesson4_2_2);
 		_index4_3.addToLessons(_lesson4_2_3);
 		_index4_3.addToLessons(_lesson4_2_4);
-		_index4_3.setCurrentSize(4);
+		_index4_3.setTotalSize(1);
 		cz2004.addToIndex(_index4_3);
 		/*--------------------------------cz2004-------------------------*/
 		

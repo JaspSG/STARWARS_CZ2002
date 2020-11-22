@@ -358,7 +358,12 @@ public class StudentManager {
 	}
 
 	public void printVacanciesAvaliable(String courseID, String indexID) {
-		System.out.println("Vacancies: " + cmngr.checkVacancy(courseID, indexID) + " Slots");
+		if(cmngr.checkVacancy(courseID, indexID) == -1) {
+			System.out.println("Course does not exist!");
+		}
+		else {
+			System.out.println("Vacancies: " + cmngr.checkVacancy(courseID, indexID) + " Slots");
+		}
 	}
 
 	/**
@@ -399,7 +404,7 @@ public class StudentManager {
 			}
 
 	        //check for timeslot here
-			if(currentStudent.getCourseEnrolled().size() == 1)
+			if(currentStudent.getCourseEnrolled().size() > 1)
 			{
 				 if(currentStudent.checkClash(indexToChange) == true)
 			        {
