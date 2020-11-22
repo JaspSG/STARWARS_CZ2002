@@ -33,7 +33,7 @@ public class AdminManager {
     public static void printListOfCourses(){
         // Print Courses //
         System.out.println("-------------------------------------------------------------");
-        System.out.format("| %-15s| %-40s|\n","CourseID","Course Name");
+        System.out.format("| %-15s| %-40s|\n","Course ID","Course Name");
         System.out.println("-------------------------------------------------------------");
         for(int i = 0; i < CourseManager.listOfCourses.size(); i++){
             System.out.format("| %-15s| %-40s|\n",CourseManager.listOfCourses.get(i).getCourseID(),CourseManager.listOfCourses.get(i).getCourseName());
@@ -44,10 +44,10 @@ public class AdminManager {
     public static void printListOfStudents(){
         // Print Courses //
         System.out.println("-------------------------------------------------------------");
-        System.out.format("| %-15s| %-40s|\n","CourseID","Course Name");
+        System.out.format("| %-48s| %-15s|\n","Student Name","Student Matriculation Number");
         System.out.println("-------------------------------------------------------------");
         for(int i = 0; i < CourseManager.listOfCourses.size(); i++){
-            System.out.format("| %-15s| %-40s|\n",CourseManager.listOfCourses.get(i).getCourseID(),CourseManager.listOfCourses.get(i).getCourseName());
+            System.out.format("| %-48s| %-15s|\n",CourseManager.listOfCourses.get(i).getCourseID(),CourseManager.listOfCourses.get(i).getCourseName());
         }
         // end print courses //
     }
@@ -181,7 +181,6 @@ public class AdminManager {
             System.out.println("Returning to main UI....\n");
             return false;
         }
-
         ArrayList<Student> studentArrayList = new ArrayList<Student>();
         ArrayList<Index> indexArrayList = new ArrayList<Index>();
         for (int i = 0; i < CourseManager.listOfCourses.size(); i++) {
