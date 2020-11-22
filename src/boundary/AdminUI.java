@@ -12,7 +12,7 @@ import java.util.*;
 
 public class AdminUI {
 
-	/* To load Course */
+	/* To load Course */ 
 	static CourseManager cmngr = new CourseManager();
 	static StudentManager stmngr = new StudentManager();
 
