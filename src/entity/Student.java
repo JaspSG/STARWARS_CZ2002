@@ -223,6 +223,7 @@ public class Student extends User implements Serializable {
 
 	public boolean checkClash(Index index) {
 
+		this.populateSchedule();
 		ArrayList<Lesson> listoflesson = index.getLessons();
 
 		for (Lesson lesson : listoflesson) {
@@ -239,71 +240,6 @@ public class Student extends User implements Serializable {
 
 		}
 		return false;
-	}
-
-	public void printSchedule() {
-		try {
-			int rows = schedule.length;
-			int columns = schedule[0].length;
-			String str = "\tTime\tMon\tTues\tWed\tThurs\tFri\tSat\n|\t";
-
-			for (int i = 0; i < rows; i++) {
-
-				
-				switch (i) {
-				
-				case 0:
-					str += "0800\t";
-					break;
-				case 1:
-					str += "0830\t ";
-					break;
-				case 2:
-					str += "0930\t";
-					break;
-				case 3:
-					str += "1030\t";
-					break;
-				case 4:
-					str += "1130\t";
-					break;
-				case 5:
-					str += "1230\t";
-					break;
-				case 6:
-					str += "1330\t";
-					break;
-				case 7:
-					str += "1430\t";
-					break;
-				case 8:
-					str += "1530\t";
-					break;
-				case 9:
-					str += "1630\t";
-					break;
-				case 10:
-					str += "1730\t";
-					break;
-				}
-//	        	System.out.print(i);
-
-				for (int j = 0; j < columns; j++) {
-					if (schedule[i][j] == null) {
-						str += "\t";
-					} else {
-						str += schedule[i][j] + "\t";
-					}
-				}
-
-				System.out.println(str + "|");
-				str = "|\t";
-			}
-
-		} catch (Exception e) {
-			System.out.println("Matrix is empty!!");
-		}
-
 	}
 
 }
