@@ -8,9 +8,6 @@ import java.util.ArrayList;
 
 public class AdminManager {
 
-    Student currentStudent = new Student();
-    CourseManager cmngr = new CourseManager();
-    
     /* ------ Admin Related Methods: Start ------ */
     /**
      * Adds a new course to the current list of courses

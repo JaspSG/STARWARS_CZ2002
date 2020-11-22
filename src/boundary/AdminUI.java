@@ -240,7 +240,7 @@ public class AdminUI {
 			int startTime = sc.nextInt();
 			sc.nextLine();
 
-			System.out.println("Enter the lesson's end time: ");
+			System.out.println("Enter the lesson's duration: ");
 			int duration = sc.nextInt();
 			sc.nextLine();
 
@@ -249,6 +249,8 @@ public class AdminUI {
 					+ "\n4. Thursday \n5. Friday \n6. Saturday ");
 			int lessonDay = sc.nextInt();
 			sc.nextLine();
+
+			// venue
 
 			Lesson lesson = new Lesson(strLessonType, startTime, duration, lessonDay);
 			lessonArrayList.add(lesson);
