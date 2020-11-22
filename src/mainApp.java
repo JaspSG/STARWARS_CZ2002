@@ -78,10 +78,11 @@ public class mainApp extends User {
 				loginPW = sc.nextLine();
 				//loginPW = new String(console.readPassword("Please enter login password."));
 				StudentManager smngr = new StudentManager();
-				ArrayList<Student> studentList = new ArrayList<Student>();
-				studentList = smngr.getListOfStudents();
-
+				ArrayList<Student> studentList = smngr.getListOfStudents();
+				
+				boolean success = false;
 				for (Student student : studentList) {
+					System.out.println(student.getName());
 					if (student.getLoginID().equals(loginID)) {
 						if (student.validateLogin(loginID, loginPW) == true) {
 //							SimpleDateFormat format1 = new SimpleDateFormat("yyyy-MM-dd"); 
@@ -92,6 +93,7 @@ public class mainApp extends User {
 //						    System.out.println(inActiveDate );
 							
 							if(student.accessPeriodValidity()) {
+								success = true;
 								StudentUI.mainStudentUI(loginID);
 								break;
 							}
@@ -105,11 +107,9 @@ public class mainApp extends User {
 						}
 
 					}
-					else {
-						System.out.println("Student Not Found");
-						break;
-					}
 				}
+				if (!success)
+					System.out.println("Student Not Found");
 				break;
 			case 3:
 				break;
