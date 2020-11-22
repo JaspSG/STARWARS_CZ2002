@@ -12,495 +12,493 @@ import java.util.*;
 
 public class AdminUI {
 
-	public static void mainAdminUI() throws NoSuchAlgorithmException, ParseException {
-		Scanner sc = new Scanner(System.in);
+    static Scanner sc = new Scanner(System.in);
 
-		int choice = 0;
-		boolean validInput = false;
+    /* To load Course */
+    static CourseManager cmngr = new CourseManager();
+    static StudentManager stmngr = new StudentManager();
 
-		do {
-			System.out.println("");
-			System.out.println("Welcome, Admin");
-			System.out.println("What do you want to do? ");
-			System.out.println("1. Add a new course");
-			System.out.println("2. Add a new index group");
-			System.out.println("3. Update existing course");
-			System.out.println("4. Check vacancy for an existing index group");
-			System.out.println("5. Add a new student");
-			System.out.println("6. Edit student access periods");
-			System.out.println("7. Print list of students by index group number");
-			System.out.println("8. Print list of students by course");
-			System.out.println("9. Logout");
+    public static void mainAdminUI() throws NoSuchAlgorithmException, ParseException {
 
-			do {
-				try {
-					choice = sc.nextInt();
-					sc.nextLine();
-					if (choice >= 1) {
-						validInput = true;
-					}
-				} catch (InputMismatchException e) {
-					System.out.println("Enter a valid integer!");
-					sc.nextLine();
-				}
-			} while (!validInput);
+        int choice = 0;
+        boolean validInput = false;
 
-			switch (choice) {
-			case 1:
-				System.out.println("1. Add a new course");
-				addCourseUI(sc);
-				break;
-			case 2:
-				System.out.println("2. Add a new index group");
-				addIndexUI(sc, null);
-				break;
-			case 3:
-				System.out.println("3. Update existing course");
-				updateCourseUI(sc);
-				break;
-			case 4:
-				System.out.println("4. Check vacancy for an existing index group");
-				checkVacancyUI(sc);
-				break;
-			case 5:
-				System.out.println("5. Add a new student");
-				addStudentUI(sc);
-				break;
-			case 6:
-				System.out.println("6. Edit student access periods");
-				updateAccessPeriodUI(sc);
-				break;
-			case 7:
-				System.out.println("7. Print list of students by index group number");
-				printIndexStudentListUI(sc);
-				break;
-			case 8:
-				System.out.println("8. Print list of students by course");
-				printCourseStudentListUI(sc);
-				break;
-			default:
-				System.out.println("");
-				break;
-			}
-		} while (choice > 0 && choice < 9);
+        do {
+            System.out.println();
+            System.out.println("Welcome, Admin");
+            System.out.println("What do you want to do? ");
+            System.out.println("1. Add a new course");
+            System.out.println("2. Add a new index group");
+            System.out.println("3. Update existing course");
+            System.out.println("4. Check vacancy for an existing index group");
+            System.out.println("5. Add a new student");
+            System.out.println("6. Edit student access periods");
+            System.out.println("7. Print list of students by index group number");
+            System.out.println("8. Print list of students by course");
+            System.out.println("9. Logout");
 
-	}
+            do {
+                try {
+                    choice = sc.nextInt();
+                    sc.nextLine();
+                    if (choice >= 1) {
+                        validInput = true;
+                    }
+                } catch (InputMismatchException e) {
+                    System.out.println("Enter a valid integer!");
+                    sc.nextLine();
+                }
+            } while (!validInput);
 
-	/* Admin UI Course Methods */
-	/**
-	 * UI to handles the adding of course operation done by admin, adding of index
-	 * to course will be handled by addIndexUI. IndexList will be null atm
-	 * 
-	 * @param sc Scanner to read the user (admin) input
-	 */
-	public static void addCourseUI(Scanner sc) {
-		// Get necessary input from the users: name, id, au and index
-		System.out.println("Enter the new course's ID: ");
-		String courseID = sc.nextLine();
+            switch (choice) {
+                default:
+                    System.out.println();
+                    break;
+                case 1:
+                    System.out.println("1. Add a new course");
+                    addCourseUI(sc);
+                    break;
+                case 2:
+                    System.out.println("2. Add a new index group");
+                    addIndexUI(sc, null);
+                    break;
+                case 3:
+                    System.out.println("3. Update existing course");
+                    updateCourseUI(sc);
+                    break;
+                case 4:
+                    System.out.println("4. Check vacancy for an existing index group");
+                    checkVacancyUI(sc);
+                    break;
+                case 5:
+                    System.out.println("5. Add a new student");
+                    addStudentUI(sc);
+                    break;
+                case 6:
+                    System.out.println("6. Edit student access periods");
+                    updateAccessPeriodUI(sc);
+                    break;
+                case 7:
+                    System.out.println("7. Print list of students by index group number");
+                    printIndexStudentListUI(sc);
+                    break;
+                case 8:
+                    System.out.println("8. Print list of students by course");
+                    printCourseStudentListUI(sc);
+                    break;
+            }
+        } while (choice > 0 && choice < 9);
 
-		System.out.println("Enter the new course's name: ");
-		String courseName = sc.nextLine();
+    }
 
-		System.out.println("Enter the new course's school: ");
-		String courseSchool = sc.nextLine();
-		
-		boolean validInput = false;
-		int courseAu = 0;
-		
-		do {
-			try {
-				System.out.println("Enter the new course's AU: ");
-				courseAu = sc.nextInt();
-				sc.nextLine();
-				validInput = true;
-			}
-			catch(InputMismatchException inputMismatchException) {
-				System.out.println("Invalid input. Please input integers.");
-				sc.nextLine();
-			}
-		} while(!validInput);
+    /* Admin UI Course Methods */
 
-		ArrayList<Index> indexArrayList = new ArrayList<Index>();
+    /**
+     * UI to handles the adding of course operation done by admin, adding of index
+     * to course will be handled by addIndexUI. IndexList will be null atm
+     *
+     * @param sc Scanner to read the user (admin) input
+     */
+    public static void addCourseUI(Scanner sc) {
+        // Get necessary input from the users: name, id, au and index
+        System.out.println("Enter the new course's ID: ");
+        String courseID = sc.nextLine().toUpperCase();
 
-		// load variable to course object >>> set index to null for now >>> call add index later
-		Course newCourse = new Course(courseID, courseName, courseSchool, courseAu, indexArrayList);
+        System.out.println("Enter the new course's name: ");
+        String courseName = sc.nextLine();
 
-		AdminManager.addNewCourse(newCourse);
-	}
+        System.out.println("Enter the new course's school: ");
+        String courseSchool = sc.nextLine();
 
-	/**
-	 * To add a new index object to the course
-	 * 
-	 * @param sc Scanner to read the user (admin) input
-	 */
-	public static void addIndexUI(Scanner sc, String courseID) {
-		// Get necessary input from the users: name, id, au and index
-		// if courseID is null or else use the pass in value
-		if (courseID == null) {
-			System.out.println("Enter the course's ID for the Index Group: ");
-			courseID = sc.nextLine();
-		}
+        int courseAu = 0;
+        boolean validInput = false;
+        do {
+            try {
+                System.out.println("Enter the new course's AU: ");
+                courseAu = sc.nextInt();
+                sc.nextLine();
+                validInput = true;
+            } catch (InputMismatchException inputMismatchException) {
+                System.out.println("Invalid input. Please input integer");
+                sc.nextLine();
+            }
+        } while (!validInput);
 
-			System.out.println("Enter the new Index ID: ");
-			String indexID = sc.nextLine();
+        ArrayList<Index> indexArrayList = new ArrayList<Index>();
 
-			boolean validInput = false;
-			int totalSize = 0;
-			
-			do {
-				try {
-					System.out.println("Enter the total size of the Index Group: ");
-					totalSize = sc.nextInt();
-					sc.nextLine();
-					validInput = true;
-				} catch(InputMismatchException inputMismatchException) {
-					System.out.println("Invalid input. Please input integers!");
-					sc.nextLine();
-				}
-			}while(!validInput);
-			
+        // load variable to course object >>> set index to null for now >>> call add index later
+        Course newCourse = new Course(courseID, courseName, courseSchool, courseAu, indexArrayList);
 
-			// call add lesson UI
-			ArrayList<Lesson> lessonArrayList = createLessonUI(sc);
+        AdminManager.addNewCourse(newCourse);
+    }
 
-			// load variable to index object
-			Index newIndex = new Index(indexID, totalSize, lessonArrayList);
+    /**
+     * To add a new index object to the course
+     *
+     * @param sc Scanner to read the user (admin) input
+     */
+    public static void addIndexUI(Scanner sc, String courseID) {
+        // Get necessary input from the users: name, id, au and index
+        // if courseID is null or else use the pass in value
+        if (courseID == null) {
+            System.out.println("Enter the course's ID for the Index Group: ");
+            courseID = sc.nextLine();
+        }
 
-			AdminManager.addNewIndex(courseID, newIndex);
-	}
+        System.out.println("Enter the new Index ID: ");
+        String indexID = sc.nextLine();
 
-	/**
-	 * to create a form for user to create an array list of lesson
-	 * 
-	 * @param sc Scanner to read the user (admin) input
-	 * @return an array list of lesson that was inputted by the user
-	 */
-	public static ArrayList<Lesson> createLessonUI(Scanner sc) {
-		// create empty array to store
-		ArrayList<Lesson> lessonArrayList = new ArrayList<Lesson>();
+        int totalSize = 0;
+        boolean validInput = false;
+        do {
+            try {
+                System.out.println("Enter the total size of the Index Group: ");
+                totalSize = sc.nextInt();
+                sc.nextLine();
+                validInput = true;
+            } catch (InputMismatchException inputMismatchException) {
+                System.out.println("Invalid input. Please input integer");
+                sc.nextLine();
+            }
+        } while (!validInput);
 
-		System.out.println("Enter the number of lessons (Lecture+Tutorial+Lab) for the Index Group: ");
-		int numberOfLessons = sc.nextInt();
-		sc.nextLine();
+        // call add lesson UI
+        ArrayList<Lesson> lessonArrayList = createLessonUI(sc);
 
-		for (int i = 0; i < numberOfLessons; i++) {
-			// get lesson type
-			System.out.println("\nEnter the lesson's type in term of: \n1. Lecture \n2. Tutorial \n3. Lab: ");
-			boolean checkInput = false;
-			String strLessonType = null;
-			int intLessonType = 0;
-			do {
-				try {
-					intLessonType = sc.nextInt();
-					sc.nextLine();
-					if (intLessonType > 0 && intLessonType < 4) {
-						checkInput = true;
-					}
-				} catch (InputMismatchException inputMismatchException) {
-					System.out.println("Please enter within the correct range!");
-					sc.nextLine();
-				}
-			} while (!checkInput);
-			if (intLessonType == 1) {
-				strLessonType = "Lecture";
-			} else if (intLessonType == 2) {
-				strLessonType = "Tutorial";
-			} else if (intLessonType == 3) {
-				strLessonType = "Laboratory";
-			}
-			
-			System.out.println("Enter the Group Name: ");
-			String groupname = sc.nextLine();
+        // load variable to index object
+        Index newIndex = new Index(indexID, totalSize, lessonArrayList);
 
-			System.out.println("Enter the lesson's start time: ");
-			int startTime = sc.nextInt();
-			sc.nextLine();
+        AdminManager.addNewIndex(courseID, newIndex);
+    }
 
-			System.out.println("Enter the lesson's duration: ");
-			int duration = sc.nextInt();
-			sc.nextLine();
+    /**
+     * to create a form for user to create an array list of lesson
+     *
+     * @param sc Scanner to read the user (admin) input
+     * @return an array list of lesson that was inputted by the user
+     */
+    public static ArrayList<Lesson> createLessonUI(Scanner sc) {
+        // create empty array to store
+        ArrayList<Lesson> lessonArrayList = new ArrayList<Lesson>();
 
-			// get lesson day
-			System.out.println("\nEnter the lesson's day in term of: \n0. Monday \n1. Tuesday \n2. Wednesday:"
-					+ "\n3. Thursday \n4. Friday \n5. Saturday ");
-			int lessonDay = sc.nextInt();
-			sc.nextLine();
+        System.out.println("Enter the number of lessons (Lecture+Tutorial+Lab) for the Index Group: ");
+        int numberOfLessons = sc.nextInt();
+        sc.nextLine();
 
-			// venue
+        for (int i = 0; i < numberOfLessons; i++) {
+            // get lesson type
+            System.out.println("\nEnter the lesson's type in term of: \n1. Lecture \n2. Tutorial \n3. Lab: ");
+            boolean checkInput = false;
+            String strLessonType = null;
+            int intLessonType = 0;
+            do {
+                try {
+                    intLessonType = sc.nextInt();
+                    sc.nextLine();
+                    if (intLessonType > 0 && intLessonType < 4) {
+                        checkInput = true;
+                    }
+                } catch (InputMismatchException inputMismatchException) {
+                    System.out.println("Please enter within the correct range!");
+                    sc.nextLine();
+                }
+            } while (!checkInput);
+            if (intLessonType == 1) {
+                strLessonType = "Lecture";
+            } else if (intLessonType == 2) {
+                strLessonType = "Tutorial";
+            } else if (intLessonType == 3) {
+                strLessonType = "Laboratory";
+            }
 
-			Lesson lesson = new Lesson(strLessonType, groupname, startTime, duration, lessonDay);
-			lessonArrayList.add(lesson);
-		}
-		return lessonArrayList;
-	}
+            System.out.println("Enter the Group Name: ");
+            String groupname = sc.nextLine();
 
-	/**
-	 * To update an existing course
-	 * @param sc Scanner to read the user (admin) input
-	 */
-	public static void updateCourseUI(Scanner sc) {
-		// initialise
-		Course updateCourse = new Course();
+            System.out.println("Enter the lesson's start time: ");
+            int startTime = sc.nextInt();
+            sc.nextLine();
 
-		System.out.println("Enter the Course ID that you wish to update: ");
-		String courseID = sc.nextLine();
+            System.out.println("Enter the lesson's duration: ");
+            int duration = sc.nextInt();
+            sc.nextLine();
 
-		if (CourseManager.findCourseObject(courseID).getCourseID() != null) {
-			updateCourse = CourseManager.findCourseObject(courseID);
-			ArrayList<Index> updateCourseIndex = updateCourse.getIndex();
-			System.out.println("Course record found! Which of the following do you wish to update?: ");
-			System.out.println("1. Update Course's Code");
-			System.out.println("2. Update Course's Name");
-			System.out.println("3. Update Course's School");
-			System.out.println("4. Update Index's Number");
-			System.out.println("5. Update Index's Vacancy");
-			System.out.println("6. Go back to main menu");
+            // get lesson day
+            System.out.println("\nEnter the lesson's day in term of: \n0. Monday \n1. Tuesday \n2. Wednesday:"
+                    + "\n3. Thursday \n4. Friday \n5. Saturday ");
+            int lessonDay = sc.nextInt();
+            sc.nextLine();
 
-			int choice = 0;
-			do {
-				try {
-					choice = sc.nextInt();
-					if (choice > 0 && choice < 7) {
-						sc.nextLine();
-						break;
-					}
-				} catch (InputMismatchException e) {
-					System.out.println("Enter a valid integer!");
-					sc.nextLine();
-				}
-			} while (true);
-			switch (choice) {
-			case 1:
-				System.out.println("Current Course's ID: " + updateCourse.getCourseID());
-				System.out.println("Enter the new Course's ID: ");
-				String updateCourseID = sc.nextLine();
-				updateCourse.setCourseID(updateCourseID);
-				if (AdminManager.updateCourse(updateCourse)) {
-					System.out.println("Course's ID updated. Returning to main UI....\n");
-				} else {
-					System.out.println(
-							"Error updating Course's ID, Please contact IT administrator. Returning to main UI....\n");
-				}
-				break;
-			case 2:
-				System.out.println("Current Course's name: " + updateCourse.getCourseName());
-				System.out.println("Enter the new Course's name: ");
-				String updateCourseName = sc.nextLine();
-				updateCourse.setCourseName(updateCourseName);
-				if (AdminManager.updateCourse(updateCourse)) {
-					System.out.println("Course's name updated. Returning to main UI....\n");
-				} else {
-					System.out.println(
-							"Error updating Course's name, Please contact IT administrator. Returning to main UI....\n");
-				}
-				break;
-			case 3:
-				System.out.println("Current Course's AU Credits");
-				System.out.println("Enter the new Course's AU Credits");
-				int updateAUCredits = 0;
-				do {
-					try {
-						updateAUCredits = sc.nextInt();
-						if (updateAUCredits > 0) {
-							sc.nextLine();
-							break;
-						}
-					} catch (InputMismatchException e) {
-						System.out.println("Enter a valid integer!");
-						sc.nextLine();
-					}
-				} while (true);
-				updateCourse.setAu(updateAUCredits);
-				if (AdminManager.updateCourse(updateCourse)) {
-					System.out.println("Course's AU updated. Returning to main UI....\n");
-				} else {
-					System.out.println(
-							"Error updating Course's AU, Please contact IT administrator. Returning to main UI....\n");
-				}
-			case 4:
-				System.out.println("Current Course's School: " + updateCourse.getCourseSchool());
-				System.out.println("Enter the new Course's School: ");
-				String updateCourseSchool = sc.nextLine();
-				updateCourse.setCourseSchool(updateCourseSchool);
-				if (AdminManager.updateCourse(updateCourse)) {
-					System.out.println("Course's School updated. Returning to main UI....\n");
-				} else {
-					System.out.println(
-							"Error updating Course's School, Please contact IT administrator. Returning to main UI....\n");
-				}
-				break;
-			case 5:
-				addIndexUI(sc, courseID);
-			case 6:
-				// update index number
-				for (int i = 0; i < updateCourseIndex.size(); i++) {
-					System.out.println(updateCourseIndex.get(i).getIndexID());
-				}
-				System.out.println("Enter the index's ID to update the name: ");
-				String indexID = sc.nextLine();
+            // venue
 
-				System.out.println("Enter the new index's ID: ");
-				String updateIndexID = sc.nextLine();
+            Lesson lesson = new Lesson(strLessonType, groupname, startTime, duration, lessonDay);
+            lessonArrayList.add(lesson);
+        }
+        return lessonArrayList;
+    }
 
-				Index updateIndex = CourseManager.findIndex(courseID, indexID);
+    /**
+     * To update an existing course
+     *
+     * @param sc Scanner to read the user (admin) input
+     */
+    public static void updateCourseUI(Scanner sc) {
+        // initialise
+        Course updateCourse = new Course();
 
-				updateIndex.setIndexID(updateIndexID);
+        System.out.println("Enter the Course ID that you wish to update: ");
+        String courseID = sc.nextLine();
 
-				if (AdminManager.updateIndex(updateIndex, courseID, indexID)) {
-					System.out.println("Index's ID updated. Returning to main UI....\n");
-				} else {
-					System.out.println(
-							"Error updating Index's ID, Please contact IT administrator. Returning to main UI....\n");
-				}
-				break;
-			case 7:
-				// update index number vacancy
-				for (int i = 0; i < updateCourseIndex.size(); i++) {
-					System.out.println(updateCourseIndex.get(i).getIndexID());
-				}
-				System.out.println("Enter the index's ID to update the vacancy: ");
-				String indexID2 = sc.nextLine();
+        if (CourseManager.findCourseObject(courseID).getCourseID() != null) {
+            updateCourse = CourseManager.findCourseObject(courseID);
+            ArrayList<Index> updateCourseIndex = updateCourse.getIndex();
+            System.out.println("Course record found! Which of the following do you wish to update?: ");
+            System.out.println("1. Update Course's Code");
+            System.out.println("2. Update Course's Name");
+            System.out.println("3. Update Course's School");
+            System.out.println("4. Update Index's Number");
+            System.out.println("5. Update Index's Vacancy");
+            System.out.println("6. Go back to main menu");
 
-				System.out.println(
-						"Existing total vacancy " + CourseManager.findIndex(courseID, indexID2).getTotalSize());
-				System.out.println("Enter the new vacancy for " + indexID2 + " : ");
-				int updateIndexTotalSize = sc.nextInt();
-				sc.nextLine();
+            int choice = 0;
+            do {
+                try {
+                    choice = sc.nextInt();
+                    if (choice > 0 && choice < 7) {
+                        sc.nextLine();
+                        break;
+                    }
+                } catch (InputMismatchException e) {
+                    System.out.println("Enter a valid integer!");
+                    sc.nextLine();
+                }
+            } while (true);
+            switch (choice) {
+                case 1:
+                    System.out.println("Current Course's ID: " + updateCourse.getCourseID());
+                    System.out.println("Enter the new Course's ID: ");
+                    String updateCourseID = sc.nextLine();
+                    updateCourse.setCourseID(updateCourseID);
+                    if (AdminManager.updateCourse(updateCourse)) {
+                        System.out.println("Course's ID updated. Returning to main UI....\n");
+                    } else {
+                        System.out.println(
+                                "Error updating Course's ID, Please contact IT administrator. Returning to main UI....\n");
+                    }
+                    break;
+                case 2:
+                    System.out.println("Current Course's name: " + updateCourse.getCourseName());
+                    System.out.println("Enter the new Course's name: ");
+                    String updateCourseName = sc.nextLine();
+                    updateCourse.setCourseName(updateCourseName);
+                    if (AdminManager.updateCourse(updateCourse)) {
+                        System.out.println("Course's name updated. Returning to main UI....\n");
+                    } else {
+                        System.out.println(
+                                "Error updating Course's name, Please contact IT administrator. Returning to main UI....\n");
+                    }
+                    break;
+                case 3:
+                    System.out.println("Current Course's AU Credits");
+                    System.out.println("Enter the new Course's AU Credits");
+                    int updateAUCredits = 0;
+                    do {
+                        try {
+                            updateAUCredits = sc.nextInt();
+                            if (updateAUCredits > 0) {
+                                sc.nextLine();
+                                break;
+                            }
+                        } catch (InputMismatchException e) {
+                            System.out.println("Enter a valid integer!");
+                            sc.nextLine();
+                        }
+                    } while (true);
+                    updateCourse.setAu(updateAUCredits);
+                    if (AdminManager.updateCourse(updateCourse)) {
+                        System.out.println("Course's AU updated. Returning to main UI....\n");
+                    } else {
+                        System.out.println(
+                                "Error updating Course's AU, Please contact IT administrator. Returning to main UI....\n");
+                    }
+                    break;
+                case 4:
+                    System.out.println("Current Course's School: " + updateCourse.getCourseSchool());
+                    System.out.println("Enter the new Course's School: ");
+                    String updateCourseSchool = sc.nextLine();
+                    updateCourse.setCourseSchool(updateCourseSchool);
+                    if (AdminManager.updateCourse(updateCourse)) {
+                        System.out.println("Course's School updated. Returning to main UI....\n");
+                    } else {
+                        System.out.println(
+                                "Error updating Course's School, Please contact IT administrator. Returning to main UI....\n");
+                    }
+                    break;
+                case 5:
+                    addIndexUI(sc, courseID);
+                    break;
+                case 6:
+                    // update index number
+                    for (int i = 0; i < updateCourseIndex.size(); i++) {
+                        System.out.println(updateCourseIndex.get(i).getIndexID());
+                    }
+                    System.out.println("Enter the index's ID to update the name: ");
+                    String indexID = sc.nextLine();
 
-				Index updateIndex2 = CourseManager.findIndex(courseID, indexID2);
-				updateIndex2.setTotalSize(updateIndexTotalSize);
+                    System.out.println("Enter the new index's ID: ");
+                    String updateIndexID = sc.nextLine();
 
-				if (AdminManager.updateIndex(updateIndex2, courseID, indexID2)) {
-					System.out.println("Index's vacancy updated. Returning to main UI....\n");
-				} else {
-					System.out.println(
-							"Error updating Index's vacancy, Please contact IT administrator. Returning to main UI....\n");
-				}
+                    Index updateIndex = CourseManager.findIndex(courseID, indexID);
 
-				break;
-			default:
-				System.out.println("Returning to main UI....\n");
-				break;
-			}
-		} else {
-			System.out.println("CourseID do not exists. Returning to main UI....\n");
-		}
-	}
+                    updateIndex.setIndexID(updateIndexID);
 
-	/**
-	 * To create a form for user to add an student
-	 * 
-	 * @param sc Scanner to read the user (admin) input
-	 * @throws NoSuchAlgorithmException This exception is thrown when a particular
-	 *                                  cryptographic algorithm is requested but is
-	 *                                  not available in the environment.
-	 */
-	public static void addStudentUI(Scanner sc) throws NoSuchAlgorithmException {
+                    if (AdminManager.updateIndex(updateIndex, courseID, indexID)) {
+                        System.out.println("Index's ID updated. Returning to main UI....\n");
+                    } else {
+                        System.out.println(
+                                "Error updating Index's ID, Please contact IT administrator. Returning to main UI....\n");
+                    }
+                    break;
+                case 7:
+                    // update index number vacancy
+                    for (int i = 0; i < updateCourseIndex.size(); i++) {
+                        System.out.println(updateCourseIndex.get(i).getIndexID());
+                    }
+                    System.out.println("Enter the index's ID to update the vacancy: ");
+                    String indexID2 = sc.nextLine();
 
-		// get input from the user
-		
-		try {
-			
-		System.out.print("Enter the new student's name: ");
-		String studentName = sc.nextLine();
+                    System.out.println(
+                            "Existing total vacancy " + CourseManager.findIndex(courseID, indexID2).getTotalSize());
+                    System.out.println("Enter the new vacancy for " + indexID2 + " : ");
+                    int updateIndexTotalSize = sc.nextInt();
+                    sc.nextLine();
 
-		System.out.print("Enter the new student's matriculation number: ");
-		String matriculationNumber = sc.nextLine();
+                    Index updateIndex2 = CourseManager.findIndex(courseID, indexID2);
+                    updateIndex2.setTotalSize(updateIndexTotalSize);
 
-		System.out.print("Enter the new student's nationality: ");
-		String nationality = sc.nextLine();
+                    if (AdminManager.updateIndex(updateIndex2, courseID, indexID2)) {
+                        System.out.println("Index's vacancy updated. Returning to main UI....\n");
+                    } else {
+                        System.out.println(
+                                "Error updating Index's vacancy, Please contact IT administrator. Returning to main UI....\n");
+                    }
 
-		System.out.print("Enter the new student's major: ");
-		String major = sc.nextLine();
+                    break;
+                default:
+                    System.out.println("Returning to main UI....\n");
+                    break;
+            }
+        } else {
+            System.out.println("CourseID do not exists. Returning to main UI....\n");
+        }
+    }
 
-		System.out.print("Enter the new student's gender(M/F): ");
-		char gender = sc.next().charAt(0);
+    /**
+     * To create a form for user to add an student
+     *
+     * @param sc Scanner to read the user (admin) input
+     * @throws NoSuchAlgorithmException This exception is thrown when a particular
+     *                                  cryptographic algorithm is requested but is
+     *                                  not available in the environment.
+     */
+    public static void addStudentUI(Scanner sc) throws NoSuchAlgorithmException {
 
-		int yearOfStudy = 0;
-		boolean validInput = false;
-		
-		do {
-			try {
-				System.out.print("Enter the new student's year of study: ");
-				yearOfStudy = sc.nextInt();
-				sc.nextLine();
-				validInput = true;
-			}
-			catch(InputMismatchException inputMismatchException) {
-				System.out.println("Invalid input. Please input integers.");
-				sc.nextLine();
-			}
-		} while(!validInput);
+        // get input from the user
+        System.out.print("Enter the new student's name: ");
+        String studentName = sc.nextLine();
 
-		System.out.print("Enter the new student's loginID: ");
-		String loginId = sc.nextLine();
+        System.out.print("Enter the new student's matriculation number: ");
+        String matriculationNumber = sc.nextLine();
 
-		System.out.print("Enter the new student's loginPW: ");
-		String loginPW = sc.nextLine();
-		loginPW = User.hashString(loginPW);
+        System.out.print("Enter the new student's nationality: ");
+        String nationality = sc.nextLine();
 
-		System.out.print("Enter the new student's email: ");
-		String email = sc.nextLine();
+        System.out.print("Enter the new student's major: ");
+        String major = sc.nextLine();
 
-		// insert object into the file
-		Student newStudent = new Student(studentName, matriculationNumber, nationality, major, gender, yearOfStudy,
-				loginId, loginPW, email);
+        System.out.print("Enter the new student's gender(M/F): ");
+        char gender = sc.next().charAt(0);
 
-		AdminManager.addNewStudent(newStudent);
-		} catch (InputMismatchException inputMismatchexception) {
-			System.out.println("invalid input");
-		}
-	}
+        int yearOfStudy = 0;
+        boolean validInput = false;
+        do {
+            try {
+                System.out.print("Enter the new student's year of study: ");
+                yearOfStudy = sc.nextInt();
+                sc.nextLine();
+                validInput = true;
+            } catch (InputMismatchException inputMismatchException) {
+                System.out.println("Invalid input. Please input integer");
+                sc.nextLine();
+            }
+        } while (!validInput);
 
-	/**
-	 * To create a form to get what index ID (and courseID) that the user(admin)
-	 * want to print
-	 * 
-	 * @param sc Scanner to read the user (admin) input
-	 */
-	public static void printIndexStudentListUI(Scanner sc) {
-		System.out.print("Enter the index's Course ID: ");
-		String courseID = sc.nextLine();
 
-		System.out.print("Enter the index ID: ");
-		String indexID = sc.nextLine();
+        System.out.print("Enter the new student's loginID: ");
+        String loginId = sc.nextLine();
 
-		AdminManager.printIndexStudentList(courseID, indexID);
-	}
+        System.out.print("Enter the new student's loginPW: ");
+        String loginPW = sc.nextLine();
+        loginPW = User.hashString(loginPW);
 
-	/**
-	 * To create a form to get what course ID that the user(admin) want to print
-	 * 
-	 * @param sc Scanner to read the user (admin) input
-	 */
-	public static void printCourseStudentListUI(Scanner sc) {
-		System.out.print("Enter the Course ID: ");
-		String courseID = sc.nextLine().toUpperCase();
+        System.out.print("Enter the new student's email: ");
+        String email = sc.nextLine();
 
-		AdminManager.printCourseStudentList(courseID);
-	}
+        // insert object into the file
+        Student newStudent = new Student(studentName, matriculationNumber, nationality, major, gender, yearOfStudy,
+                loginId, loginPW, email);
 
-	public static void updateAccessPeriodUI(Scanner sc) {
-		System.out.print("Enter the Student's Matriculation Number: ");
-		String matriculationNumber = sc.nextLine();
+        AdminManager.addNewStudent(newStudent);
+    }
 
-		System.out.println("Enter the start of the access period (yyyy/MM/dd): ");
-		String startTime = sc.nextLine();
+    /**
+     * To create a form to get what index ID (and courseID) that the user(admin)
+     * want to print
+     *
+     * @param sc Scanner to read the user (admin) input
+     */
+    public static void printIndexStudentListUI(Scanner sc) {
+        System.out.print("Enter the index's Course ID: ");
+        String courseID = sc.nextLine();
 
-		System.out.println("Enter the end of the access period (yyyy/MM/dd): ");
-		String endTime = sc.nextLine();
+        System.out.print("Enter the index ID: ");
+        String indexID = sc.nextLine();
 
-		AdminManager.updateAccessPeriod(matriculationNumber, startTime, endTime);
-	}
+        AdminManager.printIndexStudentList(courseID, indexID);
+    }
 
-	public static void checkVacancyUI(Scanner sc) {
-		System.out.println("Enter the course Code for the index that you want to check vacancy: ");
-		String courseID = sc.nextLine();
+    /**
+     * To create a form to get what course ID that the user(admin) want to print
+     *
+     * @param sc Scanner to read the user (admin) input
+     */
+    public static void printCourseStudentListUI(Scanner sc) {
+        System.out.print("Enter the Course ID: ");
+        String courseID = sc.nextLine();
 
-		System.out.println("Enter the index Code that you want to check vacancy: ");
-		String indexID = sc.nextLine();
+        AdminManager.printCourseStudentList(courseID);
+    }
 
-		AdminManager.checkVacancy(courseID, indexID);
-	}
-	/* End of Admin UI Course Methods */
+    public static void updateAccessPeriodUI(Scanner sc) {
+        System.out.print("Enter the Student's Matriculation Number: ");
+        String matriculationNumber = sc.nextLine();
+
+        System.out.println("Enter the start of the access period (yyyy/MM/dd): ");
+        String startTime = sc.nextLine();
+
+        System.out.println("Enter the end of the access period (yyyy/MM/dd): ");
+        String endTime = sc.nextLine();
+
+        AdminManager.updateAccessPeriod(matriculationNumber, startTime, endTime);
+    }
+
+    public static void checkVacancyUI(Scanner sc) {
+        System.out.println("Enter the course Code for the index that you want to check vacancy: ");
+        String courseID = sc.nextLine();
+
+        System.out.println("Enter the index Code that you want to check vacancy: ");
+        String indexID = sc.nextLine();
+
+        AdminManager.checkVacancy(courseID, indexID);
+    }
+    /* End of Admin UI Course Methods */
 }
