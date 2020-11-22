@@ -53,22 +53,23 @@ public class mainApp extends User {
 				loginID = sc.nextLine();
 				System.out.println("Enter login PW");
 				loginPW = sc.nextLine();
+				boolean success = false;
 				//loginPW = new String(console.readPassword("Please enter login password."));
 				ArrayList<Admin> adminList = fileManager.loadAdminFile();
 				for(Admin admin : adminList){
 					if(admin.getLoginID().equals(loginID)){
 						if(admin.validateLogin(loginID, loginPW)){
+							success = true;
 							AdminUI.mainAdminUI();
 							break;
 						} else {
 							System.out.println("Wrong Login Information");
-
 						}
-					} else {
-						System.out.println("Admin not found");
 					}
 				}
-				//System.out.println("Admin Not Found");
+				if (!success){
+					System.out.println("Admin Not Found");
+				}
 				break;
 			case 2:
 				System.out.println("Enter login ID");
@@ -106,7 +107,6 @@ public class mainApp extends User {
 					}
 					else {
 						System.out.println("Student Not Found");
-						break;
 					}
 				}
 				break;
