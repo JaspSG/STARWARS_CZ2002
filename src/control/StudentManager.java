@@ -650,16 +650,6 @@ public class StudentManager {
 		}
 	}
 	
-	public void check2004Waitlist() {
-		System.out.println("Checking 2004 waitlist");
-		Course course = CourseManager.findCourseObject("CZ2004");
-		Index cz2004index = course.findIndexObject("10142");
-		
-		for(Student student : cz2004index.getWaitlist()) {
-			System.out.println(student.getName());
-		}
-		return;
-	}
 	public void printStudentWaitlist(){
 		System.out.println("Courses in waitlist : ");
 		for(Course course: currentStudent.getWaitList() ) {
