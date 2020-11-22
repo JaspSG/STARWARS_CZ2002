@@ -68,6 +68,13 @@ public class StudentManager {
 		}
 	}
 
+	public static void printStudentList() {
+		for (Student student : listOfStudents) {
+			System.out.println("Student Name: "+ student.getName() + "\nStudent Matriculation Number: " + student.getMatricNumber() + "\nStudent Gender: " + student.getGender()
+					+ "\nStudent Nationality: " + student.getNationality() + "\n");
+		}
+	}
+
 	public static ArrayList<Student> getListOfStudents() {
 		return listOfStudents;
 	}
