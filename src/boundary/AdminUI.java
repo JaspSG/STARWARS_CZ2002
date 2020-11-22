@@ -507,13 +507,8 @@ public class AdminUI {
 		System.out.print("Enter the Course ID: ");
 		String courseID = sc.nextLine();
 
-		if (CourseManager.findCourseObject(courseID).getCourseID() == null) {
-			System.out.println("Returning to main UI....\n");
-			return;
-		}
-		else {
-			AdminManager.printCourseStudentList(courseID);
-		}
+		AdminManager.printCourseStudentList(courseID);
+
 	}
 
 	public static void updateAccessPeriod(Scanner sc) {

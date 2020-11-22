@@ -16,10 +16,16 @@ import static control.fileManager.saveCoursesFile;
 
 public class Index implements Serializable {
 	/**
-	 * The total size allowed of the specific index group
+	 * The total size allowed of the index group
 	 */
 	private int totalSize = 30;
+	/**
+	 * The current size of the index group based on the number of student enrolled
+	 */
 	private int currentSize = 0;
+	/**
+	 *
+	 */
 	private String indexID;
 	private ArrayList<Student> studentsEnrolled = new ArrayList<Student>();
 	private ArrayList<Lesson> lessons = new ArrayList<Lesson>();

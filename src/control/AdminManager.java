@@ -130,6 +130,12 @@ public class AdminManager {
      */
     public static boolean printCourseStudentList(String courseID) {
         // initialise
+
+        if (CourseManager.findCourseObject(courseID).getCourseID() == null) {
+            System.out.println("Returning to main UI....\n");
+            return false;
+        }
+
         ArrayList<Student> studentArrayList = new ArrayList<Student>();
 
         for (int i = 0; i < CourseManager.listOfCourses.size(); i++) {

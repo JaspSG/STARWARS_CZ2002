@@ -62,11 +62,10 @@ public class mainApp extends User {
 							break;
 						} else {
 							System.out.println("Wrong Login Information");
-							break;
+
 						}
 					} else {
 						System.out.println("Admin not found");
-						break;
 					}
 				}
 				//System.out.println("Admin Not Found");
@@ -97,11 +96,11 @@ public class mainApp extends User {
 							}
 							else{
 								System.out.println("Invalid Access Period Information");
-								break;
+
 							}
 						} else {
 							System.out.println("Wrong Login Information");
-							break;
+
 						}
 
 					}
