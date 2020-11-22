@@ -399,47 +399,108 @@ public class StudentManager {
 			
 			courseList = CourseManager.getListOfCourses();
 			int courseToChange = 0;
-			for(int i = 0; i < courseList.size(); i++)
+			for(int i1 = 0; i1 < courseList.size(); i1++)
 			{
-				if(changeCourseID.equals(courseList.get(i).getCourseID()))
+				if(changeCourseID.equals(courseList.get(i1).getCourseID()))
 				{
-					 courseToChange = i;
-					 indexList = courseList.get(i).getIndex();
+					 courseToChange = i1;
+					 indexList = courseList.get(i1).getIndex();
 					 break;
 				}
 		
 			}
 			
-			for(int i =0; i < indexList.size();i++)
+			for(int i2 =0; i2 < indexList.size();i2++)
 			{
-				if(changeIndex.equals(indexList.get(i).getIndexID()))
+				if(changeIndex.equals(indexList.get(i2).getIndexID()))
 				{
-					indexToChange = indexList.get(i);
+					indexToChange = indexList.get(i2);
 					break;
 				}
 			}
 
 	        //check for timeslot here
-	        if(currentStudent.checkClash(indexToChange) == true)
-	        {
-	        	
-	        	return false;
-	        }
-	        
-	        else
-	        {
-	        	ArrayList<Index> newIndex = new ArrayList<Index>();
+			if(currentStudent.getCourseEnrolled().size() == 1)
+			{
+				 if(currentStudent.checkClash(indexToChange) == true)
+			        {
+			        	
+			        	return false;
+			        }
+			        
+			        else
+			        {
+			        	ArrayList<Index> newIndex = new ArrayList<Index>();
+			 	        newIndex.add(indexToChange);
+			 	        //get old index id
+			 	        String oldIndexID = currentStudent.getCourseEnrolled().get(courseToChange).getIndex().get(0).getIndexID();
+			 	        currentStudent.getCourseEnrolled().get(courseToChange).setIndex(newIndex);
+			 	        saveStudentsFile();
+			 	        //now update the index for students enrolled
+			 	        ArrayList<Course> listOfCourses = CourseManager.getListOfCourses();
+			 	        ArrayList<Index> listOfIndex = new ArrayList<Index>();
+			 	        for (int j = 0; j < listOfCourses.size(); j++)
+			 	        {
+			 	        	if(changeCourseID.equals(listOfCourses.get(j).getCourseID()))
+			 	        	{
+			 	        		
+			 	        		for(int k = 0; k <  listOfCourses.get(j).getIndex().size();k++)
+			 	        		{
+			 	        			if(changeIndex.equals(listOfCourses.get(j).getIndex().get(k).getIndexID()))
+			 	        			{
+			 	        				listOfCourses.get(j).getIndex().get(k).addStudentToEnrolled(currentStudent);
+			 	        				
+			 	        			}
+			 	        			if(oldIndexID.equals(listOfCourses.get(j).getIndex().get(k).getIndexID())) 
+			 	        			{
+			 	        				listOfCourses.get(j).getIndex().get(k).removeStudentFromEnrolled(currentStudent);
+			 	        			}
+			 	        		}
+			 	        		CourseManager.setListOfCourses(listOfCourses);
+			 	        		CourseManager.saveCoursesFile();
+			 	        		break;
+			 	        	}
+			 	        }       
+			 	        return true;
+					}
+			}
+			else
+			{
+				ArrayList<Index> newIndex = new ArrayList<Index>();
 	 	        newIndex.add(indexToChange);
+	 	        //get old index id
+	 	        String oldIndexID = currentStudent.getCourseEnrolled().get(courseToChange).getIndex().get(0).getIndexID();
 	 	        currentStudent.getCourseEnrolled().get(courseToChange).setIndex(newIndex);
 	 	        saveStudentsFile();
+	 	        //now update the index for students enrolled
+	 	        ArrayList<Index> listOfIndex = new ArrayList<Index>();
+	 	        for (int j = 0; j < courseList.size(); j++)
+	 	        {
+	 	        	if(changeCourseID.equals(courseList.get(j).getCourseID()))
+	 	        	{
+	 	        		
+	 	        		for(int k = 0; k <  courseList.get(j).getIndex().size();k++)
+	 	        		{
+	 	        			if(changeIndex.equals(courseList.get(j).getIndex().get(k).getIndexID()))
+	 	        			{
+	 	        				courseList.get(j).getIndex().get(k).addStudentToEnrolled(currentStudent);
+	 	        				
+	 	        			}
+	 	        			if(oldIndexID.equals(courseList.get(j).getIndex().get(k).getIndexID())) 
+	 	        			{
+	 	        				courseList.get(j).getIndex().get(k).removeStudentFromEnrolled(currentStudent);
+	 	        			}
+	 	        		}
+	 	        		CourseManager.setListOfCourses(courseList);
+	 	        		CourseManager.saveCoursesFile();
+	 	        		break;
+	 	        	}
+	 	        }       
 	 	        return true;
-	        }
-	        
-	       
-		
+			}
 	}
 
-	public boolean swapIndex(String swapCourseID, String swapIndex, String swapStudentName) {
+	public boolean swapIndex(String swapCourseID,  String swapStudentName) {
 	   
         //find index object using course
 		Index indexToSwap = new Index();
@@ -447,25 +508,43 @@ public class StudentManager {
 		
 		ArrayList<Index> indexList = new ArrayList<Index>();
 		
+		ArrayList<Index> currentStudentIndexList = new ArrayList<Index>();
+		
+		String swapIndex = "";
+		
+		String newIndex = "";
+		
 		courseList = CourseManager.getListOfCourses();
 		
-		int courseToSwap = 0;
-		for(int i = 0; i < courseList.size(); i++)
+		for(int j = 0; j < currentStudent.getCourseEnrolled().size(); j++)
 		{
-			if(swapCourseID.equals(courseList.get(i).getCourseID()))
+			if(swapCourseID.equals(currentStudent.getCourseEnrolled().get(j).getCourseID()))
 			{
-				 courseToSwap = i;
-				 indexList = courseList.get(i).getIndex();
+				currentStudentIndexList = currentStudent.getCourseEnrolled().get(j).getIndex();
+				swapIndex = currentStudentIndexList.get(0).getIndexID();
+				break;
+			}
+			
+		}
+		
+		int courseToSwap = 0;
+		for(int i3 = 0; i3 < courseList.size(); i3++)
+		{
+			if(swapCourseID.equals(courseList.get(i3).getCourseID()))
+			{
+				 courseToSwap = i3;
+				 indexList = courseList.get(i3).getIndex();
 				 break;
 			}
 	
 		}
 		
-		for(int i =0; i < indexList.size();i++)
+		
+		for(int i4 =0; i4 < indexList.size();i4++)
 		{
-			if(swapIndex.equals(indexList.get(i).getIndexID()))
+			if(swapIndex.equals(indexList.get(i4).getIndexID()))
 			{
-				indexToSwap = indexList.get(i);
+				indexToSwap = indexList.get(i4);
 				break;
 			}
 		}
@@ -476,12 +555,12 @@ public class StudentManager {
 		
 		ArrayList<Course> otherStudentCourseList  = new ArrayList<Course>();
 		
-		for(int i = 0; i < studentList.size();i++)
+		for(int i5 = 0; i5 < studentList.size();i5++)
 		{
-			if(swapStudentName.equals(studentList.get(i).getName()))
+			if(swapStudentName.equals(studentList.get(i5).getName()))
 			{
-				otherStudent = studentList.get(i);
-				otherStudentCourseList = studentList.get(i).getCourseEnrolled();
+				otherStudent = studentList.get(i5);
+				otherStudentCourseList = studentList.get(i5).getCourseEnrolled();
 				break;
 			}
 		}
@@ -490,13 +569,14 @@ public class StudentManager {
 		ArrayList<Index> otherStudentIndex = new ArrayList<Index>();
 		int otherStudentCourse = 0;
 		boolean checkIfSameCourse = false;
-		for(int i =0; i < otherStudentCourseList.size();i++)
+		for(int i6 =0; i6 < otherStudentCourseList.size();i6++)
 		
 		{
-			if(swapCourseID.equals(otherStudentCourseList.get(i)))
+			if(swapCourseID.equals(otherStudentCourseList.get(i6).getCourseID()))
 			{
-				otherStudentCourse = i;
-				otherStudentIndex = otherStudentCourseList.get(i).getIndex();
+				otherStudentCourse = i6;
+				otherStudentIndex = otherStudentCourseList.get(i6).getIndex();
+				newIndex = otherStudentIndex.get(0).getIndexID();
 				checkIfSameCourse = true;
 				break;
 			}
@@ -510,30 +590,146 @@ public class StudentManager {
 		}
 		if(checkIfSameCourse == false)
 		{
-			System.out.println(swapStudentName + "does not have this course!");
+			System.out.println(swapStudentName + " is not taking this course!");
 			return false;
 		}
 		
 		//check for timeslot and get current student's index object
 		
-		if(currentStudent.checkClash(otherStudentIndex.get(0)) == true || otherStudent.checkClash(currentStudent.getCourseEnrolled().get(courseToSwap).getIndex().get(0)) == true)
-        {
-			System.out.println("Clash in timetable, swap is not possible");
-        	return false;
-        }
+		System.out.println(currentStudent.getCourseEnrolled().size());
+		System.out.println(otherStudent.checkClash(currentStudent.getCourseEnrolled().get(courseToSwap).getIndex().get(0)));
 		
-		else
+		//if both students have only 1 course
+		if( currentStudent.getCourseEnrolled().size() == 1 && otherStudent.getCourseEnrolled().size() ==1 )
 		{
+			otherStudent.getCourseEnrolled().get(otherStudentCourse).setIndex(currentStudent.getCourseEnrolled().get(courseToSwap).getIndex()); 
 			currentStudent.getCourseEnrolled().get(courseToSwap).setIndex(otherStudentIndex);
-            otherStudent.getCourseEnrolled().get(otherStudentCourse).setIndex(currentStudent.getCourseEnrolled().get(courseToSwap).getIndex()); 
-            
+
             saveStudentsFile();
+            
+            for(int j = 0; j < courseList.size();j++)
+            {
+            	if(swapCourseID.equals(courseList.get(j).getCourseID()))
+            	{
+            		for(int k = 0; k < courseList.get(j).getIndex().size(); k++)
+            		{
+            			if(swapIndex.equals(courseList.get(j).getIndex().get(k).getIndexID()))
+            			{
+            				courseList.get(j).getIndex().get(k).addStudentToEnrolled(otherStudent);
+            				courseList.get(j).getIndex().get(k).removeStudentFromEnrolled(currentStudent);
+
+            			}
+            			
+            			if(newIndex.equals(courseList.get(j).getIndex().get(k).getIndexID()))
+            			{
+            				courseList.get(j).getIndex().get(k).addStudentToEnrolled(currentStudent);
+            				courseList.get(j).getIndex().get(k).removeStudentFromEnrolled(otherStudent);
+            			}
+            		
+            		}
+            		CourseManager.setListOfCourses(courseList);
+            		CourseManager.saveCoursesFile();
+            		
+            		
+            	}
+        
+            }
+            
             return true;
 			
 		}
+		// if student only has 1 course and other student does not have clash
+		else if (currentStudent.getCourseEnrolled().size() == 1 && otherStudent.checkClash(currentStudent.getCourseEnrolled().get(courseToSwap).getIndex().get(0)) == false )
+		{
+			otherStudent.getCourseEnrolled().get(otherStudentCourse).setIndex(currentStudent.getCourseEnrolled().get(courseToSwap).getIndex()); 
+			currentStudent.getCourseEnrolled().get(courseToSwap).setIndex(otherStudentIndex);
+
+        
+        saveStudentsFile();
+        
+        for(int j = 0; j < courseList.size();j++)
+        {
+        	if(swapCourseID.equals(courseList.get(j).getCourseID()))
+        	{
+        		for(int k = 0; k < courseList.get(j).getIndex().size(); k++)
+        		{
+        			if(swapIndex.equals(courseList.get(j).getIndex().get(k).getIndexID()))
+        			{
+        				courseList.get(j).getIndex().get(k).addStudentToEnrolled(otherStudent);
+        				courseList.get(j).getIndex().get(k).removeStudentFromEnrolled(currentStudent);
+
+        			}
+        			
+        			if(newIndex.equals(courseList.get(j).getIndex().get(k).getIndexID()))
+        			{
+        				courseList.get(j).getIndex().get(k).addStudentToEnrolled(currentStudent);
+        				courseList.get(j).getIndex().get(k).removeStudentFromEnrolled(otherStudent);
+        			}
+        		
+        		}
+        		CourseManager.setListOfCourses(courseList);
+        		CourseManager.saveCoursesFile();
+        		
+        		
+        	}
+    
+        }
+        
+        return true;
+		}
+		else
+			//other scenarios so must check if both have clash or not
+		{
+			if(currentStudent.checkClash(otherStudentIndex.get(0)) == true || otherStudent.checkClash(currentStudent.getCourseEnrolled().get(courseToSwap).getIndex().get(0)) == true)
+	        {
+				System.out.println("Clash in timetable, swap is not possible");
+	        	return false;
+	        }
+			
+			else
+			{
+				otherStudent.getCourseEnrolled().get(otherStudentCourse).setIndex(currentStudent.getCourseEnrolled().get(courseToSwap).getIndex()); 
+				currentStudent.getCourseEnrolled().get(courseToSwap).setIndex(otherStudentIndex);
+
+	            
+	            saveStudentsFile();
+	            
+	            for(int j = 0; j < courseList.size();j++)
+	            {
+	            	if(swapCourseID.equals(courseList.get(j).getCourseID()))
+	            	{
+	            		for(int k = 0; k < courseList.get(j).getIndex().size(); k++)
+	            		{
+	            			if(swapIndex.equals(courseList.get(j).getIndex().get(k).getIndexID()))
+	            			{
+	            				courseList.get(j).getIndex().get(k).addStudentToEnrolled(otherStudent);
+	            				courseList.get(j).getIndex().get(k).removeStudentFromEnrolled(currentStudent);
+
+	            			}
+	            			
+	            			if(newIndex.equals(courseList.get(j).getIndex().get(k).getIndexID()))
+	            			{
+	            				courseList.get(j).getIndex().get(k).addStudentToEnrolled(currentStudent);
+	            				courseList.get(j).getIndex().get(k).removeStudentFromEnrolled(otherStudent);
+	            			}
+	            		
+	            		}
+	            		CourseManager.setListOfCourses(courseList);
+	            		CourseManager.saveCoursesFile();
+	            	
+	            		
+	            	}
+	        
+	            }
+	            
+	            return true;
+				
+			}
+		}
+		}
 		
-       
-	}
+
+
 	
 //	public boolean checkClash(String courseID, String indexID) {
 //		//check if current student timetable clash with new incoming course

@@ -72,9 +72,9 @@ public class StudentUI {
 			case 5:
 				Student currentStudent = stmngr.findCurrentStudent();
 				System.out.println("Printing list of course available for index change");
-				for(int i = 0; i < currentStudent.getCourseEnrolled().size();i++)
+				for(int i1 = 0; i1 < currentStudent.getCourseEnrolled().size();i1++)
 				{
-					 System.out.println(currentStudent.getCourseEnrolled().get(i).getCourseID()+ "\n");
+					 System.out.println(currentStudent.getCourseEnrolled().get(i1).getCourseID()+ "\n");
 		        }
 				System.out.println("Enter the course that you want to change index:");
 		        String changeCourseID = sc.nextLine().toUpperCase();
@@ -82,9 +82,9 @@ public class StudentUI {
 		        
 		        //check if course entered is valid
 		        boolean checkCourseEntered = false;
-		        for(int i = 0; i < currentStudent.getCourseEnrolled().size();i++ )
+		        for(int i1 = 0; i1 < currentStudent.getCourseEnrolled().size();i1++ )
 		        {
-		        	if(changeCourseID.equals(currentStudent.getCourseEnrolled().get(i).getCourseID()))
+		        	if(changeCourseID.equals(currentStudent.getCourseEnrolled().get(i1).getCourseID()))
 		        	{
 		        		checkCourseEntered = true;
 		        		break;
@@ -117,11 +117,11 @@ public class StudentUI {
 //		    	   }
 //		       }
 //		       
-		       for(int  i = 0; i < courseList.size(); i++)
+		       for(int  i2 = 0; i2 < courseList.size(); i2++)
 		        {
-		        	if(changeCourseID.equals(courseList.get(i).getCourseID()))
+		        	if(changeCourseID.equals(courseList.get(i2).getCourseID()))
 		        	{
-		        		indexList = courseList.get(i).getIndex();
+		        		indexList = courseList.get(i2).getIndex();
 		        		System.out.println(indexList.size());
 		        		break;
 		        	}
@@ -131,10 +131,10 @@ public class StudentUI {
 		        System.out.println("Printing list of index available for the course" + "\n");
 		        
 		        System.out.println(indexList.size());
-		        for (int i = 0; i < indexList.size(); i++)
+		        for (int i3 = 0; i3 < indexList.size(); i3++)
 		        {
 		        	 
-		        	 System.out.println(indexList.get(i).getIndexID() + "\n");
+		        	 System.out.println(indexList.get(i3).getIndexID() + "\n");
 		        	 
 		        }
 		        
@@ -155,9 +155,9 @@ public class StudentUI {
 			case 6:
 				Student currentStudentSwap = stmngr.findCurrentStudent();
 				System.out.println("Printing list of course available for index swap");
-				for(int i = 0; i < currentStudentSwap.getCourseEnrolled().size();i++)
+				for(int j1 = 0; j1< currentStudentSwap.getCourseEnrolled().size();j1++)
 				{
-					 System.out.println(currentStudentSwap.getCourseEnrolled().get(i).getCourseID()+ "\n");
+					 System.out.println(currentStudentSwap.getCourseEnrolled().get(j1).getCourseID()+ "\n");
 		        }
 				System.out.println("Enter the course that you want to swap index:");
 		        String swapCourseID = sc.nextLine().toUpperCase();
@@ -165,9 +165,9 @@ public class StudentUI {
 		        
 		        //check if course entered is valid
 		        boolean checkCourseEnteredSwap = false;
-		        for(int i = 0; i < currentStudentSwap.getCourseEnrolled().size();i++ )
+		        for(int j2 = 0; j2 < currentStudentSwap.getCourseEnrolled().size();j2++ )
 		        {
-		        	if(swapCourseID.equals(currentStudentSwap.getCourseEnrolled().get(i).getCourseID()))
+		        	if(swapCourseID.equals(currentStudentSwap.getCourseEnrolled().get(j2).getCourseID()))
 		        	{
 		        		checkCourseEnteredSwap = true;
 		        		break;
@@ -183,40 +183,16 @@ public class StudentUI {
 		        	System.out.println("Invalid Course Entered!");
 		        	break;
 		        }
-		        
-		       //course entered is valid, now we get index available for change
-		       ArrayList<Course> courseListSwap = new ArrayList<Course>();
-		       ArrayList<Index> indexListSwap = new ArrayList<Index>();
-		       courseListSwap = CourseManager.getListOfCourses();
-		       
-		       for(int  i = 0; i < courseListSwap.size(); i++)
-		        {
-		        	if(swapCourseID.equals(courseListSwap.get(i).getCourseID()))
-		        	{
-		        		indexListSwap = courseListSwap.get(i).getIndex();
-		        		break;
-		        	}
-		      
-		        }
-		       
-		        System.out.println("Printing list of index available for the course" + "\n");
-		        
-		        for (int i = 0; i < indexListSwap.size(); i++)
-		        {
-		        	 System.out.println(indexListSwap.get(i).getIndexID() + "\n");
-		        }
-		        
-		        System.out.println("Enter the index that you want to swap: ");
-		        String indexToSwap = sc.nextLine();
+
 		        
 		        //ask who does he want to swap with
 		        ArrayList<Student> listOfStudents = StudentManager.getListOfStudents();
 		        System.out.println("Printing list of students for index swap");
-		        for(int i = 0; i < listOfStudents.size();i++)
+		        for(int j5 = 0; j5 < listOfStudents.size();j5++)
 		        {
-		        	if(!currentStudentSwap.getName().equals(listOfStudents.get(i).getName()))
+		        	if(!currentStudentSwap.getName().equals(listOfStudents.get(j5).getName()))
 		        	{
-		        		 System.out.println(listOfStudents.get(i).getName()+ "\n");
+		        		 System.out.println(listOfStudents.get(j5).getName()+ "\n");
 		        	}
 		        	
 		        }
@@ -225,7 +201,7 @@ public class StudentUI {
 		        String studentNameSwap = sc.nextLine();
 		        
 		   
-				boolean checkSwapSuccess = stmngr.swapIndex(swapCourseID, indexToSwap, studentNameSwap);
+				boolean checkSwapSuccess = stmngr.swapIndex(swapCourseID,  studentNameSwap);
 				if(checkSwapSuccess == true)
 				{
 					System.out.println("Index swapped");
