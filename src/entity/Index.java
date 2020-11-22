@@ -1,3 +1,9 @@
+/**
+ * Represents a Index Group of a Course Object which a Student can take
+ * @author Quah Dian Wei
+ * @version 1.0
+ * @since 2020/10/08
+ */
 package entity;
 
 import java.io.Serializable;
@@ -9,8 +15,17 @@ import static control.fileManager.loadCoursesFile;
 import static control.fileManager.saveCoursesFile;
 
 public class Index implements Serializable {
+	/**
+	 * The total size allowed of the index group
+	 */
 	private int totalSize = 30;
+	/**
+	 * The current size of the index group based on the number of student enrolled
+	 */
 	private int currentSize = 0;
+	/**
+	 *
+	 */
 	private String indexID;
 	private ArrayList<Student> studentsEnrolled = new ArrayList<Student>();
 	private ArrayList<Lesson> lessons = new ArrayList<Lesson>();

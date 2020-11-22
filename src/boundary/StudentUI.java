@@ -20,7 +20,7 @@ public class StudentUI {
 		Scanner sc = new Scanner(System.in);
 
 		do {
-
+			
 			System.out.println("Welcome Student\nPlease Select one of functions:");
 			System.out.println("1. Add Course");
 			System.out.println("2. Drop Course");
