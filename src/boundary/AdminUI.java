@@ -100,7 +100,6 @@ public class AdminUI {
 	 */
 	public static void addCourseUI(Scanner sc) {
 		// Get necessary input from the users: name, id, au and index
-		try {
 			System.out.println("Enter the new course's ID: ");
 			String courseID = sc.nextLine();
 
@@ -110,9 +109,19 @@ public class AdminUI {
 			System.out.println("Enter the new course's school: ");
 			String courseSchool = sc.nextLine();
 
-			System.out.println("Enter the new course's AU: ");
-			int courseAu = sc.nextInt();
-			sc.nextLine();
+		int courseAu = 0;
+		boolean validInput = false;
+		do{
+			try{
+				System.out.println("Enter the new course's AU: ");
+				courseAu = sc.nextInt();
+				sc.nextLine();
+				validInput = true;
+			} catch(InputMismatchException inputMismatchException){
+				System.out.println("Invalid input. Please input integer");
+				sc.nextLine();
+			}
+		}while(!validInput);
 
 			ArrayList<Index> indexArrayList = new ArrayList<Index>();
 
@@ -120,11 +129,6 @@ public class AdminUI {
 			Course newCourse = new Course(courseID, courseName, courseSchool, courseAu, indexArrayList);
 
 			AdminManager.addNewCourse(newCourse);
-
-		} catch (InputMismatchException inputMismatchException){
-			System.out.println("Invalid input. Returning to main UI");
-			sc.nextLine();
-		}
 	}
 
 	/**
@@ -385,46 +389,53 @@ public class AdminUI {
 	 *                                  not available in the environment.
 	 */
 	public static void addStudentUI(Scanner sc) throws NoSuchAlgorithmException {
-		try {
-			// get input from the user
-			System.out.print("Enter the new student's name: ");
-			String studentName = sc.nextLine();
 
-			System.out.print("Enter the new student's matriculation number: ");
-			String matriculationNumber = sc.nextLine();
+		// get input from the user
+		System.out.print("Enter the new student's name: ");
+		String studentName = sc.nextLine();
 
-			System.out.print("Enter the new student's nationality: ");
-			String nationality = sc.nextLine();
+		System.out.print("Enter the new student's matriculation number: ");
+		String matriculationNumber = sc.nextLine();
 
-			System.out.print("Enter the new student's major: ");
-			String major = sc.nextLine();
+		System.out.print("Enter the new student's nationality: ");
+		String nationality = sc.nextLine();
 
-			System.out.print("Enter the new student's gender(M/F): ");
-			char gender = sc.next().charAt(0);
+		System.out.print("Enter the new student's major: ");
+		String major = sc.nextLine();
 
-			System.out.print("Enter the new student's year of study: ");
-			int yearOfStudy = sc.nextInt();
-			sc.nextLine();
+		System.out.print("Enter the new student's gender(M/F): ");
+		char gender = sc.next().charAt(0);
 
-			System.out.print("Enter the new student's loginID: ");
-			String loginId = sc.nextLine();
+		int yearOfStudy = 0;
+		boolean validInput = false;
+		do{
+			try{
+				System.out.print("Enter the new student's year of study: ");
+				yearOfStudy = sc.nextInt();
+				sc.nextLine();
+				validInput = true;
+			} catch(InputMismatchException inputMismatchException){
+				System.out.println("Invalid input. Please input integer");
+				sc.nextLine();
+			}
+		}while(!validInput);
 
-			System.out.print("Enter the new student's loginPW: ");
-			String loginPW = sc.nextLine();
-			loginPW = User.hashString(loginPW);
 
-			System.out.print("Enter the new student's email: ");
-			String email = sc.nextLine();
+		System.out.print("Enter the new student's loginID: ");
+		String loginId = sc.nextLine();
 
-			// insert object into the file
-			Student newStudent = new Student(studentName, matriculationNumber, nationality, major, gender, yearOfStudy,
-					loginId, loginPW, email);
+		System.out.print("Enter the new student's loginPW: ");
+		String loginPW = sc.nextLine();
+		loginPW = User.hashString(loginPW);
 
-			AdminManager.addNewStudent(newStudent);
-		} catch(InputMismatchException inputMismatchException){
-			System.out.println("Invalid input. Returning to main UI...");
-			sc.nextLine();
-		}
+		System.out.print("Enter the new student's email: ");
+		String email = sc.nextLine();
+
+		// insert object into the file
+		Student newStudent = new Student(studentName, matriculationNumber, nationality, major, gender, yearOfStudy,
+				loginId, loginPW, email);
+
+		AdminManager.addNewStudent(newStudent);
 	}
 
 	/**
