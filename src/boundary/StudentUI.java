@@ -106,11 +106,23 @@ public class StudentUI {
 		       ArrayList<Index> indexList = new ArrayList<Index>();
 		       courseList = CourseManager.getListOfCourses();
 		       
+//		       for(int i = 0; i < courseList.size();i++)
+//		       {
+//		    	   ArrayList<Index> test = new ArrayList<Index>();
+//		    	   test = courseList.get(i).getIndex();
+//		    	   System.out.println(courseList.get(i).getCourseID());
+//		    	   for(int j = 0; j < test.size();j++)
+//		    	   {
+//		    		   System.out.println(test.get(j).getIndexID());
+//		    	   }
+//		       }
+//		       
 		       for(int  i = 0; i < courseList.size(); i++)
 		        {
 		        	if(changeCourseID.equals(courseList.get(i).getCourseID()))
 		        	{
 		        		indexList = courseList.get(i).getIndex();
+		        		System.out.println(indexList.size());
 		        		break;
 		        	}
 		      
@@ -118,9 +130,12 @@ public class StudentUI {
 		       
 		        System.out.println("Printing list of index available for the course" + "\n");
 		        
+		        System.out.println(indexList.size());
 		        for (int i = 0; i < indexList.size(); i++)
 		        {
+		        	 
 		        	 System.out.println(indexList.get(i).getIndexID() + "\n");
+		        	 
 		        }
 		        
 		        System.out.println("Enter the index that you want to change to: ");
