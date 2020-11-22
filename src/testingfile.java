@@ -36,16 +36,16 @@ public class testingfile {
 				password, "cz2002gatsby@gmail.com");
 
 		//Permanent access time for _student1
-		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy/MM/dd");
-		Calendar startCalendar = Calendar.getInstance();
-		Calendar endCalendar = Calendar.getInstance();
-		String startTime = "2020/11/20";
-		String endTime = "2021/11/20";
-		startCalendar.setTime(simpleDateFormat.parse(startTime));
-		endCalendar.setTime(simpleDateFormat.parse(endTime));
-		
-		_student1.setStartTime(startCalendar);
-		_student1.setEndTime(endCalendar);
+//		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy/MM/dd");
+//		Calendar startCalendar = Calendar.getInstance();
+//		Calendar endCalendar = Calendar.getInstance();
+//		String startTime = "2020/11/20";
+//		String endTime = "2021/11/20";
+//		startCalendar.setTime(simpleDateFormat.parse(startTime));
+//		endCalendar.setTime(simpleDateFormat.parse(endTime));
+//		
+//		_student1.setStartTime(startCalendar);
+//		_student1.setEndTime(endCalendar);
 //		
 //		
 //		System.out.println(_student1.getEndTime().toString());

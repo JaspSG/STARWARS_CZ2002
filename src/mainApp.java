@@ -29,16 +29,17 @@ public class mainApp {
 		Console console = System.console();
 
 		int choice = 0;
-		boolean validInput = false;
+
 		Scanner sc = new Scanner(System.in);
 		do {
+			boolean validInput = false;
 			System.out.println(
 					"Enter 1 for Admin, 2 for Student, 3 to exit");
 			do {
 				try {
 					choice = sc.nextInt();
 					sc.nextLine();
-					if (choice >= 1) {
+					if (choice >= 1 && choice<=3) {
 						validInput = true;
 					}
 				} catch (InputMismatchException e) {
@@ -59,9 +60,6 @@ public class mainApp {
 				if(logincontrol_admin.validateUser() == true) {
 					AdminUI.mainAdminUI();
 				}
-				else{
-					System.out.println("Wrong Login Information");
-				}
 				break;
 			case 2:
 				System.out.println("Enter login ID");
@@ -72,10 +70,6 @@ public class mainApp {
 				LoginController logincontrol_student = new LoginController(choice,loginID,loginPW);
 				if(logincontrol_student.validateUser() == true) {
 					StudentUI.mainStudentUI(loginID);
-				}
-				
-				else{
-					System.out.println("Wrong Login Information");
 				}
 				break;
 			case 3:
