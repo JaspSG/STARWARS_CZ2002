@@ -25,32 +25,14 @@ public class AdminManager {
 
         CourseManager.listOfCourses.add(newCourse);
         CourseManager.saveCoursesFile();
-
+        CourseManager.printCourseList();
         System.out.println("Course record created. Returning to main UI....\n");
         return true;
     }
 
-    public static void printListOfCourses(){
-        // Print Courses //
-        System.out.println("-------------------------------------------------------------");
-        System.out.format("| %-15s| %-40s|\n","Course ID","Course Name");
-        System.out.println("-------------------------------------------------------------");
-        for(int i = 0; i < CourseManager.listOfCourses.size(); i++){
-            System.out.format("| %-15s| %-40s|\n",CourseManager.listOfCourses.get(i).getCourseID(),CourseManager.listOfCourses.get(i).getCourseName());
-        }
-        // end print courses //
-    }
 
-    public static void printListOfStudents(){
-        // Print Courses //
-        System.out.println("-------------------------------------------------------------");
-        System.out.format("| %-48s| %-15s|\n","Student Name","Student Matriculation Number");
-        System.out.println("-------------------------------------------------------------");
-        for(int i = 0; i < CourseManager.listOfCourses.size(); i++){
-            System.out.format("| %-48s| %-15s|\n",CourseManager.listOfCourses.get(i).getCourseID(),CourseManager.listOfCourses.get(i).getCourseName());
-        }
-        // end print courses //
-    }
+
+
 
     /**
      * To add an index object to the course object based on course ID
@@ -78,6 +60,7 @@ public class AdminManager {
             }
         }
         CourseManager.saveCoursesFile();
+
         return true;
     }
 
@@ -137,15 +120,11 @@ public class AdminManager {
         }
 
         ArrayList<Student> studentArrayList = new ArrayList<Student>();
+        ArrayList<Index> indexArrayList = CourseManager.findIndexGroup(courseID);
 
-        for (int i = 0; i < CourseManager.listOfCourses.size(); i++) {
-            if (CourseManager.listOfCourses.get(i).getCourseID().equals(courseID)) {
-                ArrayList<Index> indexArrayList = CourseManager.listOfCourses.get(i).getIndex();
-                for (int j = 0; j < indexArrayList.size(); j++) {
-                    if (indexArrayList.get(j).getIndexID().equals(indexID)) {
-                        studentArrayList = indexArrayList.get(j).getStudentsEnrolled();
-                    }
-                }
+        for (int j = 0; j < indexArrayList.size(); j++) {
+            if (indexArrayList.get(j).getIndexID().equals(indexID)) {
+                studentArrayList = indexArrayList.get(j).getStudentsEnrolled();
             }
         }
         if(studentArrayList.size() > 0){
@@ -182,13 +161,8 @@ public class AdminManager {
             return false;
         }
         ArrayList<Student> studentArrayList = new ArrayList<Student>();
-        ArrayList<Index> indexArrayList = new ArrayList<Index>();
-        for (int i = 0; i < CourseManager.listOfCourses.size(); i++) {
-            if (CourseManager.listOfCourses.get(i).getCourseID().equals(courseID)) {
-                indexArrayList = CourseManager.listOfCourses.get(i).getIndex();
-                break;
-            }
-        }
+        ArrayList<Index> indexArrayList = CourseManager.findIndexGroup(courseID);
+
         for (int j = 0; j < indexArrayList.size(); j++) {
             ArrayList<Student> tempStudentArrayList = indexArrayList.get(j).getStudentsEnrolled();
             studentArrayList.addAll(tempStudentArrayList);
@@ -226,6 +200,7 @@ public class AdminManager {
 
         StudentManager.listOfStudents.add(student);
         StudentManager.saveStudentsFile();
+        StudentManager.printStudentList();
         System.out.println("Student record created. Returning to main UI....\n");
         return true;
     }
