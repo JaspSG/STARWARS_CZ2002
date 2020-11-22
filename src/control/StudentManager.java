@@ -61,7 +61,7 @@ public class StudentManager {
 		}
 	}
 
-	public static ArrayList<Student> getListOfStudents() {
+	public ArrayList<Student> getListOfStudents() {
 		return listOfStudents;
 	}
 
