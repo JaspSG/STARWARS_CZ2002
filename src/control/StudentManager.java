@@ -103,6 +103,15 @@ public class StudentManager {
 				waitlist = true;
 				
 			}
+			ArrayList<Course> tempWaitList = currentStudent.getWaitList();
+			if(tempWaitList!=null) {
+				for(Course courseinWaitlist : tempWaitList) {
+					if (courseinWaitlist.getCourseID().equals(course)) {
+						System.out.println("Already in waitlist for this course!");
+						return false;
+					}
+				}
+			}
 			ArrayList<Course> enrolledCourses = currentStudent.getCourseEnrolled();
 			
 			if (enrolledCourses != null) {
@@ -378,8 +387,6 @@ public class StudentManager {
 
 	public void printCourseRegistered() {
 		// HELLO
-		this.printStudentWaitlist();
-		this.check2004Waitlist();
 		if (currentStudent.getCourseEnrolled() != null) {
 			System.out.println("----------------------------------------------------");
 			System.out.println("|  Course ID |  Course Name    | Index:             |");
@@ -670,15 +677,20 @@ public class StudentManager {
 			
 			if(student.getMatricNumber().equals(nextstudent.getMatricNumber())) {
 				StudentManager stmngr = new StudentManager(student.getLoginID());
+				
+				if(!stmngr.dropCourse(course)) {
+					System.out.println("Failed to drop course!");
+					return;
+				}
 				if(!stmngr.addCourse(course, indexID)) {
 					System.out.println("Failed to add student!");
 					return;
 				}
-				System.out.println("Dropping Student "+ student.getName() + " from waitlist!");
-				cmngr.removeStudentFromWaitlist(course,indexID);
-				ArrayList<Course> tempWaitlist = student.getWaitList();
-				tempWaitlist.remove(updatingcourse);
-				listOfStudents.get(studentind).setWaitList(tempWaitlist);
+//				System.out.println("Dropping Student "+ student.getName() + " from waitlist!");
+//				cmngr.removeStudentFromWaitlist(course,indexID);
+//				ArrayList<Course> tempWaitlist = student.getWaitList();
+//				tempWaitlist.remove(updatingcourse);
+//				listOfStudents.get(studentind).setWaitList(tempWaitlist);
 			}
 			studentind++;
 		}
