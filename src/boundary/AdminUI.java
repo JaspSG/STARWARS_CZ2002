@@ -192,7 +192,6 @@ public class AdminUI {
 			
 			System.out.println("Enter the Group Name: ");
 			String groupname = sc.nextLine();
-			sc.nextLine();
 
 			System.out.println("Enter the lesson's start time: ");
 			int startTime = sc.nextInt();

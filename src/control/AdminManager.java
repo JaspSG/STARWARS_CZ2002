@@ -261,7 +261,7 @@ public class AdminManager {
             int result = CourseManager.checkVacancy(courseID, indexID);
 
             if (result != -1) {
-                System.out.println("The number of available slot for " + indexID + " is " + result + "/" + index.getIndexID() + " .");
+                System.out.println("The number of available slot for " + indexID + " is " + result + "/" + index.getTotalSize() + " .");
             } else {
                 System.out.println("There is no vacancy for " + indexID + " .");
             }
