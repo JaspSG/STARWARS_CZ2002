@@ -6,6 +6,12 @@ import javax.mail.internet.MimeMessage;
 import java.util.Properties;
 
 public class MailManager {
+	
+	/***
+	 * This function sends email out to a student
+	 * @param recepient The email of the recipient
+	 * @throws Exception To inform if email fails to send
+	 */
 	public static void sendMail(String recepient) throws Exception {
 		System.out.println("Sending email...");
 		Properties properties = new Properties();
@@ -29,12 +35,19 @@ public class MailManager {
 		Transport.send(message);
 		System.out.println("Message sent successfully!");
 	}
+	/***
+	 * This function crafts the email message to be sent to a student's email address
+	 * @param session
+	 * @param myAccountEmail This is email of the sender
+	 * @param recepient This is the student's email
+	 * @return Returns an email message to be sent 
+	 */
 	private static Message prepareMessage(Session session, String myAccountEmail, String recepient) {
 		try {
 			Message message = new MimeMessage(session);
 			message.setFrom(new InternetAddress(myAccountEmail));
 			message.setRecipient(Message.RecipientType.TO, new InternetAddress(recepient));
-			message.setSubject("You have been enroll into the course.");
+			message.setSubject("You have been enrolled into the course.");
 			message.setText("Dear student, you have been added in the course.");
 			return message;
 		} catch(Exception ex) {

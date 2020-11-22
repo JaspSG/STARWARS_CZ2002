@@ -20,6 +20,11 @@ public class StudentManager {
 		listOfStudents = fileManager.loadStudentFile();
 
 	}
+	
+	/***
+	 * Constructor for the StudentManager class
+	 * @param loginID
+	 */
 
 	public StudentManager(String loginID) {
 		listOfStudents = fileManager.loadStudentFile();
@@ -33,6 +38,10 @@ public class StudentManager {
 		//System.out.println("The index is : "+studentIndex);
 
 	}
+	/***
+	 *  Constructor for the StudentManager class
+	 * @param index
+	 */
 
 	public StudentManager(int index) {
 		listOfStudents = fileManager.loadStudentFile();
@@ -40,11 +49,21 @@ public class StudentManager {
 		currentStudent = listOfStudents.get(studentIndex);
 
 	}
+	/***
+	 * 
+	 * @return The current student that is logged in now
+	 */
 	
 	public Student findCurrentStudent()
 	{
 		return this.currentStudent;
 	}
+	
+	/***
+	 * This function finds a student based on his matriculation number
+	 * @param matriculationNumber
+	 * @return Returns the student that is found, empty if student is not found
+	 */
 
 	public static Student findStudentObject(String matriculationNumber) {
 		for (Student student : listOfStudents) {
@@ -57,7 +76,10 @@ public class StudentManager {
 		return emptyStudent; // NOTE: STRING DEFAULTS ARE NULL, HENCE TO CHECK IF OBJECT IS EMPTY, CHECK IF A
 		// STRING ATTRIBUTE IS NULL
 	}
-
+	
+	/***
+	 * This function saves the stores the current information of all the students into a file
+	 */
 	public static void saveStudentsFile() {
 		
 		try {
@@ -67,6 +89,9 @@ public class StudentManager {
 			e.printStackTrace();
 		}
 	}
+	/***
+	 * This function prints out details of all the students
+	 */
 
 	public static void printStudentList() {
 		for (Student student : listOfStudents) {
@@ -74,10 +99,20 @@ public class StudentManager {
 					+ "\nStudent Nationality: " + student.getNationality() + "\n");
 		}
 	}
+	
+	/***
+	 * This function returns a list of all the students and their data
+	 * @return Returns the list of students
+	 */
 
 	public static ArrayList<Student> getListOfStudents() {
 		return listOfStudents;
 	}
+	
+	/***
+	 * This function updates the current list of students with a new list of students taken in
+	 * @param listOfStudents 
+	 */
 
 	public static void setListOfStudents(ArrayList<Student> listOfStudents) {
 		StudentManager.listOfStudents = listOfStudents;
@@ -286,6 +321,13 @@ public class StudentManager {
 //			}
 //		}
 //		System.out.println("Course does not exist!");
+	
+	
+	/***
+	 * This function drops a course from a student of his choosing
+	 * @param course The ID of the course
+	 * @return Returns a true/false to let us know if the function is successful.
+	 */
 
 	public boolean dropCourse(String course) {
 
@@ -342,7 +384,9 @@ public class StudentManager {
 	}
 
 	
-	
+	/***
+	 * This function prints out the courses registed for a student
+	 */
 	public void printCourseRegistered() {
 		// HELLO
 		if (currentStudent.getCourseEnrolled() != null) {
@@ -362,10 +406,10 @@ public class StudentManager {
 	}
 
 	/**
-	 * This function 
-	 * @param changeCourseID hrthr
-	 * @param changeIndex rthr
-	 * @return hrthtr
+	 * This function will change the student's index to another index of his choice if there are no clashes with the new index
+	 * @param changeCourseID The course ID of the course that the student wants to change the index for
+	 * @param changeIndex The index ID of the index that the student wants to change
+	 * @return boolean 
 	 */
 	
 	@SuppressWarnings({ "null", "unused" })
@@ -399,7 +443,7 @@ public class StudentManager {
 			}
 
 	        //check for timeslot here
-			if(currentStudent.getCourseEnrolled().size() == 1)
+			if(currentStudent.getCourseEnrolled().size() > 1)
 			{
 				 if(currentStudent.checkClash(indexToChange) == true)
 			        {
@@ -478,6 +522,13 @@ public class StudentManager {
 	 	        return true;
 			}
 	}
+	
+	/***
+	 * This function swaps a student's index of a course of his choosing with another student of his choosing
+	 * @param swapCourseID The Course ID of the course that the student wants to swap index for
+	 * @param swapStudentName The name of the other student the current student wants to swap with
+	 * @return boolean Returns a true/false to let us know if the function is successful.
+	 */
 
 	public boolean swapIndex(String swapCourseID,  String swapStudentName) {
 	   
@@ -737,7 +788,14 @@ public class StudentManager {
 //		
 //		return false;
 //	}
+	
 
+	
+	/***
+	 * This function prints out the schedule of a student based on the courses and the index he is enrolled in.
+	 *
+	 */
+	
 	public void printSchedule() {
 		
 		currentStudent.populateSchedule();

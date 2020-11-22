@@ -26,6 +26,12 @@ public class LoginController {
 	public LoginController(){
 		
 	}
+	/***
+	 * Constructor for the LoginController class
+	 * @param _typeOfUser Determines whether user is admin or student
+	 * @param loginID login ID of the account
+	 * @param password password of the account
+	 */
 	
 	public LoginController(int _typeOfUser, String loginID, String password){
 		//Admin
@@ -56,6 +62,10 @@ public class LoginController {
 
 		}
 	}
+	/***
+	 * This function authenticates the credentials of the admin or student account
+	 * @return Returns true if the credentials are correct, returns false if credentials are wrong
+	 */
 	
 	public boolean validateUser() {
 		if (_typeOfUser==1) {
