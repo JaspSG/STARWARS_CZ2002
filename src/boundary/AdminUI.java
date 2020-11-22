@@ -100,25 +100,30 @@ public class AdminUI {
 	 */
 	public static void addCourseUI(Scanner sc) {
 		// Get necessary input from the users: name, id, au and index
-		System.out.println("Enter the new course's ID: ");
-		String courseID = sc.nextLine();
+		try {
+			System.out.println("Enter the new course's ID: ");
+			String courseID = sc.nextLine();
 
-		System.out.println("Enter the new course's name: ");
-		String courseName = sc.nextLine();
+			System.out.println("Enter the new course's name: ");
+			String courseName = sc.nextLine();
 
-		System.out.println("Enter the new course's school: ");
-		String courseSchool = sc.nextLine();
+			System.out.println("Enter the new course's school: ");
+			String courseSchool = sc.nextLine();
 
-		System.out.println("Enter the new course's AU: ");
-		int courseAu = sc.nextInt();
-		sc.nextLine();
+			System.out.println("Enter the new course's AU: ");
+			int courseAu = sc.nextInt();
+			sc.nextLine();
 
-		ArrayList<Index> indexArrayList = new ArrayList<Index>();
+			ArrayList<Index> indexArrayList = new ArrayList<Index>();
 
-		// load variable to course object >>> set index to null for now >>> call add index later
-		Course newCourse = new Course(courseID, courseName, courseSchool, courseAu, indexArrayList);
+			// load variable to course object >>> set index to null for now >>> call add index later
+			Course newCourse = new Course(courseID, courseName, courseSchool, courseAu, indexArrayList);
 
-		AdminManager.addNewCourse(newCourse);
+			AdminManager.addNewCourse(newCourse);
+
+		} catch (InputMismatchException inputMismatchException){
+			System.out.println("Invalid input");
+		}
 	}
 
 	/**
@@ -298,6 +303,7 @@ public class AdminUI {
 					System.out.println(
 							"Error updating Course's AU, Please contact IT administrator. Returning to main UI....\n");
 				}
+				break;
 			case 4:
 				System.out.println("Current Course's School: " + updateCourse.getCourseSchool());
 				System.out.println("Enter the new Course's School: ");
@@ -312,6 +318,7 @@ public class AdminUI {
 				break;
 			case 5:
 				addIndexUI(sc, courseID);
+				break;
 			case 6:
 				// update index number
 				for (int i = 0; i < updateCourseIndex.size(); i++) {
