@@ -26,9 +26,16 @@ public class testingfile {
 				password, "cz2002gatsby@gmail.com");
 		Student _student2 = new Student("Student2", "002", "Singaporean", "SCSE", 'F', 1, "student2",
 				password, "cz2002gatsby@gmail.com");
-		
-		
-		
+		Student _student3 = new Student("James Graham", "A0000780B", "Singaporean", "SCSE", 'M', 2, "student3",
+				password, "cz2002gatsby@gmail.com");
+		Student _student4 = new Student("Willy Wonka", "C1700222D", "Singaporean", "SCSE", 'M', 3, "student4",
+				password, "cz2002gatsby@gmail.com");
+		Student _student5 = new Student("Cena Mareatte", "U1922333B", "Malaysian", "SCSE", 'F', 2, "student5",
+				password, "cz2002gatsby@gmail.com");
+		Student _student6 = new Student("Trumpity Wumpity", "U1622999D", "American", "SCSE", 'M', 1, "student6",
+				password, "cz2002gatsby@gmail.com");
+
+		//Permanent access time for _student1
 		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy/MM/dd");
 		Calendar startCalendar = Calendar.getInstance();
 		Calendar endCalendar = Calendar.getInstance();
@@ -48,6 +55,10 @@ public class testingfile {
 		
 		listofstudents.add(_student1);
 		listofstudents.add(_student2);
+		listofstudents.add(_student3);
+		listofstudents.add(_student4);
+		listofstudents.add(_student5);
+		listofstudents.add(_student6);
 		
 		/* ------------------------- End of Student ------------------------- */
 		
