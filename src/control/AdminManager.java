@@ -25,8 +25,31 @@ public class AdminManager {
 
         CourseManager.listOfCourses.add(newCourse);
         CourseManager.saveCoursesFile();
+
         System.out.println("Course record created. Returning to main UI....\n");
         return true;
+    }
+
+    public static void printListOfCourses(){
+        // Print Courses //
+        System.out.println("-------------------------------------------------------------");
+        System.out.format("| %-15s| %-40s|\n","CourseID","Course Name");
+        System.out.println("-------------------------------------------------------------");
+        for(int i = 0; i < CourseManager.listOfCourses.size(); i++){
+            System.out.format("| %-15s| %-40s|\n",CourseManager.listOfCourses.get(i).getCourseID(),CourseManager.listOfCourses.get(i).getCourseName());
+        }
+        // end print courses //
+    }
+
+    public static void printListOfStudents(){
+        // Print Courses //
+        System.out.println("-------------------------------------------------------------");
+        System.out.format("| %-15s| %-40s|\n","CourseID","Course Name");
+        System.out.println("-------------------------------------------------------------");
+        for(int i = 0; i < CourseManager.listOfCourses.size(); i++){
+            System.out.format("| %-15s| %-40s|\n",CourseManager.listOfCourses.get(i).getCourseID(),CourseManager.listOfCourses.get(i).getCourseName());
+        }
+        // end print courses //
     }
 
     /**
@@ -160,15 +183,16 @@ public class AdminManager {
         }
 
         ArrayList<Student> studentArrayList = new ArrayList<Student>();
-
+        ArrayList<Index> indexArrayList = new ArrayList<Index>();
         for (int i = 0; i < CourseManager.listOfCourses.size(); i++) {
             if (CourseManager.listOfCourses.get(i).getCourseID().equals(courseID)) {
-                ArrayList<Index> indexArrayList = CourseManager.listOfCourses.get(i).getIndex();
-                for (int j = 0; j < indexArrayList.size(); j++) {
-                    ArrayList<Student> tempStudentArrayList = indexArrayList.get(j).getStudentsEnrolled();
-                    studentArrayList.addAll(tempStudentArrayList);
-                }
+                indexArrayList = CourseManager.listOfCourses.get(i).getIndex();
+                break;
             }
+        }
+        for (int j = 0; j < indexArrayList.size(); j++) {
+            ArrayList<Student> tempStudentArrayList = indexArrayList.get(j).getStudentsEnrolled();
+            studentArrayList.addAll(tempStudentArrayList);
         }
         if(studentArrayList.size() > 0){
             System.out.println("List of students in the Course " + courseID + ":");
