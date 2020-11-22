@@ -256,16 +256,18 @@ public class AdminManager {
         }
     }
     public static boolean checkVacancy(String courseID, String indexID){
-        if (CourseManager.findIndex(courseID, indexID).getIndexID() != null) {
+        Index index = CourseManager.findIndex(courseID, indexID);
+
+        if (index.getIndexID() != null) {
+
             int result = CourseManager.checkVacancy(courseID, indexID);
 
             if (result != -1) {
-                System.out.println("The number of available slot for " + indexID + " is " + result);
-                return true;
+                System.out.println("The number of available slot for " + indexID + " is " + result + "/" + index.getIndexID() + " .");
             } else {
                 System.out.println("There is no vacancy for " + indexID + " .");
-                return true;
             }
+            return true;
         } else {
             System.out.println("Invalid index ID or Course ID. Returning to main menu ...");
             return false;

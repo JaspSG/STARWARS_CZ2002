@@ -1,10 +1,4 @@
-/**
- * Represents a student user that can access the STARS Application
- * A student class inherit from a User class
- * @author Lim Bing Hong Jasper
- * @version 1.0
- * @since 2020/10/08
- */
+
 package entity;
 
 import java.io.Serializable;
@@ -13,7 +7,13 @@ import java.util.Arrays;
 import java.util.Calendar;
 
 import static control.fileManager.loadStudentFile;
-
+/**
+ * Represents a student user that can access the MySTARS Application
+ * A student class inherit from a User class
+ * @author Lim Bing Hong Jasper
+ * @version 1.0
+ * @since 2020/10/08
+ */
 public class Student extends User implements Serializable {
 	/**
 	 * the name of the student
@@ -56,11 +56,11 @@ public class Student extends User implements Serializable {
 	 */
 	Calendar endTime = Calendar.getInstance();
 	/**
-	 * A list of course that the student have taken in the university, stored in an arraylist
+	 * The list of course that the student have taken in the university, stored in an arraylist
 	 */
 	ArrayList<Course> courseTaken = new ArrayList<Course>();
 	/**
-	 * a list of course that the student is currently enrolled in the semester, stored in an arraylist
+	 * The list of course that the student is currently enrolled in the semester, stored in an arraylist
 	 */
 	ArrayList<Course> courseEnrolled = new ArrayList<Course>();
 	/**
