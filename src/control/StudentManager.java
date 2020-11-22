@@ -876,9 +876,10 @@ public class StudentManager {
 					return;
 				}
 				try {
-					MailManager.sendMail(currentStudent.getEmail());
+					MailManager.sendMail(currentStudent.getEmail(), currentStudent.getName(), indexID, course);
 				} catch (Exception e) {
 					// TODO Auto-generated catch block
+					System.out.println("Sending.....ERROR");
 					e.printStackTrace();
 				}
 //				System.out.println("Dropping Student "+ student.getName() + " from waitlist!");
