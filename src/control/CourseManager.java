@@ -27,6 +27,15 @@ public class CourseManager {
 							// STRING ATTRIBUTE IS NULL
 	}
 
+	public static ArrayList<Index> findIndexGroup(String courseID){
+		for (int i = 0; i < CourseManager.listOfCourses.size(); i++) {
+			if (CourseManager.listOfCourses.get(i).getCourseID().equals(courseID)) {
+				return CourseManager.listOfCourses.get(i).getIndex();
+			}
+		}
+		return new ArrayList<Index>();
+	}
+
 	public boolean addStudentToCourse(Student Student, String courseID, String indexID) {
 
 		for (Course course : listOfCourses) {
@@ -172,7 +181,7 @@ public class CourseManager {
 		CourseManager.listOfCourses = listOfCourses;
 	}
 
-	public static void printCourseList() {		
+	public static void printCourseList() {
 		for (Course course : listOfCourses) {
 			System.out.println("School: "+ course.getCourseSchool() + "\nCourse Name: " + course.getCourseName() + "\nCourse ID: " + course.getCourseID()
 					+ "\nCourse AU: " + course.getAu() + "\n");
@@ -192,7 +201,7 @@ public class CourseManager {
 				ArrayList<Index> indexArrayList = listOfCourses.get(i).getIndex();
 				for (int j = 0; j < indexArrayList.size(); j++) {
 					if (indexArrayList.get(j).getIndexID().equals(indexID)) {
-						Index index = indexArrayList.get(i);
+						Index index = indexArrayList.get(j);
 						return index;
 					}
 				}

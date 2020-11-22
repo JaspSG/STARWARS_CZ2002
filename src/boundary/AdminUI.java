@@ -134,8 +134,6 @@ public class AdminUI {
 			courseID = sc.nextLine();
 		}
 
-
-
 			System.out.println("Enter the new Index ID: ");
 			String indexID = sc.nextLine();
 

@@ -199,6 +199,14 @@ public class testingfile {
 		_index4_2.addToLessons(_lesson4_2_4);
 		
 		cz2004.addToIndex(_index4_2);
+		
+		Index _index4_3= new Index("10142");
+		_index4_3.addToLessons(_lesson4_2_1);
+		_index4_3.addToLessons(_lesson4_2_2);
+		_index4_3.addToLessons(_lesson4_2_3);
+		_index4_3.addToLessons(_lesson4_2_4);
+		_index4_3.setCurrentSize(4);
+		cz2004.addToIndex(_index4_3);
 		/*--------------------------------cz2004-------------------------*/
 		
 		listofcourses.add(cz2001);
