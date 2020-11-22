@@ -37,6 +37,13 @@ public class Course implements Serializable {
 	public Course() {
 
 	}
+	
+	public Course(Course copycourse) {
+		this.courseID = copycourse.courseID;
+		this.courseName=copycourse.courseName;
+		this.index=copycourse.index;
+		this.au=copycourse.au;
+	}
 
 	public Course(String courseID, String courseName, String courseSchool, int au, ArrayList index) {
 		this.courseID = courseID;
