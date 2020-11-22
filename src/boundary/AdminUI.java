@@ -491,11 +491,7 @@ public class AdminUI {
 		System.out.print("Enter the index ID: ");
 		String indexID = sc.nextLine();
 
-		if (CourseManager.findCourseObject(courseID).getCourseID() != null
-				&& CourseManager.findIndex(courseID, indexID).getIndexID() != null) {
-			AdminManager.printIndexStudentList(courseID, indexID);
-		}
-		System.out.println("Returning to main UI....\n");
+		AdminManager.printIndexStudentList(courseID, indexID);
 	}
 
 	/**

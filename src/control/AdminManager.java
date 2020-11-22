@@ -90,6 +90,12 @@ public class AdminManager {
      */
     public static boolean printIndexStudentList(String courseID, String indexID) {
         // initialise
+        if (CourseManager.findCourseObject(courseID).getCourseID() == null
+                && CourseManager.findIndex(courseID, indexID).getIndexID() == null) {
+            System.out.println("Returning to main UI....\n");
+            return false;
+        }
+
         ArrayList<Student> studentArrayList = new ArrayList<Student>();
 
         for (int i = 0; i < CourseManager.listOfCourses.size(); i++) {
@@ -192,5 +198,6 @@ public class AdminManager {
         StudentManager.saveStudentsFile();
         return true;
     }
+
     /* ------ Admin Related Methods: End ------ */
 }
