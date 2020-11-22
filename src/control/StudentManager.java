@@ -542,32 +542,5 @@ public class StudentManager {
 	
 	
 
-	/* ------ Admin Related Methods: Start ------ */
-	/**
-	 * Adds a new student to the current list of students
-	 * 
-	 * @return boolean result indicating if the operation is a success or failure;
-	 */
-	public static boolean addNewStudent(Student student) {
-		listOfStudents.add(student);
-		saveStudentsFile();
-		return true;
-	}
 
-	/**
-	 * Updates an existing student from the current list of student
-	 * 
-	 * @return boolean result indicating if the operation is a success or failure;
-	 */
-	public static boolean updateStudent(Student updateStudent) {
-		for (int i = 0; i < listOfStudents.size(); i++) {
-			if (listOfStudents.get(i).getMatricNumber().equals(updateStudent.getMatricNumber())) {
-				listOfStudents.set(i, updateStudent);
-				break;
-			}
-		}
-		saveStudentsFile();
-		return true;
-	}
-	/* ------ Admin Related Methods: End ------ */
 }
