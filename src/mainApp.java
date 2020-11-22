@@ -93,6 +93,7 @@ public class mainApp extends User {
 							
 							if(student.accessPeriodValidity()) {
 								StudentUI.mainStudentUI(loginID);
+								break;
 							}
 							else{
 								System.out.println("Invalid Access Period Information");
@@ -106,6 +107,7 @@ public class mainApp extends User {
 					}
 					else {
 						System.out.println("Student Not Found");
+						break;
 					}
 				}
 				break;
