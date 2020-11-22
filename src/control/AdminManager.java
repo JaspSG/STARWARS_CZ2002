@@ -29,11 +29,6 @@ public class AdminManager {
         System.out.println("Course record created. Returning to main UI....\n");
         return true;
     }
-
-
-
-
-
     /**
      * To add an index object to the course object based on course ID
      *
@@ -223,6 +218,14 @@ public class AdminManager {
 
     /* ------ Admin Related Methods: End ------ */
     /* ------ Admin Update Access Period  Start ------ */
+    
+    /**
+     * To edit the student's access to the STARS system
+     * @param matriculationNumber Students matriculation number
+     * @param startTime Student's start day to enter STARS System
+     * @param endTime Student's end day to enter STARS System
+     * @return Indicates if the change was successful
+     */
     public static boolean updateAccessPeriod(String matriculationNumber, String startTime, String endTime){
         if (StudentManager.findStudentObject(matriculationNumber).getMatricNumber() == null){
             System.out.println("Invalid matriculation number. Returning to main UI ...");
@@ -253,6 +256,13 @@ public class AdminManager {
             return false;
         }
     }
+    
+    /**
+     * Check the vacancy of a particular course/index
+     * @param courseID target choice of course to check
+     * @param indexID target choice of index to check
+     * @return 
+     */
     public static boolean checkVacancy(String courseID, String indexID){
         Index index = CourseManager.findIndex(courseID, indexID);
 
@@ -261,7 +271,7 @@ public class AdminManager {
             int result = CourseManager.checkVacancy(courseID, indexID);
 
             if (result != -1) {
-                System.out.println("The number of available slot for " + indexID + " is " + result + "/" + index.getIndexID() + " .");
+                System.out.println("The number of available slot for " + indexID + " is " + result + "/" + index.getTotalSize() + " .");
             } else {
                 System.out.println("There is no vacancy for " + indexID + " .");
             }

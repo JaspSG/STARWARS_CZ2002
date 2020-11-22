@@ -7,11 +7,12 @@ public class Lesson implements Serializable {
     private static final long serialVersionUID = 4L;
 
 	String type;
+	String group;
 	int startTime;
 	int duration;
 	int day;
 
-	public Lesson(String type, int day, int startTime, int duration) {
+	public Lesson(String type, String group, int day, int startTime, int duration) {
 		this.type = type;
 		this.startTime = startTime;
 		this.duration = duration;
@@ -55,7 +56,8 @@ public class Lesson implements Serializable {
 		    String NL = System.getProperty("line.separator");
 		    
 		    
-		    result.append(this.type);
+		    result.append(this.type + NL);
+		    result.append(this.group);
 		    
 		    return result.toString();
 	 }

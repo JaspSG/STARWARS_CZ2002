@@ -402,7 +402,12 @@ public class StudentManager {
 	}
 
 	public void printVacanciesAvaliable(String courseID, String indexID) {
-		System.out.println("Vacancies: " + cmngr.checkVacancy(courseID, indexID) + " Slots");
+		if(cmngr.checkVacancy(courseID, indexID) == -1) {
+			System.out.println("Course does not exist!");
+		}
+		else {
+			System.out.println("Vacancies: " + cmngr.checkVacancy(courseID, indexID) + " Slots");
+		}
 	}
 
 	/**
