@@ -51,6 +51,9 @@ public class AdminUI {
 			} while (!validInput);
 
 			switch (choice) {
+			default:
+				System.out.println("");
+				break;
 			case 1:
 				System.out.println("1. Add a new course");
 				addCourseUI(sc);
@@ -82,9 +85,6 @@ public class AdminUI {
 			case 8:
 				System.out.println("8. Print list of students by course");
 				printCourseStudentListUI(sc);
-				break;
-			default:
-				System.out.println("");
 				break;
 			}
 		} while (choice > 0 && choice < 9);
@@ -122,7 +122,8 @@ public class AdminUI {
 			AdminManager.addNewCourse(newCourse);
 
 		} catch (InputMismatchException inputMismatchException){
-			System.out.println("Invalid input");
+			System.out.println("Invalid input. Returning to main UI");
+			sc.nextLine();
 		}
 	}
 
@@ -384,42 +385,46 @@ public class AdminUI {
 	 *                                  not available in the environment.
 	 */
 	public static void addStudentUI(Scanner sc) throws NoSuchAlgorithmException {
+		try {
+			// get input from the user
+			System.out.print("Enter the new student's name: ");
+			String studentName = sc.nextLine();
 
-		// get input from the user
-		System.out.print("Enter the new student's name: ");
-		String studentName = sc.nextLine();
+			System.out.print("Enter the new student's matriculation number: ");
+			String matriculationNumber = sc.nextLine();
 
-		System.out.print("Enter the new student's matriculation number: ");
-		String matriculationNumber = sc.nextLine();
+			System.out.print("Enter the new student's nationality: ");
+			String nationality = sc.nextLine();
 
-		System.out.print("Enter the new student's nationality: ");
-		String nationality = sc.nextLine();
+			System.out.print("Enter the new student's major: ");
+			String major = sc.nextLine();
 
-		System.out.print("Enter the new student's major: ");
-		String major = sc.nextLine();
+			System.out.print("Enter the new student's gender(M/F): ");
+			char gender = sc.next().charAt(0);
 
-		System.out.print("Enter the new student's gender(M/F): ");
-		char gender = sc.next().charAt(0);
+			System.out.print("Enter the new student's year of study: ");
+			int yearOfStudy = sc.nextInt();
+			sc.nextLine();
 
-		System.out.print("Enter the new student's year of study: ");
-		int yearOfStudy = sc.nextInt();
-		sc.nextLine();
+			System.out.print("Enter the new student's loginID: ");
+			String loginId = sc.nextLine();
 
-		System.out.print("Enter the new student's loginID: ");
-		String loginId = sc.nextLine();
+			System.out.print("Enter the new student's loginPW: ");
+			String loginPW = sc.nextLine();
+			loginPW = User.hashString(loginPW);
 
-		System.out.print("Enter the new student's loginPW: ");
-		String loginPW = sc.nextLine();
-		loginPW = User.hashString(loginPW);
+			System.out.print("Enter the new student's email: ");
+			String email = sc.nextLine();
 
-		System.out.print("Enter the new student's email: ");
-		String email = sc.nextLine();
+			// insert object into the file
+			Student newStudent = new Student(studentName, matriculationNumber, nationality, major, gender, yearOfStudy,
+					loginId, loginPW, email);
 
-		// insert object into the file
-		Student newStudent = new Student(studentName, matriculationNumber, nationality, major, gender, yearOfStudy,
-				loginId, loginPW, email);
-
-		AdminManager.addNewStudent(newStudent);
+			AdminManager.addNewStudent(newStudent);
+		} catch(InputMismatchException inputMismatchException){
+			System.out.println("Invalid input. Returning to main UI...");
+			sc.nextLine();
+		}
 	}
 
 	/**
