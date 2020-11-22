@@ -15,6 +15,8 @@ import static control.fileManager.loadCoursesFile;
 import static control.fileManager.saveCoursesFile;
 
 public class Index implements Serializable {
+	
+    private static final long serialVersionUID = 4L;
 	/**
 	 * The total size allowed of the index group
 	 */

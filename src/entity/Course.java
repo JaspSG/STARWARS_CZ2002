@@ -13,6 +13,9 @@ import static control.fileManager.loadCoursesFile;
 import static control.fileManager.saveCoursesFile;
 
 public class Course implements Serializable {
+	
+    private static final long serialVersionUID = 4L;
+    
 	/**
 	 * The course ID of the course. E.g. CZ2001
 	 */
