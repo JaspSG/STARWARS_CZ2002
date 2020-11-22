@@ -66,7 +66,7 @@ public class Student extends User implements Serializable {
 	/**
 	 *
 	 */
-	ArrayList<String> waitList = new ArrayList<String>();
+	ArrayList<Course> waitList = new ArrayList<Course>();
 
 	/**
 	 * Constructor to create a new student without any attributes
@@ -264,7 +264,7 @@ public class Student extends User implements Serializable {
 	 *
 	 * @return
 	 */
-	public ArrayList<String> getWaitList() {
+	public ArrayList<Course> getWaitList() {
 		return waitList;
 	}
 
@@ -272,7 +272,7 @@ public class Student extends User implements Serializable {
 	 *
 	 * @param waitList
 	 */
-	public void setWaitList(ArrayList<String> waitList) {
+	public void setWaitList(ArrayList<Course> waitList) {
 		this.waitList = waitList;
 	}
 

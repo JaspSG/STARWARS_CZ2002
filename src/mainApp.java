@@ -1,6 +1,7 @@
 import boundary.AdminUI;
 import boundary.StudentUI;
 import control.CourseManager;
+import control.LoginController;
 import control.StudentManager;
 import control.fileManager;
 import entity.Admin;
@@ -15,7 +16,7 @@ import java.util.Date;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
-public class mainApp extends User {
+public class mainApp {
 	static int currentStudentIndex;
 
 	static String loginID;
@@ -53,22 +54,13 @@ public class mainApp extends User {
 				loginID = sc.nextLine();
 				System.out.println("Enter login PW");
 				loginPW = sc.nextLine();
-				boolean success = false;
 				//loginPW = new String(console.readPassword("Please enter login password."));
-				ArrayList<Admin> adminList = fileManager.loadAdminFile();
-				for(Admin admin : adminList){
-					if(admin.getLoginID().equals(loginID)){
-						if(admin.validateLogin(loginID, loginPW)){
-							success = true;
-							AdminUI.mainAdminUI();
-							break;
-						} else {
-							System.out.println("Wrong Login Information");
-						}
-					}
+				LoginController logincontrol_admin = new LoginController(choice,loginID,loginPW);
+				if(logincontrol_admin.validateUser() == true) {
+					AdminUI.mainAdminUI();
 				}
-				if (!success){
-					System.out.println("Admin Not Found");
+				else{
+					System.out.println("Wrong Login Information");
 				}
 				break;
 			case 2:
@@ -77,37 +69,12 @@ public class mainApp extends User {
 				System.out.println("Enter login PW");
 				loginPW = sc.nextLine();
 				//loginPW = new String(console.readPassword("Please enter login password."));
-				StudentManager smngr = new StudentManager();
-				ArrayList<Student> studentList = new ArrayList<Student>();
-				studentList = smngr.getListOfStudents();
-
-				for (Student student : studentList) {
-					if (student.getLoginID().equals(loginID)) {
-						if (student.validateLogin(loginID, loginPW) == true) {
-//							SimpleDateFormat format1 = new SimpleDateFormat("yyyy-MM-dd"); 
-//							Calendar cal = student.getEndTime();
-//							Date date = cal.getTime();
-//							String inActiveDate = null;
-//							inActiveDate = format1.format(date);
-//						    System.out.println(inActiveDate );
-							
-							if(student.accessPeriodValidity()) {
-								StudentUI.mainStudentUI(loginID);
-								break;
-							}
-							else{
-								System.out.println("Invalid Access Period Information");
-
-							}
-						} else {
-							System.out.println("Wrong Login Information");
-
-						}
-
-					}
-					else {
-						System.out.println("Student Not Found");
-					}
+				LoginController logincontrol_student = new LoginController(choice,loginID,loginPW);
+				if(logincontrol_student.validateUser() == true) {
+					StudentUI.mainStudentUI(loginID);
+				}
+				else{
+					System.out.println("Wrong Login Information");
 				}
 				break;
 			case 3:
