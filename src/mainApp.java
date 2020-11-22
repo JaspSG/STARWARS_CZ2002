@@ -71,7 +71,7 @@ public class mainApp extends User {
 				//loginPW = new String(console.readPassword("Please enter login password."));
 				LoginController logincontrol_student = new LoginController(choice,loginID,loginPW);
 				if(logincontrol_student.validateUser() == true) {
-					AdminUI.mainAdminUI();
+					StudentUI.mainStudentUI(loginID);
 				}
 				else{
 					System.out.println("Wrong Login Information");
