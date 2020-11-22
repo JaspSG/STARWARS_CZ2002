@@ -101,6 +101,7 @@ public class AdminUI {
      */
     public static void addCourseUI(Scanner sc) {
         // Get necessary input from the users: name, id, au and index
+        
         System.out.println("Enter the new course's ID: ");
         String courseID = sc.nextLine().toUpperCase();
 
