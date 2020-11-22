@@ -1,3 +1,10 @@
+/**
+ * Represents a student user that can access the STARS Application
+ * A student class inherit from a User class
+ * @author Wong Chin Hao
+ * @version 1.0
+ * @since 2020/10/08
+ */
 package entity;
 
 import java.io.Serializable;

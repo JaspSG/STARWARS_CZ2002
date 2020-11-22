@@ -3,7 +3,7 @@
  * A user can be either an admin or student in the application
  * @author Lim Bing Hong, Jasper
  * @version 1.0
- * @since 2020/11/21
+ * @since 2020/10/08
  */
 package entity;
 
