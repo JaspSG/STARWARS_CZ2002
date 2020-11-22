@@ -192,7 +192,7 @@ public class CourseManager {
 				ArrayList<Index> indexArrayList = listOfCourses.get(i).getIndex();
 				for (int j = 0; j < indexArrayList.size(); j++) {
 					if (indexArrayList.get(j).getIndexID().equals(indexID)) {
-						Index index = indexArrayList.get(i);
+						Index index = indexArrayList.get(j);
 						return index;
 					}
 				}
