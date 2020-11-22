@@ -372,10 +372,40 @@ public class Student extends User implements Serializable {
 	 * @param index
 	 * @return
 	 */
-	public boolean checkClash(Index index) {
+	
+	public Course[][] populateWaitlistCourse() {
+//		
+		this.populateSchedule();
+		
+		Course[][] tempschedule = this.schedule;
+		
+		ArrayList<Course> waitlistcourses = this.waitList;
+
+		for (Course course : waitlistcourses) {
+			ArrayList<Index> tempindex = course.getIndex();
+			
+			for(Index index: tempindex) {
+				ArrayList<Lesson> listoflessons = index.getLessons();
+				for (Lesson lesson : listoflessons) {
+
+					for (int j = lesson.getStartTime(); j < (lesson.getStartTime() + lesson.getDuration()); j++) {
+						tempschedule[j][lesson.getDay()] = course;
+					}
+				}
+			}
+
+		}
+		return tempschedule;
+	}
+	
+	
+	public boolean checkClash(Index targetindex) {
 
 		this.populateSchedule();
-		ArrayList<Lesson> listoflesson = index.getLessons();
+		
+		Course[][] tempschedule = this.populateWaitlistCourse();
+				
+		ArrayList<Lesson> listoflesson = targetindex.getLessons();
 
 		for (Lesson lesson : listoflesson) {
 
@@ -384,7 +414,7 @@ public class Student extends User implements Serializable {
 			int end = lesson.getStartTime() + lesson.getDuration();
 
 			for (int i = start; i < end; i++) {
-				if (this.schedule[i][day] != null) {
+				if (tempschedule[i][day] != null) {
 					return true;
 				}
 			}
