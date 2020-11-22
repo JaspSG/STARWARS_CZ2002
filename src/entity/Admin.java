@@ -1,12 +1,11 @@
+package entity;
 /**
- * Represents a admin that can access the STARS Application
+ * Represents a admin that can access the MySTARS Application
  * An admin class inherits from a User class
  * @author Wong Chin Hao
  * @version 1.0
  * @since 2020/10/08
  */
-package entity;
-
 public class Admin extends User {
 
 	/**

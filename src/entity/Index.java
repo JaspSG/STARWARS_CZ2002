@@ -15,6 +15,8 @@ import static control.fileManager.loadCoursesFile;
 import static control.fileManager.saveCoursesFile;
 
 public class Index implements Serializable {
+	
+    private static final long serialVersionUID = 4L;
 	/**
 	 * The total size allowed of the index group
 	 */
@@ -24,20 +26,42 @@ public class Index implements Serializable {
 	 */
 	private int currentSize = 0;
 	/**
-	 *
+	 * The index ID of the index group
 	 */
 	private String indexID;
+	/**
+	 * The list of student that enrolled in the index group, stored in an array list
+	 */
 	private ArrayList<Student> studentsEnrolled = new ArrayList<Student>();
+	/**
+	 * The list of lessons (Lecture / Tutorial / Laboratory) that the index has
+	 */
 	private ArrayList<Lesson> lessons = new ArrayList<Lesson>();
+	/**
+	 *
+	 */
 	private Queue<Student> waitlist = new LinkedList<Student>();
 
+	/**
+	 * Constructor to create a new index group without any attributes
+	 */
 	public Index() {
 	}
 
+	/**
+	 * Constructor to create a new index with index ID only
+	 * @param indexID this index's index id
+	 */
 	public Index(String indexID) {
 		this.indexID = indexID;
 	}
 
+	/**
+	 * Constructor to create a new index with index ID, total size of index and array list of lessons
+	 * @param indexID this index's index ID
+	 * @param totalSize this index's totalsize
+	 * @param lessons this index's lessons
+	 */
 	public Index(String indexID, int totalSize, ArrayList<Lesson> lessons) {
 
 		this.indexID = indexID;

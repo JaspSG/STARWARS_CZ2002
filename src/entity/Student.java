@@ -1,10 +1,4 @@
-/**
- * Represents a student user that can access the STARS Application
- * A student class inherit from a User class
- * @author Lim Bing Hong Jasper
- * @version 1.0
- * @since 2020/10/08
- */
+
 package entity;
 
 import java.io.Serializable;
@@ -13,7 +7,13 @@ import java.util.Arrays;
 import java.util.Calendar;
 
 import static control.fileManager.loadStudentFile;
-
+/**
+ * Represents a student user that can access the MySTARS Application
+ * A student class inherit from a User class
+ * @author Lim Bing Hong Jasper
+ * @version 1.0
+ * @since 2020/10/08
+ */
 public class Student extends User implements Serializable {
 	/**
 	 * the name of the student
@@ -56,11 +56,11 @@ public class Student extends User implements Serializable {
 	 */
 	Calendar endTime = Calendar.getInstance();
 	/**
-	 * A list of course that the student have taken in the university, stored in an arraylist
+	 * The list of course that the student have taken in the university, stored in an arraylist
 	 */
 	ArrayList<Course> courseTaken = new ArrayList<Course>();
 	/**
-	 * a list of course that the student is currently enrolled in the semester, stored in an arraylist
+	 * The list of course that the student is currently enrolled in the semester, stored in an arraylist
 	 */
 	ArrayList<Course> courseEnrolled = new ArrayList<Course>();
 	/**
@@ -372,10 +372,40 @@ public class Student extends User implements Serializable {
 	 * @param index
 	 * @return
 	 */
-	public boolean checkClash(Index index) {
+	
+	public Course[][] populateWaitlistCourse() {
+//		
+		this.populateSchedule();
+		
+		Course[][] tempschedule = this.schedule;
+		
+		ArrayList<Course> waitlistcourses = this.waitList;
+
+		for (Course course : waitlistcourses) {
+			ArrayList<Index> tempindex = course.getIndex();
+			
+			for(Index index: tempindex) {
+				ArrayList<Lesson> listoflessons = index.getLessons();
+				for (Lesson lesson : listoflessons) {
+
+					for (int j = lesson.getStartTime(); j < (lesson.getStartTime() + lesson.getDuration()); j++) {
+						tempschedule[j][lesson.getDay()] = course;
+					}
+				}
+			}
+
+		}
+		return tempschedule;
+	}
+	
+	
+	public boolean checkClash(Index targetindex) {
 
 		this.populateSchedule();
-		ArrayList<Lesson> listoflesson = index.getLessons();
+		
+		Course[][] tempschedule = this.populateWaitlistCourse();
+				
+		ArrayList<Lesson> listoflesson = targetindex.getLessons();
 
 		for (Lesson lesson : listoflesson) {
 
@@ -384,7 +414,7 @@ public class Student extends User implements Serializable {
 			int end = lesson.getStartTime() + lesson.getDuration();
 
 			for (int i = start; i < end; i++) {
-				if (this.schedule[i][day] != null) {
+				if (tempschedule[i][day] != null) {
 					return true;
 				}
 			}

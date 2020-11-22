@@ -16,7 +16,7 @@ import java.util.Date;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
-public class mainApp extends User {
+public class mainApp {
 	static int currentStudentIndex;
 
 	static String loginID;
@@ -73,6 +73,7 @@ public class mainApp extends User {
 				if(logincontrol_student.validateUser() == true) {
 					StudentUI.mainStudentUI(loginID);
 				}
+				
 				else{
 					System.out.println("Wrong Login Information");
 				}
