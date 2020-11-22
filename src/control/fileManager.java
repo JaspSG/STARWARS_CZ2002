@@ -9,9 +9,9 @@ import java.util.ArrayList;
 
 public class fileManager {
 
-	final static String OUTSTUDENTFILENAME = "StudentFile";
-	final static String OUTCOURSESFILENAME = "CoursesFile";
-	final static String OUTADMINFILENAME = "AdminFile";
+	private final static String OUTSTUDENTFILENAME = "StudentFile";
+	private final static String OUTCOURSESFILENAME = "CoursesFile";
+	private final static String OUTADMINFILENAME = "AdminFile";
 
 	// STUDENT OBJECTS READER
 

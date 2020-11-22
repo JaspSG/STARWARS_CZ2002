@@ -8,14 +8,13 @@ import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class mainApp {
-	static int currentStudentIndex;
-
-	static String loginID;
-	static String loginPW;
 
 //	private static ArrayList<Student> studentList = new ArrayList<Student>();
 
 	public static void main(String[] args) throws Exception {
+
+		String loginID;
+		String loginPW;
 
 		Console console = System.console();
 
