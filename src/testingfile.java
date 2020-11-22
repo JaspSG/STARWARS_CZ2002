@@ -3,8 +3,10 @@ import control.StudentManager;
 import control.fileManager;
 import entity.*;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Calendar;
 
 public class testingfile {
 
@@ -24,6 +26,25 @@ public class testingfile {
 				password, "cz2002gatsby@gmail.com");
 		Student _student2 = new Student("Student2", "002", "Singaporean", "SCSE", 'F', 1, "student2",
 				password, "cz2002gatsby@gmail.com");
+		
+		
+		
+		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy/MM/dd");
+		Calendar startCalendar = Calendar.getInstance();
+		Calendar endCalendar = Calendar.getInstance();
+		String startTime = "2020/11/20";
+		String endTime = "2021/11/20";
+		startCalendar.setTime(simpleDateFormat.parse(startTime));
+		endCalendar.setTime(simpleDateFormat.parse(endTime));
+		
+		_student1.setStartTime(startCalendar);
+		_student1.setEndTime(endCalendar);
+//		
+//		
+//		System.out.println(_student1.getEndTime().toString());
+//		
+//		_student1.setStartTime(startCalendar);
+//		_student1.setEndTime(startCalendar);
 		
 		listofstudents.add(_student1);
 		listofstudents.add(_student2);
@@ -185,6 +206,7 @@ public class testingfile {
 		System.out.println("File Generated!");
 		
 		/*-------------------------Utility--------------------------------------*/
+		
 		
 		
 //		fileManager fmngr = new fileManager();
