@@ -6,6 +6,7 @@ import entity.Lesson;
 import entity.Student;
 
 import java.util.ArrayList;
+import java.util.Queue;
 import java.util.Scanner;
 
 public class StudentManager {
@@ -53,6 +54,7 @@ public class StudentManager {
 	}
 
 	public static void saveStudentsFile() {
+		
 		try {
 			fileManager.saveStudentFile(listOfStudents);
 		} catch (Exception e) {
@@ -77,14 +79,20 @@ public class StudentManager {
 //	} // to remove
 
 	public boolean addCourse(String course, String indexID) {
-
+		boolean waitlist = false;
 		System.out.println("Adding Course ID : " + course + " and Index ID : " + indexID);
 		// Searching if course exists
 		Course newcourse = CourseManager.findCourseObject(course);
 		if (newcourse.getCourseID() != null) {
 			System.out.println("Course Exists");
 			// Add in a check for wait list
+			if(CourseManager.checkVacancy(course, indexID)<1) {
+				System.out.println("No vacancies left!, will add to waitlist if available");
+				waitlist = true;
+				
+			}
 			ArrayList<Course> enrolledCourses = currentStudent.getCourseEnrolled();
+			
 			if (enrolledCourses != null) {
 				for (Course enrolledCourse : enrolledCourses) {
 					if (enrolledCourse.getCourseID().equals(course)) {
@@ -93,67 +101,155 @@ public class StudentManager {
 					}
 
 				}
-				System.out.println("Adding student to course!");
-				if(!cmngr.addStudentToCourse(currentStudent, course, indexID)) {
-					System.out.println("Failed to add student to course!");
-					return false;
-				}
-				Index newindex = newcourse.findIndexObject(indexID);
-				ArrayList<Index> indexlist = new ArrayList<Index>();
-				indexlist.add(newindex);
-				newcourse.setIndex(indexlist);
-				enrolledCourses.add(newcourse);
-				listOfStudents.get(studentIndex).setCourseEnrolled(enrolledCourses);
-				try {
-					MailManager.sendMail(currentStudent.getEmail());
-				} catch (Exception e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-				saveStudentsFile();
-				for(Course course2 : listOfStudents.get(studentIndex).getCourseEnrolled()) {
-					for (Index index2 : course2.getIndex() ) {
-						System.out.println("Index ID of "+ course2.getCourseID() +  " is " + index2.getIndexID());
+				
+				if(waitlist) {
+					
+					Index newindex = newcourse.findIndexObject(indexID);
+					System.out.println("Adding student to waitlist!");
+					ArrayList<Index> indexlist = new ArrayList<Index>();
+					indexlist.add(newindex);
+					newcourse.setIndex(indexlist);
+					if(currentStudent.checkClash(newindex)) {
+						System.out.println("Timetable clashes!");
+						return false;
 					}
+					try {
+						if(!cmngr.addStudentToWaitlist(currentStudent, course, indexID)) {
+							System.out.println("Failed to add student to waitlist!");
+							return false;
+						}
+						ArrayList<Course> newwaitlist = currentStudent.getWaitList();
+						if(newwaitlist==null) {
+							newwaitlist = new ArrayList<Course>();
+						}
+						newwaitlist.add(newcourse);
+						listOfStudents.get(studentIndex).setWaitList(newwaitlist);
+						try {
+							MailManager.sendMail(currentStudent.getEmail());
+						} catch (Exception e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
+						saveStudentsFile();
+						return true;
+					} catch (Exception e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+					
+					
 				}
-				System.out.println("Successful!");
-				return true;
+				else {
+					ArrayList<Index> indexlist = new ArrayList<Index>();
+					Index newindex = newcourse.findIndexObject(indexID);
+					System.out.println(newindex.getIndexID());
+					if(currentStudent.checkClash(newindex)) {
+						System.out.println("Timetable clashes!");
+						return false;
+					}
+					System.out.println("Adding student to course!");
+					if(!cmngr.addStudentToCourse(currentStudent, course, indexID)) {
+						System.out.println("Failed to add student to course!");
+						return false;
+					}
+					
+					
+					indexlist.add(newindex);
+					newcourse.setIndex(indexlist);
+					enrolledCourses.add(newcourse);
+					listOfStudents.get(studentIndex).setCourseEnrolled(enrolledCourses);
+					try {
+						MailManager.sendMail(currentStudent.getEmail());
+					} catch (Exception e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+					saveStudentsFile();
+					for(Course course2 : listOfStudents.get(studentIndex).getCourseEnrolled()) {
+						for (Index index2 : course2.getIndex() ) {
+							System.out.println("Index ID of "+ course2.getCourseID() +  " is " + index2.getIndexID());
+						}
+					}
+					System.out.println("Successful!");
+					return true;
+				}
 			}
 			// If no enrolled courses :
 			else {
-				// Add student to Course Object
-				System.out.println("Adding student to course!");
-				
-				if(!cmngr.addStudentToCourse(currentStudent, course, indexID)) {
-					System.out.println("Failed to add student to course!");
-					return false;
-				}
-				// Add Course to Student Object
-				enrolledCourses = new ArrayList<Course>();
-				Index newindex = newcourse.findIndexObject(indexID);
-				ArrayList<Index> indexlist = new ArrayList<Index>();
-				indexlist.add(newindex);
-				newcourse.setIndex(indexlist);
-				enrolledCourses.add(newcourse);
-				listOfStudents.get(studentIndex).setCourseEnrolled(enrolledCourses);
-				try {
-					MailManager.sendMail(currentStudent.getEmail());
-				} catch (Exception e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-				// Save students
-				saveStudentsFile();
-				for(Course course2 : listOfStudents.get(studentIndex).getCourseEnrolled()) {
-					for (Index index2 : course2.getIndex() ) {
-						System.out.println("Index ID of "+ course2.getCourseID() +  " is " + index2.getIndexID());
+				if(waitlist) {
+					System.out.println("Adding student to waitlist!");
+					Index newindex = newcourse.findIndexObject(indexID);
+					if(currentStudent.checkClash(newindex)) {
+						System.out.println("Timetable clashes!");
+						return false;
 					}
+					try {
+						if(!cmngr.addStudentToWaitlist(currentStudent, course, indexID)) {
+							System.out.println("Failed to add student to waitlist!");
+							return false;
+						}
+						
+						ArrayList<Index> indexlist = new ArrayList<Index>();
+						indexlist.add(newindex);
+						newcourse.setIndex(indexlist);
+						ArrayList<Course> newwaitlist = currentStudent.getWaitList();
+						if(newwaitlist==null) {
+							newwaitlist = new ArrayList<Course>();
+						}
+						newwaitlist.add(newcourse);
+						listOfStudents.get(studentIndex).setWaitList(newwaitlist);
+						try {
+							MailManager.sendMail(currentStudent.getEmail());
+						} catch (Exception e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
+						saveStudentsFile();
+					
+					} catch (Exception e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+					
+					
 				}
-				System.out.println("Successful!");
-				return true;
-
+				else {
+					// Add student to Course Object
+					System.out.println("Adding student to course!");
+					Index newindex = newcourse.findIndexObject(indexID);
+					if(currentStudent.checkClash(newindex)) {
+						System.out.println("Timetable clashes!");
+						return false;
+					}
+					if(!cmngr.addStudentToCourse(currentStudent, course, indexID)) {
+						System.out.println("Failed to add student to course!");
+						return false;
+					}
+					// Add Course to Student Object
+					enrolledCourses = new ArrayList<Course>();
+					ArrayList<Index> indexlist = new ArrayList<Index>();
+					indexlist.add(newindex);
+					newcourse.setIndex(indexlist);
+					enrolledCourses.add(newcourse);
+					listOfStudents.get(studentIndex).setCourseEnrolled(enrolledCourses);
+					try {
+						MailManager.sendMail(currentStudent.getEmail());
+					} catch (Exception e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+					// Save students
+					saveStudentsFile();
+					for(Course course2 : listOfStudents.get(studentIndex).getCourseEnrolled()) {
+						for (Index index2 : course2.getIndex() ) {
+							System.out.println("Index ID of "+ course2.getCourseID() +  " is " + index2.getIndexID());
+						}
+					}
+					System.out.println("Successful!");
+					return true;
+	
+				}
 			}
-
 		}
 		System.out.println("Course does not exist!");
 		return false; // temporary value
@@ -205,20 +301,56 @@ public class StudentManager {
 	public boolean dropCourse(String course) {
 
 		ArrayList<Course> coursesEnrolled = currentStudent.getCourseEnrolled();
-		if (coursesEnrolled != null) {
+		ArrayList<Course> tempWaitlist = currentStudent.getWaitList();
+		if (coursesEnrolled != null  || tempWaitlist !=null) {
 			Course courseobject = CourseManager.findCourseObject(course);
 			if (courseobject != null) {
 				System.out.println("Course ID of dropped course is : " + courseobject.getCourseID());
-				for (Course courses : coursesEnrolled) {
-					if (courses.getCourseID() == courseobject.getCourseID()) {
-						// Drop the class and remove student
-						System.out.println("Dropping Course!");
-						cmngr.removeStudentFromCourse(currentStudent, course);
-						coursesEnrolled.remove(courseobject);
-						listOfStudents.get(studentIndex).setCourseEnrolled(coursesEnrolled);
-						saveStudentsFile();
-						return true;
+				
+				if(coursesEnrolled!= null) {
+					for (Course courses : coursesEnrolled) {
+						System.out.println(courses.getCourseID() + " VS " + courseobject.getCourseID());
+						if (courses.getCourseID().equals(courseobject.getCourseID())) {
+							System.out.println("Match!");
+							// Drop the class and remove student
+							System.out.println("Dropping Course!");
+							cmngr.removeStudentFromCourse(currentStudent, course);
+							coursesEnrolled.remove(courses);
+							listOfStudents.get(studentIndex).setCourseEnrolled(coursesEnrolled);
+							saveStudentsFile();
+							System.out.println("Finished dropping - Checkcing waitlist now");
+							String indexid = courses.getIndex().get(0).getIndexID();
+							System.out.println(indexid);
+							this.checkWaitlist(course,indexid);
+							System.out.println("Finished Check Waitlist!");
+							return true;
+						}
 					}
+					System.out.println("Not found in courses");
+				}
+				else{
+					System.out.println("Courses is Null");
+				}
+				
+				if (tempWaitlist !=null) {
+					System.out.println("Waitlist is not empty!");
+					for (Course courses : tempWaitlist) {
+						System.out.println(courses.getCourseID() + " VS " + courseobject.getCourseID());
+						if (courses.getCourseID().equals(courseobject.getCourseID())) {
+							// Drop the class and remove student
+							System.out.println("Dropping from waitlist!");
+							String tempIndex = courses.getIndex().get(0).getIndexID();
+							cmngr.removeStudentFromWaitlist(course,tempIndex);
+							tempWaitlist.remove(tempWaitlist.lastIndexOf(courses));
+							listOfStudents.get(studentIndex).setWaitList(tempWaitlist);
+							saveStudentsFile();
+							return true;
+						}
+					}
+					System.out.println("Not found in waitlists");
+				}
+				else {
+					System.out.println("Waitlist is Null");
 				}
 				System.out.println("You do not have this course!");
 				return false;
@@ -234,6 +366,8 @@ public class StudentManager {
 
 	public void printCourseRegistered() {
 		// HELLO
+		this.printStudentWaitlist();
+		this.check2004Waitlist();
 		if (currentStudent.getCourseEnrolled() != null) {
 			System.out.println("----------------------------------------------------");
 			System.out.println("|  Course ID |  Course Name    | Index:             |");
@@ -543,4 +677,67 @@ public class StudentManager {
 	
 
 
+	public static boolean updateStudent(Student updateStudent) {
+		for (int i = 0; i < listOfStudents.size(); i++) {
+			if (listOfStudents.get(i).getMatricNumber().equals(updateStudent.getMatricNumber())) {
+				listOfStudents.set(i, updateStudent);
+				break;
+			}
+		}
+		saveStudentsFile();
+		return true;
+	}
+	/* ------ Admin Related Methods: End ------ */
+	
+	
+	/*TEST FUNCTIONS TO REMOVE*/
+	public void checkWaitlist(String course, String indexID) {
+		System.out.println("Running CheckWaitList!");
+		Course updatingcourse = CourseManager.findCourseObject(course);
+		Index tempIndex = updatingcourse.findIndexObject(indexID);
+		Queue<Student> tempQueue = tempIndex.getWaitlist();
+		Student nextstudent = tempQueue.poll();
+		if(nextstudent==null) {
+			System.out.println("Nobody in queue!");
+			return;
+		}
+		System.out.println("nextstudent: " + nextstudent.getMatricNumber());
+		int studentind = 0;
+		
+		for(Student student : listOfStudents) {
+			
+			if(student.getMatricNumber().equals(nextstudent.getMatricNumber())) {
+				StudentManager stmngr = new StudentManager(student.getLoginID());
+				if(!stmngr.addCourse(course, indexID)) {
+					System.out.println("Failed to add student!");
+					return;
+				}
+				System.out.println("Dropping Student "+ student.getName() + " from waitlist!");
+				cmngr.removeStudentFromWaitlist(course,indexID);
+				ArrayList<Course> tempWaitlist = student.getWaitList();
+				tempWaitlist.remove(updatingcourse);
+				listOfStudents.get(studentind).setWaitList(tempWaitlist);
+			}
+			studentind++;
+		}
+	}
+	
+	public void check2004Waitlist() {
+		System.out.println("Checking 2004 waitlist");
+		Course course = CourseManager.findCourseObject("CZ2004");
+		Index cz2004index = course.findIndexObject("10142");
+		
+		for(Student student : cz2004index.getWaitlist()) {
+			System.out.println(student.getName());
+		}
+		return;
+	}
+	public void printStudentWaitlist(){
+		System.out.println("Courses in waitlist : ");
+		for(Course course: currentStudent.getWaitList() ) {
+			for(Index index : course.getIndex()) {
+				System.out.println("Courses : " + course.getCourseID() + "Index: " + index.getIndexID());
+			}
+		}
+	}
 }
