@@ -15,7 +15,7 @@ import static control.fileManager.saveCoursesFile;
 public class Course implements Serializable {
 	
     private static final long serialVersionUID = 4L;
-    
+
 	/**
 	 * The course ID of the course. E.g. CZ2001
 	 */
@@ -139,35 +139,14 @@ public class Course implements Serializable {
 		}
 		return false;
 	}
-	
+
 	 @Override public String toString() {
 		    StringBuilder result = new StringBuilder();
 		    String NL = System.getProperty("line.separator");
-		    
-		    
+
+
 		    result.append(this.courseID);
-		    
+
 		    return result.toString();
 	 }
-	
-	 public void printStudentsEnrolled() {
-	
-		 
-		 for (Index _index: this.index) {
-			 
-	            System.out.println("\nList of students in the Index " + _index.getIndexID());
-	            System.out.println("--------------------");
-	            System.out.format("| %-15s|\n","Name");
-	            System.out.println("--------------------");
-			 
-			ArrayList<Student> _students = _index.getStudentsEnrolled();
-			
-			for(Student student: _students) {
-				System.out.format("| %-15s|\n", student.getName());
-			}
-			
-			
-	 }
-
-}
 }
