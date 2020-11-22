@@ -29,11 +29,6 @@ public class AdminManager {
         System.out.println("Course record created. Returning to main UI....\n");
         return true;
     }
-
-
-
-
-
     /**
      * To add an index object to the course object based on course ID
      *
