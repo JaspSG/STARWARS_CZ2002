@@ -341,6 +341,8 @@ public class StudentManager {
 		return false; // temporary value
 	}
 
+	
+	
 	public void printCourseRegistered() {
 		// HELLO
 		if (currentStudent.getCourseEnrolled() != null) {
@@ -359,6 +361,13 @@ public class StudentManager {
 		System.out.println("Vacancies: " + cmngr.checkVacancy(courseID, indexID) + " Slots");
 	}
 
+	/**
+	 * This function 
+	 * @param changeCourseID hrthr
+	 * @param changeIndex rthr
+	 * @return hrthtr
+	 */
+	
 	@SuppressWarnings({ "null", "unused" })
 	public boolean changeIndex(String changeCourseID, String changeIndex) {
 			//find the index object using course
