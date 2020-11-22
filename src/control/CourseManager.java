@@ -68,7 +68,7 @@ public class CourseManager {
 					for (Student targetstudent : tempstudentlist) {
 						if (targetstudent.getMatricNumber().equals(student.getMatricNumber())) {
 							index.removeStudentFromEnrolled(student);
-							System.out.println("Student: " + student.getName() + "removed from course " + courseID);
+							System.out.println("Student: " + student.getName() + " removed from course " + courseID);
 							saveCoursesFile();
 							return true;
 						}
