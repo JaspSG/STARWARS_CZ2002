@@ -18,7 +18,10 @@ public class CourseManager {
 
 		for (Course course : listOfCourses) {
 			if (course.getCourseID().equals(courseID)) {
-				return course;
+				
+				Course copycourse = new Course(course);
+				
+				return copycourse;
 			}
 		}
 		System.out.println("Course not found");
