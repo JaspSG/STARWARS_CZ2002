@@ -38,8 +38,9 @@ public class LoginController {
 		if(_typeOfUser == 1) {
 			this.adminList = fileManager.loadAdminFile();
 			for(Admin _tempadmin: this.adminList) {
-				if(_tempadmin.getLoginID().equals(loginID) == true) {
+				if(_tempadmin.getLoginID().equals(this.loginID) == true) {
 					this.admin = _tempadmin;
+					break;
 				}
 			}
 			
@@ -65,6 +66,9 @@ public class LoginController {
 			if(admin.validateLogin(this.loginID, this.password)==true) {
 				return true;
 			}
+			else {
+				System.out.println("Wrong Login Information");
+			}
 		
 		}
 		if(_typeOfUser==2) {
@@ -72,7 +76,16 @@ public class LoginController {
 				return false;
 			}
 			if(student.validateLogin(this.loginID, this.password)==true) {
-				return true;
+				if(student.accessPeriodValidity()==true) {
+					return true;	
+				}
+				else {
+					System.out.println("Invalid access period");
+				}
+				
+			}
+			else {
+				System.out.println("Wrong login information");
 			}
 		}
 		return false;

@@ -223,6 +223,14 @@ public class AdminManager {
 
     /* ------ Admin Related Methods: End ------ */
     /* ------ Admin Update Access Period  Start ------ */
+    
+    /**
+     * To edit the student's access to the STARS system
+     * @param matriculationNumber Students matriculation number
+     * @param startTime Student's start day to enter STARS System
+     * @param endTime Student's end day to enter STARS System
+     * @return Indicates if the change was successful
+     */
     public static boolean updateAccessPeriod(String matriculationNumber, String startTime, String endTime){
         if (StudentManager.findStudentObject(matriculationNumber).getMatricNumber() == null){
             System.out.println("Invalid matriculation number. Returning to main UI ...");
@@ -253,6 +261,13 @@ public class AdminManager {
             return false;
         }
     }
+    
+    /**
+     * Check the vacancy of a particular course/index
+     * @param courseID target choice of course to check
+     * @param indexID target choice of index to check
+     * @return 
+     */
     public static boolean checkVacancy(String courseID, String indexID){
         Index index = CourseManager.findIndex(courseID, indexID);
 
