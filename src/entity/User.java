@@ -14,6 +14,8 @@ import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
 public class User implements Serializable {
+	
+    private static final long serialVersionUID = 4L;
 
 	/**
 	 * the login ID of the user

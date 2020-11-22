@@ -16,7 +16,7 @@ import java.util.Date;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
-public class mainApp extends User {
+public class mainApp {
 	static int currentStudentIndex;
 
 	static String loginID;
