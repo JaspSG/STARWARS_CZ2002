@@ -397,7 +397,7 @@ public class StudentManager {
 			
 			ArrayList<Index> indexList = new ArrayList<Index>();
 			
-			courseList = currentStudent.getCourseEnrolled();
+			courseList = CourseManager.getListOfCourses();
 			int courseToChange = 0;
 			for(int i = 0; i < courseList.size(); i++)
 			{
@@ -447,7 +447,7 @@ public class StudentManager {
 		
 		ArrayList<Index> indexList = new ArrayList<Index>();
 		
-		courseList = currentStudent.getCourseEnrolled();
+		courseList = CourseManager.getListOfCourses();
 		
 		int courseToSwap = 0;
 		for(int i = 0; i < courseList.size(); i++)

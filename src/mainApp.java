@@ -73,6 +73,7 @@ public class mainApp {
 				if(logincontrol_student.validateUser() == true) {
 					StudentUI.mainStudentUI(loginID);
 				}
+				
 				else{
 					System.out.println("Wrong Login Information");
 				}
