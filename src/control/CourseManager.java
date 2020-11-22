@@ -12,6 +12,7 @@ public class CourseManager {
 
 	public CourseManager() {
 		listOfCourses = fileManager.loadCoursesFile();
+		
 	}
 
 	public static Course findCourseObject(String courseID) {
@@ -58,14 +59,6 @@ public class CourseManager {
 		System.out.println("Course not found");
 		return false;
 	}
-
-//	public boolean addNewCourseToList(Course course) {
-//
-//		listOfCourses.add(course);
-//		saveCoursesFile();
-//		return true;
-//
-//	}
 
 	public boolean removeStudentFromCourse(Student student, String courseID) {
 
@@ -134,20 +127,6 @@ public class CourseManager {
 		Student emptystudent = new Student();
 		return emptystudent;
 
-	}
-
-	public void printIndexList(String CourseID) {
-
-		for (Course course : listOfCourses) {
-
-			if (course.getCourseID().equals(CourseID)) {
-				ArrayList<Index> templist = course.getIndex();
-				for (Index index : templist) {
-
-					System.out.println(index.getIndexID());
-				}
-			}
-		}
 	}
 
 	public static int checkVacancy(String courseID, String indexID) {

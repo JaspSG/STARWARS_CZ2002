@@ -12,13 +12,8 @@ import java.util.*;
 
 public class AdminUI {
 
-	static Scanner sc = new Scanner(System.in);
-
-	/* To load Course */
-	static CourseManager cmngr = new CourseManager();
-	static StudentManager stmngr = new StudentManager();
-
 	public static void mainAdminUI() throws NoSuchAlgorithmException, ParseException {
+		Scanner sc = new Scanner(System.in);
 
 		int choice = 0;
 		boolean validInput = false;
