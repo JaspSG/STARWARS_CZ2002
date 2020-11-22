@@ -12,6 +12,7 @@ public class CourseManager {
 
 	public CourseManager() {
 		listOfCourses = fileManager.loadCoursesFile();
+		
 	}
 
 	public static Course findCourseObject(String courseID) {

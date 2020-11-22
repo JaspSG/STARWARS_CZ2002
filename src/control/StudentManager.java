@@ -427,25 +427,37 @@ public class StudentManager {
 			
 			courseList = CourseManager.getListOfCourses();
 			int courseToChange = 0;
-			for(int i1 = 0; i1 < courseList.size(); i1++)
-			{
-				if(changeCourseID.equals(courseList.get(i1).getCourseID()))
-				{
-					 courseToChange = i1;
-					 indexList = courseList.get(i1).getIndex();
-					 break;
-				}
-		
-			}
 			
-			for(int i2 =0; i2 < indexList.size();i2++)
+			for(Course course: currentStudent.getCourseEnrolled())
 			{
-				if(changeIndex.equals(indexList.get(i2).getIndexID()))
+				courseToChange++;
+				if(changeCourseID.equals(course.getCourseID()))
 				{
-					indexToChange = indexList.get(i2);
 					break;
 				}
 			}
+			
+			for(Course course: courseList)
+			{
+				if(changeCourseID.equals(course.getCourseID()))
+				{
+					indexList = course.getIndex();
+					 break;
+				}
+			}
+			
+			
+			
+			for(Index index: indexList)
+			{
+				if(changeIndex.equals(index.getIndexID()))
+				{
+					indexToChange = index;
+					break;
+				}
+			}
+		
+			
 
 	        //check for timeslot here
 			if(currentStudent.getCourseEnrolled().size() > 1)
@@ -551,10 +563,13 @@ public class StudentManager {
 		
 		courseList = CourseManager.getListOfCourses();
 		
+		int courseToSwap = 0;
+		
 		for(int j = 0; j < currentStudent.getCourseEnrolled().size(); j++)
 		{
 			if(swapCourseID.equals(currentStudent.getCourseEnrolled().get(j).getCourseID()))
 			{
+				courseToSwap = j;
 				currentStudentIndexList = currentStudent.getCourseEnrolled().get(j).getIndex();
 				swapIndex = currentStudentIndexList.get(0).getIndexID();
 				break;
@@ -562,12 +577,14 @@ public class StudentManager {
 			
 		}
 		
-		int courseToSwap = 0;
+	
+		
+		
 		for(int i3 = 0; i3 < courseList.size(); i3++)
 		{
 			if(swapCourseID.equals(courseList.get(i3).getCourseID()))
 			{
-				 courseToSwap = i3;
+				
 				 indexList = courseList.get(i3).getIndex();
 				 break;
 			}

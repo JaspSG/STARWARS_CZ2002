@@ -82,9 +82,9 @@ public class StudentUI {
 		        
 		        //check if course entered is valid
 		        boolean checkCourseEntered = false;
-		        for(int i1 = 0; i1 < currentStudent.getCourseEnrolled().size();i1++ )
+		        for(int i2 = 0; i2 < currentStudent.getCourseEnrolled().size();i2++ )
 		        {
-		        	if(changeCourseID.equals(currentStudent.getCourseEnrolled().get(i1).getCourseID()))
+		        	if(changeCourseID.equals(currentStudent.getCourseEnrolled().get(i2).getCourseID()))
 		        	{
 		        		checkCourseEntered = true;
 		        		break;
@@ -106,37 +106,51 @@ public class StudentUI {
 		       ArrayList<Index> indexList = new ArrayList<Index>();
 		       courseList = CourseManager.getListOfCourses();
 		       
-//		       for(int i = 0; i < courseList.size();i++)
-//		       {
-//		    	   ArrayList<Index> test = new ArrayList<Index>();
-//		    	   test = courseList.get(i).getIndex();
-//		    	   System.out.println(courseList.get(i).getCourseID());
-//		    	   for(int j = 0; j < test.size();j++)
-//		    	   {
-//		    		   System.out.println(test.get(j).getIndexID());
-//		    	   }
-//		       }
-//		       
-		       for(int  i2 = 0; i2 < courseList.size(); i2++)
-		        {
-		        	if(changeCourseID.equals(courseList.get(i2).getCourseID()))
-		        	{
-		        		indexList = courseList.get(i2).getIndex();
-		        		System.out.println(indexList.size());
-		        		break;
-		        	}
-		      
-		        }
+		       for(int i = 0; i < courseList.size();i++)
+		       {
+		    	   ArrayList<Index> test = new ArrayList<Index>();
+		    	   test = courseList.get(i).getIndex();
+	    	       System.out.println(courseList.get(i).getCourseID());
+		    	   for(int j = 0; j < test.size();j++)
+		    	   {
+		    		   System.out.println(test.get(j).getIndexID());
+	    	   }
+		       }
 		       
-		        System.out.println("Printing list of index available for the course" + "\n");
+//		       for(int  i3 = 0; i3 < courseList.size(); i3++)
+//		        {
+//		        	if(changeCourseID.equals(courseList.get(i3).getCourseID()))
+//		        	{
+//		        		indexList = courseList.get(i3).getIndex();
+//		        		System.out.println(indexList.size());
+//		        		break;
+//		        	}
+//		      
+//		        }
+		       
+		       for(Course course: courseList)
+		       {
+		    	   if(changeCourseID.equals(course.getCourseID()))
+		    	   {
+		    		   indexList = course.getIndex();
+		    		   	
+		    	   }
+		       }
+		       System.out.println("Printing list of index available for the course" + "\n");
+		       for(Index index: indexList)
+		       {
+		    	   System.out.println(index.getIndexID() + "\n");
+		       }
+		       
 		        
-		        System.out.println(indexList.size());
-		        for (int i3 = 0; i3 < indexList.size(); i3++)
-		        {
-		        	 
-		        	 System.out.println(indexList.get(i3).getIndexID() + "\n");
-		        	 
-		        }
+//		        
+//		        System.out.println(indexList.size());
+//		        for (int i4 = 0; i4 < indexList.size(); i4++)
+//		        {
+//		        	 
+//		        	 System.out.println(indexList.get(i4).getIndexID() + "\n");
+//		        	 
+//		        }
 		        
 		        System.out.println("Enter the index that you want to change to: ");
 		        String indexToChange = sc.nextLine();
