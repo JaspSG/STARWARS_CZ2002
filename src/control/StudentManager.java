@@ -118,14 +118,8 @@ public class StudentManager {
 		StudentManager.listOfStudents = listOfStudents;
 	}
 
-//	int currentStudentIndex;
-//
-//	public StudentManager(int global_i) {
-//		currentStudentIndex = global_i;
-//		listOfStudents = fileManager.loadStudentFile();
-//	} // to remove
 	/**
-	 * 
+	 * Adds the student that is logged in into a course.
 	 * @param course The course to that the student wants to enroll in String.
 	 * @param indexID The index ID of the course that the student wants to enroll in String.
 	 * @return Returns a true/false to let us know if the function is successful.
@@ -278,51 +272,7 @@ public class StudentManager {
 		System.out.println("Course does not exist!");
 		return false; // temporary value
 	}
-//		ArrayList<Course> listOfCourses = new ArrayList<Course>();
-//		listOfCourses = fileManager.loadCoursesFile();
-//		System.out.println("AddingCourse : " + course + "Group: " + tutGroup);
-//		ArrayList<Course> tempCurrentCourses = new ArrayList<Course>();
-//		tempCurrentCourses = listOfStudents.get(currentStudentIndex).getCourseEnrolled();
-//		for (Course Courses : listOfCourses) {
-//			// System.out.println(Courses.getCourseID());
-//			if (Courses.getCourseID().equals(course)) {
-//				// System.out.println("Course exists!");
-//				if (tempCurrentCourses != null) {
-//					for (Course CheckCurrentCourse : tempCurrentCourses) {
-//						if (CheckCurrentCourse.getCourseID().equals(course)) {
-//							System.out.println("Already enrolled in course!");
-//							return false;
-//						} else {
-//							cmngr.addStudent(listOfStudents.get(currentStudentIndex), course, tutGroup);
-//							tempCurrentCourses.add(Courses);
-//							listOfStudents.get(currentStudentIndex).setCourseEnrolled(tempCurrentCourses);
-//							System.out.println("Adding Student to Course!");
-//							try {
-//								fileManager.saveStudentFile(listOfStudents);
-//							} catch (Exception e) {
-//								e.printStackTrace();
-//							}
-//							return true;
-//						}
-//					}
-//				} else {
-//					cmngr.addStudent(listOfStudents.get(currentStudentIndex), course, tutGroup);
-//					tempCurrentCourses = new ArrayList<Course>();
-//					tempCurrentCourses.add(Courses);
-//					listOfStudents.get(currentStudentIndex).setCourseEnrolled(tempCurrentCourses);
-//					System.out.println("Added!");
-//					try {
-//						fileManager.saveStudentFile(listOfStudents);
-//					} catch (Exception e) {
-//						e.printStackTrace();
-//					}
-//					return true;
-//				}
-//			}
-//		}
-//		System.out.println("Course does not exist!");
-	
-	
+
 	/***
 	 * This function drops a course from a student of his choosing
 	 * @param course The ID of the course
@@ -385,7 +335,7 @@ public class StudentManager {
 
 	
 	/***
-	 * This function prints out the courses registed for a student
+	 * This function prints out the courses registered for a student
 	 */
 	public void printCourseRegistered() {
 		// HELLO
@@ -400,7 +350,11 @@ public class StudentManager {
 			System.out.println("No Courses registered!");
 		}
 	}
-
+	/**
+	 * This function prints out the vacancies available in a course's index.
+	 * @param courseID The course ID of the course that you want to check the index of.
+	 * @param indexID The index ID of the index that you want to check the vacancy of.
+	 */
 	public void printVacanciesAvaliable(String courseID, String indexID) {
 		if(cmngr.checkVacancy(courseID, indexID) == -1) {
 			System.out.println("Course does not exist!");
@@ -547,7 +501,7 @@ public class StudentManager {
 	 * @return boolean Returns a true/false to let us know if the function is successful.
 	 */
 
-	public boolean swapIndex(String swapCourseID,  String swapStudentName) {
+	public boolean swapIndex(String swapCourseID, String swapStudentName) {
 	   
         //find index object using course
 		Index indexToSwap = new Index();
@@ -887,20 +841,14 @@ public class StudentManager {
 	
 
 
-	public static boolean updateStudent(Student updateStudent) {
-		for (int i = 0; i < listOfStudents.size(); i++) {
-			if (listOfStudents.get(i).getMatricNumber().equals(updateStudent.getMatricNumber())) {
-				listOfStudents.set(i, updateStudent);
-				break;
-			}
-		}
-		saveStudentsFile();
-		return true;
-	}
 	/* ------ Admin Related Methods: End ------ */
 	
 	
-	/*TEST FUNCTIONS TO REMOVE*/
+	/**
+	 *  Function to add student at the top of a waitlist to a course if there is a slot.
+	 * @param course Course that needs to be checked.
+	 * @param indexID Index ID of the course that needs to update the waitlist.
+	 */
 	public void checkWaitlist(String course, String indexID) {
 		Course updatingcourse = CourseManager.findCourseObject(course);
 		Index tempIndex = updatingcourse.findIndexObject(indexID);
@@ -934,6 +882,9 @@ public class StudentManager {
 			}
 		}
 	}
+	/**
+	 * This function prints the waitlist of the student that is logged in. 
+	 */
 	
 	public void printStudentWaitlist(){
 		System.out.println("Courses in waitlist : ");

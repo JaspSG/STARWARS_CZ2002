@@ -6,11 +6,11 @@ public class Lesson implements Serializable {
 	
     private static final long serialVersionUID = 4L;
 
-	String type;
-	String group;
-	int startTime;
-	int duration;
-	int day;
+	private String type;
+	private String group;
+	private int startTime;
+	private int duration;
+	private int day;
 
 	public Lesson(String type, String group, int day, int startTime, int duration) {
 		this.type = type;

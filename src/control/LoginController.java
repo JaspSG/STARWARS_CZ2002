@@ -10,13 +10,12 @@ import entity.User;
 
 public class LoginController {
 
-	Admin admin = new Admin();
-	Student student = new Student();
-	ArrayList<Admin> adminList = new ArrayList<Admin>();
-	ArrayList<Student> studentList = new ArrayList<Student>();
-	Scanner sc = new Scanner(System.in);
+	private Admin admin = new Admin();
+	private Student student = new Student();
+	private ArrayList<Admin> adminList = new ArrayList<Admin>();
+	private ArrayList<Student> studentList = new ArrayList<Student>();
 	
-	int _typeOfUser;
+	private int _typeOfUser;
 
 
 	private String loginID;
@@ -99,9 +98,5 @@ public class LoginController {
 			}
 		}
 		return false;
-	}
-	
-	public String getLoginID() {
-		return loginID;
 	}
 }

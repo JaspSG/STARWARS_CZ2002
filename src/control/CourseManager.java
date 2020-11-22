@@ -57,14 +57,6 @@ public class CourseManager {
 		return false;
 	}
 
-//	public boolean addNewCourseToList(Course course) {
-//
-//		listOfCourses.add(course);
-//		saveCoursesFile();
-//		return true;
-//
-//	}
-
 	public boolean removeStudentFromCourse(Student student, String courseID) {
 
 		for (Course course : listOfCourses) {
@@ -132,20 +124,6 @@ public class CourseManager {
 		Student emptystudent = new Student();
 		return emptystudent;
 
-	}
-
-	public void printIndexList(String CourseID) {
-
-		for (Course course : listOfCourses) {
-
-			if (course.getCourseID().equals(CourseID)) {
-				ArrayList<Index> templist = course.getIndex();
-				for (Index index : templist) {
-
-					System.out.println(index.getIndexID());
-				}
-			}
-		}
 	}
 
 	public static int checkVacancy(String courseID, String indexID) {

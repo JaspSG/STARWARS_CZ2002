@@ -367,11 +367,6 @@ public class Student extends User implements Serializable {
 		}
 	}
 
-	/**
-	 *
-	 * @param index
-	 * @return
-	 */
 	
 	public Course[][] populateWaitlistCourse() {
 //		
