@@ -477,13 +477,12 @@ public class StudentManager {
 	public void printSchedule() {
 		
 		currentStudent.populateSchedule();
-		System.out.println("TEST");
 		
 	    try{
 	    	Course[][] schedule = this.currentStudent.getSchedule();
 	        int rows = schedule.length;
 	        int columns = schedule[0].length;
-	        String str = "|\tMon\tTues\tWed\tThurs\tFri\tSat\tSun";
+	        String str = "|\tTime\tMon\tTues\tWed\tThurs\tFri\tSat\tSun\t|\n|\t";
 
 	        for(int i=0;i<rows;i++){
 	        	
@@ -491,7 +490,7 @@ public class StudentManager {
 	        	switch(i) {
 	        	
 	        	case 0:
-	        		str += "\t";
+	        		str += "0800\t";
 	        		break;
 	        	case 1:
 	        		str += "0830\t ";
