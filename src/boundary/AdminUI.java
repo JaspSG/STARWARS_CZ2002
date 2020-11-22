@@ -189,6 +189,10 @@ public class AdminUI {
 			} else if (intLessonType == 3) {
 				strLessonType = "Laboratory";
 			}
+			
+			System.out.println("Enter the Group Name: ");
+			String groupname = sc.nextLine();
+			sc.nextLine();
 
 			System.out.println("Enter the lesson's start time: ");
 			int startTime = sc.nextInt();
@@ -199,14 +203,14 @@ public class AdminUI {
 			sc.nextLine();
 
 			// get lesson day
-			System.out.println("\nEnter the lesson's day in term of: \n1. Monday \n2. Tuesday \n3. Wednesday:"
-					+ "\n4. Thursday \n5. Friday \n6. Saturday ");
+			System.out.println("\nEnter the lesson's day in term of: \n0. Monday \n1. Tuesday \n2. Wednesday:"
+					+ "\n3. Thursday \n4. Friday \n5. Saturday ");
 			int lessonDay = sc.nextInt();
 			sc.nextLine();
 
 			// venue
 
-			Lesson lesson = new Lesson(strLessonType, startTime, duration, lessonDay);
+			Lesson lesson = new Lesson(strLessonType, groupname, startTime, duration, lessonDay);
 			lessonArrayList.add(lesson);
 		}
 		return lessonArrayList;
