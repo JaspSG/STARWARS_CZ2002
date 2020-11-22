@@ -1,3 +1,9 @@
+/**
+ * Represents a Course which a Student can take
+ * @author Raymond Goh Kang Sheng
+ * @version 1.0
+ * @since 2020/10/08
+ */
 package entity;
 
 import java.io.Serializable;
@@ -7,10 +13,21 @@ import static control.fileManager.loadCoursesFile;
 import static control.fileManager.saveCoursesFile;
 
 public class Course implements Serializable {
-
+	/**
+	 * The course ID of the course. E.g. CZ2001
+	 */
 	private String courseID;
+	/**
+	 * The name of the course. E.g. Computer Graphics and Visualisation
+	 */
 	private String courseName;
+	/**
+	 * The school that the course belongs to. E.g. SCSE
+	 */
 	private String courseSchool; // to create a school dat file (enum)
+	/**
+	 *
+	 */
 	private int au;
 	private ArrayList<Index> index = new ArrayList<Index>();
 
