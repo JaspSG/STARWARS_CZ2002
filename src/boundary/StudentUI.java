@@ -106,28 +106,8 @@ public class StudentUI {
 		       ArrayList<Index> indexList = new ArrayList<Index>();
 		       courseList = CourseManager.getListOfCourses();
 		       
-		       for(int i = 0; i < courseList.size();i++)
-		       {
-		    	   ArrayList<Index> test = new ArrayList<Index>();
-		    	   test = courseList.get(i).getIndex();
-	    	       System.out.println(courseList.get(i).getCourseID());
-		    	   for(int j = 0; j < test.size();j++)
-		    	   {
-		    		   System.out.println(test.get(j).getIndexID());
-	    	   }
-		       }
-		       
-//		       for(int  i3 = 0; i3 < courseList.size(); i3++)
-//		        {
-//		        	if(changeCourseID.equals(courseList.get(i3).getCourseID()))
-//		        	{
-//		        		indexList = courseList.get(i3).getIndex();
-//		        		System.out.println(indexList.size());
-//		        		break;
-//		        	}
-//		      
-//		        }
-		       
+	
+
 		       for(Course course: courseList)
 		       {
 		    	   if(changeCourseID.equals(course.getCourseID()))

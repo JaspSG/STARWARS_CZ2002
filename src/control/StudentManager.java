@@ -373,6 +373,8 @@ public class StudentManager {
 	
 	@SuppressWarnings({ "null", "unused" })
 	public boolean changeIndex(String changeCourseID, String changeIndex) {
+		
+			String oldIndexID = "";
 			//find the index object using course
 			Index indexToChange = new Index();
 			ArrayList<Course> courseList = new ArrayList<Course>();
@@ -382,19 +384,24 @@ public class StudentManager {
 			courseList = CourseManager.getListOfCourses();
 			int courseToChange = 0;
 			
-			for(Course course: currentStudent.getCourseEnrolled())
+			
+			for(int i = 0; i < currentStudent.getCourseEnrolled().size();i++)
 			{
-				courseToChange++;
-				if(changeCourseID.equals(course.getCourseID()))
+			
+				if(changeCourseID.equals(currentStudent.getCourseEnrolled().get(i).getCourseID()))
 				{
+					courseToChange = i;
+					oldIndexID = currentStudent.getCourseEnrolled().get(i).getIndex().get(0).getIndexID();
 					break;
 				}
+	
 			}
 			
 			for(Course course: courseList)
 			{
 				if(changeCourseID.equals(course.getCourseID()))
 				{
+					
 					indexList = course.getIndex();
 					 break;
 				}
@@ -427,7 +434,7 @@ public class StudentManager {
 			        	ArrayList<Index> newIndex = new ArrayList<Index>();
 			 	        newIndex.add(indexToChange);
 			 	        //get old index id
-			 	        String oldIndexID = currentStudent.getCourseEnrolled().get(courseToChange).getIndex().get(0).getIndexID();
+			 	        
 			 	        currentStudent.getCourseEnrolled().get(courseToChange).setIndex(newIndex);
 			 	        saveStudentsFile();
 			 	        //now update the index for students enrolled
@@ -463,7 +470,7 @@ public class StudentManager {
 				ArrayList<Index> newIndex = new ArrayList<Index>();
 	 	        newIndex.add(indexToChange);
 	 	        //get old index id
-	 	        String oldIndexID = currentStudent.getCourseEnrolled().get(courseToChange).getIndex().get(0).getIndexID();
+	 	       // String oldIndexID = currentStudent.getCourseEnrolled().get(courseToChange).getIndex().get(0).getIndexID();
 	 	        currentStudent.getCourseEnrolled().get(courseToChange).setIndex(newIndex);
 	 	        saveStudentsFile();
 	 	        //now update the index for students enrolled
