@@ -119,7 +119,7 @@ public class StudentManager {
 	}
 
 	/**
-	 * 
+	 * Adds the student that is logged in into a course.
 	 * @param course The course to that the student wants to enroll in String.
 	 * @param indexID The index ID of the course that the student wants to enroll in String.
 	 * @return Returns a true/false to let us know if the function is successful.
@@ -335,7 +335,7 @@ public class StudentManager {
 
 	
 	/***
-	 * This function prints out the courses registed for a student
+	 * This function prints out the courses registered for a student
 	 */
 	public void printCourseRegistered() {
 		// HELLO
@@ -350,7 +350,11 @@ public class StudentManager {
 			System.out.println("No Courses registered!");
 		}
 	}
-
+	/**
+	 * This function prints out the vacancies available in a course's index.
+	 * @param courseID The course ID of the course that you want to check the index of.
+	 * @param indexID The index ID of the index that you want to check the vacancy of.
+	 */
 	public void printVacanciesAvaliable(String courseID, String indexID) {
 		if(cmngr.checkVacancy(courseID, indexID) == -1) {
 			System.out.println("Course does not exist!");
@@ -823,7 +827,11 @@ public class StudentManager {
 	/* ------ Admin Related Methods: End ------ */
 	
 	
-	/*TEST FUNCTIONS TO REMOVE*/
+	/**
+	 *  Function to add student at the top of a waitlist to a course if there is a slot.
+	 * @param course Course that needs to be checked.
+	 * @param indexID Index ID of the course that needs to update the waitlist.
+	 */
 	public void checkWaitlist(String course, String indexID) {
 		Course updatingcourse = CourseManager.findCourseObject(course);
 		Index tempIndex = updatingcourse.findIndexObject(indexID);
@@ -857,6 +865,9 @@ public class StudentManager {
 			}
 		}
 	}
+	/**
+	 * This function prints the waitlist of the student that is logged in. 
+	 */
 	
 	public void printStudentWaitlist(){
 		System.out.println("Courses in waitlist : ");
