@@ -13,6 +13,10 @@ public class Admin extends User {
 	 * the staff ID of the admin
 	 */
 	private String staffID;
+	
+	public Admin() {
+		super();
+	}
 
 	/**
 	 * Constructor to create a new admin given the login ID and login password

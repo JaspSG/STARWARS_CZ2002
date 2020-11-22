@@ -73,7 +73,7 @@ public class AdminUI {
 				break;
 			case 6:
 				System.out.println("6. Edit student access periods");
-				updateAccessPeriod(sc);
+				updateAccessPeriodUI(sc);
 				break;
 			case 7:
 				System.out.println("7. Print list of students by index group number");
@@ -115,31 +115,10 @@ public class AdminUI {
 
 		ArrayList<Index> indexArrayList = new ArrayList<Index>();
 
-		// load variable to course object >>> set index to null for now >>> call add
-		// index later
+		// load variable to course object >>> set index to null for now >>> call add index later
 		Course newCourse = new Course(courseID, courseName, courseSchool, courseAu, indexArrayList);
 
-		// confirmation
-		System.out.println("Press Y to Confirm, Press N to Cancel: ");
-		char choice = Character.toUpperCase(sc.next().charAt(0));
-
-		if (choice == 'Y') {
-			// validation to check if course exists
-			if (CourseManager.findCourseObject(courseID).getCourseID() == null) {
-				// add course
-				boolean result = AdminManager.addNewCourse(newCourse);
-				if (result) {
-					System.out.println("Course record created. Returning to main UI....\n");
-				} else {
-					System.out.println(
-							"Error creating Course, Please contact IT administrator. Returning to main UI....\n");
-				}
-			} else {
-				System.out.println("Course exists. Returning to main UI....\n");
-			}
-		} else {
-			System.out.println("Operation is cancelled. Returning to main UI....\n");
-		}
+		AdminManager.addNewCourse(newCourse);
 	}
 
 	/**
@@ -155,7 +134,7 @@ public class AdminUI {
 			courseID = sc.nextLine();
 		}
 
-		if (CourseManager.findCourseObject(courseID).getCourseID() != null) {
+
 
 			System.out.println("Enter the new Index ID: ");
 			String indexID = sc.nextLine();
@@ -170,30 +149,7 @@ public class AdminUI {
 			// load variable to index object
 			Index newIndex = new Index(indexID, totalSize, lessonArrayList);
 
-			// confirmation
-			System.out.println("Press Y to Confirm, Press N to Cancel: ");
-			char choice = Character.toUpperCase(sc.next().charAt(0));
-
-			if (choice == 'Y') {
-				// validation to check if index exists
-				if (CourseManager.findIndex(courseID, indexID).getIndexID() == null) {
-					// add course
-					boolean result = AdminManager.addNewIndex(courseID, newIndex);
-					if (result) {
-						System.out.println("Index record created. Returning to main UI....\n");
-					} else {
-						System.out.println(
-								"Error creating Index, Please contact IT administrator. Returning to main UI....\n");
-					}
-				} else {
-					System.out.println("Index exists. Returning to main UI....\n");
-				}
-			} else {
-				System.out.println("Operation is cancelled. Returning to main UI....\n");
-			}
-		} else {
-			System.out.println("Course ID not found. Returning to main UI....\n");
-		}
+			AdminManager.addNewIndex(courseID, newIndex);
 	}
 
 	/**
@@ -240,7 +196,7 @@ public class AdminUI {
 			int startTime = sc.nextInt();
 			sc.nextLine();
 
-			System.out.println("Enter the lesson's end time: ");
+			System.out.println("Enter the lesson's duration: ");
 			int duration = sc.nextInt();
 			sc.nextLine();
 
@@ -249,6 +205,8 @@ public class AdminUI {
 					+ "\n4. Thursday \n5. Friday \n6. Saturday ");
 			int lessonDay = sc.nextInt();
 			sc.nextLine();
+
+			// venue
 
 			Lesson lesson = new Lesson(strLessonType, startTime, duration, lessonDay);
 			lessonArrayList.add(lesson);
@@ -453,27 +411,7 @@ public class AdminUI {
 		Student newStudent = new Student(studentName, matriculationNumber, nationality, major, gender, yearOfStudy,
 				loginId, loginPW, email);
 
-		// confirmation
-		System.out.println("Press Y to Confirm, Press N to Cancel: ");
-		char choice = Character.toUpperCase(sc.next().charAt(0));
-
-		if (choice == 'Y') {
-			// validation to check if index exists
-			if (StudentManager.findStudentObject(matriculationNumber).getMatricNumber() == null) {
-				// add student
-				boolean result = AdminManager.addNewStudent(newStudent);
-				if (result) {
-					System.out.println("Student record created. Returning to main UI....\n");
-				} else {
-					System.out.println(
-							"Error creating Student, Please contact IT administrator. Returning to main UI....\n");
-				}
-			} else {
-				System.out.println("Student exists. Returning to main UI....\n");
-			}
-		} else {
-			System.out.println("Operation is cancelled. Returning to main UI....\n");
-		}
+		AdminManager.addNewStudent(newStudent);
 	}
 
 	/**
@@ -489,11 +427,7 @@ public class AdminUI {
 		System.out.print("Enter the index ID: ");
 		String indexID = sc.nextLine();
 
-		if (CourseManager.findCourseObject(courseID).getCourseID() != null
-				&& CourseManager.findIndex(courseID, indexID).getIndexID() != null) {
-			AdminManager.printIndexStudentList(courseID, indexID);
-		}
-		System.out.println("Returning to main UI....\n");
+		AdminManager.printIndexStudentList(courseID, indexID);
 	}
 
 	/**
@@ -505,51 +439,20 @@ public class AdminUI {
 		System.out.print("Enter the Course ID: ");
 		String courseID = sc.nextLine();
 
-		if (CourseManager.findCourseObject(courseID).getCourseID() == null) {
-			System.out.println("Returning to main UI....\n");
-			return;
-		}
-		else {
-			AdminManager.printCourseStudentList(courseID);
-		}
+		AdminManager.printCourseStudentList(courseID);
 	}
 
-	public static void updateAccessPeriod(Scanner sc) {
-		// initialisation
-		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy/MM/dd");
-		Calendar startCalendar = Calendar.getInstance();
-		Calendar endCalendar = Calendar.getInstance();
-
+	public static void updateAccessPeriodUI(Scanner sc) {
 		System.out.print("Enter the Student's Matriculation Number: ");
 		String matriculationNumber = sc.nextLine();
 
-		// find student object and retrieve
-		if (StudentManager.findStudentObject(matriculationNumber).getMatricNumber() != null) {
-			// get user input
-			Student updateStudent = StudentManager.findStudentObject(matriculationNumber);
+		System.out.println("Enter the start of the access period (yyyy/MM/dd): ");
+		String startTime = sc.nextLine();
 
-			System.out.println("Enter the start of the access period (yyyy/MM/dd): ");
-			String startTime = sc.nextLine();
+		System.out.println("Enter the end of the access period (yyyy/MM/dd): ");
+		String endTime = sc.nextLine();
 
-			System.out.println("Enter the end of the access period (yyyy/MM/dd): ");
-			String endTime = sc.nextLine();
-			try {
-				startCalendar.setTime(simpleDateFormat.parse(startTime));
-				endCalendar.setTime(simpleDateFormat.parse(endTime));
-				// set access period
-				updateStudent.setStartTime(startCalendar);
-				updateStudent.setEndTime(endCalendar);
-				// seek user confirmation
-				// update course
-				AdminManager.updateStudent(updateStudent);
-				System.out.println("Student Access Period Updated. Returning to main menu ...");
-
-			} catch (ParseException parseException) {
-				System.out.println("Invalid date format. Returning to main menu...");
-			}
-		} else {
-			System.out.println("Invalid matriculation number. Returning to main menu ...");
-		}
+		AdminManager.updateAccessPeriod(matriculationNumber, startTime, endTime);
 	}
 
 	public static void checkVacancyUI(Scanner sc) {
@@ -559,18 +462,7 @@ public class AdminUI {
 		System.out.println("Enter the index Code that you want to check vacancy: ");
 		String indexID = sc.nextLine();
 
-		if (CourseManager.findIndex(courseID, indexID).getIndexID() != null) {
-			int result = CourseManager.checkVacancy(courseID, indexID);
-
-			if (result != -1) {
-				System.out.println("The number of available slot for " + indexID + " is " + result);
-			} else {
-				System.out.println("There is no vacancy for " + indexID + " .");
-			}
-		} else {
-			System.out.println("Invalid index ID or Course ID. Returning to main menu ...");
-		}
-
+		AdminManager.checkVacancy(courseID, indexID);
 	}
 	/* End of Admin UI Course Methods */
 }
