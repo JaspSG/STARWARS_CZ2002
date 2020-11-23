@@ -5,9 +5,9 @@ import control.CourseManager;
 import control.StudentManager;
 import entity.*;
 
-import java.security.NoSuchAlgorithmException;
-import java.text.ParseException;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.InputMismatchException;
+import java.util.Scanner;
 
 /**
  * This class is responsible for handing the user interactions between the admin and the application to perform the necessary admin tasks
@@ -21,7 +21,7 @@ public class AdminUI {
 	static CourseManager cmngr = new CourseManager();
 	static StudentManager stmngr = new StudentManager();
 
-	public static void mainAdminUI() throws NoSuchAlgorithmException, ParseException {
+	public static void mainAdminUI(){
 		Scanner sc = new Scanner(System.in);
 
 		int choice = 0;
@@ -104,13 +104,13 @@ public class AdminUI {
 	public static void addCourseUI(Scanner sc) {
 		// Get necessary input from the users: name, id, au and index
 		System.out.println("Enter the new course's ID: ");
-		String courseID = sc.nextLine();
+		String courseID = sc.nextLine().toUpperCase();
 
 		System.out.println("Enter the new course's name: ");
 		String courseName = sc.nextLine();
 
 		System.out.println("Enter the new course's school: ");
-		String courseSchool = sc.nextLine();
+		String courseSchool = sc.nextLine().toUpperCase();
 		
 		boolean validInput = false;
 		int courseAu = 0;
@@ -259,18 +259,24 @@ public class AdminUI {
 			System.out.println("Course record found! Which of the following do you wish to update?: ");
 			System.out.println("1. Update Course's ID");
 			System.out.println("2. Update Course's Name");
-			System.out.println("3. Update Course's School");
-			System.out.println("4. Update Index's Number");
-			System.out.println("5. Update Index's Vacancy");
-			System.out.println("6. Go back to main menu");
+			System.out.println("3. Update Course's au");
+			System.out.println("4. Update Course's School");
+			System.out.println("5. Add Index's Number");
+			System.out.println("6. Update Index's Number");
+			System.out.println("7. Update Index's Vacancy");
+			System.out.println("8. Go back to main menu");
 
 			int choice = 0;
 			do {
 				try {
 					choice = sc.nextInt();
-					if (choice > 0 && choice < 7) {
+					if (choice > 0 && choice < 9) {
 						sc.nextLine();
 						break;
+					}
+					else{
+						System.out.println("Enter a valid range!");
+						sc.nextLine();
 					}
 				} catch (InputMismatchException e) {
 					System.out.println("Enter a valid integer!");
@@ -281,7 +287,7 @@ public class AdminUI {
 			case 1:
 				System.out.println("Current Course's ID: " + updateCourse.getCourseID());
 				System.out.println("Enter the new Course's ID: ");
-				String updateCourseID = sc.nextLine();
+				String updateCourseID = sc.nextLine().toUpperCase();
 				updateCourse.setCourseID(updateCourseID);
 				if (AdminManager.updateCourse(updateCourse)) {
 					System.out.println("Course's ID updated. Returning to main UI....\n");
@@ -328,7 +334,7 @@ public class AdminUI {
 			case 4:
 				System.out.println("Current Course's School: " + updateCourse.getCourseSchool());
 				System.out.println("Enter the new Course's School: ");
-				String updateCourseSchool = sc.nextLine();
+				String updateCourseSchool = sc.nextLine().toUpperCase();
 				updateCourse.setCourseSchool(updateCourseSchool);
 				if (AdminManager.updateCourse(updateCourse)) {
 					System.out.println("Course's School updated. Returning to main UI....\n");
@@ -464,7 +470,7 @@ public class AdminUI {
 
 		ArrayList<Index> courseIndex = CourseManager.findCourseObject(courseID).getIndex();
 		if(courseIndex.size() > 0) {
-			System.out.println("The index ID are as following: ");
+			System.out.println("\nThe index ID are as following: ");
 			for (int i = 0; i < courseIndex.size(); i++) {
 				System.out.println(courseIndex.get(i).getIndexID());
 			}
@@ -514,7 +520,7 @@ public class AdminUI {
 
 		ArrayList<Index> courseIndex = CourseManager.findCourseObject(courseID).getIndex();
 		if(courseIndex.size() > 0) {
-			System.out.println("The index ID are as following: ");
+			System.out.println("\nThe index ID are as following: ");
 			for (int i = 0; i < courseIndex.size(); i++) {
 				System.out.println(courseIndex.get(i).getIndexID());
 			}
