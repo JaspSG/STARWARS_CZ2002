@@ -15,12 +15,14 @@ public class StudentUI {
 	public static void mainStudentUI(String username) {
 
 		StudentManager stmngr = new StudentManager(username);
-		int choice;
+		String userinput = null;
+		int choice = 0;
 		String courseID,indexID;
 		Scanner sc = new Scanner(System.in);
+		int valid=0;
 
 		do {
-			
+			System.out.println();
 			System.out.println("Welcome Student\nPlease Select one of functions:");
 			System.out.println("1. Add Course");
 			System.out.println("2. Drop Course");
@@ -30,14 +32,18 @@ public class StudentUI {
 			System.out.println("6. Swop Index Number with Another Student");
 			System.out.println("7. Print Timetable");
 			System.out.println("8. Exit");
+			
+			do {
+				try {
 
-			try {
-				choice = sc.nextInt();
-			} catch (InputMismatchException ex) {
-				System.out.println("Please only enter the choices shown");
-				choice = sc.nextInt();
-			}
-			sc.nextLine();
+					userinput = sc.nextLine();
+					choice = Integer.parseInt(userinput);
+					valid=1;
+				} catch (Exception ex) {
+					System.out.println("Please only enter the choices shown");
+				}
+			}while(valid!=1);
+
 
 			switch (choice) {
 
@@ -215,8 +221,7 @@ public class StudentUI {
 				break;
 
 			default:
-				System.out.println("Please only enter the choices shown\n");
-
+				break;
 			}
 		} while (choice != 8);
 

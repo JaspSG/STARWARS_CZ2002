@@ -206,7 +206,7 @@ public class StudentManager {
 					enrolledCourses.add(newcourse);
 					listOfStudents.get(studentIndex).setCourseEnrolled(enrolledCourses);
 					saveStudentsFile();
-					System.out.println("Successfully added student to course.!");
+					System.out.println("Successfully added student to course!");
 					return true;
 				}
 			}
@@ -798,7 +798,7 @@ public class StudentManager {
 	        		str += "0800\t";
 	        		break;
 	        	case 1:
-	        		str += "0830\t ";
+	        		str += "0830\t";
 	        		break;
 	        	case 2:
 	        		str += "0930\t";

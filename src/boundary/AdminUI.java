@@ -464,7 +464,7 @@ public class AdminUI {
 	 */
 	public static void printIndexStudentListUI(Scanner sc) {
 		System.out.print("Enter the index's Course ID: ");
-		String courseID = sc.nextLine();
+		String courseID = sc.nextLine().toUpperCase();
 
 		System.out.print("Enter the index ID: ");
 		String indexID = sc.nextLine();

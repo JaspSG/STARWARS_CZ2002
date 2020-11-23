@@ -151,7 +151,6 @@ public class Course implements Serializable {
 		    StringBuilder result = new StringBuilder();
 		    String NL = System.getProperty("line.separator");
 
-
 		    result.append(this.courseID);
 
 		    return result.toString();

@@ -36,28 +36,28 @@ public class testingfile {
 				password, "cz2002gatsby@gmail.com");
 
 		//Permanent access time for _student1
-		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy/MM/dd");
-		Calendar startCalendar = Calendar.getInstance();
-		Calendar endCalendar = Calendar.getInstance();
-		String startTime = "2020/11/20";
-		String endTime = "2021/11/20";
-		startCalendar.setTime(simpleDateFormat.parse(startTime));
-		endCalendar.setTime(simpleDateFormat.parse(endTime));
+//		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy/MM/dd");
+//		Calendar startCalendar = Calendar.getInstance();
+//		Calendar endCalendar = Calendar.getInstance();
+//		String startTime = "2020/11/20";
+//		String endTime = "2021/11/20";
+//		startCalendar.setTime(simpleDateFormat.parse(startTime));
+//		endCalendar.setTime(simpleDateFormat.parse(endTime));
+////		
+//		_student1.setStartTime(startCalendar);
+//		_student1.setEndTime(endCalendar);
 //		
-		_student1.setStartTime(startCalendar);
-		_student1.setEndTime(endCalendar);
-		
-		SimpleDateFormat simpleDateFormat2 = new SimpleDateFormat("yyyy/MM/dd");
-		Calendar startCalendar2 = Calendar.getInstance();
-		Calendar endCalendar2 = Calendar.getInstance();
-		String startTime2 = "2020/11/20";
-		String endTime2 = "2021/11/20";
-		startCalendar2.setTime(simpleDateFormat2.parse(startTime2));
-		endCalendar2.setTime(simpleDateFormat2.parse(endTime2));
-//		
-		_student2.setStartTime(startCalendar2);
-		_student2.setEndTime(endCalendar2);
-//		
+//		SimpleDateFormat simpleDateFormat2 = new SimpleDateFormat("yyyy/MM/dd");
+//		Calendar startCalendar2 = Calendar.getInstance();
+//		Calendar endCalendar2 = Calendar.getInstance();
+//		String startTime2 = "2020/11/20";
+//		String endTime2 = "2021/11/20";
+//		startCalendar2.setTime(simpleDateFormat2.parse(startTime2));
+//		endCalendar2.setTime(simpleDateFormat2.parse(endTime2));
+////		
+//		_student2.setStartTime(startCalendar2);
+//		_student2.setEndTime(endCalendar2);
+////		
 //		
 //		System.out.println(_student1.getEndTime().toString());
 //		
@@ -97,7 +97,7 @@ public class testingfile {
 		Lesson _lesson1_1_1 = new Lesson("Lecture","CS2", 4,1,1);
 		Lesson _lesson1_1_4 = new Lesson("Lecture","CS2", 0,3,1);
 		Lesson _lesson1_1_3 = new Lesson("Tutorial","SSR1", 3,9,1);
-		Lesson _lesson1_1_2 = new Lesson("Lab","SSR1", 2,3,2);
+		Lesson _lesson1_1_2 = new Lesson("Lab","SSR1", 2,2,2);
 
 		_index1_1.addToLessons(_lesson1_1_1);
 		_index1_1.addToLessons(_lesson1_1_2);
@@ -108,10 +108,10 @@ public class testingfile {
 
 		
 		Index _index1_2 = new Index("10125");
-		Lesson _lesson1_2_1 = new Lesson("Lecture","CS2", 4,1,1);
-		Lesson _lesson1_2_4 = new Lesson("Lecture","CS2", 0,3,1);
+		Lesson _lesson1_2_1 = new Lesson("Lecture","CS2", 4,2,1);
+		Lesson _lesson1_2_4 = new Lesson("Lecture","CS2", 0,4,1);
 		Lesson _lesson1_2_3 = new Lesson("Tutorial","SSR5", 2,6,1);
-		Lesson _lesson1_2_2 = new Lesson("Lab","SSR5", 2,1,2);
+		Lesson _lesson1_2_2 = new Lesson("Lab","SSR5", 3,0,2);
 		
 		_index1_2.addToLessons(_lesson1_2_1);
 		_index1_2.addToLessons(_lesson1_2_2);
@@ -126,9 +126,9 @@ public class testingfile {
 		
 		Course cz2002 = new Course("CZ2002", "Object-Oriented Design", "SCSE", 3);
 		Index _index2_1 = new Index("10126");
-		Lesson _lesson2_1_1 = new Lesson("Lecture","CS2", 3,1,1);
+		Lesson _lesson2_1_1 = new Lesson("Lecture","CS2", 3,2,1);
 		Lesson _lesson2_1_4 = new Lesson("Lecture","CS2", 1,7,1);
-		Lesson _lesson2_1_3 = new Lesson("Tutorial","FEP1", 2,2,1);
+		Lesson _lesson2_1_3 = new Lesson("Tutorial","FEP1", 2,1,1);
 		Lesson _lesson2_1_2 = new Lesson("Lab","FEP1", 0,7,2);
 		
 		_index2_1.addToLessons(_lesson2_1_1);
@@ -139,10 +139,10 @@ public class testingfile {
 		cz2002.addToIndex(_index2_1);
 
 		Index _index2_2 = new Index("10127");
-		Lesson _lesson2_2_1 = new Lesson("Lecture","CS2", 3,1,1);
-		Lesson _lesson2_2_4 = new Lesson("Lecture","CS2", 1,7,1);
-		Lesson _lesson2_2_2 = new Lesson("Lab","FEP3", 0,7,2);
-		Lesson _lesson2_2_3 = new Lesson("Tutorial","FEP3", 2,2,1);
+		Lesson _lesson2_2_1 = new Lesson("Lecture","CS2", 3,3,1);
+		Lesson _lesson2_2_4 = new Lesson("Lecture","CS2", 1,8,1);
+		Lesson _lesson2_2_2 = new Lesson("Lab","FEP3", 0,5,2);
+		Lesson _lesson2_2_3 = new Lesson("Tutorial","FEP3", 1,0,1);
 		
 		_index2_2.addToLessons(_lesson2_2_1);
 		_index2_2.addToLessons(_lesson2_2_2);
@@ -159,7 +159,7 @@ public class testingfile {
 		Lesson _lesson3_1_1 = new Lesson("Lecture","CS2", 3,4,1);
 		Lesson _lesson3_1_2 = new Lesson("Lecture","CS2", 0,9,1);
 		Lesson _lesson3_1_3 = new Lesson("Tutorial","SS1", 4,8,1);
-		Lesson _lesson3_1_4 = new Lesson("Lab","SS1", 2,5,2);
+		Lesson _lesson3_1_4 = new Lesson("Lab","SS1", 2,4,2);
 		
 		_index3_1.addToLessons(_lesson3_1_1);
 		_index3_1.addToLessons(_lesson3_1_2);
@@ -169,9 +169,9 @@ public class testingfile {
 		cz2003.addToIndex(_index3_1);
 		
 		Index _index3_2 = new Index("10129");
-		Lesson _lesson3_2_1 = new Lesson("Lecture","SS1", 3,4,1);
-		Lesson _lesson3_2_2 = new Lesson("Lecture","SS1", 0,9,1);
-		Lesson _lesson3_2_3 = new Lesson("Tutorial","SS2", 2,6,1);
+		Lesson _lesson3_2_1 = new Lesson("Lecture","SS1", 3,5,1);
+		Lesson _lesson3_2_2 = new Lesson("Lecture","SS1", 0,10,1);
+		Lesson _lesson3_2_3 = new Lesson("Tutorial","SS2", 2,7,1);
 		Lesson _lesson3_2_4 = new Lesson("Lab","SS2", 4,5,2);
 		
 		_index3_2.addToLessons(_lesson3_2_1);
@@ -186,10 +186,10 @@ public class testingfile {
 
 		Course cz2004 = new Course("CZ2004", "Human Computer Interaction", "SCSE", 3);
 		Index _index4_1= new Index("10140");
-		Lesson _lesson4_1_1 = new Lesson("Lecture","CS2", 4, 2,1);
-		Lesson _lesson4_1_2 = new Lesson("Lecture","CS2", 1, 6,1);
+		Lesson _lesson4_1_1 = new Lesson("Lecture","CS2", 2, 8,1);
+		Lesson _lesson4_1_2 = new Lesson("Lecture","CS2", 4, 4,1);
 		Lesson _lesson4_1_3 = new Lesson("Tutorial","FSP4", 3, 7,1);
-		Lesson _lesson4_1_4 = new Lesson("Lab","FSP4", 3,3,2);
+		Lesson _lesson4_1_4 = new Lesson("Lab","FSP4", 1,1,2);
 		
 		_index4_1.addToLessons(_lesson4_1_1);
 		_index4_1.addToLessons(_lesson4_1_2);
@@ -199,9 +199,9 @@ public class testingfile {
 		cz2004.addToIndex(_index4_1);
 		
 		Index _index4_2= new Index("10141");
-		Lesson _lesson4_2_1 = new Lesson("Lecture","CS2", 4,2,1);
-		Lesson _lesson4_2_2 = new Lesson("Lecture","CS2", 1, 6,1);
-		Lesson _lesson4_2_3 = new Lesson("Tutorial","FSP9", 4, 8,1);
+		Lesson _lesson4_2_1 = new Lesson("Lecture","CS2", 5,3,1);
+		Lesson _lesson4_2_2 = new Lesson("Lecture","CS2", 0, 0,2);
+		Lesson _lesson4_2_3 = new Lesson("Tutorial","FSP9", 4, 7,1);
 		Lesson _lesson4_2_4 = new Lesson("Lab","FSP9", 1,3,2);
 		
 		_index4_2.addToLessons(_lesson4_2_1);
@@ -212,12 +212,16 @@ public class testingfile {
 		cz2004.addToIndex(_index4_2);
 		
 		Index _index4_3= new Index("10142");
-		_index4_3.addToLessons(_lesson4_2_1);
-		_index4_3.addToLessons(_lesson4_2_2);
-		_index4_3.addToLessons(_lesson4_2_3);
-		_index4_3.addToLessons(_lesson4_2_4);
+		Lesson _lesson4_3_1 = new Lesson("Lecture","CS2", 3,5,1);
+		Lesson _lesson4_3_2 = new Lesson("Lecture","CS2", 0,5,2);
+		_index4_3.addToLessons(_lesson4_3_1);
+		_index4_3.addToLessons(_lesson4_3_2);
 		_index4_3.setTotalSize(1);
 		cz2004.addToIndex(_index4_3);
+
+
+
+
 		/*--------------------------------cz2004-------------------------*/
 		
 		listofcourses.add(cz2001);
