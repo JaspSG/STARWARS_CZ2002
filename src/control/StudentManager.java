@@ -132,6 +132,7 @@ public class StudentManager {
 		if (newcourse.getCourseID() != null) {
 			Index checkindex = CourseManager.findIndex(course, indexID);
 			if(checkindex.getIndexID()==null) {
+				System.out.println("Invalid Index!");
 				return false;
 			}
 			// Add in a check for wait list
