@@ -12,6 +12,10 @@ import java.util.*;
 
 public class AdminUI {
 
+	/* To load Course */ 
+	static CourseManager cmngr = new CourseManager();
+	static StudentManager stmngr = new StudentManager();
+
 	public static void mainAdminUI() throws NoSuchAlgorithmException, ParseException {
 		Scanner sc = new Scanner(System.in);
 
@@ -460,7 +464,7 @@ public class AdminUI {
 	 */
 	public static void printIndexStudentListUI(Scanner sc) {
 		System.out.print("Enter the index's Course ID: ");
-		String courseID = sc.nextLine();
+		String courseID = sc.nextLine().toUpperCase();
 
 		System.out.print("Enter the index ID: ");
 		String indexID = sc.nextLine();
