@@ -43,9 +43,9 @@ public class mainApp {
 			case 1:
 				System.out.println("Enter login ID");
 				loginID = sc.nextLine();
-				System.out.println("Enter login PW");
-				loginPW = sc.nextLine();
-				//loginPW = new String(console.readPassword("Please enter login password."));
+				//System.out.println("Enter login PW");
+				//loginPW = sc.nextLine();
+				loginPW = new String(console.readPassword("Please enter login password."));
 				LoginController logincontrol_admin = new LoginController(choice,loginID,loginPW);
 				if(logincontrol_admin.validateUser() == true) {
 					AdminUI.mainAdminUI();
@@ -54,9 +54,9 @@ public class mainApp {
 			case 2:
 				System.out.println("Enter login ID");
 				loginID = sc.nextLine();
-				System.out.println("Enter login PW");
-				loginPW = sc.nextLine();
-				//loginPW = new String(console.readPassword("Please enter login password."));
+				//System.out.println("Enter login PW");
+				//loginPW = sc.nextLine();
+				loginPW = new String(console.readPassword("Please enter login password."));
 				LoginController logincontrol_student = new LoginController(choice,loginID,loginPW);
 				if(logincontrol_student.validateUser() == true) {
 					StudentUI.mainStudentUI(loginID);

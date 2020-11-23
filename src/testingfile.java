@@ -141,7 +141,7 @@ public class testingfile {
 		Index _index2_2 = new Index("10127");
 		Lesson _lesson2_2_1 = new Lesson("Lecture","CS2", 3,3,1);
 		Lesson _lesson2_2_4 = new Lesson("Lecture","CS2", 1,8,1);
-		Lesson _lesson2_2_2 = new Lesson("Lab","FEP3", 0,5,2);
+		Lesson _lesson2_2_2 = new Lesson("Lab","FEP3", 1,5,2);
 		Lesson _lesson2_2_3 = new Lesson("Tutorial","FEP3", 1,0,1);
 		
 		_index2_2.addToLessons(_lesson2_2_1);
