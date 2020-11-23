@@ -1,4 +1,5 @@
 import boundary.AdminUI;
+
 import boundary.StudentUI;
 import control.LoginController;
 
@@ -7,10 +8,21 @@ import java.io.Console;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
+/**
+ * This class serves as the the entry point of the program.
+ * @author Raymond Goh
+ * @version 1.0
+ * @since 2020/11/20
+ */
 public class mainApp {
 
 //	private static ArrayList<Student> studentList = new ArrayList<Student>();
-
+	/**
+	 * Method serves as the the initialize point of the program.
+	 * @param loginID This is the login ID of the user.
+	 * @param loginPW This is the login password of the user.
+	 * @throws Exception To inform if actual input from the user is mismatched with the expected input data type.
+	 */
 	public static void main(String[] args) throws Exception {
 
 		String loginID;

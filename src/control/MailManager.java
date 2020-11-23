@@ -6,7 +6,7 @@ import javax.mail.internet.MimeMessage;
 import java.util.Properties;
 
 /**
- * Control Class of Email Notification
+ * This Control Class is responsible of handling the Email Notification to students in the system
  * @author Raymond Goh
  * @version 1.2
  * @since 2020/11/08
