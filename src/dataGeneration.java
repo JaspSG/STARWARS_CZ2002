@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Calendar;
 
-public class testingfile {
+public class dataGeneration {
 
 	public static void main(String[] args) throws Exception {
 		
