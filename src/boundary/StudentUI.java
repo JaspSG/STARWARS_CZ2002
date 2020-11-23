@@ -9,9 +9,18 @@ import entity.Student;
 import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.Scanner;
-
+/**
+ * UI for the user to manage the courses in the STARS system.
+ * 
+ * @author Tony
+ *
+ */
 public class StudentUI {
-
+	/**
+	 * Runs a student UI based on the username of the student obtained from logging in.
+	 * 
+	 * @param username
+	 */
 	public static void mainStudentUI(String username) {
 
 		StudentManager stmngr = new StudentManager(username);

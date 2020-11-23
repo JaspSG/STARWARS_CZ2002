@@ -329,7 +329,7 @@ public class Student extends User implements Serializable {
 	}
 
 	/**
-	 *
+	 *Retrieves the schedule of a student.
 	 * @return
 	 */
 	public Course[][] getSchedule() {
@@ -337,7 +337,7 @@ public class Student extends User implements Serializable {
 	}
 
 	/**
-	 *
+	 *Modifies the schedule of a student.
 	 * @param schedule
 	 */
 	public void setSchedule(Course[][] schedule) {
@@ -345,7 +345,7 @@ public class Student extends User implements Serializable {
 	}
 
 	/**
-	 *
+	 * Populates the schedule table of a student based on their enrolled courses.
 	 */
 	public void populateSchedule() {
 //		
@@ -367,7 +367,10 @@ public class Student extends User implements Serializable {
 		}
 	}
 
-	
+	/**
+	 * Populates the schedule of a student based on their waitlist courses.
+	 * @return
+	 */
 	public Course[][] populateWaitlistCourse() {
 //		
 		this.populateSchedule();
@@ -393,7 +396,11 @@ public class Student extends User implements Serializable {
 		return tempschedule;
 	}
 	
-	
+	/**
+	 * Checks if there is a clash in the schedule of a student.
+	 * @param targetindex
+	 * @return
+	 */
 	public boolean checkClash(Index targetindex) {
 
 		this.populateSchedule();
