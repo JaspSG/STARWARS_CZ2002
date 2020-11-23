@@ -40,7 +40,6 @@ public class CourseManager {
 				return copycourse;
 			}
 		}
-		System.out.println("Course not found");
 		Course emptycourse = new Course();
 		return emptycourse;
 	}

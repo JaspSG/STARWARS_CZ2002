@@ -42,11 +42,11 @@ public class AdminManager {
     public static boolean addNewIndex(String courseID, Index index) {
         // check condition
         if(CourseManager.findCourseObject(courseID).getCourseID() == null){
-            System.out.println("Course ID not found. Returning to main UI....\n");
+            System.out.println("Course ID not found. Returning to the main UI....\n");
             return false;
         }
         if (CourseManager.findIndex(courseID, index.getIndexID()).getIndexID() != null){
-            System.out.println("Index exists. Returning to main UI....\n");
+            System.out.println("Index exists. Returning to the main UI....\n");
             return false;
         }
 
@@ -58,7 +58,7 @@ public class AdminManager {
             }
         }
         CourseManager.saveCoursesFile();
-
+        System.out.println("Index record created. Returning to the main UI....\n");
         return true;
     }
 
@@ -108,8 +108,8 @@ public class AdminManager {
     public static boolean printIndexStudentList(String courseID, String indexID) {
         // initialise
         if (CourseManager.findCourseObject(courseID).getCourseID() == null
-                && CourseManager.findIndex(courseID, indexID).getIndexID() == null) {
-            System.out.println("Returning to main UI....\n");
+                || CourseManager.findIndex(courseID, indexID).getIndexID() == null) {
+            System.out.println("Invalid CourseID or IndexID. Returning to the main UI....\n");
             return false;
         }
 
@@ -243,11 +243,11 @@ public class AdminManager {
             // seek user confirmation
             // update course
             AdminManager.updateStudent(updateStudent);
-            System.out.println("Student Access Period Updated. Returning to main menu ...");
+            System.out.println("Student Access Period Updated. Returning to the main UI ....");
             return true;
 
         } catch (ParseException parseException) {
-            System.out.println("Invalid date format. Returning to main menu...");
+            System.out.println("Invalid date format. Returning to the main UI....");
             return false;
         }
     }
