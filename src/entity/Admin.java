@@ -1,6 +1,6 @@
 package entity;
 /**
- * Represents a admin that can access the MySTARS Application
+ * This class represents an admin that can access the MySTARS Application
  * An admin class inherits from a User class
  * @author Wong Chin Hao
  * @version 1.0

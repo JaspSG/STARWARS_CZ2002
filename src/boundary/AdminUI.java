@@ -7,9 +7,14 @@ import entity.*;
 
 import java.security.NoSuchAlgorithmException;
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.*;
 
+/**
+ * This class is responsible for handing the user interactions between the admin and the application to perform the necessary admin tasks
+ * @author Wong Chin Hao
+ * @version 1.2
+ * @since 2020/10/20
+ */
 public class AdminUI {
 
 	/* To load Course */ 
@@ -93,9 +98,8 @@ public class AdminUI {
 	/* Admin UI Course Methods */
 	/**
 	 * UI to handles the adding of course operation done by admin, adding of index
-	 * to course will be handled by addIndexUI. IndexList will be null atm
-	 * 
-	 * @param sc Scanner to read the user (admin) input
+	 * to course will be handled by addIndexUI. IndexList will be null in this operation
+	 * @param sc Scanner to read the admin input
 	 */
 	public static void addCourseUI(Scanner sc) {
 		// Get necessary input from the users: name, id, au and index
@@ -133,9 +137,8 @@ public class AdminUI {
 	}
 
 	/**
-	 * To add a new index object to the course
-	 * 
-	 * @param sc Scanner to read the user (admin) input
+	 * To add a new index object to the existing course
+	 * @param sc Scanner to read the admin input
 	 */
 	public static void addIndexUI(Scanner sc, String courseID) {
 		// Get necessary input from the users: name, id, au and index
@@ -175,8 +178,8 @@ public class AdminUI {
 
 	/**
 	 * to create a form for user to create an array list of lesson
-	 * 
-	 * @param sc Scanner to read the user (admin) input
+	 * Mainly used together with add index
+	 * @param sc Scanner to read the admin input
 	 * @return an array list of lesson that was inputted by the user
 	 */
 	public static ArrayList<Lesson> createLessonUI(Scanner sc) {
@@ -239,8 +242,9 @@ public class AdminUI {
 	}
 
 	/**
-	 * To update an existing course
-	 * @param sc Scanner to read the user (admin) input
+	 * UI to handle the updating of an existing course
+	 * Admin can update a course ID,
+	 * @param sc Scanner to read the admin input
 	 */
 	public static void updateCourseUI(Scanner sc) {
 		// initialise
@@ -253,7 +257,7 @@ public class AdminUI {
 			updateCourse = CourseManager.findCourseObject(courseID);
 			ArrayList<Index> updateCourseIndex = updateCourse.getIndex();
 			System.out.println("Course record found! Which of the following do you wish to update?: ");
-			System.out.println("1. Update Course's Code");
+			System.out.println("1. Update Course's ID");
 			System.out.println("2. Update Course's Name");
 			System.out.println("3. Update Course's School");
 			System.out.println("4. Update Index's Number");
@@ -392,19 +396,13 @@ public class AdminUI {
 	}
 
 	/**
-	 * To create a form for user to add an student
-	 * 
-	 * @param sc Scanner to read the user (admin) input
-	 * @throws NoSuchAlgorithmException This exception is thrown when a particular
-	 *                                  cryptographic algorithm is requested but is
-	 *                                  not available in the environment.
+	 * To create a form for user to add a new student to MySTARS application
+	 * @param sc Scanner to read the admin input
 	 */
-	public static void addStudentUI(Scanner sc) throws NoSuchAlgorithmException {
+	public static void addStudentUI(Scanner sc){
 
 		// get input from the user
-		
 		try {
-			
 		System.out.print("Enter the new student's name: ");
 		String studentName = sc.nextLine();
 
@@ -452,19 +450,25 @@ public class AdminUI {
 
 		AdminManager.addNewStudent(newStudent);
 		} catch (InputMismatchException inputMismatchexception) {
-			System.out.println("invalid input");
+			System.out.println("invalid input. Returning to main UI.");
 		}
 	}
 
 	/**
-	 * To create a form to get what index ID (and courseID) that the user(admin)
-	 * want to print
-	 * 
-	 * @param sc Scanner to read the user (admin) input
+	 * To get the course ID and Index ID to print a list of students enrolled in a specific index group
+	 * @param sc Scanner to read the admin input
 	 */
 	public static void printIndexStudentListUI(Scanner sc) {
 		System.out.print("Enter the index's Course ID: ");
 		String courseID = sc.nextLine().toUpperCase();
+
+		ArrayList<Index> courseIndex = CourseManager.findCourseObject(courseID).getIndex();
+		if(courseIndex.size() > 0) {
+			System.out.println("The index ID are as following: ");
+			for (int i = 0; i < courseIndex.size(); i++) {
+				System.out.println(courseIndex.get(i).getIndexID());
+			}
+		}
 
 		System.out.print("Enter the index ID: ");
 		String indexID = sc.nextLine();
@@ -473,9 +477,8 @@ public class AdminUI {
 	}
 
 	/**
-	 * To create a form to get what course ID that the user(admin) want to print
-	 * 
-	 * @param sc Scanner to read the user (admin) input
+	 * To get the course ID to print a list of students enrolled in a specific course
+	 * @param sc Scanner to read the admin input
 	 */
 	public static void printCourseStudentListUI(Scanner sc) {
 		System.out.print("Enter the Course ID: ");
@@ -484,6 +487,10 @@ public class AdminUI {
 		AdminManager.printCourseStudentList(courseID);
 	}
 
+	/**
+	 * To get a student matriculation number, start time and end time access period in order to update their access period
+	 * @param sc Scanner to read the admin input
+	 */
 	public static void updateAccessPeriodUI(Scanner sc) {
 		System.out.print("Enter the Student's Matriculation Number: ");
 		String matriculationNumber = sc.nextLine();
@@ -497,9 +504,21 @@ public class AdminUI {
 		AdminManager.updateAccessPeriod(matriculationNumber, startTime, endTime);
 	}
 
+	/**
+	 * To get the course ID and Index ID to check the vacancy of that index group
+	 * @param sc Scanner to read the admin input
+	 */
 	public static void checkVacancyUI(Scanner sc) {
 		System.out.println("Enter the course Code for the index that you want to check vacancy: ");
 		String courseID = sc.nextLine();
+
+		ArrayList<Index> courseIndex = CourseManager.findCourseObject(courseID).getIndex();
+		if(courseIndex.size() > 0) {
+			System.out.println("The index ID are as following: ");
+			for (int i = 0; i < courseIndex.size(); i++) {
+				System.out.println(courseIndex.get(i).getIndexID());
+			}
+		}
 
 		System.out.println("Enter the index Code that you want to check vacancy: ");
 		String indexID = sc.nextLine();

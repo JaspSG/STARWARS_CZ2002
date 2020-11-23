@@ -8,14 +8,18 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
-
+/**
+ * This class is responsible for handing the logic to fulfill the functions of admin UI
+ * @author Wong Chin Hao
+ * @version 1.3
+ * @since 2020/10/20
+ */
 public class AdminManager {
 
     /* ------ Admin Related Methods: Start ------ */
     /**
      * Adds a new course to the current list of courses
-     *
-     * @return boolean result indicating if the operation is a success or failure;
+     * @return boolean result indicating if the operation is a success or failure
      */
     public static boolean addNewCourse(Course newCourse) {
         if (CourseManager.findCourseObject(newCourse.getCourseID()).getCourseID() != null){
@@ -31,7 +35,6 @@ public class AdminManager {
     }
     /**
      * To add an index object to the course object based on course ID
-     *
      * @param courseID The course's courseID that the index to be added
      * @param index    The index object to be added
      * @return boolean result indicating if the operation is a success or failure
@@ -61,8 +64,7 @@ public class AdminManager {
 
     /**
      * Updates an existing course from the current list of courses
-     *
-     * @return boolean result indicating if the operation is a success or failure;
+     * @return boolean result indicating if the operation is a success or failure
      */
     public static boolean updateCourse(Course updateCourse) {
         for (int i = 0; i < CourseManager.listOfCourses.size(); i++) {
@@ -77,11 +79,10 @@ public class AdminManager {
 
     /**
      * Updates an existing index information from the current list of courses
-     *
      * @param index    The updated index object
      * @param indexID  The original indexID
      * @param courseID The original course ID
-     * @return boolean result indicating if the operation is a success or failure;
+     * @return boolean result indicating if the operation is a success or failure
      */
     public static boolean updateIndex(Index index, String indexID, String courseID) {
         for (int i = 0; i < CourseManager.listOfCourses.size(); i++) {
@@ -99,12 +100,10 @@ public class AdminManager {
     }
 
     /**
-     * Allow admin to display all the students that are enrolled in a specific index
-     * number of a course
-     *
+     * Allow admin to print all the students that are enrolled in a specific index number of a course
      * @param courseID courseID of the index's parent course
      * @param indexID  indexID of the index to be printed
-     * @return boolean result indicating if the operation is a success or failure;
+     * @return boolean result indicating if the operation is a success or failure
      */
     public static boolean printIndexStudentList(String courseID, String indexID) {
         // initialise
@@ -142,11 +141,9 @@ public class AdminManager {
     }
 
     /**
-     * Allow admin to display all the students that are enrolled in a specific
-     * course
-     *
+     * Allow admin to print all the students that are enrolled in a specific course
      * @param courseID courseID of the course to be printed
-     * @return boolean result indicating if the operation is a success or failure;
+     * @return boolean result indicating if the operation is a success or failure
      */
     public static boolean printCourseStudentList(String courseID) {
         // initialise
@@ -183,8 +180,7 @@ public class AdminManager {
     /* ------ Admin Related Methods: Start ------ */
     /**
      * Adds a new student to the current list of students
-     *
-     * @return boolean result indicating if the operation is a success or failure;
+     * @return boolean result indicating if the operation is a success or failure
      */
     public static boolean addNewStudent(Student student) {
         if(StudentManager.findStudentObject(student.getMatricNumber()).getMatricNumber() != null){
@@ -202,8 +198,7 @@ public class AdminManager {
 
     /**
      * Updates an existing student from the current list of student
-     *
-     * @return boolean result indicating if the operation is a success or failure;
+     * @return boolean result indicating if the operation is a success or failure
      */
     public static boolean updateStudent(Student updateStudent) {
         for (int i = 0; i < StudentManager.listOfStudents.size(); i++) {
