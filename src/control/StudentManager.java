@@ -613,7 +613,7 @@ public class StudentManager {
 		System.out.println(otherStudent.checkClash(currentStudent.getCourseEnrolled().get(courseToSwap).getIndex().get(0)));
 		
 		//if both students have only 1 course
-		if( currentStudent.getCourseEnrolled().size() == 1 && otherStudent.getCourseEnrolled().size() ==1 )
+		if( currentStudent.getCourseEnrolled().size() > 1 && otherStudent.getCourseEnrolled().size() > 1 )
 		{
 			otherStudent.getCourseEnrolled().get(otherStudentCourse).setIndex(currentStudent.getCourseEnrolled().get(courseToSwap).getIndex()); 
 			currentStudent.getCourseEnrolled().get(courseToSwap).setIndex(otherStudentIndex);
@@ -652,7 +652,7 @@ public class StudentManager {
 			
 		}
 		// if student only has 1 course and other student does not have clash
-		else if (currentStudent.getCourseEnrolled().size() == 1 && otherStudent.checkClash(currentStudent.getCourseEnrolled().get(courseToSwap).getIndex().get(0)) == false )
+		else if (currentStudent.getCourseEnrolled().size() > 1 && otherStudent.checkClash(currentStudent.getCourseEnrolled().get(courseToSwap).getIndex().get(0)) == false )
 		{
 			otherStudent.getCourseEnrolled().get(otherStudentCourse).setIndex(currentStudent.getCourseEnrolled().get(courseToSwap).getIndex()); 
 			currentStudent.getCourseEnrolled().get(courseToSwap).setIndex(otherStudentIndex);
