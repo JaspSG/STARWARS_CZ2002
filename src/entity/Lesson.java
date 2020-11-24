@@ -50,8 +50,8 @@ public class Lesson implements Serializable {
 		this.day = day;
 	}
 
-	/*
-	 * Get lesson type
+	/**
+	 * Get the lesson type
 	 */
 	public String getType() {
 		return type;

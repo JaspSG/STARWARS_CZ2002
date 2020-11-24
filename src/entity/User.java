@@ -1,10 +1,3 @@
-/**
- * Represents a user that can access the STARS Application
- * A user can be either an admin or student in the application
- * @author Lim Bing Hong, Jasper
- * @version 1.0
- * @since 2020/10/08
- */
 package entity;
 
 import java.io.Serializable;
@@ -12,7 +5,13 @@ import java.math.BigInteger;
 import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
-
+/**
+ * Represents a user that can access the STARS Application
+ * A user can be either an admin or student in the application
+ * @author Lim Bing Hong, Jasper
+ * @version 1.0
+ * @since 2020/10/08
+ */
 public class User implements Serializable {
 	
     private static final long serialVersionUID = 4L;
