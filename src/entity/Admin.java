@@ -12,7 +12,10 @@ public class Admin extends User {
 	 * the staff ID of the admin
 	 */
 	private String staffID;
-	
+
+	/**
+	 * Constructor to create a new empty admin object
+	 */
 	public Admin() {
 		super();
 	}

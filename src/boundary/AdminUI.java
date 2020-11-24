@@ -22,6 +22,9 @@ public class AdminUI {
     static CourseManager cmngr = new CourseManager();
     static StudentManager stmngr = new StudentManager();
 
+    /**
+     * runs the admin ui for user to interacts with the application and choice the necessary options
+     */
     public static void mainAdminUI() {
         Scanner sc = new Scanner(System.in);
 
@@ -140,8 +143,8 @@ public class AdminUI {
 
     /**
      * To add a new index object to the existing course
-     *
      * @param sc Scanner to read the admin input
+     * @param courseID to get the course ID for the add index
      */
     public static void addIndexUI(Scanner sc, String courseID) {
         // Get necessary input from the users: name, id, au and index

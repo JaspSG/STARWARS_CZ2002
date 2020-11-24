@@ -17,8 +17,10 @@ import java.util.Calendar;
 public class AdminManager {
 
     /* ------ Admin Related Methods: Start ------ */
+
     /**
      * Adds a new course to the current list of courses
+     * @param newCourse the new course object that was inputted by the admin
      * @return boolean result indicating if the operation is a success or failure
      */
     public static boolean addNewCourse(Course newCourse) {
@@ -64,6 +66,12 @@ public class AdminManager {
 
     /**
      * Updates an existing course from the current list of courses
+     * @return boolean result indicating if the operation is a success or failure
+     */
+
+    /**
+     * Updates an existing course from the current list of courses
+     * @param updateCourse the updated course object to update
      * @return boolean result indicating if the operation is a success or failure
      */
     public static boolean updateCourse(Course updateCourse) {
@@ -176,10 +184,9 @@ public class AdminManager {
         }
         return true;
     }
-    /* ------ Admin Related Methods: End ------ */
-    /* ------ Admin Related Methods: Start ------ */
     /**
      * Adds a new student to the current list of students
+     * @param student the new student object to be added to listOfStudents
      * @return boolean result indicating if the operation is a success or failure
      */
     public static boolean addNewStudent(Student student) {
@@ -196,8 +203,10 @@ public class AdminManager {
         return true;
     }
 
+
     /**
      * Updates an existing student from the current list of student
+     * @param updateStudent the updated student object
      * @return boolean result indicating if the operation is a success or failure
      */
     public static boolean updateStudent(Student updateStudent) {
@@ -256,7 +265,7 @@ public class AdminManager {
      * Check the vacancy of a particular course/index
      * @param courseID target choice of course to check
      * @param indexID target choice of index to check
-     * @return 
+     * @return Indicates if the check vacancy was successful
      */
     public static boolean checkVacancy(String courseID, String indexID){
         Index index = CourseManager.findIndex(courseID, indexID);
