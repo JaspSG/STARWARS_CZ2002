@@ -180,7 +180,7 @@ public class StudentManager {
 						}
 						newwaitlist.add(newcourse);
 						listOfStudents.get(studentIndex).setWaitList(newwaitlist);
-						System.out.println("Successfully added student to waitlist!");
+						//System.out.println("Successfully added student to waitlist!");
 						saveStudentsFile();
 						return true;
 					} catch (Exception e) {
@@ -206,7 +206,7 @@ public class StudentManager {
 					enrolledCourses.add(newcourse);
 					listOfStudents.get(studentIndex).setCourseEnrolled(enrolledCourses);
 					saveStudentsFile();
-					System.out.println("Successfully added student to course!");
+					//System.out.println("Successfully added student to course.!");
 					return true;
 				}
 			}
@@ -301,7 +301,7 @@ public class StudentManager {
 							return true;
 						}
 					}
-					System.out.println("Not found in courses");
+					//System.out.println("Not found in courses");
 				}
 				else{
 					System.out.println("Courses is Null");
@@ -609,8 +609,8 @@ public class StudentManager {
 		
 		//check for timeslot and get current student's index object
 		
-		System.out.println(currentStudent.getCourseEnrolled().size());
-		System.out.println(otherStudent.checkClash(currentStudent.getCourseEnrolled().get(courseToSwap).getIndex().get(0)));
+		//System.out.println(currentStudent.getCourseEnrolled().size());
+		//System.out.println(otherStudent.checkClash(currentStudent.getCourseEnrolled().get(courseToSwap).getIndex().get(0)));
 		
 		//if both students have only 1 course
 		if( currentStudent.getCourseEnrolled().size() > 1 && otherStudent.getCourseEnrolled().size() > 1 )
@@ -798,7 +798,7 @@ public class StudentManager {
 	        		str += "0800\t";
 	        		break;
 	        	case 1:
-	        		str += "0830\t";
+	        		str += "0830\t ";
 	        		break;
 	        	case 2:
 	        		str += "0930\t";
@@ -876,10 +876,9 @@ public class StudentManager {
 					return;
 				}
 				try {
-					MailManager.sendMail(currentStudent.getEmail(), currentStudent.getName(), indexID, course);
+					MailManager.sendMail(currentStudent.getEmail());
 				} catch (Exception e) {
 					// TODO Auto-generated catch block
-					System.out.println("Sending.....ERROR");
 					e.printStackTrace();
 				}
 //				System.out.println("Dropping Student "+ student.getName() + " from waitlist!");

@@ -15,6 +15,11 @@ public class fileManager {
 
 	// STUDENT OBJECTS READER
 
+	/***
+	 * This method saves the list of all the students' information into a file
+	 * @param listOfStudent This contains the list of students
+	 * @throws Exception To catch errors when file does not save properly
+	 */
 	public static void saveStudentFile(ArrayList<Student> listOfStudent) throws Exception {
 
 		String outputfilepath = String.format("src\\\\%s.ser", OUTSTUDENTFILENAME);
@@ -25,7 +30,10 @@ public class fileManager {
 		out.close();
 		fileOut.close();
 	}
-
+	/***
+	 * This method loads the information of all the students from a file
+	 * @return
+	 */
 	@SuppressWarnings("unchecked")
 	public static ArrayList<Student> loadStudentFile() {
 
@@ -51,6 +59,12 @@ public class fileManager {
 	// END OF STUDENT OBJECT READER
 
 	// COURSE OBJECT READER
+	
+	/***
+	 * This method saves the list of all the courses information into a file
+	 * @param listOfCourses The list of all courses information
+	 * @throws Exception To catch errors when file does not save properly
+	 */
 
 	public static void saveCoursesFile(ArrayList<Course> listOfCourses) throws Exception {
 
@@ -62,6 +76,11 @@ public class fileManager {
 		out.close();
 		fileOut.close();
 	}
+	
+	/***
+	 * This method loads the list of all course information from a file
+	 * @return
+	 */
 
 	@SuppressWarnings("unchecked")
 	public static ArrayList<Course> loadCoursesFile() {
@@ -88,7 +107,12 @@ public class fileManager {
 	// END OF COURSE OBJECT READER
 
 	// ADMIN OBJECT READER
-
+	
+	/***
+	 * This method saves the list of all the admin information into a file
+	 * @param listOfAdmin The list of all admins information
+	 * @throws Exception To catch errors when file does not save properly
+	 */
 	public static void saveAdminFile(ArrayList<Admin> listOfAdmin) throws Exception {
 
 		String outputfilepath = String.format("src\\\\%s.ser", OUTADMINFILENAME);
@@ -99,7 +123,11 @@ public class fileManager {
 		out.close();
 		fileOut.close();
 	}
-
+	
+	/***
+	 * This method loads the list of all the admin information from a file
+	 * @return
+	 */
 	@SuppressWarnings("unchecked")
 	public static ArrayList<Admin> loadAdminFile() {
 
