@@ -8,7 +8,11 @@ import entity.Student;
 import java.util.ArrayList;
 import java.util.Queue;
 import java.util.Scanner;
-
+/**
+ * Manages the functionalities avaliable to a student
+ * @author Jasper Lim
+ *
+ */
 public class StudentManager {
 
 	Student currentStudent = new Student();
