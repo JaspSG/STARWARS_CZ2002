@@ -1,2 +1,23 @@
 # STARWARS_CZ2002
 NTU 2002 FINAL PROJECT
+
+Project:
+Console version creation of NTU's Student Automated Registration System (STARS) application.
+
+MySTARS:
+It is a university application meant for each School’s academic staff and undergraduate students. The application allows the creation of courses and adding of student records as well as registration of courses and students. There will be an administrator mode for academic staff and user mode for students. At the start of each semester registration period, students will be required to register for their courses. Each course (subject) will have its course code, its corresponding index number information, the class schedules and venue, and available vacancy. Courses may have lectures only, lectures and tutorial only or lectures, tutorial and laboratory sessions. If a student is unable to register to an index it being fully occupied, the student will be placed on a waitlist in a queue.
+
+Pre-Defined Student Login Information:
+Name: Student
+Matriculation number: 001
+Login ID: student
+Login Password: password
+
+Name: Student2
+Matriculation number: 002
+Login ID: student
+Login Password: password
+
+Pre-Defined Admin Login Information:
+Name: admin1
+password: password
