@@ -740,6 +740,39 @@ public class StudentManager {
 			}
 		}
 		}
+		
+
+
+	
+//	public boolean checkClash(String courseID, String indexID) {
+//		//check if current student timetable clash with new incoming course
+//		
+//		Course tempcourse = cmngr.findCourseObject(courseID);
+//		Index tempindex = tempcourse.findIndexObject(indexID);
+//		ArrayList<Lesson> templesson = tempindex.getLessons();
+//		String[][] studSchedule = this.currentStudent.getSchedule();
+//		
+//		
+//		for(Lesson lesson: templesson) {
+//		
+//			int day = lesson.getDay();
+//			int start = lesson.getStartTime();
+//			int end = lesson.getStartTime()+lesson.getDuration();
+//			
+//		
+//			for(int i = day; i<studSchedule[0].length;i++) {
+//				System.out.println();
+//			}
+//		
+//		
+//		
+//		
+//		
+//		
+//		return false;
+//	}
+	
+
 	
 	/***
 	 * This function prints out the schedule of a student based on the courses and the index he is enrolled in.
@@ -848,6 +881,11 @@ public class StudentManager {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
+//				System.out.println("Dropping Student "+ student.getName() + " from waitlist!");
+//				cmngr.removeStudentFromWaitlist(course,indexID);
+//				ArrayList<Course> tempWaitlist = student.getWaitList();
+//				tempWaitlist.remove(updatingcourse);
+//				listOfStudents.get(studentind).setWaitList(tempWaitlist);
 			}
 		}
 	}

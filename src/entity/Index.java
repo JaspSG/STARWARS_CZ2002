@@ -13,15 +13,9 @@ import java.util.Queue;
 
 import static control.fileManager.loadCoursesFile;
 import static control.fileManager.saveCoursesFile;
-/**
- * Index object containing the details of a course such as the lessons and size.
- * @author Jasper Lim
- *
- */
+
 public class Index implements Serializable {
-	/**
-	 * Serialization standardization
-	 */
+	
     private static final long serialVersionUID = 4L;
 	/**
 	 * The total size allowed of the index group
@@ -44,7 +38,7 @@ public class Index implements Serializable {
 	 */
 	private ArrayList<Lesson> lessons = new ArrayList<Lesson>();
 	/**
-	 * Queue structure waitlist for the Index
+	 *
 	 */
 	private Queue<Student> waitlist = new LinkedList<Student>();
 
@@ -77,17 +71,10 @@ public class Index implements Serializable {
 		this.lessons = lessons;
 	}
 	
-	/**
-	 * Add lesson objects to the index
-	 * @param lesson
-	 */
 	public void addToLessons(Lesson lesson) {
 		this.lessons.add(lesson);
 	}
-	
-	/**
-	 * Print all the students in the queue for a Index
-	 */
+
 	public void printQueue() {
 
 		for (Student student : this.waitlist) {
@@ -95,9 +82,7 @@ public class Index implements Serializable {
 		}
 
 	}
-	/**
-	 * Print students enrolled in an index
-	 */
+
 	public void printStudentsEnrolled() {
 
 		if (studentsEnrolled.isEmpty()) {
@@ -110,19 +95,11 @@ public class Index implements Serializable {
 		}
 	}
 
-	/**
-	 * Enroll a student to a Index
-	 * @param student
-	 */
 	public void addStudentToEnrolled(Student student) {
 		this.studentsEnrolled.add(student);
 		this.currentSize++;
 	}
 
-	/**
-	 * Remove a student from a Index
-	 * @param student
-	 */
 	public void removeStudentFromEnrolled(Student student) {
 		for (int i = 0; i < this.studentsEnrolled.size(); i++) {
 			if (studentsEnrolled.get(i).getMatricNumber().equals(student.getMatricNumber())) {
@@ -131,110 +108,65 @@ public class Index implements Serializable {
 		}
 		this.currentSize--;
 	}
-/**
- * Gets the total size of the Index
- * @return
- */
+
 	public int getTotalSize() {
 		return totalSize;
 	}
-/**
- * Sets the total slots available for students to enroll into the Index
- * @param totalSize
- */
+
 	public void setTotalSize(int totalSize) {
 		this.totalSize = totalSize;
 	}
-/**
- * Get the current number of students enrolled in the Index
- * @return
- */
+
 	public int getCurrentSize() {
 		return currentSize;
 	}
-/**
- * Sets the current size of the Index
- * @param currentSize
- */
+
 	public void setCurrentSize(int currentSize) {
 		this.currentSize = currentSize;
 	}
-/**
- * Get the ID of the current Index
- * @return
- */
+
 	public String getIndexID() {
 		return indexID;
 	}
-/**
- * Set the ID of the Index
- * @param indexID
- */
+
 	public void setIndexID(String indexID) {
 		this.indexID = indexID;
 	}
-/**
- * Get students enrolled in the Index
- * @return
- */
+
 	public ArrayList<Student> getStudentsEnrolled() {
 		return studentsEnrolled;
 	}
-/**
- * Set students enrolled in the Index
- * @param studentsEnrolled
- */
+
 	public void setStudentsEnrolled(ArrayList<Student> studentsEnrolled) {
 		this.studentsEnrolled = studentsEnrolled;
 	}
-/**
- * Get list of Lesson objects in the Index
- * @return
- */
+
 	public ArrayList<Lesson> getLessons() {
 		return lessons;
 	}
-/**
- * Set the list of Lessons in the Index
- * @param lessons
- */
+
 	public void setLessons(ArrayList<Lesson> lessons) {
 		this.lessons = lessons;
 	}
-/**
- * Get the current queue of students on the waitlist
- * @return
- */
+
 	public Queue<Student> getWaitlist() {
 		return waitlist;
 	}
-/**
- * Sets the Waitlist of the Index
- * @param waitlist
- */
+
 	public void setWaitlist(Queue<Student> waitlist) {
 		this.waitlist = waitlist;
 	}
-/**
- * Add a student to the Waitlist of the Index
- * @param student
- */
+
 	public void addStudentToWaitlist(Student student) {
 		this.waitlist.add(student);
 	}
-/**
- * Remove student from the Waitlist of an Index
- * @return Student object removed from the Waitlist
- */
+
 	public Student removeStudentFromWaitlist() {
 
 		Student tempstudent = this.waitlist.remove();
 		return tempstudent;
 	}
-/**
- * Checks the number of available slots in the index
- * @return number of slots available
- */
+
 	public int checkVacancy() {
 		int vacancy = this.totalSize - this.currentSize;
 		return vacancy;
@@ -268,9 +200,7 @@ public class Index implements Serializable {
 		}
 		return false;
 	}
-	/**
-	 * Override toString function to allow the object to be printed
-	 */
+	
 	 @Override public String toString() {
 		    StringBuilder result = new StringBuilder();
 		    String NL = System.getProperty("line.separator");

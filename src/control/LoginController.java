@@ -8,12 +8,6 @@ import entity.Admin;
 import entity.Student;
 import entity.User;
 
-/**
-* This class is responsible for handing the logic to fulfill the login of the users.
-* @author Raymond Goh
-* @version 1.3
-* @since 2020/11/20
-*/
 public class LoginController {
 
 	private Admin admin = new Admin();
@@ -31,7 +25,7 @@ public class LoginController {
 	public LoginController(){
 		
 	}
-	/**
+	/***
 	 * Constructor for the LoginController class
 	 * @param _typeOfUser Determines whether user is admin or student
 	 * @param loginID login ID of the account

@@ -1,2 +1,2 @@
 @ECHO OFF
-java -jar STARWARS_CZ2002.jar
+java -jar test.jar
