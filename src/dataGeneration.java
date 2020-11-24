@@ -13,9 +13,10 @@ import java.util.Calendar;
  * @author Jasper Lim
  *
  */
-
 public class dataGeneration {
-
+	/**
+	 * Method serves as the the initialize point of the program.
+	 */
 	public static void main(String[] args) throws Exception {
 		
 

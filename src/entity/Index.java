@@ -16,7 +16,8 @@ import static control.fileManager.saveCoursesFile;
 /**
  * Index object containing the details of a course such as the lessons and size.
  * @author Jasper Lim
- *
+ * @version 1.0
+ * @since 2020/10/08
  */
 public class Index implements Serializable {
 	/**

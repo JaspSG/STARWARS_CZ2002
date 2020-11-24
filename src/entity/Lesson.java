@@ -9,6 +9,12 @@ package entity;
 
 import java.io.Serializable;
 
+/**
+ * Lesson object containing the details of a Lecture/Tutorial/Lab.
+ * @author Jasper Lim
+ * @version 1.0
+ * @since 2020/10/08
+ */
 public class Lesson implements Serializable {
 	/**
 	 * Standardization of serialization 
