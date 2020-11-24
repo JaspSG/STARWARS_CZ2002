@@ -153,7 +153,7 @@ public class AdminUI {
 
 		ArrayList<Index> courseIndex = CourseManager.findCourseObject(courseID).getIndex();
 		if (courseIndex.size() > 0) {
-			System.out.println("\nThe index ID are as following: ");
+			System.out.println("\nThe current index ID are as following: ");
 			for (int i = 0; i < courseIndex.size(); i++) {
 				System.out.println(courseIndex.get(i).getIndexID());
 			}
