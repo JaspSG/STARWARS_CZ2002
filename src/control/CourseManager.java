@@ -225,7 +225,7 @@ public class CourseManager {
 
 	/**
 	 * Sets the list of courses in the system
-	 * @param The total list of courses
+	 * @param listOfCourses The total list of courses
 	 */
 	public static void setListOfCourses(ArrayList<Course> listOfCourses) {
 		CourseManager.listOfCourses = listOfCourses;
