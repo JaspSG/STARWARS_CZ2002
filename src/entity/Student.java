@@ -262,7 +262,7 @@ public class Student extends User implements Serializable {
 
 	/**
 	 *
-	 * @return
+	 * @return a list of courses a student is waiting for
 	 */
 	public ArrayList<Course> getWaitList() {
 		return waitList;
@@ -270,7 +270,7 @@ public class Student extends User implements Serializable {
 
 	/**
 	 *
-	 * @param waitList
+	 * @param waitList a list of courses a student is waiting for
 	 */
 	public void setWaitList(ArrayList<Course> waitList) {
 		this.waitList = waitList;
@@ -330,7 +330,7 @@ public class Student extends User implements Serializable {
 
 	/**
 	 *Retrieves the schedule of a student.
-	 * @return
+	 * @return time table of a student
 	 */
 	public Course[][] getSchedule() {
 		return schedule;
@@ -338,7 +338,7 @@ public class Student extends User implements Serializable {
 
 	/**
 	 *Modifies the schedule of a student.
-	 * @param schedule
+	 * @param schedule time table of a student
 	 */
 	public void setSchedule(Course[][] schedule) {
 		this.schedule = schedule;
@@ -369,7 +369,7 @@ public class Student extends User implements Serializable {
 
 	/**
 	 * Populates the schedule of a student based on their waitlist courses.
-	 * @return
+	 * @return future time table of a student after wait course added
 	 */
 	public Course[][] populateWaitlistCourse() {
 //		
@@ -399,7 +399,7 @@ public class Student extends User implements Serializable {
 	/**
 	 * Checks if there is a clash in the schedule of a student.
 	 * @param targetindex
-	 * @return
+	 * @return true if there is a clash
 	 */
 	public boolean checkClash(Index targetindex) {
 
