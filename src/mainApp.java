@@ -17,13 +17,12 @@ import java.util.Scanner;
 public class mainApp {
 
 //	private static ArrayList<Student> studentList = new ArrayList<Student>();
+
 	/**
 	 * Method serves as the the initialize point of the program.
-	 * @param loginID This is the login ID of the user.
-	 * @param loginPW This is the login password of the user.
-	 * @throws Exception To inform if actual input from the user is mismatched with the expected input data type.
+	 * @param args the command line arguments
 	 */
-	public static void main(String[] args) throws Exception {
+	public static void main(String[] args) {
 
 		String loginID;
 		String loginPW;
