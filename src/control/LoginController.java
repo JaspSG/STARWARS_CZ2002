@@ -66,7 +66,7 @@ public class LoginController {
 		}
 	}
 	/***
-	 * This function authenticates the credentials of the admin or student account
+	 * This method authenticates the credentials of the admin or student account
 	 * @return Returns true if the credentials are correct, returns false if credentials are wrong
 	 */
 	
