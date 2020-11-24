@@ -27,7 +27,7 @@ public class StudentManager {
 	
 	/***
 	 * Constructor for the StudentManager class
-	 * @param loginID
+	 * @param loginID This is the login ID of the student
 	 */
 
 	public StudentManager(String loginID) {
@@ -44,7 +44,7 @@ public class StudentManager {
 	}
 	/***
 	 *  Constructor for the StudentManager class
-	 * @param index
+	 * @param index This is the position of the current logged in student in the list
 	 */
 
 	public StudentManager(int index) {
@@ -65,7 +65,7 @@ public class StudentManager {
 	
 	/***
 	 * This method finds a student based on his matriculation number
-	 * @param matriculationNumber
+	 * @param matriculationNumber This is the matric number of the student
 	 * @return Returns the student that is found, empty if student is not found
 	 */
 
