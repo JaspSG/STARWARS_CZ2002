@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.Queue;
 import java.util.Scanner;
 /**
- * Manages the methodalities avaliable to a student
+ * Manages the functionalities avaliable to a student
  * @author Jasper Lim
  *
  */
