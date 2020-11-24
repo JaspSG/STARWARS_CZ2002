@@ -120,6 +120,19 @@ public class dataGeneration {
 		
 		cz2001.addToIndex(_index1_2);
 		
+		Index _index1_3 = new Index("10900");
+		Lesson _lesson1_3_1 = new Lesson("Lecture","CS2", 4,2,1);
+		Lesson _lesson1_3_4 = new Lesson("Lecture","CS2", 0,4,1);
+		Lesson _lesson1_3_3 = new Lesson("Tutorial","SSR5", 2,6,1);
+		Lesson _lesson1_3_2 = new Lesson("Lab","SSR5", 3,0,2);
+		
+		_index1_2.addToLessons(_lesson1_3_1);
+		_index1_2.addToLessons(_lesson1_3_2);
+		_index1_2.addToLessons(_lesson1_3_3);
+		_index1_2.addToLessons(_lesson1_3_4);
+		
+		cz2001.addToIndex(_index1_3);
+		
 		/*--------------------------------cz2001-----------------------*/
 		
 		/*--------------------------------cz2002-----------------------*/
@@ -150,6 +163,19 @@ public class dataGeneration {
 		_index2_2.addToLessons(_lesson2_2_4);
 		
 		cz2002.addToIndex(_index2_2);
+		
+		Index _index2_3 = new Index("10901");
+		Lesson _lesson2_3_1 = new Lesson("Lecture","CS2", 4,2,1);
+		Lesson _lesson2_3_4 = new Lesson("Lecture","CS2", 0,4,1);
+		Lesson _lesson2_3_3 = new Lesson("Tutorial","SSR5", 2,6,1);
+		Lesson _lesson2_3_2 = new Lesson("Lab","SSR5", 3,0,2);
+		
+		_index2_2.addToLessons(_lesson2_3_1);
+		_index2_2.addToLessons(_lesson2_3_2);
+		_index2_2.addToLessons(_lesson2_3_3);
+		_index2_2.addToLessons(_lesson2_3_4);
+		
+		cz2002.addToIndex(_index2_3);
 		
 		/*--------------------------------cz2002-----------------------*/
 		

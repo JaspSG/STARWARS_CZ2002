@@ -64,7 +64,7 @@ public class StudentManager {
 	}
 	
 	/***
-	 * This function finds a student based on his matriculation number
+	 * This method finds a student based on his matriculation number
 	 * @param matriculationNumber
 	 * @return Returns the student that is found, empty if student is not found
 	 */
@@ -82,7 +82,7 @@ public class StudentManager {
 	}
 	
 	/***
-	 * This function saves the stores the current information of all the students into a file
+	 * This method saves the stores the current information of all the students into a file
 	 */
 	public static void saveStudentsFile() {
 		
@@ -94,7 +94,7 @@ public class StudentManager {
 		}
 	}
 	/***
-	 * This function prints out details of all the students
+	 * This method prints out details of all the students
 	 */
 
 	public static void printStudentList() {
@@ -105,7 +105,7 @@ public class StudentManager {
 	}
 	
 	/***
-	 * This function returns a list of all the students and their data
+	 * This method returns a list of all the students and their data
 	 * @return Returns the list of students
 	 */
 
@@ -114,7 +114,7 @@ public class StudentManager {
 	}
 	
 	/***
-	 * This function updates the current list of students with a new list of students taken in
+	 * This method updates the current list of students with a new list of students taken in
 	 * @param listOfStudents 
 	 */
 
@@ -126,7 +126,7 @@ public class StudentManager {
 	 * Adds the student that is logged in into a course.
 	 * @param course The course to that the student wants to enroll in String.
 	 * @param indexID The index ID of the course that the student wants to enroll in String.
-	 * @return Returns a true/false to let us know if the function is successful.
+	 * @return Returns a true/false to let us know if the method is successful.
 	 */
 	public boolean addCourse(String course, String indexID) {
 		boolean waitlist = false;
@@ -278,9 +278,9 @@ public class StudentManager {
 	}
 
 	/***
-	 * This function drops a course from a student of his choosing
+	 * This method drops a course from a student of his choosing
 	 * @param course The ID of the course
-	 * @return Returns a true/false to let us know if the function is successful.
+	 * @return Returns a true/false to let us know if the method is successful.
 	 */
 
 	public boolean dropCourse(String course) {
@@ -339,7 +339,7 @@ public class StudentManager {
 
 	
 	/***
-	 * This function prints out the courses registered for a student
+	 * This method prints out the courses registered for a student
 	 */
 	public void printCourseRegistered() {
 		// HELLO
@@ -355,7 +355,7 @@ public class StudentManager {
 		}
 	}
 	/**
-	 * This function prints out the vacancies available in a course's index.
+	 * This method prints out the vacancies available in a course's index.
 	 * @param courseID The course ID of the course that you want to check the index of.
 	 * @param indexID The index ID of the index that you want to check the vacancy of.
 	 */
@@ -369,7 +369,7 @@ public class StudentManager {
 	}
 
 	/**
-	 * This function will change the student's index to another index of his choice if there are no clashes with the new index
+	 * This method will change the student's index to another index of his choice if there are no clashes with the new index
 	 * @param changeCourseID The course ID of the course that the student wants to change the index for
 	 * @param changeIndex The index ID of the index that the student wants to change
 	 * @return boolean 
@@ -506,10 +506,10 @@ public class StudentManager {
 	}
 	
 	/***
-	 * This function swaps a student's index of a course of his choosing with another student of his choosing
+	 * This method swaps a student's index of a course of his choosing with another student of his choosing
 	 * @param swapCourseID The Course ID of the course that the student wants to swap index for
 	 * @param swapStudentName The name of the other student the current student wants to swap with
-	 * @return boolean Returns a true/false to let us know if the function is successful.
+	 * @return boolean Returns a true/false to let us know if the method is successful.
 	 */
 
 	public boolean swapIndex(String swapCourseID, String swapStudentName) {
@@ -746,7 +746,7 @@ public class StudentManager {
 		}
 	
 	/***
-	 * This function prints out the schedule of a student based on the courses and the index he is enrolled in.
+	 * This method prints out the schedule of a student based on the courses and the index he is enrolled in.
 	 *
 	 */
 	
@@ -823,7 +823,7 @@ public class StudentManager {
 	
 	
 	/**
-	 *  Function to add student at the top of a waitlist to a course if there is a slot.
+	 *  Method to add student at the top of a waitlist to a course if there is a slot.
 	 * @param course Course that needs to be checked.
 	 * @param indexID Index ID of the course that needs to update the waitlist.
 	 */
@@ -857,7 +857,7 @@ public class StudentManager {
 		}
 	}
 	/**
-	 * This function prints the waitlist of the student that is logged in. 
+	 * This method prints the waitlist of the student that is logged in. 
 	 */
 	
 	public void printStudentWaitlist(){
