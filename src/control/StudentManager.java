@@ -20,6 +20,9 @@ public class StudentManager {
 	int studentIndex;
 	static ArrayList<Student> listOfStudents = new ArrayList<Student>();
 
+	/**
+	 * to load the list of students
+	 */
 	public StudentManager() {
 		listOfStudents = fileManager.loadStudentFile();
 
@@ -115,7 +118,7 @@ public class StudentManager {
 	
 	/***
 	 * This method updates the current list of students with a new list of students taken in
-	 * @param listOfStudents 
+	 * @param listOfStudents the updated list of students to
 	 */
 
 	public static void setListOfStudents(ArrayList<Student> listOfStudents) {

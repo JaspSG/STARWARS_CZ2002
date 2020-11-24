@@ -19,6 +19,9 @@ public class CourseManager {
 	 */
 	static ArrayList<Course> listOfCourses = new ArrayList<Course>();
 
+	/**
+	 * loading of the course file
+	 */
 	public CourseManager() {
 		listOfCourses = fileManager.loadCoursesFile();
 		
@@ -128,9 +131,8 @@ public class CourseManager {
 	 * @param CourseID of a course eg. CZ2001
 	 * @param indexID of a index belonging to a course eg. 10124
 	 * @return boolean indicating if the student has successfully entered the waitlist.
-	 * @throws Exception
 	 */
-	public boolean addStudentToWaitlist(Student student, String CourseID, String indexID) throws Exception {
+	public boolean addStudentToWaitlist(Student student, String CourseID, String indexID){
 
 		for (Course course : listOfCourses) {
 
@@ -225,7 +227,7 @@ public class CourseManager {
 
 	/**
 	 * Sets the list of courses in the system
-	 * @param The total list of courses
+	 * @param listOfCourses total list of courses
 	 */
 	public static void setListOfCourses(ArrayList<Course> listOfCourses) {
 		CourseManager.listOfCourses = listOfCourses;

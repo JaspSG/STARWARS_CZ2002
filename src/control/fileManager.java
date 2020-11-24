@@ -38,7 +38,7 @@ public class fileManager {
 	}
 	/**
 	 * This method loads the information of all the students from a file
-	 * @return
+	 * @return the list of students
 	 */
 	@SuppressWarnings("unchecked")
 	public static ArrayList<Student> loadStudentFile() {
@@ -85,7 +85,7 @@ public class fileManager {
 	
 	/**
 	 * This method loads the list of all course information from a file
-	 * @return
+	 * @return the list of courses
 	 */
 
 	@SuppressWarnings("unchecked")
