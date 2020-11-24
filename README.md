@@ -25,10 +25,10 @@ Name: admin1
 
 <h3>List of Courses in the System</h3>
 CZ2001
-Index: 10124,10125,10900
-CZ2002
-Index: 10126,10127,10901
-CZ2003
-Index: 10128, 10129
-CZ2004
-Index: 10140,10141,10143
+<br>Index: 10124,10125,10900
+<br>CZ2002
+<br>Index: 10126,10127,10901
+<br>CZ2003
+<br>Index: 10128, 10129
+<br>CZ2004
+<br>Index: 10140,10141,10143
