@@ -16,6 +16,8 @@ import java.util.Calendar;
 public class dataGeneration {
 	/**
 	 * Method serves as the the initialize point of the program.
+	 * @param args the command line arguments
+	 * @throws Exception to catch any possible errors
 	 */
 	public static void main(String[] args) throws Exception {
 		

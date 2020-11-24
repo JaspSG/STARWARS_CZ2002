@@ -17,8 +17,10 @@ import java.util.Scanner;
 public class mainApp {
 
 //	private static ArrayList<Student> studentList = new ArrayList<Student>();
+
 	/**
 	 * Method serves as the the initialize point of the program.
+	 * @param args the command line arguments
 	 */
 	public static void main(String[] args) {
 
