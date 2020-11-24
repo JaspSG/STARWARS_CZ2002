@@ -36,7 +36,7 @@ public class fileManager {
 		out.close();
 		fileOut.close();
 	}
-	/***
+	/**
 	 * This method loads the information of all the students from a file
 	 * @return
 	 */
@@ -83,7 +83,7 @@ public class fileManager {
 		fileOut.close();
 	}
 	
-	/***
+	/**
 	 * This method loads the list of all course information from a file
 	 * @return
 	 */
@@ -130,9 +130,9 @@ public class fileManager {
 		fileOut.close();
 	}
 	
-	/***
+	/**
 	 * This method loads the list of all the admin information from a file
-	 * @return
+	 * @return a list of admin objects
 	 */
 	@SuppressWarnings("unchecked")
 	public static ArrayList<Admin> loadAdminFile() {
