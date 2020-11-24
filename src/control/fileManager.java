@@ -7,6 +7,12 @@ import entity.Student;
 import java.io.*;
 import java.util.ArrayList;
 
+/***
+ * This class is in charge of saving and loading student, admin and courses data files. 
+ * @author Jasper Lim
+ *
+ */
+
 public class fileManager {
 
 	private final static String OUTSTUDENTFILENAME = "StudentFile";
