@@ -1,11 +1,14 @@
+/**
+ * A lesson object containign the attributes of a lesson in a course/index
+ * These includes lesson type, Lectures,Tutorial,Lab, as well as time slots and duration.
+ * @author Lim Bing Hong, Jasper
+ * @version 1.0
+ * @since 2020/10/08
+ */
 package entity;
 
 import java.io.Serializable;
-/**
- * Lesson object containing attributes of lessons in a Course/Index
- * @author Jasper Lim
- *
- */
+
 public class Lesson implements Serializable {
 	/**
 	 * Standardization of serialization 
@@ -34,11 +37,11 @@ public class Lesson implements Serializable {
 
 	/**
 	 * Lesson constructor
-	 * @param type
-	 * @param group
-	 * @param day
-	 * @param startTime
-	 * @param duration
+	 * @param type of lesson such as lab, lecture or tutorial
+	 * @param group ID such as SSP2, SSP1 FSP2
+	 * @param day of the lesson
+	 * @param startTime of time lesson
+	 * @param duration of the lesson, the number of timeslots taken up
 	 */
 	public Lesson(String type, String group, int day, int startTime, int duration) {
 		this.type = type;
@@ -55,49 +58,49 @@ public class Lesson implements Serializable {
 	}
 /**
  * Set lesson type
- * @param type
+ * @param type refers to the type of lesson
  */
 	public void setType(String type) {
 		this.type = type;
 	}
 /**
  * Get Start time of lesson
- * @return
+ * @return start time slot of lesson
  */
 	public int getStartTime() {
 		return startTime;
 	}
 /**
  * Get end time of lesson
- * @param startTime
+ * @param startTime time slot of lesson
  */
 	public void setStartTime(int startTime) {
 		this.startTime = startTime;
 	}
 /**
  * Get duration of lesson
- * @return
+ * @return duration of thel sson
  */
 	public int getDuration() {
 		return duration;
 	}
 /**
  * Set duration of lesson
- * @param duration
+ * @param duration of the lesson
  */
 	public void setDuration(int duration) {
 		this.duration = duration;
 	}
 /**
  * Get day of the lesson
- * @return
+ * @return day of the lesson
  */
 	public int getDay() {
 		return day;
 	}
 /**
  * Set day of the lesson
- * @param day
+ * @param day of the lesson
  */
 	public void setDay(int day) {
 		this.day = day;

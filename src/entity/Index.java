@@ -79,7 +79,7 @@ public class Index implements Serializable {
 	
 	/**
 	 * Add lesson objects to the index
-	 * @param lesson
+	 * @param lesson object containing attributes of the lesson
 	 */
 	public void addToLessons(Lesson lesson) {
 		this.lessons.add(lesson);
@@ -112,7 +112,7 @@ public class Index implements Serializable {
 
 	/**
 	 * Enroll a student to a Index
-	 * @param student
+	 * @param student object containing attributes of the student
 	 */
 	public void addStudentToEnrolled(Student student) {
 		this.studentsEnrolled.add(student);
@@ -133,91 +133,91 @@ public class Index implements Serializable {
 	}
 /**
  * Gets the total size of the Index
- * @return
+ * @return total size of the index
  */
 	public int getTotalSize() {
 		return totalSize;
 	}
 /**
  * Sets the total slots available for students to enroll into the Index
- * @param totalSize
+ * @param totalSize of the index
  */
 	public void setTotalSize(int totalSize) {
 		this.totalSize = totalSize;
 	}
 /**
  * Get the current number of students enrolled in the Index
- * @return
+ * @return number of students currently enrolled
  */
 	public int getCurrentSize() {
 		return currentSize;
 	}
 /**
  * Sets the current size of the Index
- * @param currentSize
+ * @param currentSize number of students currently enrolled
  */
 	public void setCurrentSize(int currentSize) {
 		this.currentSize = currentSize;
 	}
 /**
  * Get the ID of the current Index
- * @return
+ * @return ID of the current index
  */
 	public String getIndexID() {
 		return indexID;
 	}
 /**
  * Set the ID of the Index
- * @param indexID
+ * @param indexID of the index object
  */
 	public void setIndexID(String indexID) {
 		this.indexID = indexID;
 	}
 /**
  * Get students enrolled in the Index
- * @return
+ * @return a list of students enrolled
  */
 	public ArrayList<Student> getStudentsEnrolled() {
 		return studentsEnrolled;
 	}
 /**
  * Set students enrolled in the Index
- * @param studentsEnrolled
+ * @param studentsEnrolled a list of students enrolled
  */
 	public void setStudentsEnrolled(ArrayList<Student> studentsEnrolled) {
 		this.studentsEnrolled = studentsEnrolled;
 	}
 /**
  * Get list of Lesson objects in the Index
- * @return
+ * @return a list of lessons in the Index
  */
 	public ArrayList<Lesson> getLessons() {
 		return lessons;
 	}
 /**
  * Set the list of Lessons in the Index
- * @param lessons
+ * @param lessons list of lessons in the Index
  */
 	public void setLessons(ArrayList<Lesson> lessons) {
 		this.lessons = lessons;
 	}
 /**
  * Get the current queue of students on the waitlist
- * @return
+ * @return the queue of students waiting to enroll in the index
  */
 	public Queue<Student> getWaitlist() {
 		return waitlist;
 	}
 /**
  * Sets the Waitlist of the Index
- * @param waitlist
+ * @param waitlist a queue of students waiting to enroll in the index
  */
 	public void setWaitlist(Queue<Student> waitlist) {
 		this.waitlist = waitlist;
 	}
 /**
  * Add a student to the Waitlist of the Index
- * @param student
+ * @param student object
  */
 	public void addStudentToWaitlist(Student student) {
 		this.waitlist.add(student);
@@ -233,7 +233,7 @@ public class Index implements Serializable {
 	}
 /**
  * Checks the number of available slots in the index
- * @return number of slots available
+ * @return number of slots available in the Index
  */
 	public int checkVacancy() {
 		int vacancy = this.totalSize - this.currentSize;
@@ -243,8 +243,8 @@ public class Index implements Serializable {
 	/**
 	 * To remove an index object based on indexID
 	 * 
-	 * @param courseID The courseID of the index object
-	 * @param indexID  The indexID of the index object
+	 * @param courseID  of the index object
+	 * @param indexID  of the index object
 	 * @return true or false depending if is success
 	 */
 	public static boolean removeIndex(String courseID, String indexID) {

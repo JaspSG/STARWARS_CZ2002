@@ -26,7 +26,7 @@ public class CourseManager {
 	
 	/**
 	 * Searches for a particular course object and returns a copied item.
-	 * @param courseID
+	 * @param courseID of a course eg. CZ2001
 	 * @return copied course object or NULL course object.
 	 */
 
@@ -46,7 +46,7 @@ public class CourseManager {
 	
 	/**
 	 * Searches for a list of indexes that a course has.
-	 * @param courseID
+	 * @param courseID of a course eg. CZ2001
 	 * @return a list of indexes contained in a course
 	 */
 
@@ -61,9 +61,9 @@ public class CourseManager {
 	
 	/**
 	 * Adds a student to a course
-	 * @param Student
-	 * @param courseID
-	 * @param indexID
+	 * @param Student Student Object
+	 * @param courseID of a course eg. CZ2001
+	 * @param indexID of a index belonging to a course eg. 10124
 	 * @return boolean indicated if student was successfully enrolled
 	 */
 
@@ -89,8 +89,8 @@ public class CourseManager {
 	
 	/**
 	 * Returns a student from a course
-	 * @param student
-	 * @param courseID
+	 * @param student Object
+	 * @param courseID of a course eg. CZ2001
 	 * @return boolean indicated if a student has been successfully removed from a course.
 	 */
 
@@ -124,9 +124,9 @@ public class CourseManager {
 	
 	/**
 	 * Adds a student to the waitlist of a course and index.
-	 * @param student
-	 * @param CourseID
-	 * @param indexID
+	 * @param student Object containing attributes of a student
+	 * @param CourseID of a course eg. CZ2001
+	 * @param indexID of a index belonging to a course eg. 10124
 	 * @return boolean indicating if the student has successfully entered the waitlist.
 	 * @throws Exception
 	 */
@@ -153,8 +153,8 @@ public class CourseManager {
 	
 	/**
 	 * remove a student from the waitlist.
-	 * @param CourseID
-	 * @param indexID
+	 * @param CourseID of a course eg. CZ2001
+	 * @param indexID of a index belonging to a course eg. 10124
 	 * @return Student object that has been dropped from the waitlist.
 	 */
 	public Student removeStudentFromWaitlist(String CourseID, String indexID) {
@@ -181,9 +181,9 @@ public class CourseManager {
 
 	/**
 	 * Check the number of slots left in a course/index.
-	 * @param courseID
-	 * @param indexID
-	 * @return
+	 * @param courseID of a course eg. CZ2001
+	 * @param indexID of a index belonging to a course eg. 10124
+	 * @return number of vacancies in the course/index
 	 */
 	public static int checkVacancy(String courseID, String indexID) {
 
@@ -216,7 +216,7 @@ public class CourseManager {
 	
 	/**
 	 * Returns a list of courses
-	 * @return
+	 * @return The total list of courses
 	 */
 
 	public static ArrayList<Course> getListOfCourses() {
@@ -225,7 +225,7 @@ public class CourseManager {
 
 	/**
 	 * Sets the list of courses in the system
-	 * @param listOfCourses
+	 * @param The total list of courses
 	 */
 	public static void setListOfCourses(ArrayList<Course> listOfCourses) {
 		CourseManager.listOfCourses = listOfCourses;
@@ -244,8 +244,8 @@ public class CourseManager {
 	/**
 	 * To find an index object based on indexID
 	 * 
-	 * @param courseID The courseID of the index object
-	 * @param indexID  The indexID of the index object
+	 * @param courseID of the index object
+	 * @param indexID of the index object
 	 * @return the index object if found, else return null index object
 	 */
 	public static Index findIndex(String courseID, String indexID) {

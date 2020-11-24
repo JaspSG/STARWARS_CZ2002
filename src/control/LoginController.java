@@ -34,8 +34,8 @@ public class LoginController {
 	/**
 	 * Constructor for the LoginController class
 	 * @param _typeOfUser Determines whether user is admin or student
-	 * @param loginID login ID of the account
-	 * @param password password of the account
+	 * @param loginID of the account
+	 * @param password of the account
 	 */
 	
 	public LoginController(int _typeOfUser, String loginID, String password){
