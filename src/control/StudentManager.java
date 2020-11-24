@@ -27,7 +27,7 @@ public class StudentManager {
 	
 	/***
 	 * Constructor for the StudentManager class
-	 * @param loginID
+	 * @param loginID unique to each student
 	 */
 
 	public StudentManager(String loginID) {

@@ -28,9 +28,6 @@ public class LoginController {
 	private String password;
 	
 	
-	public LoginController(){
-		
-	}
 	/**
 	 * Constructor for the LoginController class
 	 * @param _typeOfUser Determines whether user is admin or student

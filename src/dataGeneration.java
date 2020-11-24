@@ -8,6 +8,12 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Calendar;
 
+/**
+ * Create the data required for the application
+ * @author Jasper Lim
+ *
+ */
+
 public class dataGeneration {
 
 	public static void main(String[] args) throws Exception {
@@ -34,35 +40,6 @@ public class dataGeneration {
 				password, "cz2002gatsby@gmail.com");
 		Student _student6 = new Student("Trumpity Wumpity", "U1622999D", "American", "SCSE", 'M', 1, "student6",
 				password, "cz2002gatsby@gmail.com");
-
-		//Permanent access time for _student1
-//		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy/MM/dd");
-//		Calendar startCalendar = Calendar.getInstance();
-//		Calendar endCalendar = Calendar.getInstance();
-//		String startTime = "2020/11/20";
-//		String endTime = "2021/11/20";
-//		startCalendar.setTime(simpleDateFormat.parse(startTime));
-//		endCalendar.setTime(simpleDateFormat.parse(endTime));
-////		
-//		_student1.setStartTime(startCalendar);
-//		_student1.setEndTime(endCalendar);
-//		
-//		SimpleDateFormat simpleDateFormat2 = new SimpleDateFormat("yyyy/MM/dd");
-//		Calendar startCalendar2 = Calendar.getInstance();
-//		Calendar endCalendar2 = Calendar.getInstance();
-//		String startTime2 = "2020/11/20";
-//		String endTime2 = "2021/11/20";
-//		startCalendar2.setTime(simpleDateFormat2.parse(startTime2));
-//		endCalendar2.setTime(simpleDateFormat2.parse(endTime2));
-////		
-//		_student2.setStartTime(startCalendar2);
-//		_student2.setEndTime(endCalendar2);
-////		
-//		
-//		System.out.println(_student1.getEndTime().toString());
-//		
-//		_student1.setStartTime(startCalendar);
-//		_student1.setEndTime(startCalendar);
 		
 		listofstudents.add(_student1);
 		listofstudents.add(_student2);
@@ -75,9 +52,6 @@ public class dataGeneration {
 		
 		/* ------------------------- Start of Admin ------------------------- */
 		ArrayList<Admin> listofAdmin = new ArrayList<Admin>();
-
-//		String password = "password";
-//		password = User.hashString(password);
 
 		Admin _admin1 = new Admin("admin1", password);
 
@@ -268,11 +242,6 @@ public class dataGeneration {
 		/*-------------------------Utility--------------------------------------*/
 		
 		
-		
-//		fileManager fmngr = new fileManager();
-//		CourseManager cmngr = new CourseManager();
-//		StudentManager smngr = new StudentManager();
-
 		
 	}
 }

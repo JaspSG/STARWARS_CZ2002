@@ -132,7 +132,7 @@ public class fileManager {
 	
 	/***
 	 * This method loads the list of all the admin information from a file
-	 * @return
+	 * @return a list of admin objects
 	 */
 	@SuppressWarnings("unchecked")
 	public static ArrayList<Admin> loadAdminFile() {

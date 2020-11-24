@@ -121,7 +121,7 @@ public class Index implements Serializable {
 
 	/**
 	 * Remove a student from a Index
-	 * @param student
+	 * @param student object removed from list of enrolled students
 	 */
 	public void removeStudentFromEnrolled(Student student) {
 		for (int i = 0; i < this.studentsEnrolled.size(); i++) {
