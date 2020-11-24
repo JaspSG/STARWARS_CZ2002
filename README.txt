@@ -30,7 +30,7 @@ CZ2004
 Index: 10140,10141,10143
 
 Timeslots (Implementation details):
-0Monday
+0-Monday
 1-Tuesday
 2-Wednesday
 3-Thursday
