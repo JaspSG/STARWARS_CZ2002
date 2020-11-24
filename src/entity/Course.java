@@ -1,9 +1,4 @@
-/**
- * Represents a Course which a Student can take
- * @author Raymond Goh Kang Sheng
- * @version 1.0
- * @since 2020/10/08
- */
+
 package entity;
 
 import java.io.Serializable;
@@ -11,7 +6,12 @@ import java.util.ArrayList;
 
 import static control.fileManager.loadCoursesFile;
 import static control.fileManager.saveCoursesFile;
-
+/**
+ * Represents a Course which a Student can take
+ * @author Raymond Goh Kang Sheng
+ * @version 1.0
+ * @since 2020/10/08
+ */
 public class Course implements Serializable {
 	
     private static final long serialVersionUID = 4L;

@@ -55,7 +55,7 @@ public class Lesson implements Serializable {
 		this.duration = duration;
 		this.day = day;
 	}
-	
+
 	/**
 	 * Get the lesson type
 	 * @return the lesson type

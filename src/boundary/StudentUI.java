@@ -18,8 +18,7 @@ import java.util.Scanner;
 public class StudentUI {
 	/**
 	 * Runs a student UI based on the username of the student obtained from logging in.
-	 * 
-	 * @param username
+	 * @param username the current student that is in the system
 	 */
 	public static void mainStudentUI(String username) {
 
