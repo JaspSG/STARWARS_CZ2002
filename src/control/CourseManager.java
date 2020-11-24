@@ -6,14 +6,29 @@ import entity.Student;
 
 import java.util.ArrayList;
 
+/**
+ * CourseManager handles the input and ouput of data into the different entity courses.
+ * @author Jasper Lim
+ *
+ */
+
 public class CourseManager {
 
+	/**
+	 * List of available courses in the system.
+	 */
 	static ArrayList<Course> listOfCourses = new ArrayList<Course>();
 
 	public CourseManager() {
 		listOfCourses = fileManager.loadCoursesFile();
 		
 	}
+	
+	/**
+	 * Searches for a particular course object and returns a copied item.
+	 * @param courseID
+	 * @return copied course object or NULL course object.
+	 */
 
 	public static Course findCourseObject(String courseID) {
 
@@ -25,11 +40,15 @@ public class CourseManager {
 				return copycourse;
 			}
 		}
-		System.out.println("Course not found");
 		Course emptycourse = new Course();
-		return emptycourse; // NOTE: STRING DEFAULTS ARE NULL, HENCE TO CHECK IF OBJECT IS EMPTY, CHECK IF A
-							// STRING ATTRIBUTE IS NULL
+		return emptycourse;
 	}
+	
+	/**
+	 * Searches for a list of indexes that a course has.
+	 * @param courseID
+	 * @return a list of indexes contained in a course
+	 */
 
 	public static ArrayList<Index> findIndexGroup(String courseID){
 		for (int i = 0; i < CourseManager.listOfCourses.size(); i++) {
@@ -39,6 +58,14 @@ public class CourseManager {
 		}
 		return new ArrayList<Index>();
 	}
+	
+	/**
+	 * Adds a student to a course
+	 * @param Student
+	 * @param courseID
+	 * @param indexID
+	 * @return boolean indicated if student was successfully enrolled
+	 */
 
 	public boolean addStudentToCourse(Student Student, String courseID, String indexID) {
 
@@ -59,6 +86,13 @@ public class CourseManager {
 		System.out.println("Course not found");
 		return false;
 	}
+	
+	/**
+	 * Returns a student from a course
+	 * @param student
+	 * @param courseID
+	 * @return boolean indicated if a student has been successfully removed from a course.
+	 */
 
 	public boolean removeStudentFromCourse(Student student, String courseID) {
 
@@ -87,6 +121,15 @@ public class CourseManager {
 		return false;
 	}
 
+	
+	/**
+	 * Adds a student to the waitlist of a course and index.
+	 * @param student
+	 * @param CourseID
+	 * @param indexID
+	 * @return boolean indicating if the student has successfully entered the waitlist.
+	 * @throws Exception
+	 */
 	public boolean addStudentToWaitlist(Student student, String CourseID, String indexID) throws Exception {
 
 		for (Course course : listOfCourses) {
@@ -107,6 +150,13 @@ public class CourseManager {
 		return false;
 	}
 
+	
+	/**
+	 * remove a student from the waitlist.
+	 * @param CourseID
+	 * @param indexID
+	 * @return Student object that has been dropped from the waitlist.
+	 */
 	public Student removeStudentFromWaitlist(String CourseID, String indexID) {
 
 		for (Course course : listOfCourses) {
@@ -129,6 +179,12 @@ public class CourseManager {
 
 	}
 
+	/**
+	 * Check the number of slots left in a course/index.
+	 * @param courseID
+	 * @param indexID
+	 * @return
+	 */
 	public static int checkVacancy(String courseID, String indexID) {
 
 		for (Course course : listOfCourses) {
@@ -145,6 +201,10 @@ public class CourseManager {
 		return -1;
 	}
 
+	
+	/**
+	 * Saves updates to the course files
+	 */
 	public static void saveCoursesFile() {
 		try {
 			fileManager.saveCoursesFile(listOfCourses);
@@ -153,15 +213,27 @@ public class CourseManager {
 			e.printStackTrace();
 		}
 	}
+	
+	/**
+	 * Returns a list of courses
+	 * @return
+	 */
 
 	public static ArrayList<Course> getListOfCourses() {
 		return listOfCourses;
 	}
 
+	/**
+	 * Sets the list of courses in the system
+	 * @param listOfCourses
+	 */
 	public static void setListOfCourses(ArrayList<Course> listOfCourses) {
 		CourseManager.listOfCourses = listOfCourses;
 	}
-
+	
+	/**
+	 * Print Courses in the System
+	 */
 	public static void printCourseList() {
 		for (Course course : listOfCourses) {
 			System.out.println("School: "+ course.getCourseSchool() + "\nCourse Name: " + course.getCourseName() + "\nCourse ID: " + course.getCourseID()
